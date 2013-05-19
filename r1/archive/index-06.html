@@ -1,0 +1,574 @@
+<!doctype html>
+<html lang='en'>
+<head>
+<style>
+a {font-weight: 800; text-decoration: none;}
+a:before {content: '»'; }
+</style>
+<title>Algebraic Surfaces using Marching Cubes</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+</head>
+<body>
+
+<script src='http://mrdoob.github.com/three.js/build/three.min.js'></script>
+<script src='http://mrdoob.github.com/three.js/examples/js/controls/TrackballControls.js'></script>
+<script src='http://mrdoob.github.com/three.js/examples/js/libs/stats.min.js'></script>
+<script src='http://mrdoob.github.com/three.js/examples/js/Detector.js'></script>
+<script src='http://mrdoob.github.com/three.js/examples/js/libs/dat.gui.min.js'></script>
+<!--
+<script src="https://raw.github.com/mrdoob/three.js/r54/build/three.min.js"></script>
+<script src="https://raw.github.com/mrdoob/three.js/r54/examples/js/controls/TrackballControls.js"></script>
+<script src="https://raw.github.com/mrdoob/three.js/r54/examples/js/libs/stats.min.js"></script>
+<script src="https://raw.github.com/mrdoob/three.js/r54/examples/js/Detector.js"></script>
+
+<script src='../../three.js/build/three.min.js'></script>
+<script src='../../three.js/examples/js/controls/TrackballControls.js'></script>
+<script src='../../three.js/examples/js/libs/stats.min.js'></script>
+<script src='../../three.js/examples/js/Detector.js'></script>
+-->
+<script src="parser.js"></script>
+<!-- Contains Lookup Tables for the Marching Cubes Algorithm -->
+<script src="MarchingCubesData.js"></script>
+<script>
+  if ( ! Detector.webgl ) { Detector.addGetWebGLMessage(); }
+  
+  document.body.style.cssText = 'background-color: #000; font: 12pt monospace; margin: 0; overflow: hidden; text-align: center';
+  document.body.style.backgroundImage = '-moz-radial-gradient(40% 40%, farthest-side, red, #000)';
+  document.body.style.backgroundImage = '-webkit-gradient(radial, 430 50, 0, 430 50, 987, from(#800), to(#010))';
+  
+  var info = document.createElement( 'div' );
+  document.body.appendChild( info );
+  info.style.cssText = 'top: 0px; color: #fff; padding: 5px; position: absolute; width: 100%';
+  
+  var materialsMenu = document.createElement( 'div' );
+  document.body.appendChild( materialsMenu );
+  materialsMenu.style.cssText = 'top: 20px; color: #fff; padding: 5px; position: absolute; width: 100%';
+  materialsMenu.innerHTML = 'Materials: ';  
+
+  var renderer, scene, camera, controls, stats;
+  var light, geometry, material, materials, mesh;
+  var clock = new THREE.Clock();
+  
+  var spin = true, player = false;
+  var spinSpeed = 3; // parseFloat(document.getElementById('spn').value);
+  var playDelay = 5; // document.getElementById('play').value;
+  
+  var surf = [];
+  // surf[] = ['','',0,0,0,''];
+  // http://homepage.univie.ac.at/herwig.hauser/bildergalerie/gallery.html
+  surf[0] = ['Stemkoski (default)','x^2 + y^2 - z^2 - 70', -10, 10, 1, 'x<sup>2</sup>+y<sup>2</sup>-z<sup>2</sup>-70'];
+  surf[1] = ['Calyx','x^2 + y^2 * z^3 - z^4', -5, 5, 2,'x<sup>2</sup>+y<sup>2</sup>z<sup>3</sup> = z<sup>4</sup>'];
+  surf[2] = ['Calypso','x^2 + y^2 * z - z^2', -10, 10, 1,'x<sup>2</sup>+y<sup>2</sup>z = z<sup>2</sup> </a>'];
+  surf[3] = ['Columpius','x^3*y + x*z^3 + y^3*z + z^3 + 7*z^2 + 5*z', -3, 3, 5,'x<sup>3</sup>y+xz<sup>3</sup>+y<sup>3</sup>z+z<sup>3</sup>+7z<sup>2</sup>+5z=0 ']; // Columpius
+  // http://gauravtiwari.org/2011/03/05/curves/columpius/
+  // http://m.wolframalpha.com/input/?i=columpius+surface&lk=1&a=ClashPrefs_*Surface.ColumpiusSurface-
+  surf[4] = ['Cube','x^6 + y^6 + z^6 - 1', -2, 2, 8,'x<sup>6</sup>+y<sup>6</sup>+z<sup>6</sup>=1']; // cube
+  surf[5] = ['Dattel','3*x^3 + 3*y^3 + z^2 - 1', -2, 2, 8,'3x<sup>2</sup>+3y<sup>2</sup>+z<sup>2</sup>=1']; //dattel
+  surf[6] = ['Daisy','(x^2 - y^3) * (x^2 - y^3) - (z^2 - y^2)^3', -0.5, 0.5, 12, '(x<sup>2</sup> - y<sup>3</sup>)<sup>2</sup>=(z<sup>2</sup>-y<sup>2</sup>)<sup>3</sup>']; //daisy
+  surf[7] = ['DingDong','x^2 + y^2 + z^3 - z^2', -2, 2, 8,'x<sup>2</sup> +y<sup>2</sup> +z<sup>3</sup> = z<sup>2</sup>']; // ding dong
+  surf[8] = ['Distel','x^2 + y^2 + z^2 + 1000*(x^2 + y^2) * (x^2 + z^2) * (y^2 + z^2) - 1', -0.8, 0.8, 20,'x<sup>2</sup>+y<sup>2</sup>+z<sup>2</sup>+1000(x<sup>2</sup>+y<sup>2</sup>)(x<sup>2</sup>+z<sup>2</sup>)(y<sup>2</sup>+z<sup>2</sup>)=1']; // distel
+  surf[9] = ['Durchblick','x^3*y + x*z^3 + y^3*z + z^3 + 5*z', -5, 5, 3,'x<sup>3</sup>y+xz<sup>3</sup>+y<sup>3</sup>z+z<sup>3</sup>+5z = 0']; // Durchblick
+  surf[10] = ['Eist&uuml;te','(x^2 + y^2)^3 - 4*x^2*y^2 * (z^2 + 1)', -2, 2, 5,'(x<sup>2</sup>+y<sup>2</sup>)<sup>3</sup> = 4x<sup>2</sup>y<sup>2</sup>(z<sup>2</sup>+1)']; // Eistute
+  surf[11] = ['Eve','5*x^2 + 2*x*z^2 + 5*y^6 + 15*y^4 + 5*z^2 - 15*y^5 - 5*y^3', -5.5, 5.5, 2,'5x<sup>2</sup> + 2xz<sup>2</sup> + 5y<sup>6</sup> + 15y<sup>4</sup> + 5z<sup>2</sup> = 15y<sup>5</sup> + 5y<sup>3</sup>']; // eve
+  surf[12] = ['Flirt','x^2 - x^3 + y^2 + y^4 + z^3 - 10*z^4', -1, 1, 8,'x<sup>2</sup>-x<sup>3</sup>+y<sup>2</sup>+y<sup>4</sup>+z<sup>3</sup>-10z<sup>4</sup>=0']; //flirt
+  surf[13] = ['Geisha','x^2*y*z + x^2*z^2 - y^3*z - y^3', -10, 10, 1,'x<sup>2</sup>yz + x<sup>2</sup>z<sup>2</sup> = y<sup>3</sup>z + y<sup>3</sup>']; // geisha
+  surf[14] = ['Harlekin','x^3*z + 10*x^2*y + x*y^2 + y*z^2 - z^3', -10, 10, 1, 'x<sup>3</sup>z + 10x<sup>2</sup>y + xy<sup>2</sup> + yz<sup>2</sup> = z<sup>3</sup>']; //harlequin
+  surf[15] = ['Helix','6*x^2 + 2*x^4 - y^2*z^2', -2, 2, 8,'6x<sup>2</sup> - 2x<sup>4</sup> = y<sup>2</sup>z<sup>2</sup>']; //helix
+  surf[16] = ['Herz','y^2 + z^3 - z^4 - x^2*z^2', -1, 1, 8,'y<sup>2</sup>+z<sup>3</sup>-z<sup>4</sup>-x<sup>2</sup>z<sup>2</sup> = 0']; // herz
+  surf[17] = ['Himmel und H&ouml;lle','x^2 - y^2*z^2', -1.5, 1.5, 8,'x<sup>2</sup>-y<sup>2</sup>z<sup>2</sup>=0']; // Himmel und Holle
+  surf[18] = ['Kolobri','x^3 + x^2*z^2 - y^2', -2, 2, 8,'x<sup>3</sup> + x<sup>2</sup>z<sup>2</sup> - y<sup>2</sup>']; // kolobri
+  surf[19] = ['Leopold','x^2*y^2*z^2 + 3*x^2 + 3*y^2 + z^2 - 1', -1, 1, 8,'x<sup>2</sup>y<sup>2</sup>z<sup>2</sup>+3x<sup>2</sup>+3y<sup>2</sup>+z<sup>2</sup>=1']; // leopold
+  surf[20] = ['Octdong','x^2 + y^2 + z^4 - z^2', -2, 2, 8,'x<sup>2</sup> + y<sup>2</sup> + z<sup>4</sup> = z<sup>2</sup>']; // Octdong
+  surf[21] = ['Plop','x^2 + (z + y^2)^3', -2, 2, 8,'x<sup>2</sup> + (z+y<sup>2</sup>)<sup>3</sup> = 0']; //plop
+  surf[22] = ['Seepferdchen','(x^2 - y^2)^2 - (x^2 + y^2)* z^3', -2, 2, 8,'(x<sup>2</sup>-y<sup>3</sup>)<sup>2</sup>=(x+y<sup>2</sup>)z<sup>3</sup>']; //Seepferdchen
+  surf[23] = ['Sofa','x^2 + y^3 + z^5', -2, 2, 8,'x<sup>2</sup>+y<sup>3</sup>+z<sup>5</sup> = 0']; // sofa
+  surf[24] = ['Solitude','x^2*y*z + x*y^2 + y^3 *y^3*z - x^2*z^2', -6, 6, 3, 'x<sup>2</sup>yz +xy<sup>2</sup>+y<sup>3</sup>+y<sup>3</sup>z=x<sup>2</sup>z<sup>2</sup>']; // solitude
+  surf[25] = ['S&uuml;ss','(x^2+9/4*y^2+z^2-1)*(x^2+9/4*y^2+z^2-1)*(x^2+9/4*y^2+z^2-1) - x^2*z^3-9/80*y^2*z^3', -2, 2, 8 ,'(x<sup>2</sup>+9/4y<sup>2</sup>+z<sup>2</sup>-1)<sup>3</sup> - x<sup>2</sup>z<sup>3</sup>-9/80y<sup>2</sup>z<sup>3</sup>=0']; // Suss
+  surf[26] = ['Tanz','x^4 - x^2  - y^2*z^2', -10, 10, 1,'x<sup>4</sup>-x<sup>2</sup>-y<sup>2</sup>z<sup>2</sup>=0']; // Tanz
+  surf[27] = ['Taube','256*z^3 - 128*x^2*z^2 + 16*x^4*z + 144*x*y^2*z - 4*x^3*y^2 - 27*y^4', -10, 10, 1,'256z<sup>3</sup>-128x<sup>2</sup>z<sup>2</sup>+16x<sup>4</sup>z+144xy<sup>2</sup>z - 4x<sup>3</sup>y<sup>2</sup>-27y<sup>4</sup> =0']; // taube
+  surf[28] = ['Quaste','','','???']; // Quaste
+  surf[29] = ['Spitz','(y^3 - x^2 - z^2)^3 - 27*x^2*y^3*z^2', -2, 2, 8,'(y<sup>3</sup>-x<sup>2</sup>-z<sup>2</sup>)<sup>3</sup> = 27x<sup>2</sup>y<sup>3</sup>z<sup>2</sup>']; // Spitz
+  surf[30] = ['Tobel','x^3*z + x^2 + y*z^3 + z^4 - 3*x*y*z', -1.5, 1.5, 8,'x<sup>3</sup> z + x<sup>2</sup> + yz<sup>3</sup> + z<sup>4</sup> = 3xyz']; //Tobel
+  surf[31] = ['Vis a viss','x^2 - x^3 + y^2 + y^4 + z^3 - z^4', -1.5, 1.5, 8,'x<sup>2</sup>-x<sup>3</sup>+y<sup>2</sup>+y<sup>4</sup>+z<sup>3</sup>-z<sup>4</sup>=0']; // vis a vis
+  surf[32] = ['Wedeln','x^3 - y*(1 - z^2)^2', -2, 2, 5,'x<sup>3</sup> = y (1-z<sup>2</sup>)<sup>2</sup>']; // Wedeln
+  surf[33] = ['Windkanal','-x^2 + y^4 + z^4 - x*y*z - 100', -10, 10, 1,'- x<sup>2</sup> + y<sup>4</sup> + z<sup>4</sup> - xyz = 100']; // Windkanal
+  surf[34] = ['Xano','x^4 + z^3 - y*z^2', -10, 10, 1,'x<sup>4</sup> +z<sup>3</sup> = yz<sup>2</sup>']; // Xano
+  surf[35] = ['Zitrus','x^2 + z^2 + y^3*(y - 1)^3', -2, 2, 8 ,'x<sup>2</sup>+z<sup>2</sup> = y<sup>3</sup>(y-1)<sup>3</sup>']; // Zitrus
+  surf[36] = ['Croissant','', '','???']; // Croissant
+  surf[37] = ['Dromedar','x^4 - 3*x^2 + y^2 + z^3', -2, 2, 8,'x<sup>4</sup> - 3x<sup>2</sup> + y<sup>2</sup>+z<sup>3</sup> = 0']; // Dromedar
+  surf[38] = ['Zeppelin','x*y*z + y*z + 2*z^5', -1.25, 1.25, 10,'xyz+yz+2z<sup>5</sup>= 0']; // Zeppelin
+  surf[39] = ['Zweiloch','x*y*z + y*z + 2*z^5', -10, 10, 1,'xyz+yz+2z<sup>5</sup>= 0']; // Zweilach
+  surf[40] = ['Michaelangelo','x^2 + y^4 + y^3*z^2', -2, 2, 8,'x<sup>2</sup>+y<sup>4</sup>+y<sup>3</sup>z<sup>2</sup>=0']; // Michaelangelo
+  surf[41] = ['Stern','x^2*y^2 + y^2*z^2 + x^2*z^2 + 100*(x^2 + y^2 + z^2 - 1)*(x^2 + y^2 + z^2 - 1)*(x^2 + y^2 + z^2 - 1)', -0.85, 0.85, 8,'x<sup>2</sup>y<sup>2</sup> + y<sup>2</sup>z<sup>2</sup> + x<sup>2</sup>z<sup>2</sup> + 100 ( x<sup>2</sup> + y<sup>2</sup> + z<sup>2</sup> - 1)<sup>3</sup> = 0']; // Stern
+  surf[42] = ['M&ouml;bius','', '','???']; // Mobius
+  surf[43] = ['Sph&auml;re','x^2 + y^2 + z^2 - 1', -2, 2, 8,'x<sup>2</sup> + y<sup>2</sup>+ z<sup>2</sup> = 1']; // Sphare
+  surf[44] = ['Limao','x^2 - y^3*z^3', -1, 1, 8,'x<sup>2</sup>-y<sup>3</sup>z<sup>3</sup> = 0'];
+  surf[45] = ['Torus','(x^2 + y^2 + z^2 + 4 - 1)^2 - 4*(x^2 + y^2)', -10, 10, 1,'(x<sup>2</sup>+y<sup>2</sup>+z<sup>2</sup>+R<sup>2</sup>-r<sup>2</sup>)<sup>2</sup> = R<sup>2</sup>(x<sup>2</sup>+y<sup>2</sup>)'];
+  surf[46] = ['Whitney','x^2 - y^2*z', -1, 1, 8,'x<sup>2</sup>-y<sup>2</sup>z=0'];
+  surf[47] = ['Buggle','x^4*y^2 + y^4*x^2 - x^2*y^2 + z^6', -1, 1, 8,'x<sup>4</sup>y<sup>2</sup>+y<sup>4</sup>x<sup>2</sup>-x<sup>2</sup>y<sup>2</sup>+z<sup>6</sup>=0'];
+  surf[48] = ['Zylinder','y^2 + z^2 - 1', -1, 1, 8,'y<sup>2</sup> + z<sup>2</sup> = 1'];
+  surf[49] = ['Diabolo','x^2 - (y^2 + z^2)^2', -1, 1, 8,'x<sup>2</sup> = (y<sup> 2</sup>+ z<sup>2</sup>)<sup>2</sup>'];
+  surf[50] = ['Dullo','(x^2 + y^2 + z^2)^2 - (x^2 + y^2)', -1, 1, 8,'(x<sup>2</sup>+y<sup>2</sup>+z<sup>2</sup>)<sup>2</sup>-(x<sup>2</sup>+y<sup>2</sup>) = 0'];
+  surf[51] = ['Miau','x^2*y*z + x^2*z^2 + 2*y^3*z + 3*y^3', -4, 4, 5,'x<sup>2</sup>yz + x<sup>2</sup>z<sup>2</sup>  + 2 y<sup>3</sup>z + 3 y<sup>3</sup>  = 0'];
+  surf[52] = ['Trichter','x^2 + z^3 - y^2*z^2', -2, 2, 5,'  x<sup>2</sup> + z<sup>3</sup> = y<sup>2</sup>z<sup>2</sup> '];
+  surf[53] = ['Nepali','(x*y - z^3 - 1)^2 + (x^2 + y^2 - 1)*(x^2 + y^2 - 1)*(x^2 + y^2 - 1)', -1.5, 1.5, 8, '(xy-z<sup>3</sup>-1)<sup>2</sup> + (x<sup>2</sup>+y<sup>2</sup>-1)<sup>3</sup> = 0'];
+  surf[54] = ['Pilzchen','(z^3 - 1)^2 + (x^2 + y^2 - 1)^3', -1, 1, 8,'(z<sup>3</sup> - 1)<sup>2</sup> + (x<sup>2</sup>+y<sup>2</sup>-1)<sup>3</sup>=0 '];
+  surf[55] = ['Subway','x^2*y^2 - (z^2 - 1)^3', -2, 2, 5,'x<sup>2</sup>y<sup>2</sup> = (z<sup>2</sup>-1)<sup>3</sup>'];
+  surf[56] = ['Polsterzipf','(x^3 - 1)^2 + (y^3 - 1)^2 + (z^2 - 1)^3', -1.5, 1.5, 10,' (x<sup>3</sup>-1)<sup>2</sup> + (y<sup>3</sup>-1)<sup>2</sup>+ (z<sup>2</sup>-1)<sup>3</sup> = 0  '];
+  surf[57] = ['Crixxi','(y^2 + z^2 - 1)^2 + (x^2 + y^2 - 1)^3', -1.5, 1.5, 5,' (y<sup>2</sup>+z<sup>2</sup>-1)<sup>2</sup> +(x<sup>2</sup>+y<sup>2</sup>-1)<sup>3</sup> = 0'];
+  surf[58] = ['Berg','x^2 + y^2*z^2 + z^3', -2, 2, 5,'x<sup>2</sup>+y<sup>2</sup>z<sup>2</sup>+z<sup>3</sup> = 0'];
+  surf[59] = ['Gupf','x^2 + y^2 + z', -1, 1, 8,'x<sup>2</sup>+y<sup>2</sup>+z=0'];
+  surf[60] = ['Kegel','x^2 + y^2 - z^2', -1, 1, 8,'x<sup>2</sup>+y<sup>2</sup>-z<sup>2</sup>=0'];
+  surf[61] = ['Wigwam','x^2 + y^2*z^3', -3, 3, 3,'x<sup>2</sup>+y<sup>2</sup>z<sup>3</sup>=0'];
+  surf[62] = ['Tuelle','y*z*(x^2 + y - z)', -1, 1, 8,'yz(x<sup>2</sup>+y-z) = 0</a><\/p>'];
+  surf[63] = ['Pipe','x^2 - z', -1, 1, 8,'x<sup>2</sup>-z=0</a><\/p>'];
+  surf[64] = ['Fanfare','-x^3 + z^2 + y^2', -0.5, 0.5, 20,'-x<sup>3</sup>+z<sup>2</sup>+y<sup>2</sup>=0'];
+  surf[65] = ['Kreuz','x * y * z', -10, 10, 1,'xyz = 0'];
+  surf[66] = ['Spindel','x^2 + y^2 - z^2 - 1', -10, 10, 1,'x<sup>2</sup> + y<sup>2</sup> - z<sup>2</sup> = 1'];
+  surf[67] = ['Twilight','(z^3 - 2)^2 + (x^2 + y^2 - 3)^3', -2, 2, 5,' (z<sup>3</sup> - 2)<sup>2</sup> + (x<sup>2</sup> + y<sup>2</sup> - 3)<sup>3</sup> = 0  '];
+  surf[68] = ['Ufo','z^2 - x^2 - y^2 - 1', -10, 10, 1,'z<sup>2</sup> - x<sup>2</sup> - y<sup>2</sup> = 1'];
+  surf[69] = ['Wendel','','','???'];
+  surf[70] = ['Zeck','x^2 + y^2 - z^3*(1-z)', -1, 1, 15,'x<sup>2</sup> + y<sup>2</sup> - z<sup>3</sup>(1 - z) = 0'];
+  surf[71] = ['Sattel','x^2 + y^2*z + z^3', -10, 10, 1,'x<sup>2</sup> + y<sup>2</sup>z + z<sup>3</sup> = 0'];
+  surf[72] = ['Schneeflocke','x^2* + y^2*z^3  + y*z^4', -1, 1, 8,'x<sup>3</sup> + y<sup>2</sup>z<sup>3</sup> + yz<sup>4</sup>=0'];
+  surf[73] = ['Cylinder','x^2 + y^2 - 1', -2, 2, 8,'x<sup>2</sup> + y<sup>2</sup> = 1'];
+
+  // http://jalape.no/math/surfaces.htm
+  surf[80] = ['Cylinder 1','x^3 - x^2 + y^2',-1,1,10,'x^3 - x^2 + y^2'];
+  surf[81] = ['Cylinder 3',' x^4 + y^4 + 2*x^2*y^2 + 3*x^2*y - y^3',-1,1,10,'x^4 + y^4 + 2*x^2*y^2 + 3*x^2*y - y^3'];
+  surf[82] = ['Bifolia','(x^2 + y^2 + z^2)^2 - 3*(x^2 + z^2)*y',-1,1,10,''];
+  surf[83] = ['Boy Surface (broken)','64*(1-z)^3 * z^3-48*(1-z)^2 * z^2*(3*x^2+3*y^2+2*z^2) + 12*(1-z)*z*(27*(x^2+y^2)^2 - 24*z^2*(x^2+y^2) + 36*1.414*y*z*(y^2-3*x^2)+4*z^4)+ (9*x^2+9*y^2-2*z^2)*(-81*(x^2+y^2)^2 - 72*z^2*(x^2+y^2)+ 108*1.414*x*z*(x^2-3*y^2)+4*z^4)',-3,3,5,''];    
+  surf[84] = ['Cassini','(x^2 + y^2 + z^2 + 0.45*0.45)^2 - (16*0.45)*(16*0.45)*(x^2 + z^2) - 0.25 ',0,0,0,''];
+  surf[85] = ['Chair','(x^2 + y^2 + z^2-0.95*25)^2 - 0.8*(z - 5)^2 - 2*x^2*(z+5)^2 - 2*y^2',0,0,0, ''];
+  surf[86] = ['Cayley Cubic','-5*(x^2*y+x^2*z+y^2*x+y^2*z+z^2*y+z^2*x) + 2*(x*y+x*z+y*z)',-10,10,1,''];
+  surf[87] = ['Clebsh diagonal cubic','81*(x^3 + y^3 + z^3) - 189*(x^2*y + x^2*z + y^2*x + y^2*z + z^2*x + z^2*y) + 54*(x*y*z) + 126*(x*y + x*z + y*z) - 9*(x^2 + y^2 + z^2)-  9*(x + y + z) + 1',0,0,0,''];
+  surf[88] = ['Crossed trough','x^2*z^2 - y',0,0,0,''];
+  surf[89] = ['Cubic saddle','x^3 - y^3 - z',0,0,0,''];
+  surf[90] = ['Cushion','z^2*x^2 - z^4 - 2*z*x^2 + 2*z^3 + x^2 - z^2 - (x^2 - z)^2 - y^4 - 2*x^2*y^2 - y^2*z^2 + 2*y^2*z + y^2',-2,2,10,''];  
+
+    
+  init();
+  initMaterials();
+  menuData(0);
+  animate();
+  
+  function init() {
+    renderer = new THREE.WebGLRenderer( {  antialias: true } );
+    renderer.setSize( window.innerWidth, window.innerHeight );
+    renderer.shadowMapEnabled = true;
+    renderer.shadowMapSoft = true;
+    document.body.appendChild( renderer.domElement );    
+    scene = new THREE.Scene();
+    camera = new THREE.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 1, 10000 );
+    camera.position.set(20, 20, 20);   
+    controls = new THREE.TrackballControls( camera, renderer.domElement );
+
+    stats = new Stats();
+    stats.domElement.style.cssText = 'position: absolute; top: 0px; zIndex: 100; ';
+    document.body.appendChild( stats.domElement );    
+    scene.add( new THREE.AxisHelper( 20 ) );
+
+    light = new THREE.PointLight(0xffffff);
+    light.position.set(0,10,0);
+    scene.add(light);
+
+    var splash = document.createElement( 'div' );
+    document.body.appendChild( splash );
+    splash.style.cssText = 'background-color: #ddd; border-radius: 10px; box-shadow: 10px 10px 5px #444; color: #000; display: block; right:20px;';
+    splash.style.cssText += 'height: 80%; margin: 0;  opacity: 0.85; padding: 0 10px 0px 10px; position: absolute; text-align: left; top: 20px; width: 370px';
+    var splashText = '<h2 style="margin:0 0 auto 0;padding:0; text-align:right;">' +
+    '<a href="#" title="Click to close" onClick="toggleSplash()" style="color:#888;text-decoration:none;">[X]<\/a><\/h2>' +
+    
+    '<h1 style="margin:0;padding:0">Algebraic Surfaces<\/h1>' +
+    '<hr><p style="margin:0;padding:0">' +
+    '<a href="#" onClick="toggleSpin()">Toggle spin</a> <input type="text" id="spin" size="1" value="' + spinSpeed + '"> ' +
+    '<a href="#" onClick="togglePlayer()">Toggle play</a> <input type="text" id="play" size="1" title="length of display in seconds" value="' + playDelay + '"></p>' +
+    '<form><textarea id="input" cols="43"  autofocus="autofocus"></textarea>' +
+    'Axis: min <input type="text" id="axMin" name="AxisMin" size="2" value="-10"> max <input type="text" id="axMax" size="2" value="10">'+
+    ' Scale <input type="text" id="scale" size="1" value="1">' +
+    '<br /><a href="#" onClick="grabData()" accesskey="U">Update visual</a></form><hr>' +
+    
+    '<div style="height: 70%; overflow:scroll;">' +
+    '<p>Click on any equation. Use pointing device to zoom and rotate. </p>' +
+    '<p><a href="#" onClick="menuData(0, 1)">' + surf[0][0] + ':<br> ' + surf[0][5] + '<\/a><\/p>' +
+    '<p>Following formulas and names courtesy of <a href="http://homepage.univie.ac.at/herwig.hauser/bildergalerie/gallery.html" target="_blank"><b>Herwig Hauser</b></a>.</p>';
+
+    for (var i = 1; i < 74; i++) {
+      var s = surf[i];
+      splashText += '<p><a href="#" onClick="menuData(' + i + ')"> ' + i + '. ' + s[0] + ':<br> ' + s[5] + '<\/a><\/p>';
+    }
+    
+    splashText += '<hr><p>Following formulas and names courtesy of <a href="http://jalape.no/math/surfaces.htm" target="_blank">jalape.no</a></p>';
+    
+    for (var i = 80; i < 91; i++) {  
+      var s = surf[i];
+      splashText += '<p>' + i + '. <a href="#" onClick="menuData(' + i + ')">' + s[0] + ':<br> ' + s[1] + '<\/a><\/p>';
+    }
+
+    splashText += 
+    '<hr><p><a href="http://en.wikipedia.org/wiki/Marching_cubes" target="_blank">Marching cubes</a> routines courtesy of <a href="http://stemkoski.github.com/Three.js/Marching-Cubes.html" target="_blank">stemkoski</a> and Paul Bourke.</p>' +
+    '<p>Method of turning string into a formula courtesy of <a href="http://nooshu.com/antimatter-3d-graph-plotter-and-a-little-animation" target="_blank">Nooshu</a> and AntiMatter15.</p>' +
+    '<p>And none of this would be possible without <a href="https://github.com/mrdoob/three.js" target="_blank">Mr.Doob</a>.</p>' +
+    '<p><a href="https://github.com/jaanga/jaanga.github.com/tree/master/algebraic-surfaces" target="_blank">Source code on GitHub</p>' +
+    '</div>';
+    splash.innerHTML = splashText;
+  }
+  
+  function initMaterials() {
+    var texture1 = new THREE.Texture( generateTexture( 0, 0.5, 1 ), new THREE.UVMapping() );
+    var texture2 = new THREE.Texture( generateTexture( 0, 1, 0 ), new THREE.SphericalReflectionMapping() );
+    var texture3 = THREE.ImageUtils.loadTexture( '../textures/land_ocean_ice_cloud_2048.jpg' )
+
+    texture1.needsUpdate = true;
+    texture2.needsUpdate = true;
+    
+    materials = [
+      new THREE.MeshNormalMaterial(),
+      new THREE.MeshNormalMaterial( {shading: THREE.FlatShading } ),
+      new THREE.MeshNormalMaterial( {shading: THREE.SmoothShading } ),
+      new THREE.MeshNormalMaterial( {wireframe: true, wireframeLinewidth: 5 } ),
+      
+      new THREE.MeshBasicMaterial( { color: 0xe0e0e0 }),
+      new THREE.MeshBasicMaterial( { color: 0xffaa00 } ),
+      new THREE.MeshBasicMaterial( { color: 0x00ffff, wireframe: true, wireframeLinewidth: 5 } ),
+      new THREE.MeshBasicMaterial( { color: 0xff0000, blending: THREE.AdditiveBlending } ),
+      new THREE.MeshBasicMaterial( { color: 0x00ff00, blending: THREE.AdditiveBlending, opacity: 0.8, transparent: true, depthWrite: false } ),
+      new THREE.MeshBasicMaterial( { color: 0x00ff00, blending: THREE.SubtractiveBlending, opacity: 0.8} ),
+      
+      new THREE.MeshBasicMaterial( { map: texture1, fog: false } ),
+      new THREE.MeshBasicMaterial( { map: texture2 } ),
+      new THREE.MeshBasicMaterial( { map: texture3, tansparent: true } ),
+      new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '../textures/land_ocean_ice_cloud_2048.jpg' ) } ),  
+      new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '../textures/cynthia-draw-lightning.jpg' ) } ),
+      // new THREE.MeshBasicMaterial( { envMap: THREE.ImageUtils.loadTexture( '../textures/envmap.png', new THREE.SphericalReflectionMapping() ), overdraw: true } ),
+      // new THREE.MeshBasicMaterial( { envMap: THREE.ImageUtils.loadTexture( '../textures/cynthia-draw-lightning.jpg', new THREE.SphericalReflectionMapping() ), overdraw: true } ),
+      
+      new THREE.MeshLambertMaterial( { ambient: 0x000066, color: 0xff00ff, shading: THREE.FlatShading, overdraw: true } ),
+      new THREE.MeshLambertMaterial( { ambient: 0x000066, color: 0xffffff, shading: THREE.SmoothShading, overdraw: true } ),
+      new THREE.MeshLambertMaterial( { ambient: 0x030303, color: 0xffffff, transparent: true } ),
+      new THREE.MeshLambertMaterial( { map: THREE.ImageUtils.loadTexture( '../textures/land_ocean_ice_cloud_2048.jpg'), shading: THREE.FlatShading, transparent: true   } ),
+      
+      new THREE.MeshLambertMaterial( { map: texture3 } ),
+      new THREE.MeshLambertMaterial( { ambient: 0x030303, color: 0xdddddd, shading: THREE.FlatShading, overdraw: true} ),
+      new THREE.MeshLambertMaterial( { ambient: 0x888800, color: 0xdddddd, shading: THREE.SmoothShading, overdraw: true } ),
+      
+      new THREE.MeshPhongMaterial( { ambient: 0x888800, color: 0xdd00ff, specular: 0x009900, shininess: 30, shading: THREE.FlatShading } ),
+      new THREE.MeshPhongMaterial( { ambient: 0x030303, color: 0xdddddd, specular: 0x009900, shininess: 30, shading: THREE.SmoothShading } ),
+      
+      new THREE.MeshDepthMaterial(  )
+      // new THREE.ShaderMaterial( { uniforms: uniforms, vertexShader: vertexShader, fragmentShader: fragmentShader, transparent: true } ),
+    ];
+
+    for (var i = 0, l = materials.length; i < l; i++) {
+      materialsMenu.innerHTML += '<a href="#" id="m' + i + '" onclick="buildIt(' + i + ');" style="color:#fff;">m' + i +'</a> ';
+    }
+  
+  }
+
+  var name, data;
+ 
+  function menuData(i) {
+    var text = document.getElementById('input');
+    var axMin = document.getElementById('axMin');
+    var axMax = document.getElementById('axMax');
+    var scale = document.getElementById('scale');    
+    name = surf[i][0];
+    data = cleanData(surf[i][1]);    
+    plotIt( name, data, surf[i][2], surf[i][3], surf[i][4], surf[i][5]  );
+
+    text.value = surf[i][1];
+    axMin.value = surf[i][2];
+    axMax.value = surf[i][3];
+    scale.value = surf[i][4];
+    info.innerHTML = name + ' ~ ' + surf[i][1];
+  }
+  
+  function grabData() {
+    var text = document.getElementById('input').value;
+    var axMin = parseFloat(document.getElementById('axMin').value);
+    var axMax = parseFloat(document.getElementById('axMax').value);
+    var scale = parseFloat(document.getElementById('scale').value);
+    data = cleanData(text);
+    plotIt(name, data , axMin, axMax, scale, data);
+    info.innerHTML = name + ' ~ ' + text;
+// console.log('data: ', data, axMin, axMax, scale);    
+  }
+  
+  function cleanData(data) {
+    return Parser.parse(data).toJSFunction( ['x','y','z'] );      
+  }
+  
+  function animate() {
+    requestAnimationFrame( animate );
+    render();
+  }
+
+  var start = clock.getElapsedTime();
+  var cnt = 1;
+  
+  function render() {
+    if (spin === true) {
+    
+      spinSpeed = parseFloat(document.getElementById('spin').value)
+      if (spinSpeed) {
+        mesh.rotation.x += 0.001 * spinSpeed;
+        mesh.rotation.y += 0.003 * spinSpeed;
+      }
+    }
+    if ( player && (clock.getElapsedTime() - start > playDelay) ) {
+      if (surf[cnt][1] !== '') {
+        data = cleanData(surf[cnt][1]);
+        plotIt(surf[cnt][0], data, surf[cnt][2], surf[cnt][3], surf[cnt][4], surf[cnt][5] );
+        info.innerHTML = surf[cnt][0] + ' ~ ' + surf[cnt][1];
+      }
+      cnt++;
+      if (cnt > 90) {cnt = 0;}
+      if (cnt > 73 && cnt < 80) {cnt = 80;}
+      
+      start = clock.getElapsedTime();
+      playDelay = document.getElementById('play').value;
+    }
+    renderer.render( scene, camera );
+    controls.update();
+    stats.update();  
+  }
+
+  function toggleSplash() {
+    if ( splash.style.display === 'block' ) {
+      splash.style.display = 'none';
+    } else {
+      splash.style.display = 'block';
+    }
+  };
+
+  function toggleSpin() {
+    if (spin === true ) {
+      spin = false;
+    } else {
+      spin = true;
+    }
+  }  
+
+  function togglePlayer() {
+    if (player === true ) {
+      player = false;
+    } else {
+      player = true;
+    }
+  }
+
+  
+  function plotIt( name, func, axiMin, axiMax, scal, text) { 
+    if( mesh ) { 
+      var oldMesh = mesh;
+    }
+    
+    // custom global variables
+    var points = [];
+    // number of cubes along a side
+    var size = 70;
+    var axisMin = axiMin !== 0 ? axiMin : -10;
+    var axisMax =  axiMax !== 0 ? axiMax : 10;
+    var scale = scal !== 0 ? scal : 1;
+    var axisRange = axisMax - axisMin;
+    // var PC = new Function('x','y','z','return '+ unescape( equation ));
+    var values = [];    
+    // Generate a list of 3D points and values at those points
+    for (var k = 0; k < size; k++)
+    for (var j = 0; j < size; j++)
+    for (var i = 0; i < size; i++) {
+      // actual values
+      var x = axisMin + axisRange * i / (size - 1);
+      var y = axisMin + axisRange * j / (size - 1);
+      var z = axisMin + axisRange * k / (size - 1);
+      points.push( new THREE.Vector3(x,y,z) );
+      // var value = PC(x,y,z);
+      var value = func(x,y,z);
+      values.push( value );
+    }
+
+    // Marching Cubes Algorithm
+
+    var size2 = size * size;
+
+    // Vertices may occur along edges of cube, when the values at the edge's endpoints
+    // straddle the isolevel value.
+    // Actual position along edge weighted according to function values.
+    var vlist = new Array(12);
+
+    var geometry = new THREE.Geometry();
+    var vertexIndex = 0;
+
+    for (var z = 0; z < size - 1; z++)
+    for (var y = 0; y < size - 1; y++)
+    for (var x = 0; x < size - 1; x++) {
+      // index of base point, and also adjacent points on cube
+      var p    = x + size * y + size2 * z,
+        px   = p   + 1,
+        py   = p   + size,
+        pxy  = py  + 1,
+        pz   = p   + size2,
+        pxz  = px  + size2,
+        pyz  = py  + size2,
+        pxyz = pxy + size2;
+
+      // store scalar values corresponding to vertices
+      var value0 = values[ p    ],
+        value1 = values[ px   ],
+        value2 = values[ py   ],
+        value3 = values[ pxy  ],
+        value4 = values[ pz   ],
+        value5 = values[ pxz  ],
+        value6 = values[ pyz  ],
+        value7 = values[ pxyz ];
+
+      // place a "1" in bit positions corresponding to vertices whose
+      // isovalue is less than given constant.
+      var isolevel = 0;
+
+      var cubeindex = 0;
+      if ( value0 < isolevel ) cubeindex |= 1;
+      if ( value1 < isolevel ) cubeindex |= 2;
+      if ( value2 < isolevel ) cubeindex |= 8;
+      if ( value3 < isolevel ) cubeindex |= 4;
+      if ( value4 < isolevel ) cubeindex |= 16;
+      if ( value5 < isolevel ) cubeindex |= 32;
+      if ( value6 < isolevel ) cubeindex |= 128;
+      if ( value7 < isolevel ) cubeindex |= 64;
+
+      // bits = 12 bit number, indicates which edges are crossed by the isosurface
+      var bits = THREE.edgeTable[ cubeindex ];
+
+      // if none are crossed, proceed to next iteration
+      if ( bits === 0 ) continue;
+
+      // check which edges are crossed, and estimate the point location
+      // using a weighted average of scalar values at edge endpoints.
+      // store the vertex in an array for use later.
+      var mu = 0.5; 
+
+      // bottom of the cube
+      if ( bits & 1 )
+      {	
+        mu = ( isolevel - value0 ) / ( value1 - value0 );
+        vlist[0] = points[p].clone().lerp( points[px], mu );
+      }
+      if ( bits & 2 )
+      {
+        mu = ( isolevel - value1 ) / ( value3 - value1 );
+        vlist[1] = points[px].clone().lerp( points[pxy], mu );
+      }
+      if ( bits & 4 )
+      {
+        mu = ( isolevel - value2 ) / ( value3 - value2 );
+        vlist[2] = points[py].clone().lerp( points[pxy], mu );
+      }
+      if ( bits & 8 )
+      {
+        mu = ( isolevel - value0 ) / ( value2 - value0 );
+        vlist[3] = points[p].clone().lerp( points[py], mu );
+      }
+      // top of the cube
+      if ( bits & 16 )
+      {
+        mu = ( isolevel - value4 ) / ( value5 - value4 );
+        vlist[4] = points[pz].clone().lerp( points[pxz], mu );
+      }
+      if ( bits & 32 )
+      {
+        mu = ( isolevel - value5 ) / ( value7 - value5 );
+        vlist[5] = points[pxz].clone().lerp( points[pxyz], mu );
+      }
+      if ( bits & 64 )
+      {
+        mu = ( isolevel - value6 ) / ( value7 - value6 );
+        vlist[6] = points[pyz].clone().lerp( points[pxyz], mu );
+      }
+      if ( bits & 128 )
+      {
+        mu = ( isolevel - value4 ) / ( value6 - value4 );
+        vlist[7] = points[pz].clone().lerp( points[pyz], mu );
+      }
+      // vertical lines of the cube
+      if ( bits & 256 )
+      {
+        mu = ( isolevel - value0 ) / ( value4 - value0 );
+        vlist[8] = points[p].clone().lerp( points[pz], mu );
+      }
+      if ( bits & 512 )
+      {
+        mu = ( isolevel - value1 ) / ( value5 - value1 );
+        vlist[9] = points[px].clone().lerp( points[pxz], mu );
+      }
+      if ( bits & 1024 )
+      {
+        mu = ( isolevel - value3 ) / ( value7 - value3 );
+        vlist[10] = points[pxy].clone().lerp( points[pxyz], mu );
+      }
+      if ( bits & 2048 )
+      {
+        mu = ( isolevel - value2 ) / ( value6 - value2 );
+        vlist[11] = points[py].clone().lerp( points[pyz], mu );
+      }
+    
+      // construct triangles -- get correct vertices from triTable.
+      var i = 0;
+      cubeindex <<= 4;  // multiply by 16... 
+      // "Re-purpose cubeindex into an offset into triTable." 
+      //  since each row really isn't a row.
+
+      // the while loop should run at most 5 times,
+      // since the 16th entry in each row is a -1.
+      while ( THREE.triTable[ cubeindex + i ] != -1 ) {
+        var index1 = THREE.triTable[cubeindex + i];
+        var index2 = THREE.triTable[cubeindex + i + 1];
+        var index3 = THREE.triTable[cubeindex + i + 2];
+
+        geometry.vertices.push( vlist[index1].clone() );
+        geometry.vertices.push( vlist[index2].clone() );
+        geometry.vertices.push( vlist[index3].clone() );
+        var face = new THREE.Face3(vertexIndex, vertexIndex+1, vertexIndex+2);
+        geometry.faces.push( face );
+
+        //geometry.faceVertexUvs[ 0 ].push( [ new THREE.UV(0,0), new THREE.UV(0,1), new THREE.UV(1,1) ] );
+        geometry.faceVertexUvs[ 0 ].push( [ new THREE.Vector2(0,0), new THREE.Vector2(0,1), new THREE.Vector2(1,1) ] );
+
+        vertexIndex += 3;
+        i += 3;
+      }
+    }  
+    geometry.computeFaceNormals();
+    material =  new THREE.MeshNormalMaterial( { side: THREE.DoubleSide, opacity: 0.9, transparent: true, }) ;
+    //color = Math.random() * 0xffffff;
+    //material = new THREE.MeshPhongMaterial( {color: color, ambient: color, shading: THREE.SmoothShading, side: THREE.DoubleSide, opacity: 0.9, transparent: true } );
+    mesh = new THREE.Mesh( geometry, material );
+    mesh.scale.set(scale, scale, scale);
+    scene.add(mesh);
+    
+    scene.remove( oldMesh);
+  }
+  
+  function generateTexture( r, g, b ) {
+    var canvas = document.createElement( 'canvas' );
+    canvas.width = 256;
+    canvas.height = 256;
+    var context = canvas.getContext( '2d' );
+    var image = context.getImageData( 0, 0, 256, 256 );
+    var x = 0, y = 0, p;
+    for ( var i = 0, j = 0, l = image.data.length; i < l; i += 4, j ++ ) {
+      x = j % 256;
+      y = x == 0 ? y + 1 : y;
+      p = Math.floor( x ^ y );
+
+      image.data[ i ] = ~~ p * r;
+      image.data[ i + 1 ] = ~~ p * g;
+      image.data[ i + 2 ] = ~~ p * b;
+      image.data[ i + 3 ] = 255;
+    }
+    context.putImageData( image, 0, 0 );
+    return canvas;
+  }   
+</script>
+</body>
+</html>
