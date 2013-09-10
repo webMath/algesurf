@@ -107,7 +107,7 @@
 		stats.domElement.style.cssText = 'position: absolute; top: 0px; zIndex: 100; ';
 		document.body.appendChild( stats.domElement );    
 
-		texture = THREE.ImageUtils.loadTexture( "../../textures/im5.jpg" );
+		texture = THREE.ImageUtils.loadTexture( "../textures/im5.jpg" );
 		material = new THREE.MeshBasicMaterial( {  map: texture, side: THREE.DoubleSide } );
 		geometry = new THREE.PlaneGeometry( 1, 1, 100, 100 );
 		
@@ -143,7 +143,7 @@
  
 	function setTexture( id ) {
 		var images = ["im1", "im2", "im3","im4","im5","im6","im7","im8","im9","im10","im11","im12","im13","im14","im15","im16","im17","im18"];
-		plane.material.map = THREE.ImageUtils.loadTexture( "../../textures/" + images[ id ] + ".jpg" );
+		plane.material.map = THREE.ImageUtils.loadTexture( "../textures/" + images[ id ] + ".jpg" );
 	}
 	
 	function onWindowResize() {
