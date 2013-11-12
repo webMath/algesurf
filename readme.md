@@ -1,7 +1,12 @@
 AlgeSurf
 =========
 
-Algebraic Surfaces and other 3D math toys
+_Algebraic Surfaces and other 3D math toys_
 
-Live Demo: http://jaanga.github.io/algesurf/
+
+## Live Demos
+
+<http://jaanga.github.io/algesurf/>
+
+<https://github.com/jaanga/algesurf/>
 
