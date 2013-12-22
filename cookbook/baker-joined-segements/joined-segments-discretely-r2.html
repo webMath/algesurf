@@ -1,0 +1,158 @@
+﻿<!doctype html>
+<html lang=en>
+<head>
+<title>Segments Joined Discretely R2</title>
+<meta charset=utf-8>
+</head>
+<body>
+
+<script src = ../../../../git-repos/three.js/build/three.min.js ></script>
+<script src = ../../../../git-repos/three.js/examples/js/controls/TrackballControls.js ></script>
+<script src = ../../../../git-repos/three.js/examples/js/libs/stats.min.js ></script>
+
+<script src = http://mrdoob.github.io/three.js/build/three.min.js ></script>
+<script src = http://mrdoob.github.io/three.js/examples/js/controls/TrackballControls.js ></script>
+<script src = http://mrdoob.github.io/three.js/examples/js/libs/stats.min.js ></script>
+<script>
+	var info, renderer, scene, camera, controls, stats;
+	var slider, tetrahedron;
+	
+	init();
+	animate();
+
+	function init() {
+		var css, geometry, material, mesh;
+
+		css = document.body.appendChild( document.createElement('style') );
+		css.innerHTML = 'body { font: 600 12pt monospace; margin: 0; overflow: hidden; text-align: center; }' +
+			'h1 a {text-decoration: none; }' +
+		'';
+		
+		info = document.body.appendChild( document.createElement( 'div' ) );
+		info.style.cssText = 'border: 0px solid red; position: absolute; top: 0px; width: 100% ';
+		info.innerHTML = '<h1 title="A most complicated love triangle" >Segments Joined Discretely R2 ~ ' +
+			'<a href=# title="Get help and info" onclick=help.style.display="block"; ><large>&#x24D8;</large></a></h1>' +
+			'<div id=menu >' +
+			'Points: 0 ' +
+			'<scan id=sld></scan>' +
+			' 99 - Scale XYZ: ' +
+			'</div><br>' +
+			'<div id=touch style=display:none;height:' + window.innerHeight + 'px;width:100%; ></div>' +
+			'<div id=help onclick=help.style.display="none"; style=display:none;background-color:#ccc;opacity:0.7;left:0;margin:auto;padding:20px;position:absolute;right:0;top:200px;width:60%; >' +
+				'Segments Joined Discretely R2<br><br>' +
+				'Prepared for Professor Ken Baker\'s post: <br>' +
+				'<a href="http://sketchesoftopology.wordpress.com/2013/12/20/joining-two-segments/" target="_blank">Joining two segments</a><br>' +
+				'of 2013-12-20<br><br>' +
+				'<i>Note: Tested only in Google Chrome. May work in IE or FF.</i><br>' +
+				'<p>Trackball General Controls:<br>' +
+					'&bull; Rotate globe: Left mouse / press 1 finger<br>' +
+					'&bull; Zoom in current level: Mousewheel / two fingers<br>' +
+					'&bull; Drag globe: Right mouse / press 2 fingers<br>' +
+				'</p>' +
+
+				'<a href=https://github.com/jaanga/cookbook/ target=_blank >Source code</a><br>' +
+				'<small>credits: <a href="http://threejs.org" target="_blank">three.js</a> - ' +
+				'<a href="http://khronos.org/webgl/" target="_blank">webgl</a> - ' +
+				'<a href="http://jaanga.github.io" target="_blank">jaanga</a><br>' +
+				'copyright &copy; 2013 jaanga authors ~ mit license</small><br><br>' +
+				'<i>Click anywhere in this message to hide...</i>' +
+			'</div>' +
+		'';			
+		
+		slider = sld.appendChild( document.createElement( 'input' ) );	
+		slider.type= 'range';
+		slider.min = 0.01;
+		slider.max = 99;
+		slider.step = 1;
+		slider.value = 7;
+		slider.onchange = drawTetra;
+		
+		sclX = menu.appendChild( document.createElement( 'input' ) );	
+		sclX.type= 'range';
+		sclX.min = 0.01;
+		sclX.max = 5;
+		sclX.step = 0.1;		
+		sclX.value = 1;
+		sclX.onchange = function() {
+			tetrahedron.scale.x = sclX.value;
+		}
+
+		sclY = menu.appendChild( document.createElement( 'input' ) );	
+		sclY.type= 'range';
+		sclY.min = 0;
+		sclY.max = 5;
+		sclY.step = 0.1;		
+		sclY.value = 1;
+		sclY.onchange = function() {
+			tetrahedron.scale.y = sclY.value;
+		}
+		
+		sclZ = menu.appendChild( document.createElement( 'input' ) );	
+		sclZ.type= 'range';
+		sclZ.min = 0;
+		sclZ.max = 5;
+		sclZ.step = 0.1;		
+		sclZ.value = 1;
+		sclZ.onchange = function() {
+			tetrahedron.scale.z = sclZ.value;
+		}		
+		
+		renderer = new THREE.WebGLRenderer( { alpha: 1, antialias: true, clearColor: 0xffffff }  );
+		renderer.setSize( window.innerWidth, window.innerHeight );
+		document.body.appendChild( renderer.domElement );
+		scene = new THREE.Scene();
+
+		camera = new THREE.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 1, 1000 );
+		camera.position.set( 10, 10, 10 );
+		controls = new THREE.TrackballControls( camera, renderer.domElement );
+		
+		stats = new Stats();
+		stats.domElement.style.cssText = 'position: absolute; top: 0px; zIndex: 100; ';
+		document.body.appendChild( stats.domElement );		
+
+		drawTetra( 17 );
+		
+	}
+	
+	function drawTetra() {
+		if ( tetrahedron ) {
+			scene.remove( tetrahedron );
+		}
+		
+		tetrahedron = new THREE.Object3D();
+		scene.add( tetrahedron )
+		var points = slider.value;
+		var halfLength = 0.5 * points;
+		
+		var edge1 = [];
+		var edge2 = []
+		for (var i = 0; i < points; i++) {
+			edge1.push( v( -halfLength + i, -halfLength, 0) );
+			edge2.push( v( 0, halfLength, -halfLength + i) );
+		}
+
+		material = new THREE.LineBasicMaterial( { color: 0xff0000, linewidth: 5 } );
+		var geometry, line;
+		
+		for (var i = 0; i < points; i++) {
+			for (var j = 0; j < points; j++) {
+				geometry = new THREE.Geometry();
+				geometry.vertices = [ edge1[i], edge2[j] ];
+
+				line = new THREE.Line( geometry, material );
+				tetrahedron.add( line );
+			}		
+		}	
+	}
+
+	function animate() {
+		requestAnimationFrame( animate );
+		controls.update();
+		renderer.render( scene, camera );
+		stats.update();
+	}
+	
+	function v( x, y, z ){ return new THREE.Vector3( x, y, z ); }	
+</script>
+</body>
+</html>
