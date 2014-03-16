@@ -67,7 +67,7 @@
 	if ( ! Detector.webgl ) { Detector.addGetWebGLMessage(); }
 
 	var renderer, scene, camera, controls, stats;
-
+	var geometry, material, texture;
 	var plane, equationId = 0;
 
 	var delta = 0;
@@ -80,9 +80,9 @@
 	thing[4] = function(x, y) { var t = 0.2 * Math.sqrt( (x - 50) * (x - 50) + (y - 50) * (y - 50) ); return 1 * Math.sin( t + delta) / (t - delta); };
 	thing[5] = function(x, y) { return 0.005 *  ( ( x - 0.5 ) * (x - 0.5 + delta) + (y - 0.5) * (y - 0.5) ); };
 // http://www.math.uri.edu/~bkaskosz/flashmo/graph3d/
-	thing[6] = function(x, y) { return 0.00005 * cos( (x-1) * (y-1) * delta ) * ( (x-1) * (x-1) - (y-1) * (y-1) ); };
+	thing[6] = function(x, y) { return 0.00005 * cos( (x-1)*(y-1) * delta ) * ( (x-1)*(x-1)-(y-1)*(y-1) ); };
 	thing[7] = function(x, y) { return 0.05 * sin( 4.0 * (x - 1.0) * (y - 1.0) + delta); };
-	thing[8] = function(x, y) { return 0.0005 * cos( Math.abs(x - 0.5) + Math.abs(y - 0.5) + delta) * ( Math.abs(x - 0.5) + Math.abs(y - 0.5) ); };
+	thing[8] = function(x, y) { return 0.0005 * cos( Math.abs(x - 0.5) + Math.abs(y - 0.5) + delta) * ( Math.abs(x - 0.5)+Math.abs(y - 0.5) ); };
 	// thing[] = function(x, y) { return  };
 
 	init();
@@ -107,7 +107,6 @@
 		stats.domElement.style.cssText = 'position: absolute; top: 0px; zIndex: 100; ';
 		document.body.appendChild( stats.domElement );
 
-		var geometry, material, texture;
 		texture = THREE.ImageUtils.loadTexture( "../textures/im5.jpg" );
 		material = new THREE.MeshBasicMaterial( {  map: texture, side: THREE.DoubleSide } );
 		geometry = new THREE.PlaneGeometry( 1, 1, 100, 100 );
@@ -122,13 +121,13 @@
 	function sin(a){return Math.sin(a);}
 
 	function setGeometry() {
-		var i = 0, x, y;
-		var v = plane.geometry.vertices;
-		var t = thing[ equationId ];
+		var i = 0;
+		var v = plane.geometry.vertices
 		delta += 0.01;
-		for ( x = 0; x <= 100; x++) {
-			for ( y = 0; y <= 100; y++) {
-				v[i++].z = t( x, y );
+		for ( var x = 0; x <= 100; x++) {
+			for ( var y = 0; y <= 100; y++) {
+				v[i].z = thing[ equationId ]( x, y );
+				i++;
 			}
 		}
 		plane.geometry.verticesNeedUpdate = true;
