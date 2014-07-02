@@ -53,7 +53,7 @@
 //				line = line === "boy-surface" ? "boys-surface" : line;
 //				line = line === "roman-surface" ? "novel-surface" : line;
 				line = line === "plucker#conoid" ? "plucker-conoid" : line;
-
+				line = line === "schnecke" ? "worm" : line;
 				fname = line;
 
 				title = fname.replace( "-", " " )
@@ -131,10 +131,10 @@ console.log( 'fname', fname );
 			title + " Read Me\n" +
 			"===\n" +
 			"\n" +
-			"<iframe src='http://algesurf.github.io/parametric-equations/r2/"+ fname + "/" + fname + ".html' width=100% height=500px >\n" +
+			"<iframe src='http://jaanga.github.io/algesurf/parametric-equations/r2/"+ fname + "/" + fname + ".html' width=100% height=500px >\n" +
 			"There is an `iframe` here. It is not visible when viewed on github.com/algesurf. To view, please see 'Project Links' below.\n" +
 			"</iframe>\n" +
-			"[Full Screen]( http://algesurf.github.io/parametric-equations/r2/" + fname + "/" + fname + ".html )\n" +
+			"[Full Screen]( http://jaanga.github.io/algesurfparametric-equations/r2/" + fname + "/" + fname + ".html )\n" +
 			"<br>\n" +
 			"## Links \n" +
 			"<" + fnameRoot + index + ".html>  \n";
@@ -186,9 +186,9 @@ var menuStart =
 
 var menuFinish =
 	"<br>\n" +
-	// "<i class='fa fa-external-link'></i> [Live Demo (latest)]( https://github.com/jaanga/libs/tree/gh-pages/db )  \n" +
+	// "<i class='fa fa-external-link'></i> [Live Demo (latest)]( http://jaanga.github.io/algesurf/parametric-equations/r2/readme-reader.html#./boy-surface/readme.md#rm )  \n" +
 	"\n" +
-	"<i class='fa fa-github'></i> [Source code on GitHub]( https://github.com/jaanga/libs/tree/gh-pages/db )  \n" +
+	"<i class='fa fa-github'></i> [Source code on GitHub]( https://github.com/jaanga/algesurf/tree/gh-pages/parametric-equations/r )  \n" +
 	"<br>\n" +
 
 	" \n" +

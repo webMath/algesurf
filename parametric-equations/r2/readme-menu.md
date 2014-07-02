@@ -18,17 +18,17 @@
 <a href=JavaScript:displayPage('#./klein-bottle/readme.md#rm'); >Klein Bottle</a>  
 <a href=JavaScript:displayPage('#./mobius-band/readme.md#rm'); >Mobius Band</a>  
 <a href=JavaScript:displayPage('#./monkey-saddle/readme.md#rm'); >Monkey Saddle</a>  
-<a href=JavaScript:displayPage('#./roman-surface/readme.md#rm'); >Roman Surface</a>  
 <a href=JavaScript:displayPage('#./plucker-conoid/readme.md#rm'); >Plucker Conoid</a>  
+<a href=JavaScript:displayPage('#./roman-surface/readme.md#rm'); >Roman Surface</a>  
 <a href=JavaScript:displayPage('#./seashell/readme.md#rm'); >Seashell</a>  
 <a href=JavaScript:displayPage('#./shoe-surface/readme.md#rm'); >Shoe Surface</a>  
 <a href=JavaScript:displayPage('#./sine-surface/readme.md#rm'); >Sine Surface</a>  
 <a href=JavaScript:displayPage('#./steinbach-screw/readme.md#rm'); >Steinbach Screw</a>  
 <a href=JavaScript:displayPage('#./whitney-umbrella/readme.md#rm'); >Whitney Umbrella</a>  
-<a href=JavaScript:displayPage('#./worm/readme.md#rm'); >Worm</a>   
+<a href=JavaScript:displayPage('#./worm/readme.md#rm'); >Worm</a>  
 <br>
 
-<i class='fa fa-github'></i> [Source code on GitHub]( https://github.com/jaanga/libs/tree/gh-pages/db )  
+<i class='fa fa-github'></i> [Source code on GitHub]( https://github.com/jaanga/algesurf/tree/gh-pages/parametric-equations/r )  
 <br>
  
 <i class='fa fa-copy'></i> [Copyright and license]( https://github.com/jaanga/jaanga.github.io/blob/master/jaanga-copyright-and-mit-license.md )  

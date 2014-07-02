@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang=en >
 <head>
-<title>Enneper Surface</title>
+<title>Seashell</title>
 <meta charset=utf-8 >
 <meta name=viewport content=width=device-width,user-scalable=no,minimum-scale=1.0,maximum-scale=1.0 >
 </head>
@@ -10,7 +10,7 @@
 <script src=http://mrdoob.github.io/three.js/examples/js/controls/TrackballControls.js ></script>
 <script src=http://mrdoob.github.io/three.js/examples/js/libs/stats.min.js ></script>
 <script>
-// http://www.3d-meier.de/tut3/Seite10.html
+// http://www.3d-meier.de/tut3/Seite18.html
 
 	var stats, renderer, scene, camera, controls;
 
@@ -50,9 +50,9 @@
 			u = pi * ( u - 0.5 );
 			v = pi * ( v - 0.5 );
 
-			x = scale * ( u - ( u * u * u / 3) + u v * v ) );
-			y = scale * ( v - ( v * v * v / 3) + u * u v ) );
-			z = scale * ( u * u - v * v );
+			x = scale * ( a h cos( n v pi ) ( 1 + cos( u pi ) )  + c cos( n v pi ) );
+			y = scale * ( a h sin( n v pi ) ( 1 + cos( u pi ) )  + c sin( n v pi ) );
+			z = scale * ( b 0.5 v + a h sin( u pi ) );
 
 			return new THREE.Vector3( x, y, z );
 		}
