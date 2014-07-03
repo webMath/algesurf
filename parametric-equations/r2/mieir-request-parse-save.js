@@ -147,7 +147,7 @@ console.log( 'fname', fname );
 
 		if ( index === requestFinish ) {
 			buildMenu();
-			fs.writeFile( "readme-menu.md", menuStart + menuItems + menuFinish, function ( error ) {
+			fs.writeFile( "../readme-menu.md", menuStart + menuItems + menuFinish, function ( error ) {
 				if ( error ) throw error;
 //console.log( menuItems2.sort() );
 			});
@@ -158,7 +158,7 @@ console.log( 'fname', fname );
 	function buildMenu() {
 		menuItems2.sort();
 		for (var i = 0, len = menuItems2.length; i < len; i++) {
-			menuItems += "<a href=JavaScript:displayPage(\'#./" + menuItems2[i][1] + "/readme.md\#" + menuItems2[i][1].substr(0, 4) + "\'); >" +  menuItems2[i][0] + "</a>  \n";
+			menuItems += "<a href=JavaScript:displayPage(\'#./r2/" + menuItems2[i][1] + "/readme.md\#" + menuItems2[i][1].substr(0, 4) + "\'); >" +  menuItems2[i][0] + "</a>  \n";
 		}
 	}
 
