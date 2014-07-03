@@ -69,6 +69,11 @@
 			margin-left: 20px;
 		}
 
+		#panel p {
+			padding: 0px;
+			margin-left: 20px;
+		}
+
 	#viewer {
 		border: 0px;
 		margin-left: 260px;

@@ -2,7 +2,7 @@ Parametric Equations Read Me
 ===
 
 <iframe src="http://jaanga.github.io/algesurf/parametric-equations/r2/boy-surface/boy-surface.html" width=100% height=500px class='overview' >
-There is an `iframe` here. It is not visible when viewed on github.com/xxx. To view, please see 'Project Links' below.
+There is an iframe here. It is not visible when viewed on github.com/jaanga. To view <a href="http://jaanga.github.io/algesurf/parametric-equations/" target="_blank">Web Page</a>
 </iframe>
 _The sample above is named Boy's Surface_
 
