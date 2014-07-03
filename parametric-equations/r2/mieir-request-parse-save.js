@@ -134,7 +134,7 @@ console.log( 'fname', fname );
 			"<iframe src='http://jaanga.github.io/algesurf/parametric-equations/r2/"+ fname + "/" + fname + ".html' width=100% height=500px >\n" +
 			"There is an `iframe` here. It is not visible when viewed on github.com/algesurf. To view, please see 'Project Links' below.\n" +
 			"</iframe>\n" +
-			"[Full Screen]( http://jaanga.github.io/algesurfparametric-equations/r2/" + fname + "/" + fname + ".html )\n" +
+			"[Full Screen]( http://jaanga.github.io/algesurf/parametric-equations/r2/" + fname + "/" + fname + ".html )\n" +
 			"<br>\n" +
 			"## Links \n" +
 			"<" + fnameRoot + index + ".html>  \n";
@@ -158,7 +158,7 @@ console.log( 'fname', fname );
 	function buildMenu() {
 		menuItems2.sort();
 		for (var i = 0, len = menuItems2.length; i < len; i++) {
-			menuItems += "<a href=JavaScript:displayPage(\'#./" + menuItems2[i][1] + "/readme.md\#rm\'); >" +  menuItems2[i][0] + "</a>  \n";
+			menuItems += "<a href=JavaScript:displayPage(\'#./" + menuItems2[i][1] + "/readme.md\#" + menuItems2[i][1].substr(0, 4) + "\'); >" +  menuItems2[i][0] + "</a>  \n";
 		}
 	}
 
@@ -175,11 +175,11 @@ console.log( 'fname', fname );
 
 
 var menuStart = 
-	"[algeSurf](../../index.html ) &raquo;<br>[Repo]( ../index.html ) &raquo;<br>[Parametric Equations]( ./index.html )\n" +
+	"[Jaanga](../../../index.html ) &raquo;<br>[algeSurf]( ../../index.html ) &raquo;<br>[Parametric Equations]( ./index.html )\n" +
 	"===\n" +
 	"\n" +
 	"<p id=rm >\n" +
-	"	<a href=JavaScript:displayPage( '#readme.md\#rm'); >Read Me</a>\n" +
+	"	<a href=JavaScript:displayPage('#readme.md\#rm'); >Read Me</a>\n" +
 	"</p>\n" +
 	" \n" +
 	"## Equations\n";
@@ -188,7 +188,7 @@ var menuFinish =
 	"<br>\n" +
 	// "<i class='fa fa-external-link'></i> [Live Demo (latest)]( http://jaanga.github.io/algesurf/parametric-equations/r2/readme-reader.html#./boy-surface/readme.md#rm )  \n" +
 	"\n" +
-	"<i class='fa fa-github'></i> [Source code on GitHub]( https://github.com/jaanga/algesurf/tree/gh-pages/parametric-equations/r )  \n" +
+	"<i class='fa fa-github'></i> [Source code on GitHub]( https://github.com/jaanga/algesurf/tree/gh-pages/parametric-equations/ )  \n" +
 	"<br>\n" +
 
 	" \n" +
