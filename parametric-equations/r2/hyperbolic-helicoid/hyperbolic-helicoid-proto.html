@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang=en >
 <head>
-<title>Worm</title>
+<title>Hyperbolic Helicoid</title>
 <meta charset=utf-8 >
 <meta name=viewport content=width=device-width,user-scalable=no,minimum-scale=1.0,maximum-scale=1.0 >
 </head>
@@ -10,7 +10,7 @@
 <script src=http://mrdoob.github.io/three.js/examples/js/controls/TrackballControls.js ></script>
 <script src=http://mrdoob.github.io/three.js/examples/js/libs/stats.min.js ></script>
 <script>
-// http://www.3d-meier.de/tut3/Seite17.html
+// http://www.3d-meier.de/tut3/Seite26.html
 
 	var stats, renderer, scene, camera, controls;
 
@@ -50,9 +50,9 @@
 			u = pi * ( u - 0.5 );
 			v = pi * ( v - 0.5 );
 
-			x = scale * ( a ( 1 - h) cos( u ) cos( 0.5 v ) cos( 0.5 v ) );
-			y = scale * ( 1 - eu / ( b pi ) - sin( v ) + h sin( v ) );
-			z = scale * ( a ( -1 + h) sin( u ) cos( 0.5 v ) cos( 0.5 v ) );
+			x = scale * ( sinh( v ) cos( a u ) / ( 1 + cosh( u ) cosh( v ) )  );
+			y = scale * ( sinh( v ) sin( a u ) / ( 1 + cosh( u ) cosh( v ) )  );
+			z = scale * ( cosh( v ) sinh( u ) / ( 1 + cosh( u ) cosh( v ) )  );
 
 			return new THREE.Vector3( x, y, z );
 		}

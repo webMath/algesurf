@@ -4,7 +4,7 @@
 	var fs = require( "fs" );
 
 	var requestStart = 5;
-	var requestFinish = 24;
+	var requestFinish = 34;
 
 	var fnameRoot = "http://www.3d-meier.de/tut3/Seite";
 	var fname;
@@ -54,9 +54,12 @@
 //				line = line === "roman-surface" ? "novel-surface" : line;
 				line = line === "plucker#conoid" ? "plucker-conoid" : line;
 				line = line === "schnecke" ? "worm" : line;
+				line = line === "wallis#conical-edge" ? "wallis-conical-edge" : line;
+
+
 				fname = line;
 
-				title = fname.replace( "-", " " )
+				title = fname.replace( /\-/gi, " " )
 				title = title.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
 				prototypeLines[3] = "<title>" + title + "</title>";
 
@@ -175,7 +178,7 @@ console.log( 'fname', fname );
 
 
 var menuStart = 
-	"[Jaanga](../../../index.html ) &raquo;<br>[algeSurf]( ../../index.html ) &raquo;<br>[Parametric Equations]( ./index.html )\n" +
+	"[Jaanga](../../index.html ) &raquo;<br>[algeSurf]( ../index.html ) &raquo;<br>[Parametric Equations]( ./index.html )\n" +
 	"===\n" +
 	"\n" +
 	"<p id=rm >\n" +

@@ -1,4 +1,4 @@
-[Jaanga](../../../index.html ) &raquo;<br>[algeSurf]( ../../index.html ) &raquo;<br>[Parametric Equations]( ./index.html )
+[Jaanga](../../index.html ) &raquo;<br>[algeSurf]( ../index.html ) &raquo;<br>[Parametric Equations]( ./index.html )
 ===
 
 <p id=rm >
@@ -8,21 +8,32 @@
 ## Equations
 <a href=JavaScript:displayPage('#./r2/bohemian-dome/readme.md#bohe'); >Bohemian Dome</a>  
 <a href=JavaScript:displayPage('#./r2/boy-surface/readme.md#boy-'); >Boy Surface</a>  
+<a href=JavaScript:displayPage('#./r2/catalan-surface/readme.md#cata'); >Catalan Surface</a>  
 <a href=JavaScript:displayPage('#./r2/catenoid/readme.md#cate'); >Catenoid</a>  
 <a href=JavaScript:displayPage('#./r2/cornucopia/readme.md#corn'); >Cornucopia</a>  
 <a href=JavaScript:displayPage('#./r2/cross-cup/readme.md#cros'); >Cross Cup</a>  
 <a href=JavaScript:displayPage('#./r2/dini-surface/readme.md#dini'); >Dini Surface</a>  
 <a href=JavaScript:displayPage('#./r2/enneper-surface/readme.md#enne'); >Enneper Surface</a>  
+<a href=JavaScript:displayPage('#./r2/funnel/readme.md#funn'); >Funnel</a>  
 <a href=JavaScript:displayPage('#./r2/handkerchief-surface/readme.md#hand'); >Handkerchief Surface</a>  
 <a href=JavaScript:displayPage('#./r2/helicoid/readme.md#heli'); >Helicoid</a>  
+<a href=JavaScript:displayPage('#./r2/henneberg-surface/readme.md#henn'); >Henneberg Surface</a>  
+<a href=JavaScript:displayPage('#./r2/hyperbolic-helicoid/readme.md#hype'); >Hyperbolic Helicoid</a>  
+<a href=JavaScript:displayPage('#./r2/hyperboloid/readme.md#hype'); >Hyperboloid</a>  
+<a href=JavaScript:displayPage('#./r2/klein-bottle/readme.md#klei'); >Klein Bottle</a>  
 <a href=JavaScript:displayPage('#./r2/mobius-band/readme.md#mobi'); >Mobius Band</a>  
 <a href=JavaScript:displayPage('#./r2/monkey-saddle/readme.md#monk'); >Monkey Saddle</a>  
+<a href=JavaScript:displayPage('#./r2/paraboloid/readme.md#para'); >Paraboloid</a>  
 <a href=JavaScript:displayPage('#./r2/plucker-conoid/readme.md#pluc'); >Plucker Conoid</a>  
+<a href=JavaScript:displayPage('#./r2/pseudosphere/readme.md#pseu'); >Pseudosphere</a>  
 <a href=JavaScript:displayPage('#./r2/roman-surface/readme.md#roma'); >Roman Surface</a>  
 <a href=JavaScript:displayPage('#./r2/seashell/readme.md#seas'); >Seashell</a>  
 <a href=JavaScript:displayPage('#./r2/shoe-surface/readme.md#shoe'); >Shoe Surface</a>  
 <a href=JavaScript:displayPage('#./r2/sine-surface/readme.md#sine'); >Sine Surface</a>  
 <a href=JavaScript:displayPage('#./r2/steinbach-screw/readme.md#stei'); >Steinbach Screw</a>  
+<a href=JavaScript:displayPage('#./r2/swallow-surface/readme.md#swal'); >Swallow Surface</a>  
+<a href=JavaScript:displayPage('#./r2/tractroid/readme.md#trac'); >Tractroid</a>  
+<a href=JavaScript:displayPage('#./r2/wallis-conical-edge/readme.md#wall'); >Wallis Conical Edge</a>  
 <a href=JavaScript:displayPage('#./r2/whitney-umbrella/readme.md#whit'); >Whitney Umbrella</a>  
 <a href=JavaScript:displayPage('#./r2/worm/readme.md#worm'); >Worm</a>  
 <br>
