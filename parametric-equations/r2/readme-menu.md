@@ -24,7 +24,6 @@
 <a href=JavaScript:displayPage('#./shoe-surface/readme.md#rm'); >Shoe Surface</a>  
 <a href=JavaScript:displayPage('#./sine-surface/readme.md#rm'); >Sine Surface</a>  
 <a href=JavaScript:displayPage('#./steinbach-screw/readme.md#rm'); >Steinbach Screw</a>  
-<a href=JavaScript:displayPage('#./whitney-umbrella/readme.md#rm'); >Whitney Umbrella</a>  
 <a href=JavaScript:displayPage('#./worm/readme.md#rm'); >Worm</a>  
 <br>
 
