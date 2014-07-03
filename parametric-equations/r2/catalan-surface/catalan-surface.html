@@ -26,7 +26,7 @@
 
 		info.style.cssText = 'left: 20px; position: absolute;';
 		info.innerHTML = '<h1>' + document.title + '</h1>' +
-			'Won\'t work until ECMA 6';
+			'Requires ECMA 6 - currently only in Firefox';
 
 		stats = new Stats();
 		stats.domElement.style.cssText = 'position: absolute; right: 0; top: 0; z-index: 100; ';
@@ -48,17 +48,17 @@
 		var x, y, z;
 
 		function curve1( u, v ) {		
-			u = 2 * pi * ( u - 0.5 );
-			v = 1.4 * ( v - 0.5 );
+			u = 6 * pi * ( u - 0.5 );
+			v = 2.6 * ( v - 0.5 );
 
-			x = scale * ( u - Math.cosh( v ) * sin( u ) );
+			x = scale * ( u - cosh( v ) * sin( u ) );
 			y = scale * ( 1 - cos( u ) * cosh( v ) );
-			z = scale * ( -4 * sin( u / 2) * Math.sinh( v / 2) );
+			z = scale * ( -4 * sin( u / 2) * sinh( v / 2) );
 
 			return new THREE.Vector3( x, y, z );
 		}
 
-		geometry = new THREE.ParametricGeometry( curve1, 20, 20 );
+		geometry = new THREE.ParametricGeometry( curve1, 50, 20 );
 		material = new THREE.MeshNormalMaterial( { shading: THREE.SmoothShading, side: 2 } )
 		mesh = new THREE.Mesh( geometry, material );
 
@@ -75,6 +75,10 @@
 	function pow( a, b ){ return Math.pow( a, b ); }
 	function ran(){ return Math.random(); }
 	function sqrt( a ){ return Math.sqrt( a ); }	
+
+	function cosh( a ){ return Math.cosh( a ); }
+	function sinh( a ){ return Math.sinh( a ); }
+
 
 	function animate() {
 		requestAnimationFrame( animate );

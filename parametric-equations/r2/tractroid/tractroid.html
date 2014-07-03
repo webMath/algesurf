@@ -26,7 +26,7 @@
 
 		info.style.cssText = 'left: 20px; position: absolute;';
 		info.innerHTML = '<h1>' + document.title + '</h1>' +
-			'Firefox only';
+			'Requires ECMA 6 - currently only in Firefox';
 
 		stats = new Stats();
 		stats.domElement.style.cssText = 'position: absolute; right: 0; top: 0; z-index: 100; ';
@@ -48,11 +48,11 @@
 		var x, y, z;
 
 		function curve1( u, v ) {		
-			u = pi * ( u - 0.5 );
-			v = pi * ( v - 0.5 );
+			u = 2 * pi * ( u - 0.5 );
+			v = 2 * pi * ( v - 0.5 );
 
-			x = scale * ( sech( u ) cos( v ) );
-			y = scale * ( sech( u ) sin( v ) );
+			x = scale * ( sech( u ) * cos( v ) );
+			y = scale * ( sech( u ) * sin( v ) );
 			z = scale * ( u - tanh( u ) );
 
 			return new THREE.Vector3( x, y, z );
@@ -75,6 +75,12 @@
 	function pow( a, b ){ return Math.pow( a, b ); }
 	function ran(){ return Math.random(); }
 	function sqrt( a ){ return Math.sqrt( a ); }	
+
+	function cosh( a ){ return Math.cosh( a ); }
+	function sinh( a ){ return Math.sinh( a ); }
+	function tanh( a ){ return Math.tanh( a ); }
+
+	function sech( a ){ return 1 / Math.cosh( a ); }
 
 	function animate() {
 		requestAnimationFrame( animate );

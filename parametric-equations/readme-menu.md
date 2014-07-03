@@ -31,7 +31,6 @@
 <a href=JavaScript:displayPage('#./r2/shoe-surface/readme.md#shoe'); >Shoe Surface</a>  
 <a href=JavaScript:displayPage('#./r2/sine-surface/readme.md#sine'); >Sine Surface</a>  
 <a href=JavaScript:displayPage('#./r2/steinbach-screw/readme.md#stei'); >Steinbach Screw</a>  
-<a href=JavaScript:displayPage('#./r2/swallow-surface/readme.md#swal'); >Swallow Surface</a>  
 <a href=JavaScript:displayPage('#./r2/tractroid/readme.md#trac'); >Tractroid</a>  
 <a href=JavaScript:displayPage('#./r2/wallis-conical-edge/readme.md#wall'); >Wallis Conical Edge</a>  
 <a href=JavaScript:displayPage('#./r2/whitney-umbrella/readme.md#whit'); >Whitney Umbrella</a>  

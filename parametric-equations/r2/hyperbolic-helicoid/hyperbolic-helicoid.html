@@ -26,7 +26,7 @@
 
 		info.style.cssText = 'left: 20px; position: absolute;';
 		info.innerHTML = '<h1>' + document.title + '</h1>' +
-			'Works on FireFox only';
+			'Requires ECMA 6 - currently only in Firefox';
 
 		stats = new Stats();
 		stats.domElement.style.cssText = 'position: absolute; right: 0; top: 0; z-index: 100; ';
@@ -44,16 +44,16 @@
 		controls.target.set( 0, 0, 0 );
 
 		var pi = Math.PI;
-		var scale = 25;
+		var scale = 50;
 		var x, y, z;
 
 		function curve1( u, v ) {		
 			u = pi * ( u - 0.5 );
 			v = pi * ( v - 0.5 );
 
-//			x = scale * ( sinh( v ) cos( a u ) / ( 1 + cosh( u ) cosh( v ) )  );
-//			y = scale * ( sinh( v ) sin( a u ) / ( 1 + cosh( u ) cosh( v ) )  );
-//			z = scale * ( cosh( v ) sinh( u ) / ( 1 + cosh( u ) cosh( v ) )  );
+			x = scale * ( sinh( v ) * cos( 3 * u ) / ( 1 + cosh( u ) * cosh( v ) )  );
+			y = scale * ( sinh( v ) * sin( 3 * u ) / ( 1 + cosh( u ) * cosh( v ) )  );
+			z = scale * ( cosh( v ) * sinh( u ) / ( 1 + cosh( u ) * cosh( v ) )  );
 
 			return new THREE.Vector3( x, y, z );
 		}
@@ -74,7 +74,10 @@
 	function exp( a ){ return Math.exp( a ); }
 	function pow( a, b ){ return Math.pow( a, b ); }
 	function ran(){ return Math.random(); }
-	function sqrt( a ){ return Math.sqrt( a ); }	
+	function sqrt( a ){ return Math.sqrt( a ); }
+
+	function cosh( a ){ return Math.cosh( a ); }
+	function sinh( a ){ return Math.sinh( a ); }
 
 	function animate() {
 		requestAnimationFrame( animate );
