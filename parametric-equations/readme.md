@@ -23,6 +23,10 @@ To visualize math and phisics in entirely new ways
 
 ## Road Map
 
+* Add slider bars that update coefficients in real-time
+* Add categories to each file
+* Add source to each file
+
 
 ## Issues / Bugs
 
@@ -62,6 +66,13 @@ This repository contains files that are at an early and volatile stage. Not all 
 
 
 ## Change Log
+
+2014-07-03 ~ Theo
+
+* Add twenty more equations
+* Add build-menu.js
+* Mino fizes to meier-request...
+
 
 2014-07-02 ~ Theo
 

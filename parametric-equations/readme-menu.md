@@ -45,7 +45,6 @@
 <a href=JavaScript:displayPage('#./r2/richmond-surface/readme.md#rich'); >Richmond Surface</a>  
 <a href=JavaScript:displayPage('#./r2/roman-surface/readme.md#roma'); >Roman Surface</a>  
 <a href=JavaScript:displayPage('#./r2/scherk-surface/readme.md#sche'); >Scherk Surface</a>  
-<a href=JavaScript:displayPage('#./r2/schnecke/readme.md#schn'); >Schnecke</a>  
 <a href=JavaScript:displayPage('#./r2/seashell/readme.md#seas'); >Seashell</a>  
 <a href=JavaScript:displayPage('#./r2/shoe-surface/readme.md#shoe'); >Shoe Surface</a>  
 <a href=JavaScript:displayPage('#./r2/sine-surface/readme.md#sine'); >Sine Surface</a>  
@@ -55,7 +54,6 @@
 <a href=JavaScript:displayPage('#./r2/swallow-surface/readme.md#swal'); >Swallow Surface</a>  
 <a href=JavaScript:displayPage('#./r2/tractroid/readme.md#trac'); >Tractroid</a>  
 <a href=JavaScript:displayPage('#./r2/triaxial-teardrop/readme.md#tria'); >Triaxial Teardrop</a>  
-<a href=JavaScript:displayPage('#./r2/tropfen/readme.md#trop'); >Tropfen</a>  
 <a href=JavaScript:displayPage('#./r2/wallis-conical-edge/readme.md#wall'); >Wallis Conical Edge</a>  
 <a href=JavaScript:displayPage('#./r2/whitney-umbrella/readme.md#whit'); >Whitney Umbrella</a>  
 <a href=JavaScript:displayPage('#./r2/worm/readme.md#worm'); >Worm</a>  
