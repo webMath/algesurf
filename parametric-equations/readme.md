@@ -24,7 +24,7 @@ To visualize math and phisics in entirely new ways
 ## Road Map
 
 
-## Issues /Bugs
+## Issues / Bugs
 
 
 ## Project Links

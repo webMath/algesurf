@@ -3,8 +3,8 @@
 	var request = require( "../node_modules/request") ;
 	var fs = require( "fs" );
 
-	var requestStart = 5;
-	var requestFinish = 34;
+	var requestStart = 45;
+	var requestFinish = 54;
 
 	var fnameRoot = "http://www.3d-meier.de/tut3/Seite";
 	var fname;
@@ -52,10 +52,11 @@
 				line = line.replace( /(\W)surface/gi, "-surface" );
 //				line = line === "boy-surface" ? "boys-surface" : line;
 //				line = line === "roman-surface" ? "novel-surface" : line;
+				line = line === "maeder#owl" ? "maeder-owl" : line;
 				line = line === "plucker#conoid" ? "plucker-conoid" : line;
 				line = line === "schnecke" ? "worm" : line;
 				line = line === "wallis#conical-edge" ? "wallis-conical-edge" : line;
-
+				line = line === "tropfen" ? "drop" : line;
 
 				fname = line;
 
