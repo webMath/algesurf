@@ -3,8 +3,8 @@
 	var request = require( "../node_modules/request") ;
 	var fs = require( "fs" );
 
-	var requestStart = 45;
-	var requestFinish = 54;
+	var requestStart = 75;
+	var requestFinish = 84;
 
 	var fnameRoot = "http://www.3d-meier.de/tut3/Seite";
 	var fname;
@@ -52,11 +52,15 @@
 				line = line.replace( /(\W)surface/gi, "-surface" );
 //				line = line === "boy-surface" ? "boys-surface" : line;
 //				line = line === "roman-surface" ? "novel-surface" : line;
+
+				line = line === "kranz" ? "wreath" : line;
 				line = line === "maeder#owl" ? "maeder-owl" : line;
 				line = line === "plucker#conoid" ? "plucker-conoid" : line;
 				line = line === "schnecke" ? "worm" : line;
-				line = line === "wallis#conical-edge" ? "wallis-conical-edge" : line;
+				line = line === "trefoil-knoten" ? "trefoil-knot" : line;
 				line = line === "tropfen" ? "drop" : line;
+				line = line === "wallis#conical-edge" ? "wallis-conical-edge" : line;
+				line = line === "wellenkugel" ? "wave-ball" : line;
 
 				fname = line;
 
@@ -81,12 +85,16 @@
 				line = line.replace( /u3/gi, "u * u * u" );
 				line = line.replace( /v3/gi, "v * v * v" );
 				line = line.replace( /\(/gi, "( " );
+
+				line = line.replace( /(\)|\w) (sin|cos|\()/gi, "$1 * $2" );
+//				line = line.replace( /(\w) \(/gi, "$1 * (" );
+
 // 					line = line.replace( /(\W)\)/gi, " )" );
 
-				line = line.replace( /u\)/gi, "u )" );
-				line = line.replace( /v\)/gi, "v )" );
-				line = line.replace( /i\)/gi, "i )" );
-
+				line = line.replace( /(\w)\)/gi, "$1 )" );
+//				line = line.replace( /v\)/gi, "v )" );
+//				line = line.replace( /i\)/gi, "i )" );
+//
 				line = line.replace( /\)\)/gi, ") ) " );
 				line = line.replace( /\s\s/gi, " " );
 
