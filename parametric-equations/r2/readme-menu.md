@@ -1,4 +1,4 @@
-[Jaanga](../../index.html ) &raquo;<br>[algeSurf]( ../../index.html ) &raquo;<br>[Parametric Equations]( ./index.html )
+[Jaanga](../../index.html ) &raquo;<br>[algeSurf]( ../index.html ) &raquo;<br>[Parametric Equations]( ./index.html )
 ===
 
 <p id=rm >
@@ -8,10 +8,13 @@
 ## Equations
 <a href=JavaScript:displayPage('#8-torus/readme.md#8-to'); >8 Torus</a>  
 <a href=JavaScript:displayPage('#antisymmetrischer-torus/readme.md#anti'); >Antisymmetrischer Torus</a>  
+<a href=JavaScript:displayPage('#apple-ii-surface/readme.md#appl'); >Apple Ii Surface</a>  
 <a href=JavaScript:displayPage('#apple-surface/readme.md#appl'); >Apple Surface</a>  
 <a href=JavaScript:displayPage('#bent-horns/readme.md#bent'); >Bent Horns</a>  
 <a href=JavaScript:displayPage('#bohemian-dome/readme.md#bohe'); >Bohemian Dome</a>  
+<a href=JavaScript:displayPage('#bonan-jeener-klein-surface/readme.md#bona'); >Bonan Jeener Klein Surface</a>  
 <a href=JavaScript:displayPage('#boy-surface/readme.md#boy-'); >Boy Surface</a>  
+<a href=JavaScript:displayPage('#braided-torus/readme.md#brai'); >Braided Torus</a>  
 <a href=JavaScript:displayPage('#catalan-surface/readme.md#cata'); >Catalan Surface</a>  
 <a href=JavaScript:displayPage('#catenoid/readme.md#cate'); >Catenoid</a>  
 <a href=JavaScript:displayPage('#cornucopia/readme.md#corn'); >Cornucopia</a>  
@@ -21,12 +24,15 @@
 <a href=JavaScript:displayPage('#cross-cap/readme.md#cros'); >Cross Cap</a>  
 <a href=JavaScript:displayPage('#cross-cup/readme.md#cros'); >Cross Cup</a>  
 <a href=JavaScript:displayPage('#dini-surface/readme.md#dini'); >Dini Surface</a>  
+<a href=JavaScript:displayPage('#double-cone/readme.md#doub'); >Double Cone</a>  
 <a href=JavaScript:displayPage('#drop/readme.md#drop'); >Drop</a>  
 <a href=JavaScript:displayPage('#dupin-cyclide/readme.md#dupi'); >Dupin Cyclide</a>  
+<a href=JavaScript:displayPage('#ei/readme.md#ei'); >Ei</a>  
 <a href=JavaScript:displayPage('#eight-surface/readme.md#eigh'); >Eight Surface</a>  
 <a href=JavaScript:displayPage('#ellipsoid/readme.md#elli'); >Ellipsoid</a>  
 <a href=JavaScript:displayPage('#elliptic-torus/readme.md#elli'); >Elliptic Torus</a>  
 <a href=JavaScript:displayPage('#enneper-surface/readme.md#enne'); >Enneper Surface</a>  
+<a href=JavaScript:displayPage('#facing-snail/readme.md#faci'); >Facing Snail</a>  
 <a href=JavaScript:displayPage('#feder-i/readme.md#fede'); >Feder I</a>  
 <a href=JavaScript:displayPage('#feder-ii/readme.md#fede'); >Feder Ii</a>  
 <a href=JavaScript:displayPage('#fish-surface/readme.md#fish'); >Fish Surface</a>  
@@ -40,19 +46,31 @@
 <a href=JavaScript:displayPage('#horn/readme.md#horn'); >Horn</a>  
 <a href=JavaScript:displayPage('#hyperbolic-helicoid/readme.md#hype'); >Hyperbolic Helicoid</a>  
 <a href=JavaScript:displayPage('#hyperbolic-octahedron/readme.md#hype'); >Hyperbolic Octahedron</a>  
+<a href=JavaScript:displayPage('#hyperbolic-paraboloid/readme.md#hype'); >Hyperbolic Paraboloid</a>  
 <a href=JavaScript:displayPage('#hyperboloid/readme.md#hype'); >Hyperboloid</a>  
+<a href=JavaScript:displayPage('#isolator/readme.md#isol'); >Isolator</a>  
+<a href=JavaScript:displayPage('#jeener-klein-surface/readme.md#jeen'); >Jeener Klein Surface</a>  
 <a href=JavaScript:displayPage('#jet-surface/readme.md#jet-'); >Jet Surface</a>  
+<a href=JavaScript:displayPage('#kegel/readme.md#kege'); >Kegel</a>  
 <a href=JavaScript:displayPage('#kidney-surface/readme.md#kidn'); >Kidney Surface</a>  
 <a href=JavaScript:displayPage('#klein-bottle/readme.md#klei'); >Klein Bottle</a>  
+<a href=JavaScript:displayPage('#klein-cycloid/readme.md#klei'); >Klein Cycloid</a>  
 <a href=JavaScript:displayPage('#kuen-surface/readme.md#kuen'); >Kuen Surface</a>  
+<a href=JavaScript:displayPage('#kugel-i/readme.md#kuge'); >Kugel I</a>  
 <a href=JavaScript:displayPage('#lemniscape/readme.md#lemn'); >Lemniscape</a>  
+<a href=JavaScript:displayPage('#limpet-torus/readme.md#limp'); >Limpet Torus</a>  
+<a href=JavaScript:displayPage('#lochdiskus/readme.md#loch'); >Lochdiskus</a>  
+<a href=JavaScript:displayPage('#lockdisk/readme.md#lock'); >Lockdisk</a>  
 <a href=JavaScript:displayPage('#maeder-owl/readme.md#maed'); >Maeder Owl</a>  
 <a href=JavaScript:displayPage('#menn-surface/readme.md#menn'); >Menn Surface</a>  
 <a href=JavaScript:displayPage('#milchtute/readme.md#milc'); >Milchtute</a>  
 <a href=JavaScript:displayPage('#mobius-band/readme.md#mobi'); >Mobius Band</a>  
 <a href=JavaScript:displayPage('#monkey-saddle/readme.md#monk'); >Monkey Saddle</a>  
+<a href=JavaScript:displayPage('#nautilus/readme.md#naut'); >Nautilus</a>  
+<a href=JavaScript:displayPage('#paper-bag/readme.md#pape'); >Paper Bag</a>  
 <a href=JavaScript:displayPage('#paraboloid/readme.md#para'); >Paraboloid</a>  
 <a href=JavaScript:displayPage('#pillow-shape/readme.md#pill'); >Pillow Shape</a>  
+<a href=JavaScript:displayPage('#pisot-triaxial/readme.md#piso'); >Pisot Triaxial</a>  
 <a href=JavaScript:displayPage('#plucker-conoid/readme.md#pluc'); >Plucker Conoid</a>  
 <a href=JavaScript:displayPage('#pseudo-cross-cap/readme.md#pseu'); >Pseudo Cross Cap</a>  
 <a href=JavaScript:displayPage('#pseudosphere/readme.md#pseu'); >Pseudosphere</a>  
@@ -74,11 +92,15 @@
 <a href=JavaScript:displayPage('#tranguloid-trefoil/readme.md#tran'); >Tranguloid Trefoil</a>  
 <a href=JavaScript:displayPage('#trash-can/readme.md#tras'); >Trash Can</a>  
 <a href=JavaScript:displayPage('#trefoil-knot/readme.md#tref'); >Trefoil Knot</a>  
+<a href=JavaScript:displayPage('#triaxial-hexatorus/readme.md#tria'); >Triaxial Hexatorus</a>  
 <a href=JavaScript:displayPage('#triaxial-teardrop/readme.md#tria'); >Triaxial Teardrop</a>  
 <a href=JavaScript:displayPage('#triaxial-tritorus/readme.md#tria'); >Triaxial Tritorus</a>  
 <a href=JavaScript:displayPage('#triple-point-twist/readme.md#trip'); >Triple Point Twist</a>  
+<a href=JavaScript:displayPage('#twisted-heart/readme.md#twis'); >Twisted Heart</a>  
 <a href=JavaScript:displayPage('#twisted-pipe-surface/readme.md#twis'); >Twisted Pipe Surface</a>  
+<a href=JavaScript:displayPage('#twisted-sphere/readme.md#twis'); >Twisted Sphere</a>  
 <a href=JavaScript:displayPage('#umbilic-torus/readme.md#umbi'); >Umbilic Torus</a>  
+<a href=JavaScript:displayPage('#vase-und-spear-head/readme.md#vase'); >Vase Und Spear Head</a>  
 <a href=JavaScript:displayPage('#verrill-surface/readme.md#verr'); >Verrill Surface</a>  
 <a href=JavaScript:displayPage('#wallis-conical-edge/readme.md#wall'); >Wallis Conical Edge</a>  
 <a href=JavaScript:displayPage('#wave-ball/readme.md#wave'); >Wave Ball</a>  
@@ -87,6 +109,7 @@
 <a href=JavaScript:displayPage('#worm/readme.md#worm'); >Worm</a>  
 <a href=JavaScript:displayPage('#wreath/readme.md#wrea'); >Wreath</a>  
 <a href=JavaScript:displayPage('#zindler#conoid/readme.md#zind'); >Zindler#conoid</a>  
+<a href=JavaScript:displayPage('#zylinder/readme.md#zyli'); >Zylinder</a>  
 <br>
 
 <i class='fa fa-github'></i> [Source code on GitHub]( https://github.com/jaanga/algesurf/tree/gh-pages/parametric-equations/ )  

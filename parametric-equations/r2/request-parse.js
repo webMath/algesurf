@@ -3,8 +3,8 @@
 	var request = require( "../node_modules/request") ;
 	var fs = require( "fs" );
 
-	var requestStart = 110;
-	var requestFinish = 120;
+	var requestStart = 5;
+	var requestFinish = 24;
 
 	var fnameRoot = "http://www.3d-meier.de/tut3/Seite";
 	var fname;
@@ -52,19 +52,11 @@
 				line = line.replace( /(\W)surface/gi, "-surface" );
 //				line = line === "boy-surface" ? "boys-surface" : line;
 //				line = line === "roman-surface" ? "novel-surface" : line;
-
-				line = line === "kranz" ? "wreath" : line;
-				line = line === "maeder#owl" ? "maeder-owl" : line;
 				line = line === "plucker#conoid" ? "plucker-conoid" : line;
-				line = line === "schnecke" ? "worm" : line;
-				line = line === "trefoil-knoten" ? "trefoil-knot" : line;
-				line = line === "tropfen" ? "drop" : line;
-				line = line === "wallis#conical-edge" ? "wallis-conical-edge" : line;
-				line = line === "wellenkugel" ? "wave-ball" : line;
 
 				fname = line;
 
-				title = fname.replace( /\-/gi, " " )
+				title = fname.replace( "-", " " )
 				title = title.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
 				prototypeLines[3] = "<title>" + title + "</title>";
 
@@ -76,30 +68,27 @@
 			contents = [];
 			if ( line.indexOf( ">x" ) > -1 || line.indexOf( ">y" ) > -1 || line.indexOf( ">z" ) > -1 ) {
 				line = line.replace( /<(.*?)>/gi, "" );
-//				line = line.replace( /\//gi, " / " );
-//				line = line.replace( /\+/gi, " + " );
-				line = line.replace( /([\/\+\-])/gi, " $1 " );
 
+				line = line.replace( /\//gi, " / " );
+				line = line.replace( /\+/gi, " + " );
 
 				line = line.replace( /u2/gi, "u * u" );
 				line = line.replace( /v2/gi, "v * v" );
 				line = line.replace( /u3/gi, "u * u * u" );
 				line = line.replace( /v3/gi, "v * v * v" );
-
 				line = line.replace( /\(/gi, "( " );
+// 					line = line.replace( /(\W)\)/gi, " )" );
 
-				line = line.replace( /(\w|\)) (\w|\()/gi, "$1 * $2" );
-
-
-				line = line.replace( /(\w)\)/gi, "$1 )" );
+				line = line.replace( /u\)/gi, "u )" );
+				line = line.replace( /v\)/gi, "v )" );
+				line = line.replace( /i\)/gi, "i )" );
 
 				line = line.replace( /\)\)/gi, ") ) " );
-				line = line.replace( /\s\s/gi, " " );
 				line = line.replace( /\s\s/gi, " " );
 
 				line = line.replace( /\s=\s/gi, " = scale * ( " );
 				line = "\t\t\t" + line + " );";
-// console.log( line );
+//console.log( line.substr(0, 5 ) );
 				if ( line.substr(3, 1 ) === "x" ) { prototypeLines[52] = line; }
 				if ( line.substr(3, 1 ) === "y" ) { prototypeLines[53] = line; }
 				if ( line.substr(3, 1 ) === "z" ) { prototypeLines[54] = line; }
@@ -142,10 +131,10 @@ console.log( 'fname', fname );
 			title + " Read Me\n" +
 			"===\n" +
 			"\n" +
-			"<iframe src='http://jaanga.github.io/algesurf/parametric-equations/r2/"+ fname + "/" + fname + ".html' width=100% height=500px >\n" +
+			"<iframe src='http://algesurf.github.io/parametric-equations/r2/"+ fname + "/" + fname + ".html' width=100% height=500px >\n" +
 			"There is an `iframe` here. It is not visible when viewed on github.com/algesurf. To view, please see 'Project Links' below.\n" +
 			"</iframe>\n" +
-			"[Full Screen]( http://jaanga.github.io/algesurf/parametric-equations/r2/" + fname + "/" + fname + ".html )\n" +
+			"[Full Screen]( http://algesurf.github.io/parametric-equations/r2/" + fname + "/" + fname + ".html )\n" +
 			"<br>\n" +
 			"## Links \n" +
 			"<" + fnameRoot + index + ".html>  \n";
@@ -158,7 +147,7 @@ console.log( 'fname', fname );
 
 		if ( index === requestFinish ) {
 			buildMenu();
-			fs.writeFile( "../readme-menu.md", menuStart + menuItems + menuFinish, function ( error ) {
+			fs.writeFile( "readme-menu.md", menuStart + menuItems + menuFinish, function ( error ) {
 				if ( error ) throw error;
 //console.log( menuItems2.sort() );
 			});
@@ -169,7 +158,7 @@ console.log( 'fname', fname );
 	function buildMenu() {
 		menuItems2.sort();
 		for (var i = 0, len = menuItems2.length; i < len; i++) {
-			menuItems += "<a href=JavaScript:displayPage(\'#./r2/" + menuItems2[i][1] + "/readme.md\#" + menuItems2[i][1].substr(0, 4) + "\'); >" +  menuItems2[i][0] + "</a>  \n";
+			menuItems += "<a href=JavaScript:displayPage(\'#./" + menuItems2[i][1] + "/readme.md\#rm\'); >" +  menuItems2[i][0] + "</a>  \n";
 		}
 	}
 
@@ -186,20 +175,20 @@ console.log( 'fname', fname );
 
 
 var menuStart = 
-	"[Jaanga](../../index.html ) &raquo;<br>[algeSurf]( ../index.html ) &raquo;<br>[Parametric Equations]( ./index.html )\n" +
+	"[algeSurf](../../index.html ) &raquo;<br>[Repo]( ../index.html ) &raquo;<br>[Parametric Equations]( ./index.html )\n" +
 	"===\n" +
 	"\n" +
 	"<p id=rm >\n" +
-	"	<a href=JavaScript:displayPage('#readme.md\#rm'); >Read Me</a>\n" +
+	"	<a href=JavaScript:displayPage( '#readme.md\#rm'); >Read Me</a>\n" +
 	"</p>\n" +
 	" \n" +
 	"## Equations\n";
 
 var menuFinish =
 	"<br>\n" +
-	// "<i class='fa fa-external-link'></i> [Live Demo (latest)]( http://jaanga.github.io/algesurf/parametric-equations/r2/readme-reader.html#./boy-surface/readme.md#rm )  \n" +
+	// "<i class='fa fa-external-link'></i> [Live Demo (latest)]( https://github.com/jaanga/libs/tree/gh-pages/db )  \n" +
 	"\n" +
-	"<i class='fa fa-github'></i> [Source code on GitHub]( https://github.com/jaanga/algesurf/tree/gh-pages/parametric-equations/ )  \n" +
+	"<i class='fa fa-github'></i> [Source code on GitHub]( https://github.com/jaanga/libs/tree/gh-pages/db )  \n" +
 	"<br>\n" +
 
 	" \n" +

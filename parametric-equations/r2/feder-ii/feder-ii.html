@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang=en >
 <head>
-<title>boilerplate</title>
+<title>Spring II</title>
 <meta charset=utf-8 >
 <meta name=viewport content=width=device-width,user-scalable=no,minimum-scale=1.0,maximum-scale=1.0 >
 </head>
@@ -10,7 +10,7 @@
 <script src=http://mrdoob.github.io/three.js/examples/js/controls/TrackballControls.js ></script>
 <script src=http://mrdoob.github.io/three.js/examples/js/libs/stats.min.js ></script>
 <script>
-// http://www.3d-meier.de/tut3/Seite0.html
+// http://www.3d-meier.de/tut3/Seite83.html  ~ Feder II
 
 	var stats, renderer, scene, camera, controls;
 
@@ -47,17 +47,21 @@
 		var x, y, z;
 
 		function curve1( u, v ) {		
-			u = pi * ( u - 0.5 );
-			v = pi * ( v - 0.5 );
+			u = 2 * pi * ( u - 0.5 );
+			v = 6 * pi * ( v - 0.5 );
+			var r = 0.5;
+			var R = 3;
+			var h = 0.75;
+			var w = 1;
 
-			x = scale * ( xxx );
-			y = scale * ( xxx );
-			z = scale * ( xxx );
+			x = scale * ( ( R + r * cos( u ) ) * cos( v ) + r * h * sin( u ) * sin( v ) / w );
+			y = scale * ( ( R + r * cos( u ) ) * sin( v ) - r * h * sin( u ) * cos( v ) / w );
+			z = scale * ( h * v + R * r * sin( u ) / w );
 
 			return new THREE.Vector3( x, y, z );
 		}
 
-		geometry = new THREE.ParametricGeometry( curve1, 20, 20 );
+		geometry = new THREE.ParametricGeometry( curve1, 20, 50 );
 		material = new THREE.MeshNormalMaterial( { shading: THREE.SmoothShading, side: 2 } )
 		mesh = new THREE.Mesh( geometry, material );
 
@@ -70,7 +74,6 @@
 	function sin( a ){ return Math.sin( a ); }
 	function tan( a ){ return Math.tan( a ); }
 
-	function abs( a ){ return Math.abs( a ); }
 	function exp( a ){ return Math.exp( a ); }
 	function log( a ){ return Math.log( a ); }
 	function pow( a, b ){ return Math.pow( a, b ); }

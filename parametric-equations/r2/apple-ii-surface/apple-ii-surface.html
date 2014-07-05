@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang=en >
 <head>
-<title>boilerplate</title>
+<title>Apple II Surface</title>
 <meta charset=utf-8 >
 <meta name=viewport content=width=device-width,user-scalable=no,minimum-scale=1.0,maximum-scale=1.0 >
 </head>
@@ -10,7 +10,7 @@
 <script src=http://mrdoob.github.io/three.js/examples/js/controls/TrackballControls.js ></script>
 <script src=http://mrdoob.github.io/three.js/examples/js/libs/stats.min.js ></script>
 <script>
-// http://www.3d-meier.de/tut3/Seite0.html
+// http://www.3d-meier.de/tut3/Seite100.html
 
 	var stats, renderer, scene, camera, controls;
 
@@ -43,16 +43,18 @@
 		controls.target.set( 0, 0, 0 );
 
 		var pi = Math.PI;
-		var scale = 25;
+		var scale = 5;
 		var x, y, z;
+		var R1 = 5;
+		var R2 = 4.8
 
 		function curve1( u, v ) {		
-			u = pi * ( u - 0.5 );
-			v = pi * ( v - 0.5 );
+			u = 2 * pi * ( u - 0.5 );
+			v = 2 * pi * ( v - 0.5 );
 
-			x = scale * ( xxx );
-			y = scale * ( xxx );
-			z = scale * ( xxx );
+			x = scale * ( cos( u ) * ( R1 + R2 * cos( v ) ) + pow( v / pi, 20 ) );
+			y = scale * ( sin( u ) * ( R1 + R2 * cos( v ) ) + 0.25 * cos( 5 * u ) );
+			z = scale * ( - 2.3 * log( 1 - v * 0.3157 ) + 6 * sin( v ) + 2 * cos( v ) );
 
 			return new THREE.Vector3( x, y, z );
 		}
@@ -70,7 +72,6 @@
 	function sin( a ){ return Math.sin( a ); }
 	function tan( a ){ return Math.tan( a ); }
 
-	function abs( a ){ return Math.abs( a ); }
 	function exp( a ){ return Math.exp( a ); }
 	function log( a ){ return Math.log( a ); }
 	function pow( a, b ){ return Math.pow( a, b ); }

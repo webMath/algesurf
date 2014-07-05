@@ -4,19 +4,19 @@
 	fs.readdir( "./", function ( error, files ) {
 		if ( error ) throw error;
 		files.sort();
-		var title;
+		var file, title;
 
 		for (var i = 0, len = files.length; i < len; i++) {
+			file = files[i];
+			if ( file.indexOf(".js") > -1 || file.indexOf(".html") > -1 || file.indexOf(".md") > -1 ) continue;
 
-			if ( files[i] === "build-menu.js" || files[i] === "meier-request-parse-save.js" ) continue;
-
-			title = files[i].replace( /\-/gi, " " )
+			title = file.replace( /\-/gi, " " )
 			title = title.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
 
-			menuItems += "<a href=JavaScript:displayPage(\'#./r2/" + files[i] + "/readme.md\#" + files[i].substr(0, 4) + "\'); >" +  title + "</a>  \n";
+			menuItems += "<a href=JavaScript:displayPage(\'#" + file + "/readme.md\#" + file.substr(0, 4) + "\'); >" +  title + "</a>  \n";
 		} 
 		
-		fs.writeFile( "../readme-menu.md", menuStart + menuItems + menuFinish, function ( error ) {
+		fs.writeFile( "./readme-menu.md", menuStart + menuItems + menuFinish, function ( error ) {
 			if ( error ) throw error;
 console.log( files );
 		});
