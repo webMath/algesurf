@@ -168,6 +168,7 @@ function generateGeometry( func, axisMin, axisMax ) {
 		i += 3;
 	  }
 	}  
+	geometry.mergeVertices();
 	geometry.computeFaceNormals();
 	geometry.computeVertexNormals();
 	geometry.computeTangents();

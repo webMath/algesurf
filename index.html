@@ -1,37 +1,7 @@
 <!doctype html>
-<html lang='en'>
+<html lang=en >
 <head>
-<meta charset='utf-8'>
-<title>AlgeSurf</title>
-<link type='text/css' rel='stylesheet' href='style.css' />
+<meta charset=utf-8 />
+<meta http-equiv=refresh content=0;url=readme-reader.html />
 </head>
-<body>
-<script>
-	var panel = document.createElement( 'div' );
-	panel.id = 'panel';  // for css
-	document.body.appendChild( panel );
-
-	var viewer = document.createElement( 'iframe' );
-	viewer.id = 'viewer';
-	document.body.appendChild( viewer ); 
-
-	var appName = 'docTree';
-	var html = '<h1> <a href="../../index.html" >Jaanga</a> &raquo; AlgeSurf</h1>' +
-		'<h3>Algebraic Surfaces<br>and other<br>3D Math Toys</h3>' +
-		'<p><a href=https://github.com/jaanga/algesurf/ >Source code on GitHub</a></p>' +
-		'<p>New: <a href=http://jaanga.github.com/algesurf/parametric-equations/ >Parametric Equations</a></p>' ;  
-</script>
-<script src='list.js'></script>
-<script src='doctree.js'></script>
-</body>
-<script>
-
-
-	if ( window.location.hash.length > 0 ) {
-		goToHash();
-	} else {
-		goTo('1 The Project','','Overview');
-	}
-	
-</script>
 </html>

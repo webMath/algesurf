@@ -8,7 +8,7 @@
 
 		for (var i = 0, len = files.length; i < len; i++) {
 
-			if ( files[i] === "build-menu.js" || files[i] === "mieir-request-parse-save.js" ) continue;
+			if ( files[i] === "build-menu.js" || files[i] === "meier-request-parse-save.js" ) continue;
 
 			title = files[i].replace( /\-/gi, " " )
 			title = title.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});

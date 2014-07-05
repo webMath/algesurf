@@ -1,7 +1,7 @@
 var mmaterials;
 
 function generateMaterials() {
-			var path = "../textures/cube/SwedishRoyalCastle/";
+			var path = "../../../textures/cube/SwedishRoyalCastle/";
 			var format = '.jpg';
 			var urls = [
 				path + 'px' + format, path + 'nx' + format,
@@ -39,7 +39,7 @@ function generateMaterials() {
 
     var texture1 = new THREE.Texture( generateTexture( 0, 0.5, 1 ), new THREE.UVMapping() );
     var texture2 = new THREE.Texture( generateTexture( 0, 1, 0 ), new THREE.SphericalReflectionMapping() );
-    var texture3 = THREE.ImageUtils.loadTexture( '../textures/land_ocean_ice_cloud_2048.jpg' )
+    var texture3 = THREE.ImageUtils.loadTexture( '../../../textures/land_ocean_ice_cloud_2048.jpg' )
 
     texture1.needsUpdate = true;
     texture2.needsUpdate = true;
@@ -176,14 +176,14 @@ function generateMaterials() {
     
     "basic~map1" :
     {
-      m: new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '../textures/land_ocean_ice_cloud_2048.jpg' ), side: THREE.DoubleSide }), 
-      d: "8. MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '../textures/land_ocean_ice_cloud_2048.jpg' ), side: THREE.DoubleSide } )"
+      m: new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '../../../textures/land_ocean_ice_cloud_2048.jpg' ), side: THREE.DoubleSide }), 
+      d: "8. MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '../../../textures/land_ocean_ice_cloud_2048.jpg' ), side: THREE.DoubleSide } )"
     },
     
     "basic~map2" :
     {
-      m: new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '../textures/cynthia-draw-lightning.jpg' ), side: THREE.DoubleSide }),
-      d: "9. MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '../textures/cynthia-draw-lightning.jpg' ), side: THREE.DoubleSide })"
+      m: new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '../../../textures/cynthia-draw-lightning.jpg' ), side: THREE.DoubleSide }),
+      d: "9. MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '../../../textures/cynthia-draw-lightning.jpg' ), side: THREE.DoubleSide })"
     },
 
     "phong~flat" :

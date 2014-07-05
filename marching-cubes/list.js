@@ -12,45 +12,45 @@ var list = {
 	
 	'2 Algesurf R3': {
 		'In Development...': [
-			[ 'Read Me', 'r3/readme']
+			[ 'Read Me', '../../function-graphs/r3/readme']
 		]
 	},
 	
 	'3 Algesurf R2': {
 		'Overview': [
-			[ 'Read Me', 'r2/readme'],
-			[ 'Algesurf Builder', 'r2/1-Overview/Builder',],
+			[ 'Read Me', '../../marching-cubes/r2/readme'],
+			[ 'Algesurf Builder', '../../marching-cubes/r2/1-Overview/Builder',],
 			//[ 'Case Study: Math', 'r2/1-Overview/Case Study Math'],
 			//[ 'Features & Futures', 'r2/1-Overview/Features'],
 			//[ 'Credits', 'r2/1-Overview/Credits'],
-			[ 'Player - sequence', 'r2/1-Overview/Player'],
+			[ 'Player - sequence', '../../marching-cubes/r2/1-Overview/Player'],
 			// [ 'Player - single', 'r2/1-Overview/Player','?title=stemkoski&play=10&spin=0'],
-			[ 'Multiple Viewport Demo', 'r2/1-Overview/Multiple Viewport Demo']
+			[ 'Multiple Viewport Demo', '../../marching-cubes/r2/1-Overview/Multiple Viewport Demo']
 		],
 		'Hauser Gallery': [
-			[ 'Read Me', 'r2/2-Hauser/Read Me'],
-			[ 'Hauser 1', 'r2/2-Hauser/1hauser'],
-			[ 'Hauser 2', 'r2/3-Hauser/2hauser'],
+			[ 'Read Me', '../../marching-cubes/r2/2-Hauser/Read Me'],
+			[ 'Hauser 1', '../../marching-cubes/r2/2-Hauser/1hauser'],
+			[ 'Hauser 2', '../../marching-cubes/r2/3-Hauser/2hauser'],
 			// [ '', 'r2/Hauser 1/'],
 		],
 
 		'Jalape Gallery': [
-			[ 'Read Me', 'r2/4-Jalape/read-me-jalape'],
-			[ 'Jalape', 'r2/4-Jalape/1jalape']
+			[ 'Read Me', '../../marching-cubes/r2/4-Jalape/read-me-jalape'],
+			[ 'Jalape', '../../marching-cubes/r2/4-Jalape/1jalape']
 		],
 		
 		'XY Surface': [
-			[ 'Read Me', 'r2/5-XY-Surface/read-me-xy-surface'],
-			[ 'XY Surface', 'r2/5-XY-Surface/xy-surface']
+			[ 'Read Me', '../../marching-cubes/r2/5-XY-Surface/read-me-xy-surface'],
+			[ 'XY Surface', '../../marching-cubes/r2/5-XY-Surface/xy-surface']
 		],		
 	},
 	
 	'4 Algesurf R1': {
 		'': [
-			[ 'Read Me', 'r1/readme'],
-			[ 'Algesurf Builder', 'r1/index'],
-			[ 'Algesurf Player', 'r1/algesurf-player'],
-			[ 'Algesurf Frames', 'r1/algesurf-frame']
+			[ 'Read Me', '../../marching-cubes/r1/readme'],
+			[ 'Algesurf Builder', '../../marching-cubes/r1/index'],
+			[ 'Algesurf Player', '../../marching-cubes/r1/algesurf-player'],
+			[ 'Algesurf Frames', '../../marching-cubes/r1/algesurf-frame']
 		]		
 	}
 };
