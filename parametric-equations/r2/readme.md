@@ -1,10 +1,10 @@
 Parametric Equations Read Me
 ===
 
-<iframe src="http://jaanga.github.io/algesurf/parametric-equations/r2/index.html" width=100% height=500px class='overview' >
+<iframe src="http://jaanga.github.io/algesurf/parametric-equations/r2/8-torus/8-torus.html" width=100% height=500px class='overview' >
 There is an iframe here. It is not visible when viewed on github.com/jaanga. To view <a href="http://jaanga.github.io/algesurf/parametric-equations/" target="_blank">Web Page</a>
 </iframe>
-_The sample above is named Boy's Surface_
+
 
 
 ## Concept

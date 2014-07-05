@@ -191,7 +191,7 @@ function generateMaterials(basePath) {
 		"basic~map2" :
 		{
 		  m: new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( basePath + 'textures/cynthia-draw-lightning.jpg' ), side: THREE.DoubleSide }),
-		  d: "9. MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( basePath + 'textures/cynthia-draw-lightning.jpg' ), side: THREE.DoubleSide })"
+		  d: "9. MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( basePath + '../../textures/cynthia-draw-lightning.jpg' ), side: THREE.DoubleSide })"
 		},
 
 		"phong~flat" :
