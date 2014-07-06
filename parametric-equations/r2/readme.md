@@ -23,12 +23,15 @@ To visualize math and phisics in entirely new ways
 
 ## Road Map
 
+* Translate folder and file names to English
+* Center in screen each object
 * Add slider bars that update coefficients in real-time
 * Add categories to each file
 * Add source to each file
 
 
 ## Issues / Bugs
+
 
 
 ## Project Links

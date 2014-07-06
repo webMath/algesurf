@@ -3,8 +3,8 @@
 	var request = require( "../node_modules/request") ;
 	var fs = require( "fs" );
 
-	var requestStart = 110;
-	var requestFinish = 120;
+	var requestStart = 141;
+	var requestFinish = 150;
 
 	var fnameRoot = "http://www.3d-meier.de/tut3/Seite";
 	var fname;
@@ -46,9 +46,9 @@
 				line = line.replace( /\d(.*?)\s/gi, "" );
 				line = line.replace( "uml;", "" );
 
-				line = line.replace( "#180;", "" );					
+				line = line.replace( "#180;", "" );
 				line = line.replace( /\&/gi, "" );
-				line = line.replace( /\s/gi, "-" );	
+				line = line.replace( /\s/gi, "-" );
 				line = line.replace( /(\W)surface/gi, "-surface" );
 //				line = line === "boy-surface" ? "boys-surface" : line;
 //				line = line === "roman-surface" ? "novel-surface" : line;
@@ -130,7 +130,7 @@ console.log( 'fname', fname );
 		var str = '';
 		for (var i = 0, len = contents.length; i < len; i++) {
 			str += contents[i] + "\n";
-		} 
+		}
 		fs.writeFile( destination, str, function ( error ) {
 			if ( error ) throw error;
 //console.log( 'saved!', destination );
@@ -138,7 +138,7 @@ console.log( 'fname', fname );
 
 		var destination = fname + "/readme.md";
 
-		var readme = 
+		var readme =
 			title + " Read Me\n" +
 			"===\n" +
 			"\n" +
@@ -178,14 +178,14 @@ console.log( 'fname', fname );
 		for (var i = start; i < finish; i++) {
 			fname = fnameRoot + i + ".html";
 			requestFile( fname, i );
-		} 
+		}
 
 	}
 
 	requestFiles( requestStart, requestFinish + 1 );
 
 
-var menuStart = 
+var menuStart =
 	"[Jaanga](../../index.html ) &raquo;<br>[algeSurf]( ../index.html ) &raquo;<br>[Parametric Equations]( ./index.html )\n" +
 	"===\n" +
 	"\n" +
