@@ -7,9 +7,11 @@
  
 ## Equations
 <a href=JavaScript:displayPage('#8-torus/readme.md#8-to'); >8 Torus</a>  
+<a href=JavaScript:displayPage('#New folder/readme.md#New '); >New Folder</a>  
 <a href=JavaScript:displayPage('#antisymmetrischer-torus/readme.md#anti'); >Antisymmetrischer Torus</a>  
 <a href=JavaScript:displayPage('#apple-ii-surface/readme.md#appl'); >Apple Ii Surface</a>  
 <a href=JavaScript:displayPage('#apple-surface/readme.md#appl'); >Apple Surface</a>  
+<a href=JavaScript:displayPage('#astroid-torus/readme.md#astr'); >Astroid Torus</a>  
 <a href=JavaScript:displayPage('#bent-horns/readme.md#bent'); >Bent Horns</a>  
 <a href=JavaScript:displayPage('#bohemian-dome/readme.md#bohe'); >Bohemian Dome</a>  
 <a href=JavaScript:displayPage('#bonan-jeener-klein-surface/readme.md#bona'); >Bonan Jeener Klein Surface</a>  
@@ -19,6 +21,7 @@
 <a href=JavaScript:displayPage('#catenoid/readme.md#cate'); >Catenoid</a>  
 <a href=JavaScript:displayPage('#cornucopia/readme.md#corn'); >Cornucopia</a>  
 <a href=JavaScript:displayPage('#cosine-surface/readme.md#cosi'); >Cosine Surface</a>  
+<a href=JavaScript:displayPage('#cosinuswelle/readme.md#cosi'); >Cosinuswelle</a>  
 <a href=JavaScript:displayPage('#costa-surface/readme.md#cost'); >Costa Surface</a>  
 <a href=JavaScript:displayPage('#cresent/readme.md#cres'); >Cresent</a>  
 <a href=JavaScript:displayPage('#cross-cap/readme.md#cros'); >Cross Cap</a>  
@@ -27,11 +30,15 @@
 <a href=JavaScript:displayPage('#double-cone/readme.md#doub'); >Double Cone</a>  
 <a href=JavaScript:displayPage('#drop/readme.md#drop'); >Drop</a>  
 <a href=JavaScript:displayPage('#dupin-cyclide/readme.md#dupi'); >Dupin Cyclide</a>  
+<a href=JavaScript:displayPage('#ebene/readme.md#eben'); >Ebene</a>  
 <a href=JavaScript:displayPage('#ei/readme.md#ei'); >Ei</a>  
 <a href=JavaScript:displayPage('#eight-surface/readme.md#eigh'); >Eight Surface</a>  
 <a href=JavaScript:displayPage('#ellipsoid/readme.md#elli'); >Ellipsoid</a>  
 <a href=JavaScript:displayPage('#elliptic-torus/readme.md#elli'); >Elliptic Torus</a>  
 <a href=JavaScript:displayPage('#enneper-surface/readme.md#enne'); >Enneper Surface</a>  
+<a href=JavaScript:displayPage('#enneper-surface-(polar)/readme.md#enne'); >Enneper Surface (Polar)</a>  
+<a href=JavaScript:displayPage('#epizykloid-torus-i/readme.md#epiz'); >Epizykloid Torus I</a>  
+<a href=JavaScript:displayPage('#epizykloid-torus-ii/readme.md#epiz'); >Epizykloid Torus Ii</a>  
 <a href=JavaScript:displayPage('#facing-snail/readme.md#faci'); >Facing Snail</a>  
 <a href=JavaScript:displayPage('#feder-i/readme.md#fede'); >Feder I</a>  
 <a href=JavaScript:displayPage('#feder-ii/readme.md#fede'); >Feder Ii</a>  
@@ -39,6 +46,9 @@
 <a href=JavaScript:displayPage('#folium/readme.md#foli'); >Folium</a>  
 <a href=JavaScript:displayPage('#funnel/readme.md#funn'); >Funnel</a>  
 <a href=JavaScript:displayPage('#gedrehte-acht-torus/readme.md#gedr'); >Gedrehte Acht Torus</a>  
+<a href=JavaScript:displayPage('#glocke/readme.md#gloc'); >Glocke</a>  
+<a href=JavaScript:displayPage('#glocke-(polar)/readme.md#gloc'); >Glocke (Polar)</a>  
+<a href=JavaScript:displayPage('#glockenwelle/readme.md#gloc'); >Glockenwelle</a>  
 <a href=JavaScript:displayPage('#guimard-surface/readme.md#guim'); >Guimard Surface</a>  
 <a href=JavaScript:displayPage('#handkerchief-surface/readme.md#hand'); >Handkerchief Surface</a>  
 <a href=JavaScript:displayPage('#helicoid/readme.md#heli'); >Helicoid</a>  
@@ -48,6 +58,8 @@
 <a href=JavaScript:displayPage('#hyperbolic-octahedron/readme.md#hype'); >Hyperbolic Octahedron</a>  
 <a href=JavaScript:displayPage('#hyperbolic-paraboloid/readme.md#hype'); >Hyperbolic Paraboloid</a>  
 <a href=JavaScript:displayPage('#hyperboloid/readme.md#hype'); >Hyperboloid</a>  
+<a href=JavaScript:displayPage('#hypozykloid-torus-i/readme.md#hypo'); >Hypozykloid Torus I</a>  
+<a href=JavaScript:displayPage('#hypozykloid-torus-ii/readme.md#hypo'); >Hypozykloid Torus Ii</a>  
 <a href=JavaScript:displayPage('#isolator/readme.md#isol'); >Isolator</a>  
 <a href=JavaScript:displayPage('#jeener-klein-surface/readme.md#jeen'); >Jeener Klein Surface</a>  
 <a href=JavaScript:displayPage('#jet-surface/readme.md#jet-'); >Jet Surface</a>  
@@ -55,9 +67,16 @@
 <a href=JavaScript:displayPage('#kidney-surface/readme.md#kidn'); >Kidney Surface</a>  
 <a href=JavaScript:displayPage('#klein-bottle/readme.md#klei'); >Klein Bottle</a>  
 <a href=JavaScript:displayPage('#klein-cycloid/readme.md#klei'); >Klein Cycloid</a>  
+<a href=JavaScript:displayPage('#kreisel/readme.md#krei'); >Kreisel</a>  
 <a href=JavaScript:displayPage('#kuen-surface/readme.md#kuen'); >Kuen Surface</a>  
 <a href=JavaScript:displayPage('#kugel-i/readme.md#kuge'); >Kugel I</a>  
+<a href=JavaScript:displayPage('#kugel-ii/readme.md#kuge'); >Kugel Ii</a>  
+<a href=JavaScript:displayPage('#kugel-iii/readme.md#kuge'); >Kugel Iii</a>  
+<a href=JavaScript:displayPage('#kugel-iv/readme.md#kuge'); >Kugel Iv</a>  
 <a href=JavaScript:displayPage('#lemniscape/readme.md#lemn'); >Lemniscape</a>  
+<a href=JavaScript:displayPage('#lemniskate-torus-i/readme.md#lemn'); >Lemniskate Torus I</a>  
+<a href=JavaScript:displayPage('#lemniskate-torus-ii/readme.md#lemn'); >Lemniskate Torus Ii</a>  
+<a href=JavaScript:displayPage('#lemon-surface/readme.md#lemo'); >Lemon Surface</a>  
 <a href=JavaScript:displayPage('#limpet-torus/readme.md#limp'); >Limpet Torus</a>  
 <a href=JavaScript:displayPage('#lochdiskus/readme.md#loch'); >Lochdiskus</a>  
 <a href=JavaScript:displayPage('#lockdisk/readme.md#lock'); >Lockdisk</a>  
@@ -67,6 +86,8 @@
 <a href=JavaScript:displayPage('#mobius-band/readme.md#mobi'); >Mobius Band</a>  
 <a href=JavaScript:displayPage('#monkey-saddle/readme.md#monk'); >Monkey Saddle</a>  
 <a href=JavaScript:displayPage('#nautilus/readme.md#naut'); >Nautilus</a>  
+<a href=JavaScript:displayPage('#nephroid-torus-i/readme.md#neph'); >Nephroid Torus I</a>  
+<a href=JavaScript:displayPage('#nephroid-torus-ii/readme.md#neph'); >Nephroid Torus Ii</a>  
 <a href=JavaScript:displayPage('#paper-bag/readme.md#pape'); >Paper Bag</a>  
 <a href=JavaScript:displayPage('#paraboloid/readme.md#para'); >Paraboloid</a>  
 <a href=JavaScript:displayPage('#pillow-shape/readme.md#pill'); >Pillow Shape</a>  
@@ -78,14 +99,21 @@
 <a href=JavaScript:displayPage('#roman-surface/readme.md#roma'); >Roman Surface</a>  
 <a href=JavaScript:displayPage('#rotationskorper/readme.md#rota'); >Rotationskorper</a>  
 <a href=JavaScript:displayPage('#saddle-torus/readme.md#sadd'); >Saddle Torus</a>  
+<a href=JavaScript:displayPage('#scheibe/readme.md#sche'); >Scheibe</a>  
 <a href=JavaScript:displayPage('#scherk-surface/readme.md#sche'); >Scherk Surface</a>  
 <a href=JavaScript:displayPage('#schleife/readme.md#schl'); >Schleife</a>  
 <a href=JavaScript:displayPage('#seashell/readme.md#seas'); >Seashell</a>  
 <a href=JavaScript:displayPage('#shoe-surface/readme.md#shoe'); >Shoe Surface</a>  
 <a href=JavaScript:displayPage('#sine-surface/readme.md#sine'); >Sine Surface</a>  
+<a href=JavaScript:displayPage('#sinuskegel/readme.md#sinu'); >Sinuskegel</a>  
+<a href=JavaScript:displayPage('#sinuswelle/readme.md#sinu'); >Sinuswelle</a>  
 <a href=JavaScript:displayPage('#snail-surface/readme.md#snai'); >Snail Surface</a>  
+<a href=JavaScript:displayPage('#soucoupoid/readme.md#souc'); >Soucoupoid</a>  
+<a href=JavaScript:displayPage('#spiralwellen/readme.md#spir'); >Spiralwellen</a>  
 <a href=JavaScript:displayPage('#steinbach-screw/readme.md#stei'); >Steinbach Screw</a>  
 <a href=JavaScript:displayPage('#stiletto-surface/readme.md#stil'); >Stiletto Surface</a>  
+<a href=JavaScript:displayPage('#strangled-torus-i/readme.md#stra'); >Strangled Torus I</a>  
+<a href=JavaScript:displayPage('#strangled-torus-ii/readme.md#stra'); >Strangled Torus Ii</a>  
 <a href=JavaScript:displayPage('#swallow-surface/readme.md#swal'); >Swallow Surface</a>  
 <a href=JavaScript:displayPage('#torus/readme.md#toru'); >Torus</a>  
 <a href=JavaScript:displayPage('#tractroid/readme.md#trac'); >Tractroid</a>  
@@ -95,6 +123,8 @@
 <a href=JavaScript:displayPage('#triaxial-hexatorus/readme.md#tria'); >Triaxial Hexatorus</a>  
 <a href=JavaScript:displayPage('#triaxial-teardrop/readme.md#tria'); >Triaxial Teardrop</a>  
 <a href=JavaScript:displayPage('#triaxial-tritorus/readme.md#tria'); >Triaxial Tritorus</a>  
+<a href=JavaScript:displayPage('#tricuspoid-torus-i/readme.md#tric'); >Tricuspoid Torus I</a>  
+<a href=JavaScript:displayPage('#tricuspoid-torus-ii/readme.md#tric'); >Tricuspoid Torus Ii</a>  
 <a href=JavaScript:displayPage('#triple-point-twist/readme.md#trip'); >Triple Point Twist</a>  
 <a href=JavaScript:displayPage('#twisted-heart/readme.md#twis'); >Twisted Heart</a>  
 <a href=JavaScript:displayPage('#twisted-pipe-surface/readme.md#twis'); >Twisted Pipe Surface</a>  
@@ -104,6 +134,7 @@
 <a href=JavaScript:displayPage('#verrill-surface/readme.md#verr'); >Verrill Surface</a>  
 <a href=JavaScript:displayPage('#wallis-conical-edge/readme.md#wall'); >Wallis Conical Edge</a>  
 <a href=JavaScript:displayPage('#wave-ball/readme.md#wave'); >Wave Ball</a>  
+<a href=JavaScript:displayPage('#wellen/readme.md#well'); >Wellen</a>  
 <a href=JavaScript:displayPage('#wellentorus/readme.md#well'); >Wellentorus</a>  
 <a href=JavaScript:displayPage('#whitney-umbrella/readme.md#whit'); >Whitney Umbrella</a>  
 <a href=JavaScript:displayPage('#worm/readme.md#worm'); >Worm</a>  
