@@ -23,7 +23,7 @@ console.log( files );
 	});
 
 var menuStart = 
-	"[Jaanga](../../index.html ) &raquo;<br>[algeSurf]( ../index.html ) &raquo;<br>[Parametric Equations]( ./index.html )\n" +
+	"[Jaanga](../../index.html ) &raquo;<br>[algeSurf]( ../../index.html ) &raquo;<br>[Parametric Equations]( ./index.html )\n" +
 	"===\n" +
 	"\n" +
 	"<p id=rm >\n" +

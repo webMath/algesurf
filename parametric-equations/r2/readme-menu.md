@@ -1,4 +1,4 @@
-[Jaanga](../../index.html ) &raquo;<br>[algeSurf]( ../index.html ) &raquo;<br>[Parametric Equations]( ./index.html )
+[Jaanga](../../index.html ) &raquo;<br>[algeSurf]( ../../index.html ) &raquo;<br>[Parametric Equations]( ./index.html )
 ===
 
 <p id=rm >
@@ -7,7 +7,6 @@
  
 ## Equations
 <a href=JavaScript:displayPage('#8-torus/readme.md#8-to'); >8 Torus</a>  
-<a href=JavaScript:displayPage('#New folder/readme.md#New '); >New Folder</a>  
 <a href=JavaScript:displayPage('#antisymmetrischer-torus/readme.md#anti'); >Antisymmetrischer Torus</a>  
 <a href=JavaScript:displayPage('#apple-ii-surface/readme.md#appl'); >Apple Ii Surface</a>  
 <a href=JavaScript:displayPage('#apple-surface/readme.md#appl'); >Apple Surface</a>  

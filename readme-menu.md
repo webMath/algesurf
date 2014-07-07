@@ -9,13 +9,15 @@
 	<a href=JavaScript:displayPage('#./parametric-equations/r2/readme.md#rm'); >Parametric Equations</a>
 </p>
  
-<p id=rm >
-	<a href=JavaScript:displayPage('#./marching-cubes/r2/readme.md#rm'); >Marching Cubes R2</a>
-</p>
+<div id=rm ><a href=JavaScript:displayPage('#./marching-cubes/r2/readme.md#rm'); >Marching Cubes R2</a></div>
+<i class="fa fa-external-link"></i> [Builder]( http://jaanga.github.io/algesurf/marching-cubes/r2/1-Overview/Builder.html )  
+<i class="fa fa-external-link"></i> [Player]( http://jaanga.github.io/algesurf/marching-cubes/r2/1-Overview/Player.html )  
 
 <p id=rm >
 	<a href=JavaScript:displayPage('#./function-graphs/readme.md#rm'); >Function Graphs</a>
 </p>
+
+
 
 <br>
 
