@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang=en >
 <head>
-<title>Wellentorus</title>
+<title>Torus Wave</title>
 <meta charset=utf-8 >
 <meta name=viewport content=width=device-width,user-scalable=no,minimum-scale=1.0,maximum-scale=1.0 >
 </head>
@@ -46,15 +46,18 @@
 		var pi = Math.PI;
 		var scale = 5;
 		var x, y, z;
-		var r;
+
 		var a = 1;
-		var R = 8;
-		n = 5
+		n = 7;
+		var r = 1.5;
+		var R = 10;
+
 
 		function curve1( u, v ) {		
 			u = 2 * pi * ( u );
 			v = 2 * pi * ( v );
-			r = 3 + 3 * sin ( n * u );
+
+			// r = 3 + 3 * sin ( n * u );
 
 			x = scale * ( ( R + ( r + a * sin( n * u ) ) * cos( v ) ) * cos( u ) );
 			y = scale * ( ( R + ( r + a * sin( n * u ) ) * cos( v ) ) * sin( u ) );
@@ -63,7 +66,7 @@
 			return new THREE.Vector3( x, y, z );
 		}
 
-		geometry = new THREE.ParametricGeometry( curve1, 20, 20 );
+		geometry = new THREE.ParametricGeometry( curve1, 80, 20 );
 		material = new THREE.MeshNormalMaterial( { shading: THREE.SmoothShading, side: 2 } )
 		mesh = new THREE.Mesh( geometry, material );
 
