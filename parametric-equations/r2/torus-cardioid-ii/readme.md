@@ -1,4 +1,4 @@
-Cardioid Torus Ii Read Me
+Torus Cardoid II Read Me
 ===
 
 <iframe src='http://jaanga.github.io/algesurf/parametric-equations/r2/cardioid-torus-ii/cardioid-torus-ii.html' width=100% height=500px >

@@ -1,4 +1,4 @@
-Gedrehte Acht Torus Read Me
+Torus Twisted 8Read Me
 ===
 
 <iframe src='http://jaanga.github.io/algesurf/parametric-equations/r2/gedrehte-acht-torus/gedrehte-acht-torus.html' width=100% height=500px >

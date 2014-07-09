@@ -1,10 +1,10 @@
-Wellentorus Read Me
+Torus WaveRead Me
 ===
 
-<iframe src='http://jaanga.github.io/algesurf/parametric-equations/r2/wellentorus/wellentorus.html' width=100% height=500px >
+<iframe src='http://jaanga.github.io/algesurf/parametric-equations/r2/torus-wave/torus-wave.html' width=100% height=500px >
 There is an `iframe` here. It is not visible when viewed on github.com/algesurf. To view, please see 'Project Links' below.
 </iframe>
-[Full Screen]( http://jaanga.github.io/algesurf/parametric-equations/r2/wellentorus/wellentorus.html )
+[Full Screen]( http://jaanga.github.io/algesurf/parametric-equations/r2/torus-wave/torus-wave.html )
 <br>
 ## Links 
 <http://www.3d-meier.de/tut3/Seite62.html>  
