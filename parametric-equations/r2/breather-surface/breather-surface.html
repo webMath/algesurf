@@ -25,8 +25,7 @@
 		var info = document.body.appendChild( document.createElement( 'div' ) );
 
 		info.style.cssText = 'left: 20px; position: absolute;';
-		info.innerHTML = '<h1>' + document.title + '</h1>' +
-			'Requires ECMA 6. Currently only on FireFox.';
+		info.innerHTML = '<h1>' + document.title + '</h1>';
 
 		stats = new Stats();
 		stats.domElement.style.cssText = 'position: absolute; right: 0; top: 0; z-index: 100; ';
@@ -92,11 +91,20 @@
 	function ran(){ return Math.random(); }
 	function sqrt( a ){ return Math.sqrt( a ); }	
 
+/*
 	function cosh( a ){ return Math.cosh( a ); }
 	function sinh( a ){ return Math.sinh( a ); }
 	function tanh( a ){ return Math.tanh( a ); }
-
 	function sech( a ){ return Math.sech( a ); }
+
+*/
+
+	function sinh( a ){ return ( exp( a ) - exp( -a ) ) / 2; }
+	function cosh( a ){ return ( exp( a ) + exp( -a ) ) / 2; }
+	function tanh( a ){ return sinh( a ) / cosh( a ); }
+	function sech( a ){ return 1 / cosh( a ); }
+
+
 
 	function animate() {
 		requestAnimationFrame( animate );

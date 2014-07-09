@@ -43,16 +43,20 @@
 		controls.target.set( 0, 0, 0 );
 
 		var pi = Math.PI;
-		var scale = 25;
+		var scale = 50;
 		var x, y, z;
+
+		var a = 1;
+		var b = 1;
+		var c = 2;
 
 		function curve1( u, v ) {		
 			u = pi * ( u - 0.5 );
 			v = 2 * pi * ( v - 0.5 );
 
-			x = scale * ( 1 * cos( u ) * sin( v ) );
-			y = scale * ( 1 * sin( u ) * sin( v ) );
-			z = scale * ( 1 * cos( v ) );
+			x = scale * ( a * cos( u ) * sin( v ) );
+			y = scale * ( b * sin( u ) * sin( v ) );
+			z = scale * ( c * cos( v ) );
 
 			return new THREE.Vector3( x, y, z );
 		}

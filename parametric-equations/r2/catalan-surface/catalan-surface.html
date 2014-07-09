@@ -44,7 +44,7 @@
 		controls.target.set( 0, 0, 0 );
 
 		var pi = Math.PI;
-		var scale = 25;
+		var scale = 15;
 		var x, y, z;
 
 		function curve1( u, v ) {		
@@ -76,8 +76,18 @@
 	function ran(){ return Math.random(); }
 	function sqrt( a ){ return Math.sqrt( a ); }	
 
+/*
 	function cosh( a ){ return Math.cosh( a ); }
 	function sinh( a ){ return Math.sinh( a ); }
+	function tanh( a ){ return Math.tanh( a ); }
+	function sech( a ){ return Math.sech( a ); }
+
+*/
+
+	function sinh( a ){ return ( exp( a ) - exp( -a ) ) / 2; }
+	function cosh( a ){ return ( exp( a ) + exp( -a ) ) / 2; }
+	function tanh( a ){ return sinh( a ) / cosh( a ); }
+	function sech( a ){ return 1 / cosh( a ); }
 
 
 	function animate() {

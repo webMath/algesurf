@@ -51,7 +51,7 @@
 			v = pi * ( v - 0.5 );
 
 			x = scale * ( cos( u ) );
-			y = scale * ( - cos2( u + v ) );
+			y = scale * ( - cos2( u + v ) + 1);
 			z = scale * ( cos( v ) );
 
 			return new THREE.Vector3( x, y, z );
