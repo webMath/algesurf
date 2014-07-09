@@ -43,12 +43,15 @@
 		controls.target.set( 0, 0, 0 );
 
 		var pi = Math.PI;
-		var scale = 25;
+		var scale = 20;
 		var x, y, z;
 
+		var r = 1
+		var R = 3;
+
 		function curve1( u, v ) {		
-			u = pi * ( u - 0.5 );
-			v = pi * ( v - 0.5 );
+			u = 2 * pi * ( u - 0.5 );
+			v = 2 * pi * ( v - 0.5 );
 
 			x = scale * ( ( R + cos( v ) * ( r + sin( v ) ) ) * cos( u ) );
 			y = scale * ( r + sin( v ) );

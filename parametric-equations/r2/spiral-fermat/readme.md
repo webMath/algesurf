@@ -1,10 +1,10 @@
-Fermat Spirale Read Me
+Spiral Fermat Read Me
 ===
 
-<iframe src='http://jaanga.github.io/algesurf/parametric-equations/r2/fermat-spirale/fermat-spirale.html' width=100% height=500px >
+<iframe src='http://jaanga.github.io/algesurf/parametric-equations/r2/spiral-fermat/spiral-fermat.html' width=100% height=500px >
 There is an `iframe` here. It is not visible when viewed on github.com/algesurf. To view, please see 'Project Links' below.
 </iframe>
-[Full Screen]( http://jaanga.github.io/algesurf/parametric-equations/r2/fermat-spirale/fermat-spirale.html )
+[Full Screen]( http://jaanga.github.io/algesurf/parametric-equations/r2/spiral-fermat/spiral-fermat.html )
 <br>
 ## Links 
 <http://www.3d-meier.de/tut3/Seite189.html>  

@@ -1,10 +1,10 @@
-Archimedische Spirale Read Me
+Spiral Archimedes Read Me
 ===
 
-<iframe src='http://jaanga.github.io/algesurf/parametric-equations/r2/archimedische-spirale/archimedische-spirale.html' width=100% height=500px >
+<iframe src='http://jaanga.github.io/algesurf/parametric-equations/r2/spiral-archimedes/spiral-archimedes.html' width=100% height=500px >
 There is an `iframe` here. It is not visible when viewed on github.com/algesurf. To view, please see 'Project Links' below.
 </iframe>
-[Full Screen]( http://jaanga.github.io/algesurf/parametric-equations/r2/archimedische-spirale/archimedische-spirale.html )
+[Full Screen]( http://jaanga.github.io/algesurf/parametric-equations/r2/spiral-archimedes/spiral-archimedes.html )
 <br>
 ## Links 
 <http://www.3d-meier.de/tut3/Seite187.html>  
