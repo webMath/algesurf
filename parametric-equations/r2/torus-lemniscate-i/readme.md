@@ -1,4 +1,4 @@
-Torus LemniscateI Read Me
+Torus Lemniscate I Read Me
 ===
 
 <iframe src='http://jaanga.github.io/algesurf/parametric-equations/r2/torus-lemniscate-i/torus-lemniscate-i.html' width=100% height=500px >
