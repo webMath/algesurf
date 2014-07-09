@@ -25,8 +25,7 @@
 		var info = document.body.appendChild( document.createElement( 'div' ) );
 
 		info.style.cssText = 'left: 20px; position: absolute;';
-		info.innerHTML = '<h1>' + document.title + '</h1>' +
-			'needs work';
+		info.innerHTML = '<h1>' + document.title + '</h1>';
 
 		stats = new Stats();
 		stats.domElement.style.cssText = 'position: absolute; right: 0; top: 0; z-index: 100; ';
@@ -46,15 +45,16 @@
 		var pi = Math.PI;
 		var scale = 25;
 		var x, y, z;
-		var c = 0.01;
+
+		var c = -1.5;
 
 		function curve1( u, v ) {		
-			u = 1.57 * ( u ) - 2;
-			v = 2 * ( v - 0.5 );
+			u = 4 * ( u - 0.5 ) ;
+			v = 3 * ( v - 0.5 );
 
 			x = scale * ( u );
-			y = scale * ( v * v * v + c * v );
-			z = scale * ( u * v + v * v * v * v * v + c * v * v * v );
+			y = scale * ( v*v*v + c * v );
+			z = scale * ( u * v + v*v*v*v*v + c * v*v*v );
 
 			return new THREE.Vector3( x, y, z );
 		}

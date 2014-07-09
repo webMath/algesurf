@@ -25,8 +25,7 @@
 		var info = document.body.appendChild( document.createElement( 'div' ) );
 
 		info.style.cssText = 'left: 20px; position: absolute;';
-		info.innerHTML = '<h1>' + document.title + '</h1>' +
-			'needs work';
+		info.innerHTML = '<h1>' + document.title + '</h1>';
 
 		stats = new Stats();
 		stats.domElement.style.cssText = 'position: absolute; right: 0; top: 0; z-index: 100; ';
@@ -44,22 +43,25 @@
 		controls.target.set( 0, 0, 0 );
 
 		var pi = Math.PI;
-		var scale = 25;
+		var scale = 20;
 		var x, y, z;
+
 		var Bx, By, Bz;
-		var R = 0.1;
+		var r = 0.5
+		var R = 3;
+		
 
 		function curve1( u, v ) {		
 			u = 12 * pi * ( u );
 			v = 2 * pi * ( v );
 
-			Bx = ( R + 10 * R * cos( u / 2 ) ) * cos( u / 3 );
-			By = ( R + R * cos( u / 2 ) ) * sin( R / 3 )
-			Bz = R + sin( u / 2 )
+			Bx = ( R + r * cos( u / 2 ) ) * cos( u / 3 );
+			By = ( R + r * cos( u / 2 ) ) * sin( u / 3 );
+			Bz = r + sin( u / 2 );
 
-			x = scale * ( Bx + R * cos( u / 3 ) * cos( v - pi ) );
-			y = scale * ( By + R * sin( u / 3 ) * cos( v - pi ) );
-			z = scale * ( Bz + R * sin( v - pi ) );
+			x = scale * ( Bx + r * cos( u / 3 ) * cos( v - pi ) );
+			y = scale * ( By + r * sin( u / 3 ) * cos( v - pi ) );
+			z = scale * ( Bz + r * sin( v - pi ) );
 
 			return new THREE.Vector3( x, y, z );
 		}

@@ -44,16 +44,16 @@
 		controls.target.set( 0, 0, 0 );
 
 		var pi = Math.PI;
-		var scale = 10;
+		var scale = 15;
 		var x, y, z;
 
-		function curve1( u, v ) {		
-			u = 2 * pi * ( u - 0.5 );
+		function curve( u, v ) {		
+			u = 4 * pi * ( u - 0.5 );
 			v = 2 * pi * ( v - 0.5 );
 
-			var a = 3;
-			var n = 3;
-			var r = 1.5;
+			var a = 0.4;
+			var n = 1.5;
+			var r = 0.3;
 			var R = 3;
 
 			x = scale * ( r * cos( v ) * cos( u ) + R * cos( u ) * ( 1 + a * cos( n * u ) )  );
@@ -63,7 +63,7 @@
 			return new THREE.Vector3( x, y, z );
 		}
 
-		geometry = new THREE.ParametricGeometry( curve1, 50, 20 );
+		geometry = new THREE.ParametricGeometry( curve, 50, 20 );
 		material = new THREE.MeshNormalMaterial( { shading: THREE.SmoothShading, side: 2 } )
 		mesh = new THREE.Mesh( geometry, material );
 
