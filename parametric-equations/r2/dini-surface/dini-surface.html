@@ -49,14 +49,15 @@
 		controls = new THREE.TrackballControls( camera, renderer.domElement );
 
 		var pi = Math.PI;
-		var scale = 50;
+		var scale = 35;
 		var x, y, z;
-		a = 1;
+
+		a = 1.0;
 		b = 0.2;
 
 		function curve1( u, v ) {		
-			u = 4 * pi * ( u - 0.5 );
-			v = pi * ( v - 0.5 );
+			u = 4 * pi * ( u );
+			v = 2 * ( v ) + 0.001;
 
 			x = scale * ( cos(u) * sin( v ) );
 			y = scale * ( sin( u ) * sin( v ) );

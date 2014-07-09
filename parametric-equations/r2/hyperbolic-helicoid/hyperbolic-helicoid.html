@@ -25,8 +25,7 @@
 		var info = document.body.appendChild( document.createElement( 'div' ) );
 
 		info.style.cssText = 'left: 20px; position: absolute;';
-		info.innerHTML = '<h1>' + document.title + '</h1>' +
-			'Requires ECMA 6 - currently only in Firefox';
+		info.innerHTML = '<h1>' + document.title + '</h1>';
 
 		stats = new Stats();
 		stats.domElement.style.cssText = 'position: absolute; right: 0; top: 0; z-index: 100; ';
@@ -44,7 +43,7 @@
 		controls.target.set( 0, 0, 0 );
 
 		var pi = Math.PI;
-		var scale = 50;
+		var scale = 90;
 		var x, y, z;
 
 		function curve1( u, v ) {		
@@ -71,13 +70,28 @@
 	function sin( a ){ return Math.sin( a ); }
 	function tan( a ){ return Math.tan( a ); }
 
+	function cos2( a ){ return Math.cos( a ) * Math.cos( a ); }
+	function sin2( a ){ return Math.sin( a ) * Math.sin( a ); }
+
+	function abs( a ){ return Math.abs( a ); }
 	function exp( a ){ return Math.exp( a ); }
+	function log( a ){ return Math.log( a ); }
 	function pow( a, b ){ return Math.pow( a, b ); }
 	function ran(){ return Math.random(); }
-	function sqrt( a ){ return Math.sqrt( a ); }
-
+	function sqrt( a ){ return Math.sqrt( a ); }	
+/*
 	function cosh( a ){ return Math.cosh( a ); }
 	function sinh( a ){ return Math.sinh( a ); }
+	function tanh( a ){ return Math.tanh( a ); }
+	function sech( a ){ return Math.sech( a ); }
+
+*/
+
+	function sinh( a ){ return ( exp( a ) - exp( -a ) ) / 2; }
+	function cosh( a ){ return ( exp( a ) + exp( -a ) ) / 2; }
+	function tanh( a ){ return sinh( a ) / cosh( a ); }
+	function sech( a ){ return 1 / cosh( a ); }
+
 
 	function animate() {
 		requestAnimationFrame( animate );

@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang=en >
 <head>
-<title>Milchtute</title>
+<title>Milk Carton</title>
 <meta charset=utf-8 >
 <meta name=viewport content=width=device-width,user-scalable=no,minimum-scale=1.0,maximum-scale=1.0 >
 </head>
@@ -25,8 +25,7 @@
 		var info = document.body.appendChild( document.createElement( 'div' ) );
 
 		info.style.cssText = 'left: 20px; position: absolute;';
-		info.innerHTML = '<h1>' + document.title + '</h1>' +
-			'needs work';
+		info.innerHTML = '<h1>' + document.title + '</h1>';
 
 		stats = new Stats();
 		stats.domElement.style.cssText = 'position: absolute; right: 0; top: 0; z-index: 100; ';
@@ -44,13 +43,14 @@
 		controls.target.set( 0, 0, 0 );
 
 		var pi = Math.PI;
-		var scale = 25;
+		var scale = 50;
 		var x, y, z;
-		k = 1;
+
+		k = 0.5;
 
 		function curve1( u, v ) {		
-			u = 1 * ( u - 0.5 );
-			v = pi * ( v - 0.5 );
+			u = 2 * ( u - 0.5 );
+			v = 2 * pi * ( v - 0.5 );
 
 			x = scale * ( k * ( 1 + u ) * cos( v ) );
 			y = scale * ( k * ( 1 - u ) * sin( v ) );
