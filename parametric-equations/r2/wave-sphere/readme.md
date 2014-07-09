@@ -1,10 +1,10 @@
-Wave Ball Read Me
+Wave Sphere Read Me
 ===
 
-<iframe src='http://jaanga.github.io/algesurf/parametric-equations/r2/wave-ball/wave-ball.html' width=100% height=500px >
+<iframe src='http://jaanga.github.io/algesurf/parametric-equations/r2/wave-sphere/wave-sphere.html' width=100% height=500px >
 There is an `iframe` here. It is not visible when viewed on github.com/algesurf. To view, please see 'Project Links' below.
 </iframe>
-[Full Screen]( http://jaanga.github.io/algesurf/parametric-equations/r2/wave-ball/wave-ball.html )
+[Full Screen]( http://jaanga.github.io/algesurf/parametric-equations/r2/wave-sphere/wave-sphere.html )
 <br>
 ## Links 
 <http://www.3d-meier.de/tut3/Seite63.html>  
