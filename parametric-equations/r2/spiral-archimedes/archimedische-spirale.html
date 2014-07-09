@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang=en >
 <head>
-<title>Torus Piriform I</title>
+<title>Spiral Archimedes</title>
 <meta charset=utf-8 >
 <meta name=viewport content=width=device-width,user-scalable=no,minimum-scale=1.0,maximum-scale=1.0 >
 </head>
@@ -10,7 +10,7 @@
 <script src=http://mrdoob.github.io/three.js/examples/js/controls/TrackballControls.js ></script>
 <script src=http://mrdoob.github.io/three.js/examples/js/libs/stats.min.js ></script>
 <script>
-// http://www.3d-meier.de/tut3/Seite161.html
+// http://www.3d-meier.de/tut3/Seite187.html
 
 	var stats, renderer, scene, camera, controls;
 
@@ -43,24 +43,23 @@
 		controls.target.set( 0, 0, 0 );
 
 		var pi = Math.PI;
-		var scale = 20;
+		var scale = 5;
 		var x, y, z;
 
-		var r = 1;
-		var R = 3;
+		var H = 3;
 
 		function curve( u, v ) {		
-			u = 2 * pi * ( u - 0.5 );
-			v = 2 * pi * ( v - 0.5 );
+			u = 10 * pi * ( u );
+			v = 1 * ( v - 0.5 );
 
-			x = scale * ( ( R + ( r + sin( v ) ) ) * cos( u ) );
-			y = scale * ( cos( v ) * ( r + sin( v ) )  );
-			z = scale * ( ( R + ( r + sin( v ) ) ) * sin( u ) );
+			x = scale * ( u * cos( u ) );
+			y = scale * ( H * v );
+			z = scale * ( u * sin( u ) );
 
 			return new THREE.Vector3( x, y, z );
 		}
 
-		geometry = new THREE.ParametricGeometry( curve, 20, 20 );
+		geometry = new THREE.ParametricGeometry( curve, 200, 2 );
 		material = new THREE.MeshNormalMaterial( { shading: THREE.SmoothShading, side: 2 } )
 		mesh = new THREE.Mesh( geometry, material );
 
@@ -72,6 +71,9 @@
 	function cos( a ){ return Math.cos( a ); }
 	function sin( a ){ return Math.sin( a ); }
 	function tan( a ){ return Math.tan( a ); }
+
+	function cos2( a ){ return Math.cos( a ) * Math.cos( a ); }
+	function sin2( a ){ return Math.sin( a ) * Math.sin( a ); }
 
 	function abs( a ){ return Math.abs( a ); }
 	function exp( a ){ return Math.exp( a ); }

@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang=en >
+<head>
+<title>Bonan Jeener Klein Surface</title>
+<meta charset=utf-8 >
+<meta name=viewport content=width=device-width,user-scalable=no,minimum-scale=1.0,maximum-scale=1.0 >
+</head>
+<body>
+<script src=http://mrdoob.github.io/three.js/build/three.min.js ></script>
+<script src=http://mrdoob.github.io/three.js/examples/js/controls/TrackballControls.js ></script>
+<script src=http://mrdoob.github.io/three.js/examples/js/libs/stats.min.js ></script>
+<script>
+// http://www.3d-meier.de/tut3/Seite109.html
+
+	var stats, renderer, scene, camera, controls;
+
+	init();
+	animate();
+
+	function init() {
+		var geometry, material, mesh;
+
+		document.body.style.cssText = 'font: 400 12pt monospace; margin: 0; overflow: hidden; ' ;
+
+		var cssBackround = document.body.appendChild( document.createElement('style') );
+		var col1 = "#" + Math.random().toString(16).slice(2, 8);
+		var col2 = "#" + Math.random().toString(16).slice(2, 8);
+		var col3 = "#" + Math.random().toString(16).slice(2, 8);
+		var X = ( Math.random() * window.innerWidth ).toFixed(0);
+		var Y = ( Math.random() * window.innerHeight ).toFixed(0);
+		var center =  20 + ( Math.random() * 60 ).toFixed(0);
+		cssBackround.innerHTML += 'body { ' +
+			'background: -webkit-radial-gradient(' + X + 'px ' + Y + 'px, farthest-corner, ' + col1 + ' 0%, ' + col2 + ' 50%, ' + col3 + ' 100%); ' +
+			'background: -moz-radial-gradient(' + X + 'px ' + Y + 'px, farthest-corner, ' + col1 + ' 0%, ' + col2 + ' 50%, ' + col3 + ' 100%); ' +
+			'background: radial-gradient(' + X + 'px ' + Y + 'px, farthest-corner, ' + col1 + ' 0%, ' + col2 + ' 50%, ' + col3 + ' 100%); }' +
+		'';
+
+		var info = document.body.appendChild( document.createElement( 'div' ) );
+
+		info.style.cssText = 'left: 20px; position: absolute;';
+		info.innerHTML = '<h1>' + document.title + '</h1>';
+
+		stats = new Stats();
+		stats.domElement.style.cssText = 'position: absolute; right: 0; top: 0; z-index: 100; ';
+		document.body.appendChild( stats.domElement );
+
+		renderer = new THREE.WebGLRenderer( { alpha: 1, antialias: true, clearColor: 0xffffff }  );
+		renderer.setSize( window.innerWidth, window.innerHeight );
+		renderer.shadowMapEnabled = true;
+		document.body.appendChild( renderer.domElement );
+		scene = new THREE.Scene();
+
+		camera = new THREE.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 1, 1000 );
+		camera.position.set( 100, 100, 100 );
+		controls = new THREE.TrackballControls( camera, renderer.domElement );
+
+		controls.target.set( 0, 0, 0 );
+
+// ambient
+		light = new THREE.AmbientLight( 0xffffff * Math.random() );
+		scene.add( light );
+		
+// light
+// intensity from 0.0 to infinity?
+		light = new THREE.DirectionalLight( 0xffffff );
+light.shadowBias = -0.005; 
+		light.position = camera.position;
+		light.castShadow = true;
+		scene.add( light );
+
+
+
+		var pi = Math.PI;
+		var scale = 15;
+		var x, y, z;
+		var M = 4;
+		var T = 2;
+		var W;
+
+		function curve1( u, v ) {		
+			u = 2 * pi * ( u - 0.5 );
+			v = 2 * pi * ( v - 0.5 );
+
+			W = sin(( M - 1 ) * u ) + T;
+
+			x = scale * ( M * cos( u ) - cos( M * u ) - ( ( M - 1 ) / M ) * W * sin( ( M + 1 ) * u / 2 ) * cos( v ) );
+			y = scale * ( W * sin( v ) );
+			z = scale * ( M * sin( u ) - sin( M * u ) + ( ( M - 1 ) / M ) * W * cos( ( M + 1 ) * u / 2 ) * cos( v ) );
+
+			return new THREE.Vector3( x, y, z );
+		}
+
+		geometry = new THREE.ParametricGeometry( curve1, 80, 30 );
+
+		var p = '../../../textures/cube/SwedishRoyalCastle/';
+		var p = '../../../textures/cube/checks-black-gray/';
+
+//		var urls = [ p + 'px.jpg', p + 'nx.jpg', p + 'py.jpg', p + 'ny.jpg', p + 'pz.jpg', p + 'nz.jpg' ];
+
+		var p = '../../../textures/cube/white_brick_wall/';
+		var urls = [ p + 'wbw.png', p + 'wbw.png', p + 'wbw.png', p + 'wbw.png', p + 'wbw.png', p + 'wbw.png' ];
+
+		var p = '../../../textures/cube/denim/';
+		var urls = [ p + 'd.jpg', p + 'd.jpg', p + 'd.jpg', p + 'd.jpg', p + 'd.jpg', p + 'd.jpg' ];
+
+
+		var reflectionCube = THREE.ImageUtils.loadTextureCube( urls );
+		reflectionCube.format = THREE.RGBFormat;
+		var refractionCube = new THREE.Texture( reflectionCube.image, new THREE.CubeRefractionMapping() );
+//		reflectionCube.format = THREE.RGBFormat; 
+
+//		material = new THREE.MeshNormalMaterial( { shading: THREE.SmoothShading, side: 2 } );
+
+		material = new THREE.MeshPhongMaterial( {
+			color: 0xffffff * Math.random(), 
+			ambient: 0xffffff * Math.random(),
+//			map: texture,
+// envMap: refractionCube, refractionRatio: 0.85,
+			envMap: reflectionCube, combine: THREE.MixOperation, reflectivity: 0.3, metal: true,
+			opacity: 0.9,
+			specular: 0xffffff * Math.random(),
+			shininess: 50,
+			side: THREE.DoubleSide,
+			transparent: true
+
+		} );
+
+		mesh = new THREE.Mesh( geometry, material );
+		mesh.castShadow = true;
+		mesh.receiveShadow = true;
+
+
+
+	//	scene.add( new THREE.WireframeHelper( mesh ) );
+
+		scene.add( mesh );
+	};
+
+	function cos( a ){ return Math.cos( a ); }
+	function sin( a ){ return Math.sin( a ); }
+	function tan( a ){ return Math.tan( a ); }
+
+	function exp( a ){ return Math.exp( a ); }
+	function log( a ){ return Math.log( a ); }
+	function pow( a, b ){ return Math.pow( a, b ); }
+	function ran(){ return Math.random(); }
+	function sqrt( a ){ return Math.sqrt( a ); }	
+
+	function cosh( a ){ return Math.cosh( a ); }
+	function sinh( a ){ return Math.sinh( a ); }
+	function tanh( a ){ return Math.tanh( a ); }
+
+	function sech( a ){ return Math.sech( a ); }
+
+	function animate() {
+		requestAnimationFrame( animate );
+		renderer.render( scene, camera );
+		controls.update();
+		stats.update();
+	}
+</script>
+</body>
+</html>
