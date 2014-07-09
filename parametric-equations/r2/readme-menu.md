@@ -90,7 +90,6 @@
 <a href=JavaScript:displayPage('#pseudosphere/readme.md#pseu'); >Pseudosphere</a>  
 <a href=JavaScript:displayPage('#richmond-surface/readme.md#rich'); >Richmond Surface</a>  
 <a href=JavaScript:displayPage('#roman-surface/readme.md#roma'); >Roman Surface</a>  
-<a href=JavaScript:displayPage('#rotationskorper/readme.md#rota'); >Rotationskorper</a>  
 <a href=JavaScript:displayPage('#roundabout/readme.md#roun'); >Roundabout</a>  
 <a href=JavaScript:displayPage('#scherk-surface/readme.md#sche'); >Scherk Surface</a>  
 <a href=JavaScript:displayPage('#seashell/readme.md#seas'); >Seashell</a>  
