@@ -47,18 +47,18 @@
 		var x, y, z;
 
 		function curve1( u, v ) {		
-			u = pi * ( u - 0.5 );
-			v = pi * ( v - 0.5 );
+			u = 3 * ( u - 0.5 );
+			v = 2 * ( v - 0.5 );
 
-			x = scale * ( ( -3 * u - u * u * u * u * u + 2 * u * u * u * v * v + 3 * u * v * v * v * v ) / ( 6 * ( u * u + v * v ) )  );
-			y = scale * ( ( -3 * v - 3 * u * u * u * u * v - 2 * u * u * v * v * v + v * v * v * v * v ) / ( 6 * ( u * u + v * v ) )  );
+			x = scale * ( ( -3 * u - u*u*u*u*u + 2 * u*u*u * v*v + 3 * u * v*v*v*v ) / ( 6 * ( u*u + v*v ) ) );
+			y = scale * ( ( -2 * v - 3 * u*u*u*u * v - 2 * u*u * v*v * v + v*v*v*v*v ) / ( 6 * ( u*u + v*v ) ) );
 			z = scale * ( u );
 
 			return new THREE.Vector3( x, y, z );
 		}
 
 		geometry = new THREE.ParametricGeometry( curve1, 20, 20 );
-		material = new THREE.MeshNormalMaterial( { shading: THREE.SmoothShading, side: 2 } )
+		material = new THREE.MeshNormalMaterial( { shading: THREE.SmoothShading, side: 1 } )
 		mesh = new THREE.Mesh( geometry, material );
 
 		scene.add( new THREE.WireframeHelper( mesh ) );

@@ -44,18 +44,19 @@
 		controls.target.set( 0, 0, 0 );
 
 		var pi = Math.PI;
-		var scale = 25;
+		var scale = 50;
 		var x, y, z;
+
 		var h;
 
-
 		function curve1( u, v ) {		
-			u = 4.5 * ( u - 0.5 );
-			v = pi * ( v - 0.5 );
+			u = 3 * pi * ( u - 0.5 );
+			v = 3 * ( v ) + 0.035;
+
 			h = 1 + u * u * sin( v ) * sin( v );
 
 			x = scale * ( ( 2 * ( cos( u ) + u * sin( u ) ) * sin( v ) ) / h );
-			y = scale * ( ( 2 * ( sin( u ) + u * cos( u ) ) * sin( v ) ) / h );  // paul bourke's version
+			y = scale * ( ( 2 * ( -u * cos(u) + sin(u)) * sin( v ) ) / h );  // paul bourke's version
 			z = scale * ( log( tan( v / 2 ) )  + 2 * cos( v ) / h );
 
 			return new THREE.Vector3( x, y, z );
