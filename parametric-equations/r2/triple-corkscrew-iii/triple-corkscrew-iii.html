@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang=en >
 <head>
-<title>boilerplate</title>
+<title>Triple Corkscrew III</title>
 <meta charset=utf-8 >
 <meta name=viewport content=width=device-width,user-scalable=no,minimum-scale=1.0,maximum-scale=1.0 >
 </head>
@@ -10,7 +10,7 @@
 <script src=http://mrdoob.github.io/three.js/examples/js/controls/TrackballControls.js ></script>
 <script src=http://mrdoob.github.io/three.js/examples/js/libs/stats.min.js ></script>
 <script>
-// http://www.3d-meier.de/tut3/Seite0.html
+// http://www.3d-meier.de/tut3/Seite179.html
 
 	var stats, renderer, scene, camera, controls;
 
@@ -43,21 +43,26 @@
 		controls.target.set( 0, 0, 0 );
 
 		var pi = Math.PI;
-		var scale = 25;
+		var scale = 5;
 		var x, y, z;
 
-		function curve( u, v ) {		
-			u = pi * ( u - 0.5 );
-			v = pi * ( v - 0.5 );
+		var L = 20;
+		var n = 4;
+		var r = 3;
+		var R = 3;
 
-			x = scale * ( xxx );
-			y = scale * ( xxx );
-			z = scale * ( xxx );
+		function curve( u, v ) {		
+			u = 2 * ( u - 0.5 );
+			v = 2 * pi * ( v - 0.5 );
+
+			x = scale * ( L * u );
+			y = scale * ( r * ( 1 - abs( u )) * cos( v ) + R * cos( u * pi / 2 ) * cos( u * n * pi ) );
+			z = scale * ( r * ( 1 - abs( u )) * sin( v ) + R * cos( u * pi / 2 ) * sin( u * n * pi ) );
 
 			return new THREE.Vector3( x, y, z );
 		}
 
-		geometry = new THREE.ParametricGeometry( curve, 20, 20 );
+		geometry = new THREE.ParametricGeometry( curve, 50, 20 );
 		material = new THREE.MeshNormalMaterial( { shading: THREE.SmoothShading, side: 2 } )
 		mesh = new THREE.Mesh( geometry, material );
 

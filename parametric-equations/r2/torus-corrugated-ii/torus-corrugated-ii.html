@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang=en >
 <head>
-<title>boilerplate</title>
+<title>Torus Corrugated II</title>
 <meta charset=utf-8 >
 <meta name=viewport content=width=device-width,user-scalable=no,minimum-scale=1.0,maximum-scale=1.0 >
 </head>
@@ -10,7 +10,7 @@
 <script src=http://mrdoob.github.io/three.js/examples/js/controls/TrackballControls.js ></script>
 <script src=http://mrdoob.github.io/three.js/examples/js/libs/stats.min.js ></script>
 <script>
-// http://www.3d-meier.de/tut3/Seite0.html
+// http://www.3d-meier.de/tut3/Seite173.html
 
 	var stats, renderer, scene, camera, controls;
 
@@ -43,21 +43,26 @@
 		controls.target.set( 0, 0, 0 );
 
 		var pi = Math.PI;
-		var scale = 25;
+		var scale = 5;
 		var x, y, z;
 
-		function curve( u, v ) {		
-			u = pi * ( u - 0.5 );
-			v = pi * ( v - 0.5 );
+		var n = 8;
+		var r = 1.5;
+		var R1 = 8;
+		var R2 = 2;
 
-			x = scale * ( xxx );
-			y = scale * ( xxx );
-			z = scale * ( xxx );
+		function curve( u, v ) {		
+			u = 2 * pi * ( u - 0.5 );
+			v = 2 * pi * ( v - 0.5 );
+
+			x = scale * ( ( R1 + R2 * cos( n * u ) + r * cos( v ) ) * cos( u ) );
+			y = scale * ( r * sin( v ) );
+			z = scale * ( ( R1 + R2 * cos( n * u ) + r * cos( v ) ) * sin( u ) );
 
 			return new THREE.Vector3( x, y, z );
 		}
 
-		geometry = new THREE.ParametricGeometry( curve, 20, 20 );
+		geometry = new THREE.ParametricGeometry( curve, 80, 20 );
 		material = new THREE.MeshNormalMaterial( { shading: THREE.SmoothShading, side: 2 } )
 		mesh = new THREE.Mesh( geometry, material );
 

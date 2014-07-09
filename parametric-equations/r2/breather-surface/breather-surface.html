@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang=en >
 <head>
-<title>boilerplate</title>
+<title>Breather Surface</title>
 <meta charset=utf-8 >
 <meta name=viewport content=width=device-width,user-scalable=no,minimum-scale=1.0,maximum-scale=1.0 >
 </head>
@@ -10,7 +10,7 @@
 <script src=http://mrdoob.github.io/three.js/examples/js/controls/TrackballControls.js ></script>
 <script src=http://mrdoob.github.io/three.js/examples/js/libs/stats.min.js ></script>
 <script>
-// http://www.3d-meier.de/tut3/Seite0.html
+// http://www.3d-meier.de/tut3/Seite176.html
 
 	var stats, renderer, scene, camera, controls;
 
@@ -25,7 +25,8 @@
 		var info = document.body.appendChild( document.createElement( 'div' ) );
 
 		info.style.cssText = 'left: 20px; position: absolute;';
-		info.innerHTML = '<h1>' + document.title + '</h1>';
+		info.innerHTML = '<h1>' + document.title + '</h1>' +
+			'Requires ECMA 6. Currently only on FireFox.';
 
 		stats = new Stats();
 		stats.domElement.style.cssText = 'position: absolute; right: 0; top: 0; z-index: 100; ';
@@ -43,21 +44,32 @@
 		controls.target.set( 0, 0, 0 );
 
 		var pi = Math.PI;
-		var scale = 25;
+		var scale = 20;
 		var x, y, z;
 
+		var d;
+		var a = 0.4;
+		var r;
+		var w;
+		
 		function curve( u, v ) {		
-			u = pi * ( u - 0.5 );
-			v = pi * ( v - 0.5 );
+			u = 30 * ( u - 0.5);
+			v = 90 * ( v - 0.5 );
 
-			x = scale * ( xxx );
-			y = scale * ( xxx );
-			z = scale * ( xxx );
+			r = 1 - a * a;
+
+			w = sqrt( r );
+
+			d = a * ( ( w * cosh( a * u) ) * (w * cosh( a * u)) + (a * sin(w * v)) * (a * sin(w * v)) );
+
+			x = scale * ( - u + ( 2 * r * cosh( a * u ) * sinh( a * u ) / d ) );
+			y = scale * ( 2 * w * cosh( a * u ) * ( - ( w * cos( v ) * cos( w * v ) ) - ( sin( v ) * sin( w * v ) ) ) / d );
+			z = scale * ( 2 * w * cosh( a * u ) * ( - ( w * sin( v ) * cos( w * v ) ) + ( cos( v ) * sin( w * v ) ) ) / d );
 
 			return new THREE.Vector3( x, y, z );
 		}
 
-		geometry = new THREE.ParametricGeometry( curve, 20, 20 );
+		geometry = new THREE.ParametricGeometry( curve, 30, 120 );
 		material = new THREE.MeshNormalMaterial( { shading: THREE.SmoothShading, side: 2 } )
 		mesh = new THREE.Mesh( geometry, material );
 

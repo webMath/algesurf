@@ -3,8 +3,8 @@
 	var request = require( "../node_modules/request") ;
 	var fs = require( "fs" );
 
-	var requestStart = 141;
-	var requestFinish = 150;
+	var requestStart = 171;
+	var requestFinish = 180;
 
 	var fnameRoot = "http://www.3d-meier.de/tut3/Seite";
 	var fname;
@@ -19,6 +19,15 @@
 		if ( error ) throw error;
 		prototypeLines = data.split(/\r\n|\n/);
 	});
+
+	function requestFiles( start, finish ) {
+		var fname = fnameRoot + i + "'html";
+		for (var i = start; i < finish; i++) {
+			fname = fnameRoot + i + ".html";
+			requestFile( fname, i );
+		}
+
+	}
 
 	function requestFile ( fname, index ) {
 		request( fname, function ( error, response, body ) {
@@ -102,11 +111,13 @@
 // console.log( line );
 				if ( line.substr(3, 1 ) === "x" ) { prototypeLines[52] = line; }
 				if ( line.substr(3, 1 ) === "y" ) { prototypeLines[53] = line; }
-				if ( line.substr(3, 1 ) === "z" ) { prototypeLines[54] = line; }
+				if ( line.substr(3, 1 ) === "z" ) { 
+					prototypeLines[54] = line; 
+					break;
+				}
 			}
-
 		}
-console.log( 'fname', fname );
+
 
 
 		fs.readdir( "./", function ( error, files ) {
@@ -115,14 +126,14 @@ console.log( 'fname', fname );
 			if ( str.indexOf( fname ) < 0 ) {
 				fs.mkdir( fname, function ( error ) {
 					if ( error ) throw error;
-					console.log( 'mkdir' );
+console.log( 'mkdir', fname );
 					saveFile( fname, prototypeLines, index );
 				});
 			} else {
 				saveFile( fname, prototypeLines, index);
+console.log( ' save', fname );
 			}
 		});
-//console.log( contents );
 	}
 
 	function saveFile( fname, contents, index ) {
@@ -171,15 +182,6 @@ console.log( 'fname', fname );
 		for (var i = 0, len = menuItems2.length; i < len; i++) {
 			menuItems += "<a href=JavaScript:displayPage(\'#./r2/" + menuItems2[i][1] + "/readme.md\#" + menuItems2[i][1].substr(0, 4) + "\'); >" +  menuItems2[i][0] + "</a>  \n";
 		}
-	}
-
-	function requestFiles( start, finish ) {
-		var fname = fnameRoot + i + "'html";
-		for (var i = start; i < finish; i++) {
-			fname = fnameRoot + i + ".html";
-			requestFile( fname, i );
-		}
-
 	}
 
 	requestFiles( requestStart, requestFinish + 1 );
