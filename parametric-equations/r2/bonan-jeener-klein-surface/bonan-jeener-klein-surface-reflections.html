@@ -13,12 +13,21 @@
 // http://www.3d-meier.de/tut3/Seite109.html
 
 	var stats, renderer, scene, camera, controls;
+	var geometry, material, mesh;
+
+	var pi = Math.PI;
+	var scale = 15;
+	var u, v;
+	var x, y, z;
+
+	var M, T, A;
+	var W;
 
 	init();
 	animate();
 
 	function init() {
-		var geometry, material, mesh;
+
 
 		document.body.style.cssText = 'font: 400 12pt monospace; margin: 0; overflow: hidden; ' ;
 
@@ -38,8 +47,47 @@
 		var info = document.body.appendChild( document.createElement( 'div' ) );
 
 		info.style.cssText = 'left: 20px; position: absolute;';
-		info.innerHTML = '<h1>' + document.title + '</h1>';
+		info.innerHTML = '<h1>' + document.title + '</h1>' +
+			'M: <input id=inpFrequency > <output id=outM >' + M + '</output><br>' +
+			'T: <input id=inpT > <output id=outT >' + T + '</output><br>' +
+			'A: <input id=inpA style=width:300px; > <output id=outA >' + A + '</output><br>' +
+			'u: <input id=inpU > <output id=outU >' + u + '</output><br>' +
+		'';
 
+		inpFrequency.type = 'range';
+		inpFrequency.min = 2;
+		inpFrequency.max = 20;
+		inpFrequency.step = 1;
+		inpFrequency.title = 'frequency';
+		inpFrequency.value = 4;
+		inpFrequency.onchange = updateMesh;
+
+		inpT.type = 'range';
+		inpT.min = 1;
+		inpT.max = 10;
+		inpT.step = 0.1;
+		inpT.title = 'T';
+		inpT.value = 2;
+		inpT.onchange = updateMesh;
+
+		inpA.type = 'range';
+		inpA.min = -20;
+		inpA.max = 20;
+		inpA.step = 0.1;
+		inpA.title = 'A';
+		inpA.value = 2;
+		inpA.onmousemove = updateMesh;
+
+		inpU.type = 'range';
+		inpU.min = 1;
+		inpU.max = 200;
+		inpU.step = 1;
+		inpU.title = 'A';
+		inpU.value = 80;
+		inpU.onchange = updateMesh;
+
+
+console.log( inpU.value );
 		stats = new Stats();
 		stats.domElement.style.cssText = 'position: absolute; right: 0; top: 0; z-index: 100; ';
 		document.body.appendChild( stats.domElement );
@@ -50,11 +98,9 @@
 		document.body.appendChild( renderer.domElement );
 		scene = new THREE.Scene();
 
-		camera = new THREE.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 1, 1000 );
+		camera = new THREE.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 1, 5000 );
 		camera.position.set( 100, 100, 100 );
 		controls = new THREE.TrackballControls( camera, renderer.domElement );
-
-		controls.target.set( 0, 0, 0 );
 
 // ambient
 		light = new THREE.AmbientLight( 0xffffff * Math.random() );
@@ -63,34 +109,39 @@
 // light
 // intensity from 0.0 to infinity?
 		light = new THREE.DirectionalLight( 0xffffff );
-light.shadowBias = -0.005; 
+		light.shadowBias = -0.005; 
 		light.position = camera.position;
 		light.castShadow = true;
 		scene.add( light );
 
+		updateMesh();
+	};
 
+	function curve( u, v ) {		
+		u = 2 * pi * ( u - 0.5 );
+		v = 2 * pi * ( v - 0.5 );
 
-		var pi = Math.PI;
-		var scale = 15;
-		var x, y, z;
-		var M = 4;
-		var T = 2;
-		var W;
+		W = sin(( M - 1 ) * u ) + T;
 
-		function curve1( u, v ) {		
-			u = 2 * pi * ( u - 0.5 );
-			v = 2 * pi * ( v - 0.5 );
+		x = scale * ( M * cos( u ) - cos( M * u ) - ( ( M - 1 ) / M ) * W * sin( ( M + 1 ) * u / A ) * cos( v ) );
+		y = scale * ( W * sin( v ) );
+		z = scale * ( M * sin( u ) - sin( M * u ) + ( ( M - 1 ) / M ) * W * cos( ( M + 1 ) * u / A ) * cos( v ) );
 
-			W = sin(( M - 1 ) * u ) + T;
+		return new THREE.Vector3( x, y, z );
+	}
 
-			x = scale * ( M * cos( u ) - cos( M * u ) - ( ( M - 1 ) / M ) * W * sin( ( M + 1 ) * u / 2 ) * cos( v ) );
-			y = scale * ( W * sin( v ) );
-			z = scale * ( M * sin( u ) - sin( M * u ) + ( ( M - 1 ) / M ) * W * cos( ( M + 1 ) * u / 2 ) * cos( v ) );
+	function updateMesh() {
+		if ( mesh ) { scene.remove( mesh ); }
+		M = parseInt( inpFrequency.value, 10 );
+		outM.value = M;
+		T = parseFloat( inpT.value );
+		outT.value = T;
+		A = parseFloat( inpA.value );
+		outA.value = A;
+		u = parseInt( inpU.value, 10 );
+		outU.value = u;
 
-			return new THREE.Vector3( x, y, z );
-		}
-
-		geometry = new THREE.ParametricGeometry( curve1, 80, 30 );
+		geometry = new THREE.ParametricGeometry( curve, u, 30 );
 
 		var p = '../../../textures/cube/SwedishRoyalCastle/';
 		var p = '../../../textures/cube/checks-black-gray/';
@@ -103,38 +154,30 @@ light.shadowBias = -0.005;
 		var p = '../../../textures/cube/denim/';
 		var urls = [ p + 'd.jpg', p + 'd.jpg', p + 'd.jpg', p + 'd.jpg', p + 'd.jpg', p + 'd.jpg' ];
 
-
 		var reflectionCube = THREE.ImageUtils.loadTextureCube( urls );
 		reflectionCube.format = THREE.RGBFormat;
 		var refractionCube = new THREE.Texture( reflectionCube.image, new THREE.CubeRefractionMapping() );
-//		reflectionCube.format = THREE.RGBFormat; 
 
 //		material = new THREE.MeshNormalMaterial( { shading: THREE.SmoothShading, side: 2 } );
-
 		material = new THREE.MeshPhongMaterial( {
 			color: 0xffffff * Math.random(), 
 			ambient: 0xffffff * Math.random(),
 //			map: texture,
-// envMap: refractionCube, refractionRatio: 0.85,
+//			envMap: refractionCube, refractionRatio: 0.85,
 			envMap: reflectionCube, combine: THREE.MixOperation, reflectivity: 0.3, metal: true,
 			opacity: 0.9,
 			specular: 0xffffff * Math.random(),
 			shininess: 50,
 			side: THREE.DoubleSide,
 			transparent: true
-
 		} );
 
 		mesh = new THREE.Mesh( geometry, material );
 		mesh.castShadow = true;
 		mesh.receiveShadow = true;
-
-
-
-	//	scene.add( new THREE.WireframeHelper( mesh ) );
-
+//		scene.add( new THREE.WireframeHelper( mesh ) );
 		scene.add( mesh );
-	};
+	}
 
 	function cos( a ){ return Math.cos( a ); }
 	function sin( a ){ return Math.sin( a ); }

@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang=en >
+<head>
+<title>Braided Torus</title>
+<meta charset=utf-8 >
+<meta name=viewport content=width=device-width,user-scalable=no,minimum-scale=1.0,maximum-scale=1.0 >
+</head>
+<body>
+<script src=http://mrdoob.github.io/three.js/build/three.min.js ></script>
+<script src=http://mrdoob.github.io/three.js/examples/js/controls/TrackballControls.js ></script>
+<script>
+// http://www.3d-meier.de/tut3/Seite110.html
+
+	var renderer, scene, camera, controls;
+	var geometry, material, mesh;
+	var pi = Math.PI;
+	var scale = 25;
+	var x, y, z;
+	var R1 = 0.5;
+	var R2 = 3;
+	var a = 0.85;
+	var n = 1.25;
+
+	init();
+	animate();
+
+	function init() {
+		document.body.style.cssText = 'margin: 0; overflow: hidden; ' ;
+
+		renderer = new THREE.WebGLRenderer( { alpha: 1, antialias: true, clearColor: 0xffffff }  );
+		renderer.setSize( window.innerWidth, window.innerHeight );
+		document.body.appendChild( renderer.domElement );
+		scene = new THREE.Scene();
+
+		camera = new THREE.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 1, 1000 );
+		camera.position.set( 100, 100, 100 );
+		controls = new THREE.TrackballControls( camera, renderer.domElement );
+
+		geometry = new THREE.ParametricGeometry( curve, 80, 20 );
+		material = new THREE.MeshNormalMaterial( { shading: THREE.SmoothShading, side: 2 } )
+		mesh = new THREE.Mesh( geometry, material );
+		scene.add( mesh );
+	}
+
+	function curve( u, v ) {		
+		u = 8 * pi * ( u );
+		v = 2 * pi * ( v );
+
+		x = scale * ( R1 * cos( v ) * cos( u ) + R2 * cos( u ) * ( 1 + a * cos( n * u ) )  );
+		y = scale * ( 2.5 * ( R1 * sin( v ) + a * sin( n * u ) )  );
+		z = scale * ( R1 * cos( v ) * sin( u ) + R2 * sin( u ) * ( 1 + a * cos( n * u ) )  );
+
+		return new THREE.Vector3( x, y, z );
+	}
+
+	function cos( a ){ return Math.cos( a ); }
+	function sin( a ){ return Math.sin( a ); }
+	function tan( a ){ return Math.tan( a ); }
+
+	function exp( a ){ return Math.exp( a ); }
+	function log( a ){ return Math.log( a ); }
+	function pow( a, b ){ return Math.pow( a, b ); }
+	function ran(){ return Math.random(); }
+	function sqrt( a ){ return Math.sqrt( a ); }	
+
+	function animate() {
+		requestAnimationFrame( animate );
+		renderer.render( scene, camera );
+		controls.update();
+	}
+
+</script>
+</body>
+</html>

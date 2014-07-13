@@ -13,24 +13,21 @@
 // http://www.3d-meier.de/tut3/Seite29.html
 
 	var stats, renderer, scene, camera, controls;
+	var geometry, material, mesh;
+	var pi = Math.PI;
+	var x, y, z;
+
+	var scale = 15;
+	var a = 1, aMin = -5, aMax = 5, aStep = 0.1;
+	var b = -4, bMin = -9, bMax = 5, bStep = 0.5;
+	var c = 2, cMin = -5, cMax = 5, cStep = 0.1;
+	var d = 2, dMin = -5, dMax = 5, dStep = 0.1;
 
 	init();
 	animate();
 
 	function init() {
-		var geometry, material, mesh;
-
 		document.body.style.cssText = 'font: 400 12pt monospace; margin: 0; overflow: hidden; ' ;
-
-		var info = document.body.appendChild( document.createElement( 'div' ) );
-
-		info.style.cssText = 'left: 20px; position: absolute;';
-		info.innerHTML = '<h1>' + document.title + '</h1>' +
-			'Requires ECMA 6 - currently only in Firefox';
-
-		stats = new Stats();
-		stats.domElement.style.cssText = 'position: absolute; right: 0; top: 0; z-index: 100; ';
-		document.body.appendChild( stats.domElement );
 
 		renderer = new THREE.WebGLRenderer( { alpha: 1, antialias: true, clearColor: 0xffffff }  );
 		renderer.setSize( window.innerWidth, window.innerHeight );
@@ -41,31 +38,23 @@
 		camera.position.set( 100, 100, 100 );
 		controls = new THREE.TrackballControls( camera, renderer.domElement );
 
-		controls.target.set( 0, 0, 0 );
-
-		var pi = Math.PI;
-		var scale = 15;
-		var x, y, z;
-
-		function curve1( u, v ) {		
-			u = 6 * pi * ( u - 0.5 );
-			v = 2.6 * ( v - 0.5 );
-
-			x = scale * ( u - cosh( v ) * sin( u ) );
-			y = scale * ( 1 - cos( u ) * cosh( v ) );
-			z = scale * ( -4 * sin( u / 2) * sinh( v / 2) );
-
-			return new THREE.Vector3( x, y, z );
-		}
-
-		geometry = new THREE.ParametricGeometry( curve1, 50, 20 );
+		geometry = new THREE.ParametricGeometry( curve, 50, 20 );
 		material = new THREE.MeshNormalMaterial( { shading: THREE.SmoothShading, side: 2 } )
 		mesh = new THREE.Mesh( geometry, material );
 
-		scene.add( new THREE.WireframeHelper( mesh ) );
-
 		scene.add( mesh );
-	};
+	}
+
+	function curve( u, v ) {		
+		u = 6 * pi * ( u - 0.5 );
+		v = 2.6 * ( v - 0.5 );
+
+		x = scale * ( u - cosh( v ) * sin( u ) );
+		y = scale * ( a - cos( u ) * cosh( v ) );
+		z = scale * ( -b * sin( u /  c ) * sinh( v /  d) );
+
+		return new THREE.Vector3( x, y, z );
+	}
 
 	function cos( a ){ return Math.cos( a ); }
 	function sin( a ){ return Math.sin( a ); }
@@ -94,7 +83,6 @@
 		requestAnimationFrame( animate );
 		renderer.render( scene, camera );
 		controls.update();
-		stats.update();
 	}
 </script>
 </body>

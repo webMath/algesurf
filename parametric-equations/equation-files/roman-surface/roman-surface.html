@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang=en >
+<head>
+<title>Steiner's Roman Surface</title>
+<meta charset=utf-8 >
+<meta name=viewport content=width=device-width,user-scalable=no,minimum-scale=1.0,maximum-scale=1.0 >
+</head>
+<body>
+<script src=http://mrdoob.github.io/three.js/build/three.min.js ></script>
+<script src=http://mrdoob.github.io/three.js/examples/js/controls/TrackballControls.js ></script>
+<script>
+// http://www.3d-meier.de/tut3/Seite16.html
+// http://curvebank.calstatela.edu/romansurfaces/romansurfaces.htm
+// http://mathworld.wolfram.com/RomanSurface.html
+// http://jalape.no/math/steintxt.htm
+// http://paulbourke.net/geometry/steiner/
+
+	var renderer, scene, camera, controls;
+		var geometry, material, mesh;
+
+		var pi = Math.PI;
+		var scale = 100;
+		var x, y, z;
+
+	init();
+	animate();
+
+	function init() {
+		document.body.style.cssText = 'margin: 0; overflow: hidden; ' ;
+
+		renderer = new THREE.WebGLRenderer( { alpha: 1, antialias: true, clearColor: 0xffffff }  );
+		renderer.setSize( window.innerWidth, window.innerHeight );
+		document.body.appendChild( renderer.domElement );
+		scene = new THREE.Scene();
+
+		camera = new THREE.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 1, 1000 );
+		camera.position.set( 100, 100, 100 );
+		controls = new THREE.TrackballControls( camera, renderer.domElement );
+
+		geometry = new THREE.ParametricGeometry( curve, 20, 20 );
+		material = new THREE.MeshNormalMaterial( { shading: THREE.SmoothShading, side: 2 } )
+		mesh = new THREE.Mesh( geometry, material );
+		scene.add( mesh );
+	}
+
+	function curve( u, v ) {		
+		u = pi * ( u - 0.5 );
+		v = pi * ( v - 0.5 );
+// 3d-mieir.de
+//			x = scale * ( 2 * u * cos( v ) * sqrt( 1 - u * u ) );
+//			y = scale * ( 2 * u * sin( v ) * sqrt( 1 - u * u ) );
+//			z = scale * ( 1 - 2 * u * u * cos( v ) * cos( v ) );
+
+// paulburke
+		x = scale * (cos( v ) * cos( v ) * sin( 2 * u ) / 2 );
+		y = scale * (sin( u ) * sin( 2 * v ) / 2 );
+		z = scale * (cos( u ) * sin( 2 * v ) / 2 );
+
+		return new THREE.Vector3( x, y, z );
+	}
+
+
+	function cos( a ){ return Math.cos( a ); }
+	function sin( a ){ return Math.sin( a ); }
+	function tan( a ){ return Math.tan( a ); }
+
+	function exp( a ){ return Math.exp( a ); }
+	function pow( a, b ){ return Math.pow( a, b ); }
+	function ran(){ return Math.random(); }
+	function sqrt( a ){ return Math.sqrt( a ); }	
+
+	function animate() {
+		requestAnimationFrame( animate );
+		renderer.render( scene, camera );
+		controls.update();
+	}
+</script>
+</body>
+</html>

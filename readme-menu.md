@@ -7,8 +7,12 @@
 
 <div id=pe >
 	<a href=JavaScript:displayMD('#./parametric-equations/r2/readme.md#pe'); >Parametric Equations</a>
-</div><br>
+</div>
 
+<div><i class="fa fa-external-link"></i> <a href=http://jaanga.github.io/algesurf/parametric-equations/r2/readme-reader.html >Equation Browser</a></div>
+
+
+<br>
 <div id=mc >
 	<a href=JavaScript:displayMD('#./marching-cubes/r2/readme.md#mc'); >Marching Cubes R2</a>
 </div>

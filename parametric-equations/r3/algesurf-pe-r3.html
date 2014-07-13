@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang=en >
+<head>
+<title>algeSurf PE</title>
+<meta charset=utf-8 />
+<meta name=author content='Theo Armour' />
+<meta name=viewport content=width=device-width,user-scalable=no,minimum-scale=1.0,maximum-scale=1.0 />
+<link rel=stylesheet href=http://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css /><!-- http://fontawesome.io/ -->
+</head>
+<body>
+<!--
+<script src=http://mrdoob.github.io/three.js/build/three.min.js ></script>
+<script src=http://mrdoob.github.io/three.js/examples/js/controls/TrackballControls.js ></script>
+<script src=http://mrdoob.github.io/three.js/examples/js/libs/stats.min.js ></script>
+-->
+<script src=ja-core.js></script>
+<script src=jath-three.js></script>
+<script src=tawi-widgets.js></script>
+<script src=asfr-file-reader.js></script>
+<script src=asco-controls.js></script>
+<script src=jape-parametric-equations.js></script>
+<script src=jali-lights.js></script>
+<script src=jage-geometry.js></script>
+<script src=jama-materials.js></script>
+<script src=jama-materials-data.js></script>
+<script src=japr-preferences.js></script>
+<script src=asas-assets.js ></script>
+<script src=jaat-attributes.js ></script>
+<script>
+// Theo Armour ~ 2014-07-11 ~ MIT License
+
+	JA.init = function() {
+		JA.container = document.body.appendChild( document.createElement( 'div' ) );
+
+		JA.addCSS();
+		JA.addMenu();
+		JA.addHR();
+
+		ASFR.addFileReader();
+
+		ASCO.addControlsBox();
+
+//		JATH.addThreeJS();
+
+//		TAWI.addWidgetsBox();
+
+//		JAPE.addParametricEquationsBox();
+
+		JAMA.addMaterialSelectBox();
+		JAMA.addMaterialEditorBox ();
+		JAPR.addPreferencesBox();
+
+		JALI.addLightsBox ();
+
+		JAGE.addGeometryBox();
+
+		TAWI.addAbout();
+		TAWI.addMessageArea();
+
+		JA.addThreeFooter();
+
+		ASAS.addAssets();
+//		JAAT.addAttributes();
+
+		window.addEventListener( 'mouseup', JA.mouseUp, false);
+		window.addEventListener( 'resize', JA.onWindowResize, false );
+	}
+
+	JA.animate = function() {
+		requestAnimationFrame( JA.animate );
+//		JATH.renderer.render( JATH.scene, JATH.camera );
+//		JATH.controls.update();
+//		JATH.stats.update();
+	}
+
+	JA.init();
+//	JA.animate();
+</script>
+</body>
+</html>

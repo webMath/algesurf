@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang=en >
+<head>
+<title>Breather Surface</title>
+<meta charset=utf-8 >
+<meta name=viewport content=width=device-width,user-scalable=no,minimum-scale=1.0,maximum-scale=1.0 >
+</head>
+<body>
+<script src=http://mrdoob.github.io/three.js/build/three.min.js ></script>
+<script src=http://mrdoob.github.io/three.js/examples/js/controls/TrackballControls.js ></script>
+<script>
+// http://www.3d-meier.de/tut3/Seite176.html
+
+	var renderer, scene, camera, controls;
+	var geometry, material, mesh;
+	var pi = Math.PI;
+	var x, y, z;
+	var R1, s, t;
+
+	var scale = 16;
+
+	var a = 0.4, aMin = -5, aMax = 5, aStep = 0.05;
+	var b = 1, bMin = -5, bMax = 5, bStep = 0.05;
+	var c = 2, cMin = -5, cMax = 5, cStep = 0.1;
+	var d = 0.4, dMin = -5, dMax = 5, dStep = 0.05;
+
+	var e = 2, eMin = -5, eMax = 5, eStep = 0.1;
+	var f = 2, fMin = -5, fMax = 5, fStep = 0.1;
+	var g = 2, gMin = -5, gMax = 5, gStep = 0.1;
+//	var h = 1, hMin = -5, hMax = 5, hStep = 0.1;
+
+	init();
+	animate();
+
+	function init() {
+		document.body.style.cssText = 'margin: 0; overflow: hidden; ' ;
+
+		renderer = new THREE.WebGLRenderer( { alpha: 1, antialias: true, clearColor: 0xffffff }  );
+		renderer.setSize( window.innerWidth, window.innerHeight );
+		document.body.appendChild( renderer.domElement );
+		scene = new THREE.Scene();
+
+		camera = new THREE.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 1, 1000 );
+		camera.position.set( 100, 100, 100 );
+		controls = new THREE.TrackballControls( camera, renderer.domElement );
+
+		geometry = new THREE.ParametricGeometry( curve, 30, 120 );
+		material = new THREE.MeshNormalMaterial( { shading: THREE.SmoothShading, side: 2 } )
+		mesh = new THREE.Mesh( geometry, material );
+
+		scene.add( mesh );
+	}
+
+	function curve( u, v ) {		
+		u = 30 * ( u - 0.5);
+		v = 90 * ( v - 0.5 );
+
+		t = b - pow( a, c );
+		R1 = sqrt( t );
+		s = a * ( ( R1 * cosh( a * u) ) * (R1 * cosh( d * u)) + (a * sin(R1 * v)) * (a * sin(R1 * v)) );
+
+		x = scale * ( - u + ( e * t * cosh( a * u ) * sinh( a * u ) / s ) );
+		y = scale * ( f * R1 * cosh( a * u ) * ( - ( R1 * cos( v ) * cos( R1 * v ) ) - ( sin( v ) * sin( R1 * v ) ) ) / s );
+		z = scale * ( g * R1 * cosh( a * u ) * ( - ( R1 * sin( v ) * cos( R1 * v ) ) + ( cos( v ) * sin( R1 * v ) ) ) / s );
+
+		return new THREE.Vector3( x, y, z );
+	}
+
+	function cos( a ){ return Math.cos( a ); }
+	function sin( a ){ return Math.sin( a ); }
+	function tan( a ){ return Math.tan( a ); }
+
+	function cos2( a ){ return Math.cos( a ) * Math.cos( a ); }
+	function sin2( a ){ return Math.sin( a ) * Math.sin( a ); }
+
+	function abs( a ){ return Math.abs( a ); }
+	function exp( a ){ return Math.exp( a ); }
+	function log( a ){ return Math.log( a ); }
+	function pow( a, b ){ return Math.pow( a, b ); }
+	function ran(){ return Math.random(); }
+	function sqrt( a ){ return Math.sqrt( a ); }	
+
+/*
+	function cosh( a ){ return Math.cosh( a ); }
+	function sinh( a ){ return Math.sinh( a ); }
+	function tanh( a ){ return Math.tanh( a ); }
+	function sech( a ){ return Math.sech( a ); }
+*/
+
+	function sinh( a ){ return ( exp( a ) - exp( -a ) ) / 2; }
+	function cosh( a ){ return ( exp( a ) + exp( -a ) ) / 2; }
+	function tanh( a ){ return sinh( a ) / cosh( a ); }
+	function sech( a ){ return 1 / cosh( a ); }
+
+	function animate() {
+		requestAnimationFrame( animate );
+		renderer.render( scene, camera );
+		controls.update();
+	}
+</script>
+</body>
+</html>

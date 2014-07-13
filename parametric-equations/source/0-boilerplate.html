@@ -8,28 +8,35 @@
 <body>
 <script src=http://mrdoob.github.io/three.js/build/three.min.js ></script>
 <script src=http://mrdoob.github.io/three.js/examples/js/controls/TrackballControls.js ></script>
-<script src=http://mrdoob.github.io/three.js/examples/js/libs/stats.min.js ></script>
 <script>
 // http://www.3d-meier.de/tut3/Seite0.html
 
-	var stats, renderer, scene, camera, controls;
+	var renderer, scene, camera, controls;
+	var geometry, material, mesh;
+	var pi = Math.PI;
+	var x, y, z;
+	var r, s, t;
+
+	var scale = 25;
+
+	var a = 1, aMin = -5, aMax = 5, aStep = 0.1;
+	var b = 1, bMin = -5, bMax = 5, bStep = 0.1;
+	var c = 1, cMin = -5, cMax = 5, cStep = 0.1;
+	var d = 1, dMin = -5, dMax = 5, dStep = 0.1;
+
+	var e = 1, eMin = -5, eMax = 5, eStep = 0.1;
+	var f = 1, fMin = -5, fMax = 5, fStep = 0.1;
+	var g = 1, gMin = -5, gMax = 5, gStep = 0.1;
+	var h = 1, hMin = -5, hMax = 5, hStep = 0.1;
+
+	var R1 = 1, R1Min = -5, R1Max = 5, R1Step = 0.1;
+	var R2 = 1, R2Min = -5, R2Max = 5, R2Step = 0.1;
 
 	init();
 	animate();
 
 	function init() {
-		var geometry, material, mesh;
-
-		document.body.style.cssText = 'font: 400 12pt monospace; margin: 0; overflow: hidden; ' ;
-
-		var info = document.body.appendChild( document.createElement( 'div' ) );
-
-		info.style.cssText = 'left: 20px; position: absolute;';
-		info.innerHTML = '<h1>' + document.title + '</h1>';
-
-		stats = new Stats();
-		stats.domElement.style.cssText = 'position: absolute; right: 0; top: 0; z-index: 100; ';
-		document.body.appendChild( stats.domElement );
+		document.body.style.cssText = 'margin: 0; overflow: hidden; ' ;
 
 		renderer = new THREE.WebGLRenderer( { alpha: 1, antialias: true, clearColor: 0xffffff }  );
 		renderer.setSize( window.innerWidth, window.innerHeight );
@@ -40,51 +47,41 @@
 		camera.position.set( 100, 100, 100 );
 		controls = new THREE.TrackballControls( camera, renderer.domElement );
 
-		controls.target.set( 0, 0, 0 );
-
-		var pi = Math.PI;
-		var scale = 25;
-		var x, y, z;
-
-		function curve( u, v ) {		
-			u = pi * ( u - 0.5 );
-			v = pi * ( v - 0.5 );
-
-			x = scale * ( xxx );
-			y = scale * ( xxx );
-			z = scale * ( xxx );
-
-			return new THREE.Vector3( x, y, z );
-		}
-
 		geometry = new THREE.ParametricGeometry( curve, 20, 20 );
 		material = new THREE.MeshNormalMaterial( { shading: THREE.SmoothShading, side: 2 } )
 		mesh = new THREE.Mesh( geometry, material );
 
-		scene.add( new THREE.WireframeHelper( mesh ) );
-
 		scene.add( mesh );
-	};
+	}
 
-	function cos( a ){ return Math.cos( a ); }
-	function sin( a ){ return Math.sin( a ); }
-	function tan( a ){ return Math.tan( a ); }
+	function curve( u, v ) {
+		u = pi * ( u - 0.5 );
+		v = pi * ( v - 0.5 );
 
-	function cos2( a ){ return Math.cos( a ) * Math.cos( a ); }
-	function sin2( a ){ return Math.sin( a ) * Math.sin( a ); }
+		x = scale * ( xxx );
+		y = scale * ( xxx );
+		z = scale * ( xxx );
+
+		return new THREE.Vector3( x, y, z );
+	}
 
 	function abs( a ){ return Math.abs( a ); }
+	function cos( a ){ return Math.cos( a ); }
+	function cos2( a ){ return Math.cos( a ) * Math.cos( a ); }
 	function exp( a ){ return Math.exp( a ); }
 	function log( a ){ return Math.log( a ); }
 	function pow( a, b ){ return Math.pow( a, b ); }
 	function ran(){ return Math.random(); }
-	function sqrt( a ){ return Math.sqrt( a ); }	
+	function sin( a ){ return Math.sin( a ); }
+	function sin2( a ){ return Math.sin( a ) * Math.sin( a ); }
+	function sqrt( a ){ return Math.sqrt( a ); }
+	function tan( a ){ return Math.tan( a ); }
+
 /*
 	function cosh( a ){ return Math.cosh( a ); }
 	function sinh( a ){ return Math.sinh( a ); }
 	function tanh( a ){ return Math.tanh( a ); }
 	function sech( a ){ return Math.sech( a ); }
-
 */
 
 	function sinh( a ){ return ( exp( a ) - exp( -a ) ) / 2; }
@@ -92,13 +89,12 @@
 	function tanh( a ){ return sinh( a ) / cosh( a ); }
 	function sech( a ){ return 1 / cosh( a ); }
 
-
 	function animate() {
 		requestAnimationFrame( animate );
 		renderer.render( scene, camera );
 		controls.update();
-		stats.update();
 	}
+
 </script>
 </body>
 </html>

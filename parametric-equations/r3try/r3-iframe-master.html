@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang=en >
+<head>
+<title>algeSurf R3 Parametric Equations</title>
+<meta charset=utf-8 />
+<meta name=author content='Theo Armour' />
+</head>
+<body>
+<script>
+	var ifr;
+	var material, mesh;
+
+	function init() {
+		document.body.style.cssText = ' font: bold 12pt monospace; margin: 0; overflow: hidden;';
+
+		var info = document.body.appendChild( document.createElement( 'div' ) );
+		info.innerHTML = '<h1 id=title >' + document.title + '</h1>' +
+				'<a href=JavaScript:editTitle(); >editTitle</a> ' +
+				'<a href=JavaScript:updateBackground(); >updateBackground</a> ' +
+
+				'<a href=JavaScript:updateGroundMaterial(); >updateGroundMaterial</a> ' +
+				'<a href=JavaScript:updateAnimation(); >updateAnimation</a> ' +
+				'<a href=JavaScript:addStuff(); >addStuff</a> ' +
+			'<div id=msg ><br></div>';
+
+		ifr = document.body.appendChild( document.createElement( 'iframe' ) );
+
+		ifr.height = window.innerHeight - 200;
+		ifr.width = window.innerWidth;
+
+		var file = titles[ Math.floor( Math.random() * titles.length ) ];
+
+		ifr.onload = function() {
+			editTitle();
+			updateBackground();
+			updateRenderer();
+			addLights();
+			updateGroundMaterial();
+		}
+		ifr.src = '../r2/' + file + '/' + file + '.html';	
+	}
+
+	function editTitle() {
+		txt = ifr.contentDocument.body.children[4].children[0].innerText;
+		title.innerText += ' ~ ' + txt;
+		ifr.contentDocument.body.children[4].children[0].innerText = "";
+	}
+
+	function updateBackground() {
+	//	ifra.contentDocument.body.style.backgroundColor="red";
+		var cssBackground = ifr.contentDocument.body.appendChild( document.createElement('style') );
+		var col1 = "#" + Math.random().toString(16).slice(2, 8);
+		var col2 = "#" + Math.random().toString(16).slice(2, 8);
+		var col3 = "#" + Math.random().toString(16).slice(2, 8);
+		var X = ( Math.random() * window.innerWidth ).toFixed(0);
+		var Y = ( Math.random() * ifr.height ).toFixed(0);
+		var center =  20 + ( Math.random() * 60 ).toFixed(0);
+		cssBackground.innerText = 'body { ' +
+			'background: -webkit-radial-gradient(' + X + 'px ' + Y + 'px, farthest-corner, ' + col1 + ' 0%, ' + col2 + ' 50%, ' + col3 + ' 100%); ' +
+			'background: -moz-radial-gradient(' + X + 'px ' + Y + 'px, farthest-corner, ' + col1 + ' 0%, ' + col2 + ' 50%, ' + col3 + ' 100%); ' +
+			'background: radial-gradient(' + X + 'px ' + Y + 'px, farthest-corner, ' + col1 + ' 0%, ' + col2 + ' 50%, ' + col3 + ' 100%); }' +
+		'';
+// console.log( X, Y );
+	}
+
+	function updateRenderer() {
+		ifr.contentWindow.renderer.shadowMapEnabled = true;
+		ifr.contentWindow.renderer.shadowMapSoft = true;
+
+		ifr.contentWindow.scene.children[1].castShadow = true;
+		ifr.contentWindow.scene.children[1].receiveShadow = true;
+	}
+
+	function addLights() {
+			lightAmbient = new ifr.contentWindow.THREE.AmbientLight( 0x333333 );
+			ifr.contentWindow.scene.add( lightAmbient );
+
+			lightCamera = new ifr.contentWindow.THREE.DirectionalLight( 0xffffff, 0.25 );
+			lightCamera.position = ifr.contentWindow.camera.position;
+//			lightCamera.position.set( -100, 100, 100 );
+			lightCamera.castShadow = true;
+
+
+			lightCamera.shadowCameraNear = 100;
+			lightCamera.shadowCameraFar = 400;
+			lightCamera.shadowBias = -0.005; // default 0 ~ distance fron corners?
+
+			var d = 80;
+			lightCamera.shadowCameraLeft = -d;
+			lightCamera.shadowCameraRight = d;
+			lightCamera.shadowCameraTop = d;
+			lightCamera.shadowCameraBottom = -d;
+
+			ifr.contentWindow.scene.add( lightCamera );
+	};
+
+	function updateGroundMaterial() {
+//		ifr.contentWindow.scene.children[3].material.wireframe = true;
+//		ifr.contentWindow.scene.children[3].material = new ifr.contentWindow.THREE.MeshBasicMaterial( { color: 0xff00ff } );
+//		ifr.contentWindow.scene.children[3].material = new THREE.MeshNormalMaterial( { shading: THREE.SmoothShading, side: 2 } );
+
+		var p = '../../../textures/cube/SwedishRoyalCastle/';
+		var urls = [ p + 'px.jpg', p + 'nx.jpg', p + 'py.jpg', p + 'ny.jpg', p + 'pz.jpg', p + 'nz.jpg' ];
+		var reflectionCube = ifr.contentWindow.THREE.ImageUtils.loadTextureCube( urls );
+		reflectionCube.format = ifr.contentWindow.THREE.RGBFormat;
+		var refractionCube = new ifr.contentWindow.THREE.Texture( reflectionCube.image, new ifr.contentWindow.THREE.CubeRefractionMapping() );
+
+		material = new ifr.contentWindow.THREE.MeshBasicMaterial( {
+			color: 0xffffff * Math.random(), 
+			ambient: 0xffffff * Math.random(),
+//			map: texture,
+			envMap: refractionCube, refractionRatio: 0.85,
+			envMap: reflectionCube, combine: ifr.contentWindow.THREE.MixOperation, reflectivity: 0.3, metal: true,
+			opacity: 0.9,
+			specular: 0xffffff * Math.random(),
+			shininess: 50,
+			side: 2,
+			transparent: true
+		} );
+		ifr.contentWindow.scene.children[1].material = material;
+// console.log( material ) 
+	}
+
+	function updateAnimation() {
+		ifr.contentWindow.animate = function() {
+			ifr.contentWindow.requestAnimationFrame( ifr.contentWindow.animate );
+			ifr.contentWindow.renderer.render( ifr.contentWindow.scene, ifr.contentWindow.camera );
+			ifr.contentWindow.controls.update();
+			ifr.contentWindow.stats.update();
+			ifr.contentWindow.scene.children[1].rotation.y += 0.005;
+		}
+	}
+
+	function addStuff() {
+		var geometry = new ifr.contentWindow.THREE.SphereGeometry( 50, 20, 20 );
+		var newmesh = new ifr.contentWindow.THREE.Mesh( geometry, material );
+		newmesh.position.set( 30, 30, 0 );
+		ifr.contentWindow.scene.children[1].add( newmesh );
+	}
+
+	var titles = [ 
+		'apple-surface',
+		'apple-surface-ii',
+		'bell',
+		'bell-polar',
+		'bell-wave',
+		'bent-horns',
+		'bicorn-surface',
+		'bohemian-dome',
+		'bonan-jeener-klein-surface',
+		'borromean-rings',
+		'bow-curve',
+		'boy-surface',
+		'breather-surface',
+		'bullet-nose',
+		'catalan-surface',
+		'catenoid',
+		'cone',
+		'cornucopia',
+		'cosine-surface',
+		'cosine-surface-ii',
+		'cosine-wave',
+		'costa-surface',
+		'crescent',
+		'cross-cap',
+		'cross-cup',
+		'cylinder',
+		'cylinder-cissoid',
+		'cylinder-epicycloid',
+		'cylinder-gauss',
+		'cylinder-hypocycloid',
+		'cylinder-lemniscate',
+		'cylinder-strophoid',
+		'cylinder-witch-of-agnesi',
+		'dini-surface',
+		'disc',
+		'double-cone',
+		'drop-i',
+		'drop-ii',
+		'dupin-cyclide',
+		'egg',
+		'eight-surface',
+		'ellipsoid',
+		'enneper-surface',
+		'enneper-surface-polar',
+		'facing-snail',
+		'fish-surface',
+		'folium',
+		'fresnel-elastic-surface',
+		'funnel',
+		'guimard-surface',
+		'handkerchief-surface',
+		'helicoid',
+		'henneberg-surface',
+		'horn',
+		'hyperbolic-helicoid',
+		'hyperbolic-octahedron',
+		'hyperbolic-paraboloid',
+		'hyperboloid',
+		'isolator',
+		'jeener-klein-surface',
+		'jet-surface',
+		'kappa-surface',
+		'kidney-surface',
+		'klein-bottle',
+		'klein-cycloid',
+		'kuen-surface',
+		'lemniscape',
+		'lemon-surface',
+		'lochdiscus',
+		'lockdisk',
+		'loop',
+		'maeder-owl',
+		'menn-surface',
+		'milk-carton',
+		'mobius-band',
+		'monkey-saddle',
+		'nautilus',
+		'paper-bag',
+		'paraboloid',
+		'pillow-shape',
+		'piriform-surface',
+		'pisot-triaxial',
+		'plane',
+		'plucker-conoid',
+		'pseudo-cross-cap',
+		'pseudosphere',
+		'richmond-surface',
+		'roman-surface',
+		'roundabout',
+		'scherk-surface',
+		'seashell',
+		'shoe-surface',
+		'sievert-surface',
+		'sine-cone',
+		'sine-surface',
+		'sine-wave',
+		'snail-surface',
+		'soucoupoid',
+		'sphere-double',
+		'sphere-i',
+		'sphere-ii',
+		'sphere-iii',
+		'sphere-iv',
+		'spiral-archimedes',
+		'spiral-fermat',
+		'spiral-hyperbolic',
+		'spiral-logarithmic',
+		'spiral-tanh',
+		'spiral-wave',
+		'spring-i',
+		'spring-ii',
+		'steinbach-screw',
+		'stiletto-surface',
+		'swallow-surface',
+		'torus',
+		'torus-8',
+		'torus-astroid',
+		'torus-asymmetric',
+		'torus-bicorn-i',
+		'torus-bicorn-ii',
+		'torus-braided',
+		'torus-cardioid-i',
+		'torus-cardioid-ii',
+		'torus-cassinian-oval-i',
+		'torus-cassinian-oval-ii',
+		'torus-corrugated-i',
+		'torus-corrugated-ii',
+		'torus-elliptic',
+		'torus-epicycloid-i',
+		'torus-epicycloid-ii',
+		'torus-gear',
+		'torus-hypocycloid-i',
+		'torus-hypocycloid-ii',
+		'torus-knot',
+		'torus-lemniscate-gerono-i',
+		'torus-lemniscate-gerono-ii',
+		'torus-lemniscate-i',
+		'torus-lemniscate-ii',
+		'torus-limpet',
+		'torus-nephroid-i',
+		'torus-nephroid-ii',
+		'torus-piriform-i',
+		'torus-piriform-ii',
+		'torus-saddle',
+		'torus-spiral',
+		'torus-strangled-i',
+		'torus-strangled-ii',
+		'torus-tricuspoid-i',
+		'torus-tricuspoid-ii',
+		'torus-twisted-eight',
+		'torus-umbilic',
+		'torus-wave',
+		'tractroid',
+		'tranguloid-trefoil',
+		'trash-can',
+		'trefoil-knot',
+		'trefoil-knot-ii',
+		'triaxial-hexatorus',
+		'triaxial-teardrop',
+		'triaxial-tritorus',
+		'triple-corkscrew-i',
+		'triple-corkscrew-ii',
+		'triple-corkscrew-iii',
+		'triple-point-twist',
+		'twisted-heart',
+		'twisted-pipe-surface',
+		'twisted-sphere',
+		'vase-and-spearhead',
+		'verrill-surface',
+		'wallis-conical-edge',
+		'wave',
+		'wave-sphere',
+		'whitney-umbrella',
+		'worm',
+		'wreath',
+		'zindler-conoid' 
+		];
+
+	init();
+
+</script>
+</body>
+</html>

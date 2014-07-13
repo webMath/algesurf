@@ -8,28 +8,37 @@
 <body>
 <script src=http://mrdoob.github.io/three.js/build/three.min.js ></script>
 <script src=http://mrdoob.github.io/three.js/examples/js/controls/TrackballControls.js ></script>
-<script src=http://mrdoob.github.io/three.js/examples/js/libs/stats.min.js ></script>
 <script>
 // http://www.3d-meier.de/tut3/Seite109.html
 
-	var stats, renderer, scene, camera, controls;
+	var renderer, scene, camera, controls;
+	var geometry, material, mesh;
+
+	var x, y, z;
+	var pi = Math.PI;
+	var scale = 15;
+
+	var a = 4;
+	var b = 2;
+	var c = 2;
+
+	var a = 4, aMin = -5, aMax = 5, aStep = 0.1;
+	var b = 2, bMin = -5, bMax = 5, bStep = 0.1;
+	var c = 2, cMin = -5, cMax = 5, cStep = 0.1;
+	var d = 1, dMin = -5, dMax = 5, dStep = 0.05;
+
+	var e = 1, eMin = -5, eMax = 5, eStep = 0.05;
+	var f = 1, fMin = -5, fMax = 5, fStep = 0.05;
+	var g = 1, gMin = -5, gMax = 5, gStep = 0.05;
+	var h = 1, hMin = -5, hMax = 5, hStep = 0.05;
+
+	var W;
 
 	init();
 	animate();
 
 	function init() {
-		var geometry, material, mesh;
-
 		document.body.style.cssText = 'font: 400 12pt monospace; margin: 0; overflow: hidden; ' ;
-
-		var info = document.body.appendChild( document.createElement( 'div' ) );
-
-		info.style.cssText = 'left: 20px; position: absolute;';
-		info.innerHTML = '<h1>' + document.title + '</h1>';
-
-		stats = new Stats();
-		stats.domElement.style.cssText = 'position: absolute; right: 0; top: 0; z-index: 100; ';
-		document.body.appendChild( stats.domElement );
 
 		renderer = new THREE.WebGLRenderer( { alpha: 1, antialias: true, clearColor: 0xffffff }  );
 		renderer.setSize( window.innerWidth, window.innerHeight );
@@ -40,58 +49,42 @@
 		camera.position.set( 100, 100, 100 );
 		controls = new THREE.TrackballControls( camera, renderer.domElement );
 
-		controls.target.set( 0, 0, 0 );
-
-		var pi = Math.PI;
-		var scale = 15;
-		var x, y, z;
-		var M = 4;
-		var T = 2;
-		var W;
-
-		function curve1( u, v ) {		
-			u = 2 * pi * ( u - 0.5 );
-			v = 2 * pi * ( v - 0.5 );
-
-			W = sin(( M - 1 ) * u ) + T;
-
-			x = scale * ( M * cos( u ) - cos( M * u ) - ( ( M - 1 ) / M ) * W * sin( ( M + 1 ) * u / 2 ) * cos( v ) );
-			y = scale * ( W * sin( v ) );
-			z = scale * ( M * sin( u ) - sin( M * u ) + ( ( M - 1 ) / M ) * W * cos( ( M + 1 ) * u / 2 ) * cos( v ) );
-
-			return new THREE.Vector3( x, y, z );
-		}
-
-		geometry = new THREE.ParametricGeometry( curve1, 80, 20 );
+		geometry = new THREE.ParametricGeometry( curve, 80, 20 );
 		material = new THREE.MeshNormalMaterial( { shading: THREE.SmoothShading, side: 2 } )
 		mesh = new THREE.Mesh( geometry, material );
 
-		scene.add( new THREE.WireframeHelper( mesh ) );
-
 		scene.add( mesh );
-	};
+	}
 
+	function curve( u, v ) {
+		u = 2 * pi * ( u - 0.5 );
+		v = 2 * pi * ( v - 0.5 );
+
+		W = sin(( a - d ) * u ) + b;
+
+		x = scale * ( a * cos( u ) - cos( a * u ) - ( ( a - e ) / a ) * W * sin( ( a + g ) * u / c ) * cos( v ) );
+		y = scale * ( W * sin( v ) );
+		z = scale * ( a * sin( u ) - sin( a * u ) + ( ( a - f ) / a ) * W * cos( ( a + h ) * u / c ) * cos( v ) );
+
+		return new THREE.Vector3( x, y, z );
+	}
+
+	function abs( a ){ return Math.abs( a ); }
 	function cos( a ){ return Math.cos( a ); }
-	function sin( a ){ return Math.sin( a ); }
-	function tan( a ){ return Math.tan( a ); }
-
+	function cos2( a ){ return Math.cos( a ) * Math.cos( a ); }
 	function exp( a ){ return Math.exp( a ); }
 	function log( a ){ return Math.log( a ); }
 	function pow( a, b ){ return Math.pow( a, b ); }
 	function ran(){ return Math.random(); }
-	function sqrt( a ){ return Math.sqrt( a ); }	
-
-	function cosh( a ){ return Math.cosh( a ); }
-	function sinh( a ){ return Math.sinh( a ); }
-	function tanh( a ){ return Math.tanh( a ); }
-
-	function sech( a ){ return Math.sech( a ); }
+	function sin( a ){ return Math.sin( a ); }
+	function sin2( a ){ return Math.sin( a ) * Math.sin( a ); }
+	function sqrt( a ){ return Math.sqrt( a ); }
+	function tan( a ){ return Math.tan( a ); }
 
 	function animate() {
 		requestAnimationFrame( animate );
 		renderer.render( scene, camera );
 		controls.update();
-		stats.update();
 	}
 </script>
 </body>
