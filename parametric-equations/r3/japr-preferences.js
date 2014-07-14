@@ -15,6 +15,11 @@
 			'<h3 >Helpers</h3>' +
 			'<p>' +
 				'<input type=checkbox id=chkWires /> Wireframe<br>' +
+
+				'<input type=checkbox id=chkFaceNormals /> Face Normals<br>' +
+				'<input type=checkbox id=chkVertexNormals /> Vertex Normals<br>' +
+//				'<input type=checkbox id=chkVertexTangents /> Vertex Tangents<br>' +
+
 				'Vertical scale<br><input type=range id=rngVerticalScale min=1 max=100 step=1 value=50 >' +
 
 			'</p>' +
@@ -37,19 +42,59 @@
 		chkWires.checked = false;
 		chkWires.onchange = function() {
 			if ( chkWires.checked === true ) {
-				// JAPR.setWireframe();
-				wires = new THREE.WireframeHelper( JATH.selectedObject );
-				JATH.scene.add( wires );
+				JATH.wires = new THREE.WireframeHelper( JATH.selectedObject );
+				JATH.scene.add( JATH.wires );
 			} else {
-				JATH.scene.remove( wires );
+				JATH.scene.remove( JATH.wires );
 			}
 		}
+
+		chkFaceNormals.checked = false;
+		chkFaceNormals.onchange = function() {
+			if ( chkFaceNormals.checked === true ) {
+				JATH.FaceNormals = new THREE.Object3D();
+				JATH.FaceNormals.add( new THREE.FaceNormalsHelper( JATH.selectedObject, 5 ) );
+				JATH.FaceNormals.add( new THREE.FaceNormalsHelper( JATH.selectedObject, -5 ) );
+				JATH.scene.add( JATH.FaceNormals );
+			} else {
+				JATH.scene.remove( JATH.FaceNormals );
+			}
+		}
+
+		chkVertexNormals.checked = false;
+		chkVertexNormals.onchange = function() {
+			if ( chkVertexNormals.checked === true ) {
+				JATH.VertexNormals = new THREE.Object3D();
+				JATH.VertexNormals.add( new THREE.VertexNormalsHelper( JATH.selectedObject, 5, 'magenta' ) );
+				JATH.VertexNormals.add( new THREE.VertexNormalsHelper( JATH.selectedObject, -5, 'magenta' ) );
+				JATH.scene.add( JATH.VertexNormals );
+			} else {
+				JATH.scene.remove( JATH.VertexNormals );
+			}
+		}
+/* broken?
+		chkVertexTangents.checked = false;
+		chkVertexTangents.onchange = function() {
+			if ( chkVertexTangents.checked === true ) {
+				JATH.VertexTangents = new THREE.Object3D();
+				JATH.VertexTangents.add( new THREE.VertexTangentsHelper( JATH.selectedObject, 50, 'red' ) );
+//				JATH.VertexTangents.add( new THREE.VertexTangentsHelper( JATH.selectedObject, -5, 'red' ) );
+				JATH.scene.add( JATH.VertexTangents );
+			} else {
+				JATH.scene.remove( JATH.VertexTangents );
+			}
+		}
+*/
 
 		rngVerticalScale.onchange = function() {
 			JATH.selectedObject.scale.y = rngVerticalScale.value * 0.02 * JATH.selectedObject.scale.y; 
 			if ( wires ) { wires.scale.y = JATH.selectedObject.scale.y ; }
 		};
 	};
+
+
+
+//		scene.add( new THREE.FaceNormalsHelper( mesh, -50, col ) );
 
 	JAPR.updateBackground = function( id ) {
 		if ( JAPR.cssBackround ) { ASFR.ifr.contentDocument.body.removeChild( JAPR.cssBackround ); }

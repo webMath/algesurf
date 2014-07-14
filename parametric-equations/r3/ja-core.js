@@ -23,6 +23,7 @@
 		'';
 	};
 
+// GUI
 	JA.addMenu = function() {
 		JA.menu = JA.container.appendChild( document.createElement( 'div' ) );
 		JA.menu.id = 'movable';
@@ -40,6 +41,50 @@
 		JA.hr = JA.menu.appendChild( document.createElement( 'hr' ) );
 	};
 
+	JA.addAboutTab = function() {
+		var tab = JA.menu.appendChild( document.createElement( 'div' ) );
+		tab.title = 'View useful information';
+		tab.innerHTML =
+			'<a href=# onclick=JA.toggleDialogs(JA.about);ASFR.ifr.style.display=""; ><p class=button >' +
+				'<i class="fa fa-paw"></i> About...' +
+			'</p></a>'; 
+
+		JA.about = JA.container.appendChild( document.createElement( 'div' ) );
+		JA.about.style.cssText = 'display: none; background-color: #ccc; left: 50px; opacity: 0.9; padding: 20px; ' +
+			'bottom: 0; left: 0; height: 370px; margin: auto; position: absolute; right: 0; top: 0; width: 500px; z-index:10; ';
+		JA.about.innerHTML =
+			'<h3>' + document.title + ' ' + JA.titleIcon + '</h3>' +
+			'<h4>Features include the following:</h4>' +
+			'<ul>' +
+				'<li>xxx</li>' +
+				'<li>xxx</li>' +
+			'</ul>' +
+
+			'<small>' +
+				'<a href="https://github.com/jaanga/xxxxxxxxxxxxxx" target="_blank">Source code</a> ' +
+				'Credits: <a href="http://threejs.org" target="_blank">three.js</a> - ' +
+				'<a href="http://khronos.org/webgl/" target="_blank">webgl</a> - ' +
+				'<a href="http://jaanga.github.io" target="_blank">jaanga</a><br>' +
+				'copyright &copy; 2014 Jaanga authors ~ MIT license' +
+			'</small><br><br>' +
+			'<p style=text-align:right; >' +
+				'<a class=button href=JavaScript:JA.toggleDialogs(JA.about); >Close</a> ' +
+			'</p>' +
+		'';
+	};
+
+	JA.addMessageArea = function() {
+		JA.msg = JA.menu.appendChild( document.createElement( 'div' ) );
+		JA.msg.style.cssText = 'cursor: auto;';
+		JA.msg.innerHTML =
+			'<div id=divMsg1 >Msg aaa</div>' +
+			'<div id=divMsg2 >Msg bbb</div>' +
+			'<div id=divMsg3 >Msg ccc</div>' +
+			'<div id=divMsg4 ></div>' +
+			'<div id=divMsg5 ></div>' +
+		''; 
+	};
+
 	JA.addThreeFooter = function() {
 		var footer = JA.menu.appendChild( document.createElement( 'div' ) );
 		footer.style.cssText = 'cursor: auto;';
@@ -51,6 +96,8 @@
 		iconHome.href = 'JavaScript:TATH.resetCamera();'
 	};
 
+
+// Toggles
 	JA.toggleMenu = function(  ) {
 		var toggle = JA.menu.children[1].style.display === 'none' ? '' : 'none';
 		for (var i = 1; i < JA.menu.children.length; i++) {
@@ -70,13 +117,13 @@
 		dialog.style.display = toggle === 'none' ? '' : 'none';
 	};
 
-// events
+// Events
 
 	JA.onWindowResize = function () {
-		camera.aspect = window.innerWidth / window.innerHeight;
-		camera.updateProjectionMatrix();
-		renderer.setSize( window.innerWidth, window.innerHeight );
-		controls.handleResize(); // todo: verify if needed?
+		JATH.camera.aspect = window.innerWidth / window.innerHeight;
+		JATH.camera.updateProjectionMatrix();
+		JATH.renderer.setSize( window.innerWidth, window.innerHeight );
+		JATH.controls.handleResize(); // todo: verify if needed?
 	}
 
 	JA.mouseUp = function() {

@@ -1,9 +1,13 @@
 
 	var ASFR = {} || ASFR;
+	var JATH = {} || JATH;
+
 	var THREE, renderer, scene, camera, controls;
+	var mesh, geometry, material;
+
 	var app;
 
-	ASFR.addFileReader = function() {
+	ASFR.addFileReaderTab = function() {
 		var tab = JA.menu.appendChild( document.createElement( 'div' ) );
 		tab.title = 'Choose from a number of equations to display';
 		tab.innerHTML =
@@ -15,7 +19,7 @@
 		ASFR.FileReader = tab.appendChild( document.createElement( 'div' ) );
 		ASFR.FileReader.style.cssText = 'cursor: auto; display: none; ';
 
-		var fileList = '';
+		var fileList = '* particularly pretty';
 		var file;
 		for ( var i = 0, len = ASFR.files.length; i < len; i++ ) {
 			file = ASFR.files[ i ][ 1 ];
@@ -78,11 +82,14 @@
 			divMsg3.style.cssText += 'font-size: small; width: 300px;';
 			divMsg3.innerText = app.curve;
 
-			if ( app.a ) { 
+			ASCO.updateControlsTab( number );
+
+/*
+			if ( app.a !== undefined) { 
 				divCon.innerHTML += 'a: <input type=range id=inpA title="default ' + app.a + '" ' +
 					'min=' + app.aMin + ' max=' + app.aMax + ' step=' + app.aStep + ' value=' + app.a + 
-					' onmousemove=outA.value=inpA.value;updateMesh(); style=width:200px; > ' +
-					'<input id=outA style=width:30px; onchange=inpA.value=outA.value;updateMesh(); value=' + app.a + ' ><br>'; 
+					' onmousemove=outA.value=inpA.value;ASCO.updateMesh(); style=width:200px; > ' +
+					'<input id=outA style=width:30px; onchange=inpA.value=outA.value;ASCO.updateMesh(); value=' + app.a + ' ><br>'; 
 //	not			inpA.type = 'range';
 //				inpA.value = app.a;
 //				outA.value = app.a;
@@ -93,71 +100,72 @@
 //				outA.onchange = updateMesh;
 			}
 
-			if ( app.b ) { 
+			if ( app.b !== undefined) { 
 				divCon.innerHTML += 'b: <input type=range id=inpB title="default ' + app.b + '" ' +
 					'min=' + app.bMin + ' max=' + app.bMax + ' step=' + app.bStep + ' value=' + app.b + 
-					' onmousemove=outB.value=inpB.value;updateMesh(); style=width:200px; > ' +
-					'<input id=outB style=width:30px; onchange=inpB.value=outB.value;updateMesh(); value=' + app.b + ' ><br>'; 
+					' onmousemove=outB.value=inpB.value;ASCO.updateMesh(); style=width:200px; > ' +
+					'<input id=outB style=width:30px; onchange=inpB.value=outB.value;ASCO.updateMesh(); value=' + app.b + ' ><br>'; 
 			}
 
-			if ( app.c ) { 
+			if ( app.c !== undefined) { 
 				divCon.innerHTML += 'c: <input type=range id=inpC title="default ' + app.c + '" ' +
 					'min=' + app.cMin + ' max=' + app.cMax + ' step=' + app.cStep + ' value=' + app.c+ 
-					' onmousemove=outC.value=inpC.value;updateMesh(); style=width:200px; > ' +
-					'<input id=outC style=width:30px; onchange=inpC.value=outC.value;updateMesh(); value=' + app.c + ' ><br>'; 
+					' onmousemove=outC.value=inpC.value;ASCO.updateMesh(); style=width:200px; > ' +
+					'<input id=outC style=width:30px; onchange=inpC.value=outC.value;ASCO.updateMesh(); value=' + app.c + ' ><br>'; 
 			}
 
-			if ( app.d ) { 
+			if ( app.d !== undefined ) { 
 				divCon.innerHTML += 'd: <input type=range id=inpD title="default ' + app.d + '" ' +
 					'min=' + app.dMin + ' max=' + app.dMax + ' step=' + app.dStep + ' value=' + app.d + 
-					' onmousemove=outD.value=inpD.value;updateMesh(); style=width:200px; > ' +
-					'<input id=outD style=width:30px; onchange=inpD.value=outD.value;updateMesh(); value=' + app.d + ' ><br>'; 
+					' onmousemove=outD.value=inpD.value;ASCO.updateMesh(); style=width:200px; > ' +
+					'<input id=outD style=width:30px; onchange=inpD.value=outD.value;ASCO.updateMesh(); value=' + app.d + ' ><br>'; 
 			}
 
-			if ( app.e ) { 
+			if ( app.e !== undefined  ) { 
 				divCon.innerHTML += 'e: <input type=range id=inpE title="default ' + app.e + '" ' +
 					'min=' + app.eMin + ' max=' + app.eMax + ' step=' + app.eStep + ' value=' + app.e + 
-					' onmousemove=outE.value=inpE.value;updateMesh(); style=width:200px; > ' +
-					'<input id=outE style=width:30px; onchange=inpE.value=outE.value;updateMesh(); value=' + app.e + ' ><br>'; 
+					' onmousemove=outE.value=inpE.value;ASCO.updateMesh(); style=width:200px; > ' +
+					'<input id=outE style=width:30px; onchange=inpE.value=outE.value;ASCO.updateMesh(); value=' + app.e + ' ><br>'; 
 			}
 
-			if ( app.f ) { 
+			if ( app.f !== undefined  ) { 
 				divCon.innerHTML += 'f: <input type=range id=inpF title="default ' + app.f + '" ' +
 					'min=' + app.fMin + ' max=' + app.fMax + ' step=' + app.fStep + ' value=' + app.f + 
-					' onmousemove=outF.value=inpF.value;updateMesh(); style=width:200px; > ' +
-					'<input id=outF style=width:30px; onchange=inpF.value=outF.value;updateMesh(); value=' + app.f + ' ><br>'; 
+					' onmousemove=outF.value=inpF.value;ASCO.updateMesh(); style=width:200px; > ' +
+					'<input id=outF style=width:30px; onchange=inpF.value=outF.value;ASCO.updateMesh(); value=' + app.f + ' ><br>'; 
 			}
 
-			if ( app.g ) { 
+			if ( app.g !== undefined) { 
 				divCon.innerHTML += 'g: <input type=range id=inpG title="default ' + app.g + '" ' +
 					'min=' + app.gMin + ' max=' + app.gMax + ' step=' + app.gStep + ' value=' + app.g + 
-					' onmousemove=outG.value=inpG.value;updateMesh(); style=width:200px; > ' +
-					'<input id=outG style=width:30px; onchange=inpG.value=outG.value;updateMesh(); value=' + app.g + ' ><br>'; 
+					' onmousemove=outG.value=inpG.value;ASCO.updateMesh(); style=width:200px; > ' +
+					'<input id=outG style=width:30px; onchange=inpG.value=outG.value;ASCO.updateMesh(); value=' + app.g + ' ><br>'; 
 			}
 
-			if ( app.h ) { 
+			if ( app.h !== undefined) { 
 				divCon.innerHTML += 'h: <input type=range id=inpH title="default ' + app.h + '" ' +
 					'min=' + app.hMin + ' max=' + app.hMax + ' step=' + app.hStep + ' value=' + app.h + 
-					' onmousemove=outH.value=inpH.value;updateMesh(); style=width:200px; > ' +
-					'<input id=outH style=width:30px; onchange=inpH.value=outH.value;updateMesh(); value=' + app.h + ' ><br>'; 
+					' onmousemove=outH.value=inpH.value;ASCO.updateMesh(); style=width:200px; > ' +
+					'<input id=outH style=width:30px; onchange=inpH.value=outH.value;ASCO.updateMesh(); value=' + app.h + ' ><br>'; 
 			}
 
-			if ( app.R1 ) { 
+			if ( app.R1 !== undefined) { 
 				divCon.innerHTML += 'R1: <input type=range id=inpR1 title="default ' + app.R1 + '" ' +
 					'min=' + app.R1Min + ' max=' + app.R1Max + ' step=' + app.R1Step + ' value=' + app.R1 + 
-					' onmousemove=outR1.value=inpR1.value;updateMesh(); style=width:195px; > ' +
-					'<input id=outR1 style=width:30px; onchange=inpR1.value=outR1.value;updateMesh(); value=' + app.R1 + ' ><br>'; 
+					' onmousemove=outR1.value=inpR1.value;ASCO.updateMesh(); style=width:195px; > ' +
+					'<input id=outR1 style=width:30px; onchange=inpR1.value=outR1.value;ASCO.updateMesh(); value=' + app.R1 + ' ><br>'; 
 			}
 
-			if ( app.R2 ) { 
+			if ( app.R2 !== undefined) { 
 				divCon.innerHTML += 'R2: <input type=range id=inpR2 title="default ' + app.R2 + '" ' +
 					'min=' + app.R2Min + ' max=' + app.R2Max + ' step=' + app.R2Step + ' value=' + app.R2 + 
-					' onmousemove=outR2.value=inpR2.value;updateMesh(); style=width:195px; > ' +
-					'<input id=outR2 style=width:30px; onchange=inpR2.value=outR2.value;updateMesh(); value=' + app.R2 + ' ><br>'; 
+					' onmousemove=outR2.value=inpR2.value;ASCO.updateMesh(); style=width:195px; > ' +
+					'<input id=outR2 style=width:30px; onchange=inpR2.value=outR2.value;ASCO.updateMesh(); value=' + app.R2 + ' ><br>'; 
 			}
-			divCon.innerHTML += '<button onclick=ASFR.updateIframe("' + number + '"); >Reset</button>';
-			
 
+			divCon.innerHTML += '<button onclick=ASFR.updateIframe("' + number + '"); >Reset</button>';
+
+*/
 		}
 		ASFR.ifr.src = '../equation-files/' + file + '/' + file + '.html';	
 	}
@@ -165,8 +173,6 @@
 	ASFR.updateRenderer = function() {
 		app.renderer.shadowMapEnabled = true;
 		app.renderer.shadowMapSoft = true;
-
-
 	}
 
 	ASFR.files = [
@@ -209,7 +215,7 @@
 		['drop-i','Drop I'],
 		['drop-ii','Drop II'],
 		['dupin-cyclide','Dupin Cyclide'],
-		['egg','Egg'],
+		['egg','Egg <br><br><b>\>\><br>From here on only some have coefficients</b><br>'],
 		['eight-surface','Eight Surface'],
 		['ellipsoid','Ellipsoid'],
 		['enneper-surface','Enneper Surface'],

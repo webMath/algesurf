@@ -12,11 +12,11 @@
 // http://www.3d-meier.de/tut3/Seite43.html
 
 	var renderer, scene, camera, controls;
-		var geometry, material, mesh;
+	var geometry, material, mesh;
 
-		var pi = Math.PI;
-		var scale = 25;
-		var x, y, z;
+	var pi = Math.PI;
+	var scale = 25;
+	var x, y, z;
 
 	init();
 	animate();
@@ -36,22 +36,19 @@
 		geometry = new THREE.ParametricGeometry( curve, 20, 20 );
 		material = new THREE.MeshNormalMaterial( { shading: THREE.SmoothShading, side: 2 } )
 		mesh = new THREE.Mesh( geometry, material );
-
-
-
 		scene.add( mesh );
 	}
 
-		function curve( u, v ) {		
-			u = 2 * pi * ( u - 0.5 );
-			v = pi * ( v - 0.5 );
+	function curve( u, v ) {		
+		u = 2 * pi * ( u - 0.5 );
+		v = pi * ( v - 0.5 );
 
-			x = scale * ( ( 1 - cosh( u ) ) * sin( u ) * cos( v ) / 2 );
-			y = scale * ( ( 1 - cosh( u ) ) * sin( u ) * sin( v ) / 2 + 1);
-			z = scale * ( cosh( u ) - 6);
+		x = scale * ( ( 1 - cosh( u ) ) * sin( u ) * cos( v ) / 2 );
+		y = scale * ( ( 1 - cosh( u ) ) * sin( u ) * sin( v ) / 2 + 1);
+		z = scale * ( cosh( u ) - 6);
 
-			return new THREE.Vector3( x, y, z );
-		}
+		return new THREE.Vector3( x, y, z );
+	}
 
 	function cos( a ){ return Math.cos( a ); }
 	function sin( a ){ return Math.sin( a ); }
@@ -71,7 +68,6 @@
 	function sinh( a ){ return Math.sinh( a ); }
 	function tanh( a ){ return Math.tanh( a ); }
 	function sech( a ){ return Math.sech( a ); }
-
 */
 
 	function sinh( a ){ return ( exp( a ) - exp( -a ) ) / 2; }
@@ -83,8 +79,8 @@
 		requestAnimationFrame( animate );
 		renderer.render( scene, camera );
 		controls.update();
-		stats.update();
 	}
+
 </script>
 </body>
 </html>

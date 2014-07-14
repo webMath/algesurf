@@ -2,17 +2,17 @@
 
 	JAMA.basePath = '../../../';
 
-	JAMA.addMaterialSelectBox = function() {
+	JAMA.addMaterialSelectTab = function() {
 		var tab = JA.menu.appendChild( document.createElement( 'div' ) );
 		tab.title = 'Choose from a number of materials to apply to the surface';
 		tab.innerHTML =
 			'<a href=# id=tabMaterialSelect ><p class=button >' +
 				'<i class="fa fa-cubes"></i> Material Select...' +
 			'</p></a>';
-		tabMaterialSelect.onclick = function() { JA.toggleTab( JAMA.MaterialSelectBox ); } ;
+		tabMaterialSelect.onclick = function() { JA.toggleTab( JAMA.MaterialSelectTab ); } ;
 
-		JAMA.MaterialSelectBox = tab.appendChild( document.createElement( 'div' ) );
-		JAMA.MaterialSelectBox.style.cssText = 'cursor: auto; display: none; ';
+		JAMA.MaterialSelectTab = tab.appendChild( document.createElement( 'div' ) );
+		JAMA.MaterialSelectTab.style.cssText = 'cursor: auto; display: none; ';
 
 		var basic = '';
 		var envMap = '';
@@ -28,7 +28,7 @@
 			}
 		}
 
-		JAMA.MaterialSelectBox.innerHTML =
+		JAMA.MaterialSelectTab.innerHTML =
 			'<input type=checkbox id=chkMaterial > Use default material' +
 			'<h3 style=margin:0; >Basic</h3>' +
 			basic +
@@ -45,20 +45,20 @@
 // console.log( 'update',  key );
 	};
 
-	JAMA.addMaterialEditorBox = function() {
+	JAMA.addMaterialEditorTab = function() {
 		var tab = JA.menu.appendChild( document.createElement( 'div' ) );
 		tab.title = 'Edit the parameters of the current material';
 		tab.innerHTML =
 			'<a href=# id=tabMaterialEditor ><p class=button >' +
 				'<i class="fa fa-cube"></i> Material Editor...' +
 			'</p></a>';
-		tabMaterialEditor.onclick = function() { JA.toggleTab( JAMA.MaterialEditorBox ); JAMA.updateMaterialEditorBox( JATH.selectedObject ); } ;
+		tabMaterialEditor.onclick = function() { JA.toggleTab( JAMA.MaterialEditorTab ); JAMA.updateMaterialEditorTab( JATH.selectedObject ); } ;
 
-		JAMA.MaterialEditorBox = tab.appendChild( document.createElement( 'div' ) );
-		JAMA.MaterialEditorBox.style.cssText = 'cursor: auto; display: none; ' ;
+		JAMA.MaterialEditorTab = tab.appendChild( document.createElement( 'div' ) );
+		JAMA.MaterialEditorTab.style.cssText = 'cursor: auto; display: none; ' ;
 	};
 
-	JAMA.updateMaterialEditorBox = function() {
+	JAMA.updateMaterialEditorTab = function() {
 		var m = JATH.selectedObject.material;
 		var txt = 
 			'<p>Selected id: ' + JATH.selectedObject.id + '</p>' +
@@ -95,10 +95,10 @@
 					'<output id=outShininess >' + m.shininess + '</output><br>' +
 			'</p>' +
 			'<p style=text-align:right; >' +
-				'<a class=button href=JavaScript:JA.toggleTab(JAMA.MaterialEditorBox); >Close</a> ' +
+				'<a class=button href=JavaScript:JA.toggleTab(JAMA.MaterialEditorTab); >Close</a> ' +
 			'</p>' +
 		'';
-		JAMA.MaterialEditorBox.innerHTML = txt;
+		JAMA.MaterialEditorTab.innerHTML = txt;
 
 		selMaterial.selectedIndex = m.type;
 		selMaterial.onchange = function() {
@@ -115,25 +115,25 @@
 				JATH.selectedObject.material = new THREE.MeshPhongMaterial( { color: 0x000000 } );
 				JATH.selectedObject.material.type = 3;
 			}
-			JAMA.updateMaterialEditorBox();
+			JAMA.updateMaterialEditorTab();
 		};
 // console.log( JATH.selectedObject.material, JATH.selectedObject.material.type );
 		selShading.selectedIndex = m.shading;
-		selShading.onchange = function() { m.shading = selShading.selectedIndex; JAMA.updateMaterialEditorBox(); };
+		selShading.onchange = function() { m.shading = selShading.selectedIndex; JAMA.updateMaterialEditorTab(); };
 
 		selSide.selectedIndex = m.side;
-		selSide.onchange = function() { m.side = selSide.selectedIndex; JAMA.updateMaterialEditorBox(); };
+		selSide.onchange = function() { m.side = selSide.selectedIndex; JAMA.updateMaterialEditorTab(); };
 
-		if ( m.ambient ) inpAmbient.onchange = function() { m.ambient.setHex( this.value.replace("#", "0x") ); JAMA.updateMaterialEditorBox(); };
-		if ( m.color ) inpColor.onchange = function() { m.color.setHex( this.value.replace("#", "0x") ); JAMA.updateMaterialEditorBox(); };
-		if ( m.emissive ) inpEmissive.onchange = function() { m.emissive.setHex( this.value.replace("#", "0x") ); JAMA.updateMaterialEditorBox(); };
-		if ( m.specular ) inpSpecular.onchange = function() { m.specular.setHex( this.value.replace("#", "0x") ); JAMA.updateMaterialEditorBox(); };
+		if ( m.ambient ) inpAmbient.onchange = function() { m.ambient.setHex( this.value.replace("#", "0x") ); JAMA.updateMaterialEditorTab(); };
+		if ( m.color ) inpColor.onchange = function() { m.color.setHex( this.value.replace("#", "0x") ); JAMA.updateMaterialEditorTab(); };
+		if ( m.emissive ) inpEmissive.onchange = function() { m.emissive.setHex( this.value.replace("#", "0x") ); JAMA.updateMaterialEditorTab(); };
+		if ( m.specular ) inpSpecular.onchange = function() { m.specular.setHex( this.value.replace("#", "0x") ); JAMA.updateMaterialEditorTab(); };
 
 		inpMetal.checked = m.metal;
-		inpMetal.onchange = function() { m.metal = this.checked; JAMA.updateMaterialEditorBox(); };
+		inpMetal.onchange = function() { m.metal = this.checked; JAMA.updateMaterialEditorTab(); };
 		inpWireframe.checked = m.wireframe;
-		inpWireframe.onchange = function() { m.wireframe = inpWireframe.checked; JAMA.updateMaterialEditorBox(); };
+		inpWireframe.onchange = function() { m.wireframe = inpWireframe.checked; JAMA.updateMaterialEditorTab(); };
 
-		inpOpacity.onchange = function() {  m.opacity = parseFloat( this.value ); m.transparent = true; JAMA.updateMaterialEditorBox(); };
-		inpShininess.onchange = function() { m.shininess = this.value; JAMA.updateMaterialEditorBox(); };
+		inpOpacity.onchange = function() {  m.opacity = parseFloat( this.value ); m.transparent = true; JAMA.updateMaterialEditorTab(); };
+		inpShininess.onchange = function() { m.shininess = this.value; JAMA.updateMaterialEditorTab(); };
 	};

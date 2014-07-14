@@ -12,12 +12,26 @@
 // http://www.3d-meier.de/tut3/Seite134.html
 
 	var renderer, scene, camera, controls;
-		var geometry, material, mesh;
-		var pi = Math.PI;
-		var scale = 10;
-		var x, y, z;
+	var geometry, material, mesh;
+	var pi = Math.PI;
+	var x, y, z;
+	var r, s, t;
 
-		var s, t;
+	var scale = 10;
+
+	var a = 3, aMin = -5, aMax = 5, aStep = 0.1;
+	var b = 3, bMin = -5, bMax = 5, bStep = 0.1;
+	var c = 2, cMin = -5, cMax = 5, cStep = 0.1;
+
+	var d = 3, dMin = -5, dMax = 5, dStep = 0.1;
+	var e = 3, eMin = -5, eMax = 5, eStep = 0.1;
+	var f = 2, fMin = -5, fMax = 5, fStep = 0.1;
+
+	var g = 2, gMin = -5, gMax = 5, gStep = 0.1;
+	var h = 1, hMin = -5, hMax = 5, hStep = 0.1;
+
+	var R1 = 1, R1Min = -5, R1Max = 5, R1Step = 0.1;
+	var R2 = 1, R2Min = -5, R2Max = 5, R2Step = 0.1;
 
 	init();
 	animate();
@@ -34,9 +48,6 @@
 		camera.position.set( 100, 100, 100 );
 		controls = new THREE.TrackballControls( camera, renderer.domElement );
 
-
-
-
 		geometry = new THREE.ParametricGeometry( curve, 80, 15 );
 		material = new THREE.MeshNormalMaterial( { shading: THREE.SmoothShading, side: 2 } )
 		mesh = new THREE.Mesh( geometry, material );
@@ -50,9 +61,9 @@
 		s = v * cos( u );
 		t = v * sin( u );
 
-		x = scale * ( s - s*s*s / 3 + s * t*t );
-		y = scale * ( t - t * t * t / 3 + t * s * s );
-		z = scale * ( s * s - t * s );
+		x = scale * R1 * ( s - pow( s, a ) / b + s * pow( t, c ) );
+		y = scale * R2 * ( t - pow( t, d  )/ e + t * pow( s, f ) );
+		z = scale * R1 * ( pow( s, g ) - h * s * t );
 
 		return new THREE.Vector3( x, y, z );
 	}

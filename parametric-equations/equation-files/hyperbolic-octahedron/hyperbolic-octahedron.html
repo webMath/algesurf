@@ -13,10 +13,25 @@
 
 	var renderer, scene, camera, controls;
 	var geometry, material, mesh;
-
 	var pi = Math.PI;
-	var scale = 80;
 	var x, y, z;
+
+	var scale = 80;
+	var a = 3, aMin = -5, aMax = 5, aStep = 0.1;
+	var b = 3, bMin = -5, bMax = 5, bStep = 0.1;
+	var c = 3, cMin = -5, cMax = 5, cStep = 0.1;
+
+	var d = 0, dMin = -5, dMax = 5, dStep = 0.1;
+	var e = 0, eMin = -5, eMax = 5, eStep = 0.1;
+	var f = 0, fMin = -5, fMax = 5, fStep = 0.1;
+
+	var g = 1, gMin = -5, gMax = 5, gStep = 0.1;
+	var h = 1, hMin = -5, hMax = 5, hStep = 0.1;
+
+	var R1 = 1, R1Min = -5, R1Max = 5, R1Step = 0.1;
+	var R2 = 1, R2Min = -5, R2Max = 5, R2Step = 0.1;
+
+
 
 	init();
 	animate();
@@ -43,9 +58,9 @@
 		u = pi * ( u - 0.5 );
 		v = 2 * pi * ( v - 0.5 );
 
-		x = scale * ( pow( ( cos( u ) * cos( v ) ), 3 ) );
-		y = scale * ( pow( sin( u ) * cos( v ), 3 ) );
-		z = scale * ( pow( sin( v ), 3 ) );
+		x = scale * R1 * ( pow( ( cos( u - d ) * cos( v ) ), a ) );
+		y = scale * R2 * ( pow( sin( u - e ) * cos( v ), b ) );
+		z = scale * R1 * ( pow( sin( v - f ), c ) );
 
 		return new THREE.Vector3( x, y, z );
 	}

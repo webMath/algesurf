@@ -22,6 +22,18 @@
 	var a = 1
 	var b = 16;
 
+	var a = 1, aMin = -5, aMax = 5, aStep = 0.1;
+	var b = 2, bMin = -5, bMax = 5, bStep = 0.1;
+	var c = 2, cMin = -5, cMax = 5, cStep = 0.1;
+	var d = 1, dMin = -5, dMax = 5, dStep = 0.1;
+
+	var e = 2, eMin = -5, eMax = 5, eStep = 0.1;
+	var f = 2, fMin = -5, fMax = 5, fStep = 0.1;
+	var g = 2, gMin = -5, gMax = 5, gStep = 0.1;
+	var h = 2, hMin = -5, hMax = 5, hStep = 0.1;
+
+	var R1 = 1, R1Min = -5, R1Max = 5, R1Step = 0.1;
+	var R2 = 1, R2Min = -5, R2Max = 5, R2Step = 0.1;
 
 	init();
 	animate();
@@ -48,9 +60,9 @@
 		u = 2 * pi * ( u - 0.5 );
 		v = 2 * pi * ( v - 0.5 );
 
-		x = scale * ( cos( u ) * ( a + sin( v ) * cos( u / 2 ) - sin( 2 * v ) * sin( u / 2 ) / 2 ) );
-		y = scale * ( sin( u ) * ( a + sin( v ) * cos( u / 2 ) - sin( 2 * v ) * sin( u / 2 ) / 2 ) );
-		z = scale * ( sin( u / 2 ) * sin( v ) + cos( u / 2 ) * sin( 2 * v ) / 2 );
+		x = scale * R1 * ( cos( u ) * ( a + sin( v ) * cos( u / b ) - sin( 2 * v ) * sin( u / 2 ) / c ) );
+		y = scale * R2 * ( sin( u ) * ( d + sin( v ) * cos( u / e ) - sin( 2 * v ) * sin( u / 2 ) / f ) );
+		z = scale * R1 * ( sin( u / g ) * sin( v ) + cos( u / 2 ) * sin( 2 * v ) / h );
 
 		return new THREE.Vector3( x, y, z );
 	}

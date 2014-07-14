@@ -13,13 +13,27 @@
 // http://paulbourke.net/geometry/kuen/
 
 	var renderer, scene, camera, controls;
-		var geometry, material, mesh;
+	var geometry, material, mesh;
 
-		var pi = Math.PI;
-		var scale = 50;
-		var x, y, z;
+	var pi = Math.PI;
+	var scale = 50;
+	var x, y, z;
+	var h;
 
-		var h;
+	var a = 2, aMin = -5, aMax = 5, aStep = 0.1;
+	var b = 2, bMin = -5, bMax = 5, bStep = 0.1;
+	var c = 1, cMin = -5, cMax = 5, cStep = 0.1;
+	var d = 2, dMin = -5, dMax = 5, dStep = 0.1;
+
+	var e = 2, eMin = -5, eMax = 5, eStep = 0.1;
+	var f = 2, fMin = -5, fMax = 5, fStep = 0.1;
+	var g = 2, gMin = -5, gMax = 5, gStep = 0.1;
+	var h = 1, hMin = -5, hMax = 5, hStep = 0.1;
+
+	var R1 = 1, R1Min = -5, R1Max = 5, R1Step = 0.1;
+	var R2 = 1, R2Min = -5, R2Max = 5, R2Step = 0.1;
+
+
 	init();
 	animate();
 
@@ -42,14 +56,14 @@
 	}
 
 	function curve( u, v ) {		
-		u = 3 * pi * ( u - 0.5 );
-		v = 3 * ( v ) + 0.035;
+		u = 4.3 * pi * ( u - 0.5 );
+		v = 3.11 * ( v )  + 0.035;
 
-		h = 1 + u * u * sin( v ) * sin( v );
+		r = c + pow( u, a ) * pow( sin( v ), b );
 
-		x = scale * ( ( 2 * ( cos( u ) + u * sin( u ) ) * sin( v ) ) / h );
-		y = scale * ( ( 2 * ( -u * cos(u) + sin(u)) * sin( v ) ) / h );  // paul bourke's version
-		z = scale * ( log( tan( v / 2 ) )  + 2 * cos( v ) / h );
+		x = scale * R1 * ( ( d * ( cos( u ) + u * sin( u ) ) * sin( v ) ) / r );
+		y = scale * R2 * ( ( e * ( -u * cos(u) + sin(u)) * sin( v ) ) / r );  // paul bourke's version
+		z = scale * R1 * ( h * log( tan( v / f ) ) + g * cos( v ) / r );
 
 		return new THREE.Vector3( x, y, z );
 	}

@@ -14,13 +14,27 @@
 	var renderer, scene, camera, controls;
 	var geometry, material, mesh;
 	var pi = Math.PI;
-	var scale = 25;
 	var x, y, z;
 
+	var scale = 25;
 	var a = 2.0;
 	var S = 2.0;
 	var T = 4.0;
 	var W;
+
+	var a = 2, aMin = -5, aMax = 5, aStep = 0.1;
+	var b = 2, bMin = -5, bMax = 5, bStep = 0.1;
+	var c = 4, cMin = -5, cMax = 5, cStep = 0.1;
+	var d = 2, dMin = -5, dMax = 5, dStep = 0.1;
+
+	var e = 1, eMin = -5, eMax = 5, eStep = 0.1;
+	var f = 1, fMin = -5, fMax = 5, fStep = 0.1;
+	var g = 1, gMin = -5, gMax = 5, gStep = 0.1;
+	var h = 1, hMin = -5, hMax = 5, hStep = 0.1;
+
+	var R1 = 1, R1Min = -5, R1Max = 5, R1Step = 0.1;
+	var R2 = 1, R2Min = -5, R2Max = 5, R2Step = 0.1;
+
 
 	init();
 	animate();
@@ -43,18 +57,18 @@
 		scene.add( mesh );
 	}
 
-		function curve( u, v ) {		
-			u = 2 * pi * ( u );
-			v = 2 * pi * ( v );
+	function curve( u, v ) {		
+		u = 2 * pi * ( u );
+		v = 2 * pi * ( v );
 
-			W = W = ((S + 1) / 4 ) * cos( ( S + 1 ) * u + pi / T ) + sqrt(a  )
+		W = W = ( ( b + 1 ) / 4 ) * cos( ( d + 1 ) * u + pi / c ) + sqrt( a )
 
-			x = scale * ( S * cos( u ) + cos( S * u ) - W * sin( ( S - 1 ) * u / 2 ) * cos( v ) );
-			y = scale * ( W * sin( v ) );
-			z = scale * ( S * sin( u ) - sin( S * u ) - W * cos( ( S - 1 ) * u / 2 ) * cos( v ) );
+		x = scale * ( b * cos( u ) + cos( b * u ) - W * sin( ( b - 1 ) * u / 2 ) * cos( v ) );
+		y = scale * ( W * sin( v ) );
+		z = scale * ( b * sin( u ) - sin( b * u ) - W * cos( ( b - 1 ) * u / 2 ) * cos( v ) );
 
-			return new THREE.Vector3( x, y, z );
-		}
+		return new THREE.Vector3( x, y, z );
+	}
 
 	function cos( a ){ return Math.cos( a ); }
 	function sin( a ){ return Math.sin( a ); }
@@ -71,6 +85,7 @@
 		renderer.render( scene, camera );
 		controls.update();
 	}
+
 </script>
 </body>
 </html>
