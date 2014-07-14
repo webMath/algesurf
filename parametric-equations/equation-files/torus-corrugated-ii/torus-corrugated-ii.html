@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang=en >
 <head>
-<title>Torus Corrugated II</title>
+<title>Torus Wavy II</title>
 <meta charset=utf-8 >
 <meta name=viewport content=width=device-width,user-scalable=no,minimum-scale=1.0,maximum-scale=1.0 >
 </head>
@@ -19,8 +19,8 @@
 
 		var n = 8;
 		var R1 = 1.5;
-		var R1 = 8;
-		var R2 = 2;
+		var R2 = 8;
+		var R3 = 2;
 
 	init();
 	animate();
@@ -47,9 +47,9 @@
 		u = 2 * pi * ( u - 0.5 );
 		v = 2 * pi * ( v - 0.5 );
 
-		x = scale * ( ( R1 + R2 * cos( n * u ) + R1 * cos( v ) ) * cos( u ) );
+		x = scale * ( ( R2 + R3 * cos( n * u ) + R1 * cos( v ) ) * cos( u ) );
 		y = scale * ( R1 * sin( v ) );
-		z = scale * ( ( R1 + R2 * cos( n * u ) + R1 * cos( v ) ) * sin( u ) );
+		z = scale * ( ( R2 + R3 * cos( n * u ) + R1 * cos( v ) ) * sin( u ) );
 
 		return new THREE.Vector3( x, y, z );
 	}

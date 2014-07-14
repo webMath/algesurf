@@ -20,7 +20,7 @@
 		for ( var key in JAMA.materials ) {
 			title = JAMA.materials[key].title;
 			category = JAMA.materials[key].category;
-			txt = '<a href=# onclick="JAMA.updateMaterial( JAMA.materials.' + key + ');" >' + title + '</a><br>';
+			txt = '<a href=# onclick="JAMA.updateMaterial( \'' + key + '\' );" >' + title + '</a><br>';
 			if ( category === "Basic" ) {
 				basic += txt;
 			} else {
@@ -29,6 +29,7 @@
 		}
 
 		JAMA.MaterialSelectBox.innerHTML =
+			'<input type=checkbox id=chkMaterial > Use default material' +
 			'<h3 style=margin:0; >Basic</h3>' +
 			basic +
 			'<h3 style=margin:0; >Evironment Map</h3>' +
@@ -36,12 +37,12 @@
 		'';
 	};
 
-
-	JAMA.updateMaterial = function( mat ) {
-		var sides = JATH.selectedObject.material.side;
-		JATH.selectedObject.material = mat.set();
-		JATH.selectedObject.material.side = sides;
-		divMsg2.innerText = 'Material: ' + mat.title;
+	JAMA.updateMaterial = function( key ) {
+		chkMaterial.checked = false;
+		JATH.materialKey = key;
+		JATH.selectedObject.material = JAMA.materials[ key ].set();
+		divMsg2.innerHTML = 'Material: <b>' + JAMA.materials[ key ].title + '</b>';
+// console.log( 'update',  key );
 	};
 
 	JAMA.addMaterialEditorBox = function() {

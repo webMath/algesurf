@@ -51,7 +51,7 @@ materials.push( new THREE.MeshPhongMaterial( { ambient: 0x030303, color: 0xddddd
 		title: "Basic Flat Red",
 		category: "Basic",
 		set: function() {
-			material = new THREE.MeshBasicMaterial( { color: 0xff0000, shading: THREE.FlatShading });
+			material = new THREE.MeshBasicMaterial( { color: 0xff0000, shading: THREE.FlatShading, side: 2 });
 			material.type = 1;
 			return material;
 		}
@@ -63,7 +63,7 @@ materials.push( new THREE.MeshPhongMaterial( { ambient: 0x030303, color: 0xddddd
 		category: "Basic",
 		set: function() {
 			var color =  Math.random() * 0xffffff;
-			material = new THREE.MeshLambertMaterial( { ambient: color, color: color, emissive: color, shading: THREE.SmoothShading });
+			material = new THREE.MeshLambertMaterial( { ambient: color, color: color, emissive: color, shading: THREE.SmoothShading, side: 2 });
 			material.type = 2;
 			return material;
 		}
@@ -73,7 +73,7 @@ materials.push( new THREE.MeshPhongMaterial( { ambient: 0x030303, color: 0xddddd
 		title: "Phong Plastic Red",
 		category: "Basic",
 		set: function() {
-			var material = new THREE.MeshPhongMaterial( { color: 0xff0000, specular: 0x888888, ambient: 0xff0000, shininess: 250 } );
+			var material = new THREE.MeshPhongMaterial( { color: 0xff0000, specular: 0x888888, ambient: 0xff0000, shininess: 250, side: 2 } );
 			material.type = 3;
 			return material;
 		}
@@ -84,7 +84,8 @@ materials.push( new THREE.MeshPhongMaterial( { ambient: 0x030303, color: 0xddddd
 		title: "Phong Flat Blue",
 		category: "Basic",
 		set: function() {
-			var material = new THREE.MeshPhongMaterial( { ambient: 0x0000ff, color: 0x0000ff, emissive: 0x000055, specular: 0x550000, shininess: 20, shading: THREE.FlatShading } );
+			var material = new THREE.MeshPhongMaterial( { 
+				ambient: 0x0000ff, color: 0x0000ff, emissive: 0x000055, specular: 0x550000, shininess: 20, shading: THREE.FlatShading, side: 2 } );
 			material.type = 3;
 			return material;
 		}
@@ -94,7 +95,8 @@ materials.push( new THREE.MeshPhongMaterial( { ambient: 0x030303, color: 0xddddd
 		title: "Phong Flat Purple",
 		category: "Basic",
 		set: function() {
-			var material =  new THREE.MeshPhongMaterial( { ambient: 0x888800, color: 0xdd00ff, emissive: 0x220033, specular: 0x009900, shininess: 30, shading: THREE.FlatShading });
+			var material =  new THREE.MeshPhongMaterial( { 
+			ambient: 0x888800, color: 0xdd00ff, emissive: 0x220033, specular: 0x009900, shininess: 30, shading: THREE.FlatShading, side: 2 });
 			material.type = 3;
 			return material;
 		}
@@ -105,7 +107,8 @@ materials.push( new THREE.MeshPhongMaterial( { ambient: 0x030303, color: 0xddddd
 		category: "Basic",
 		set: function() {
 			var material = new THREE.MeshPhongMaterial( { 
-				ambient: 0x03aa03, color: 0xddffdd, emissive: 0x005500, reflectivity: 0.5, specular: 0x009900, shininess: 10, shading: THREE.SmoothShading });
+				ambient: 0x03aa03, color: 0xddffdd, emissive: 0x005500, reflectivity: 0.5, specular: 0x009900, shininess: 10, 
+				shading: THREE.SmoothShading, side: 2 });
 			material.type = 3;
 			return material;
 		}
@@ -143,26 +146,6 @@ materials.push( new THREE.MeshPhongMaterial( { ambient: 0x030303, color: 0xddddd
 		var material = new THREE.MeshBasicMaterial( { color: 0xff0000, vertexColors: THREE.VertexColors  } );
 		material.title = "xxx";
 		material.type = 3;
-		return material;
-	};
-
-// textures
-
-	JAMA.materials.PhongTextureRandom = function() {
-		var texture = new THREE.ImageUtils.loadTexture( '../../../textures/pure-white.png' );
-		var material = new THREE.MeshPhongMaterial( { color: 0xffffff, map: texture, transparent: true } );
-		material.title = "xxx";
-		material.type = 3;
-		material.ambient.setHex( 0xffffff * Math.random() );
-		material.color.setHex( 0xffffff * Math.random() );
-		material.emissive.setHex( 0x333333 * Math.random() );
-		material.metal = Math.floor( 2 * Math.random() );
-		material.opacity = Math.random().toFixed(2);
-		material.side = 2;
-		material.shininess = (100 * Math.random()).toFixed(0);
-		material.specular.setHex( 0x888888 * Math.random() );
-		material.transparent = true;
-//		material.wireframe = Math.floor( 1.3 * Math.random() );
 		return material;
 	};
 */
@@ -214,6 +197,7 @@ materials.push( new THREE.MeshPhongMaterial( { ambient: 0x030303, color: 0xddddd
 				metal: true,
 				reflectivity: 0.3,
 				shininess: 50,
+				side: 2,
 				specular: 0xffffff
 
 			});
@@ -301,10 +285,10 @@ materials.push( new THREE.MeshPhongMaterial( { ambient: 0x030303, color: 0xddddd
 		}
 	};
 
-	JAMA.materials.PhongDisturb = {
-		title: "Phong Disturb",
+	JAMA.materials.PhongDisturbRandom = {
+		title: "Phong Disturb Random",
 		set: function() {
-		var texture = new THREE.ImageUtils.loadTexture( JAMA.basePath + 'textures/' );
+			// var texture = new THREE.ImageUtils.loadTexture( JAMA.basePath + 'textures/' );
 			var p = JAMA.basePath + 'textures/';
 			var urls = [ p + 'disturb.jpg', p + 'disturb.jpg', p + 'disturb.jpg', p + 'disturb.jpg', p + 'disturb.jpg', p + 'disturb.jpg' ];
 			var texture = THREE.ImageUtils.loadTextureCube( urls, new THREE.CubeRefractionMapping() );
@@ -324,8 +308,8 @@ materials.push( new THREE.MeshPhongMaterial( { ambient: 0x030303, color: 0xddddd
 		}
 	};
 
-	JAMA.materials.PhongEnvMapDenim = {
-		title: "Phong EnvMap Denim",
+	JAMA.materials.PhongDenimReflectionRandom = {
+		title: "Phong Denim Reflect Random",
 		set: function() {
 			var p = JAMA.basePath + 'textures/';
 			var urls = [ p + 'denim.jpg', p + 'denim.jpg', p + 'denim.jpg', p + 'denim.jpg', p + 'denim.jpg', p + 'denim.jpg' ];
@@ -366,6 +350,35 @@ materials.push( new THREE.MeshPhongMaterial( { ambient: 0x030303, color: 0xddddd
 		}
 	};
 
+	JAMA.materials.PhongDenimReflectionBasic = {
+		title: "Phong Denim Reflect Basic",
+		category: "Evironment Map",
+		set: function() {
+			var p = JAMA.basePath + 'textures/';
+			var urls = [ p + 'denim.jpg', p + 'denim.jpg', p + 'denim.jpg', p + 'denim.jpg', p + 'denim.jpg', p + 'denim.jpg' ];
+
+			var reflectionCube = THREE.ImageUtils.loadTextureCube( urls );
+
+			var material = new THREE.MeshBasicMaterial( { color: 0xffffff, envMap: reflectionCube, side: 2 } );
+			material.type = 3;
+			return material;
+		}
+	};
+
+	JAMA.materials.PhongDenimRefractionBasic = {
+		title: "Phong Denim Refract Basic",
+		category: "Evironment Map",
+		set: function() {
+			var p = JAMA.basePath + 'textures/';
+			var urls = [ p + 'denim.jpg', p + 'denim.jpg', p + 'denim.jpg', p + 'denim.jpg', p + 'denim.jpg', p + 'denim.jpg' ];
+
+			var refractionCube = THREE.ImageUtils.loadTextureCube( urls, new THREE.CubeRefractionMapping() );
+
+			var material = new THREE.MeshBasicMaterial( { color: 0xffffff, envMap: refractionCube, side: 2 } );
+			material.type = 3;
+			return material;
+		}
+	};
 
 // Reflections
 
@@ -405,7 +418,7 @@ materials.push( new THREE.MeshPhongMaterial( { ambient: 0x030303, color: 0xddddd
 				path + 'pz' + format, path + 'nz' + format
 			];
 			var texture = THREE.ImageUtils.loadTextureCube( urls, new THREE.CubeRefractionMapping() );
-			var material = new THREE.MeshPhongMaterial( { color: 0xccddff, envMap: texture, refractionRatio: 0.98, reflectivity:0.9 } );
+			var material = new THREE.MeshPhongMaterial( { color: 0xccddff, envMap: texture, refractionRatio: 0.98, reflectivity: 0.9, side: 2 } );
 			material.type = 3;
 			return material;
 		}
@@ -423,7 +436,7 @@ materials.push( new THREE.MeshPhongMaterial( { ambient: 0x030303, color: 0xddddd
 				path + 'pz' + format, path + 'nz' + format
 			];
 			var refraction = THREE.ImageUtils.loadTextureCube( urls, new THREE.CubeRefractionMapping() );
-			var material = new THREE.MeshBasicMaterial( { color: 0xccccff, envMap: refraction, refractionRatio: 0.85, eflectivity: 0.9 } );
+			var material = new THREE.MeshBasicMaterial( { color: 0xccccff, envMap: refraction, refractionRatio: 0.85, eflectivity: 0.9, side: 2 } );
 			material.type = 3;
 			return material;
 		}
@@ -442,7 +455,7 @@ materials.push( new THREE.MeshPhongMaterial( { ambient: 0x030303, color: 0xddddd
 			];
 			var reflectionCube = THREE.ImageUtils.loadTextureCube( urls );
 			reflectionCube.format = THREE.RGBFormat;
-			var material = new THREE.MeshBasicMaterial( { color: 0xffffff, envMap: reflectionCube } );
+			var material = new THREE.MeshBasicMaterial( { color: 0xffffff, envMap: reflectionCube, side: 2 } );
 			material.type = 3;
 			return material;
 		}

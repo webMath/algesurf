@@ -18,14 +18,18 @@
 <script src=tawi-widgets.js></script>
 <script src=asfr-file-reader.js></script>
 <script src=asco-controls.js></script>
+<!--
 <script src=jape-parametric-equations.js></script>
+-->
 <script src=jali-lights.js></script>
 <script src=jage-geometry.js></script>
 <script src=jama-materials.js></script>
 <script src=jama-materials-data.js></script>
 <script src=japr-preferences.js></script>
+<!--
 <script src=asas-assets.js ></script>
 <script src=jaat-attributes.js ></script>
+-->
 <script>
 // Theo Armour ~ 2014-07-11 ~ MIT License
 
@@ -38,20 +42,15 @@
 
 		ASFR.addFileReader();
 
-		ASCO.addControlsBox();
-
 //		JATH.addThreeJS();
-
 //		TAWI.addWidgetsBox();
-
 //		JAPE.addParametricEquationsBox();
 
+		ASCO.addControlsBox();
 		JAMA.addMaterialSelectBox();
 		JAMA.addMaterialEditorBox ();
 		JAPR.addPreferencesBox();
-
 		JALI.addLightsBox ();
-
 		JAGE.addGeometryBox();
 
 		TAWI.addAbout();
@@ -59,8 +58,10 @@
 
 		JA.addThreeFooter();
 
-		ASAS.addAssets();
+//		ASAS.addAssets();
 //		JAAT.addAttributes();
+
+		ASFR.init();
 
 		window.addEventListener( 'mouseup', JA.mouseUp, false);
 		window.addEventListener( 'resize', JA.onWindowResize, false );
@@ -68,13 +69,14 @@
 
 	JA.animate = function() {
 		requestAnimationFrame( JA.animate );
-//		JATH.renderer.render( JATH.scene, JATH.camera );
-//		JATH.controls.update();
-//		JATH.stats.update();
+		JATH.renderer.render( JATH.scene, JATH.camera );
+		JATH.controls.update();
+		JATH.stats.update();
 	}
 
 	JA.init();
 //	JA.animate();
+
 </script>
 </body>
 </html>

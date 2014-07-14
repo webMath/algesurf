@@ -8,28 +8,35 @@
 <body>
 <script src=http://mrdoob.github.io/three.js/build/three.min.js ></script>
 <script src=http://mrdoob.github.io/three.js/examples/js/controls/TrackballControls.js ></script>
-
 <script>
 // http://www.3d-meier.de/tut3/Seite65.html
 
 	var renderer, scene, camera, controls;
+	var geometry, material, mesh;
+
+	var pi = Math.PI;
+	var x, y, z;
+	var r, s, t;
+
+	var scale = 15;
+	var a = 1, aMin = -5, aMax = 5, aStep = 0.1;
+	var b = 2, bMin = -5, bMax = 5, bStep = 0.1;
+	var c = 2, cMin = -5, cMax = 5, cStep = 0.1;
+	var d = 3, dMin = -5, dMax = 5, dStep = 0.1;
+
+	var e = 2, eMin = -5, eMax = 5, eStep = 0.1;
+	var f = 3, fMin = -5, fMax = 5, fStep = 0.1;
+	var g = 3, gMin = -5, gMax = 5, gStep = 0.1;
+	var h = 3, hMin = -5, hMax = 5, hStep = 0.1;
+
+	var R1 = 1, R1Min = -5, R1Max = 5, R1Step = 0.1;
+	var R2 = 1, R2Min = -5, R2Max = 5, R2Step = 0.1;
 
 	init();
 	animate();
 
 	function init() {
-		var geometry, material, mesh;
-
 		document.body.style.cssText = 'margin: 0; overflow: hidden; ' ;
-
-		var info = document.body.appendChild( document.createElement( 'div' ) );
-
-		info.style.cssText = 'left: 20px; position: absolute;';
-		info.innerHTML = '<h1>' + document.title + '</h1>';
-
-		stats = new Stats();
-		stats.domElement.style.cssText = 'position: absolute; right: 0; top: 0; z-index: 100; ';
-		document.body.appendChild( stats.domElement );
 
 		renderer = new THREE.WebGLRenderer( { alpha: 1, antialias: true, clearColor: 0xffffff }  );
 		renderer.setSize( window.innerWidth, window.innerHeight );
@@ -40,32 +47,23 @@
 		camera.position.set( 100, 100, 100 );
 		controls = new THREE.TrackballControls( camera, renderer.domElement );
 
-		controls.target.set( 0, 0, 0 );
-
-		var pi = Math.PI;
-		var scale = 15;
-		var x, y, z;
-		var h;
-
-		function curve( u, v ) {		
-			u = 2 * pi * ( u );
-			v = 2 * pi * ( v );
-			h = sqrt (1 + sin( v ) * sin( v ) );
-
-			x = scale * ( cos( v ) * ( 2 + cos( u ) ) / h );
-			y = scale * ( sin( v - 2 * pi / 3 ) * ( 2 + cos( u - 2 * pi / 3 ) ) / h );
-			z = scale * ( sin( v + 2 * pi / 3 ) * ( 2 + cos( u + 2 * pi / 3 ) ) / h );
-
-			return new THREE.Vector3( x, y, z );
-		}
-
 		geometry = new THREE.ParametricGeometry( curve, 20, 20 );
 		material = new THREE.MeshNormalMaterial( { shading: THREE.SmoothShading, side: 2 } )
 		mesh = new THREE.Mesh( geometry, material );
-
-		scene.add( new THREE.WireframeHelper( mesh ) );
-
 		scene.add( mesh );
+	}
+
+	function curve( u, v ) {		
+		u = 2 * pi * ( u );
+		v = 2 * pi * ( v );
+		
+		r = sqrt ( a + pow( sin( v ), b ) );
+
+		x = scale * R1 * ( cos( v ) * ( c + cos( u ) ) / r );
+		y = scale * R2 * ( sin( v - 2 * pi / d ) * ( e + cos( u - 2 * pi / f ) ) / r );
+		z = scale * R1 * ( sin( v + 2 * pi / g ) * ( e + cos( u + 2 * pi / h ) ) / r );
+
+		return new THREE.Vector3( x, y, z );
 	}
 
 	function cos( a ){ return Math.cos( a ); }
@@ -78,18 +76,12 @@
 	function ran(){ return Math.random(); }
 	function sqrt( a ){ return Math.sqrt( a ); }	
 
-	function cosh( a ){ return Math.cosh( a ); }
-	function sinh( a ){ return Math.sinh( a ); }
-	function tanh( a ){ return Math.tanh( a ); }
-
-	function sech( a ){ return Math.sech( a ); }
-
 	function animate() {
 		requestAnimationFrame( animate );
 		renderer.render( scene, camera );
 		controls.update();
-		stats.update();
 	}
+
 </script>
 </body>
 </html>

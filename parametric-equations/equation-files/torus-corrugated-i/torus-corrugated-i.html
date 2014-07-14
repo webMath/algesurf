@@ -14,13 +14,13 @@
 	var renderer, scene, camera, controls;
 	var geometry, material, mesh;
 	var pi = Math.PI;
-	var scale = 5;
+	var scale = 25;
 	var x, y, z;
 
 	var n = 5;
-	var R1 = 1.5;
-	var R1 = 8;
-	var R2 = 3;
+	var R1 = 0.85;
+	var R2 = 2.5;
+	var R3 = 1;
 
 	init();
 	animate();
@@ -37,7 +37,7 @@
 		camera.position.set( 100, 100, 100 );
 		controls = new THREE.TrackballControls( camera, renderer.domElement );
 
-		geometry = THREE.ParametricGeometry( curve, 50, 20 );
+		geometry = new THREE.ParametricGeometry( curve, 50, 20 );
 		material = new THREE.MeshNormalMaterial( { shading: THREE.SmoothShading, side: 2 } )
 		mesh = new THREE.Mesh( geometry, material );
 		scene.add( mesh );
@@ -47,15 +47,15 @@
 		u = 2 * pi * ( u - 0.5 );
 		v = 2 * pi * ( v - 0.5 );
 
-		x = scale * ( ( R1 + R1 * cos( v ) ) * cos( u ) );
-		y = scale * ( R1 * sin( v ) + R2 * sin( n * u ) );
-		z = scale * ( ( R1 + R1 * cos( v ) ) * sin( u ) );
-
+		x = scale * ( ( R2 + R1 * cos( v ) ) * cos( u ) );
+		y = scale * ( R1 * sin( v ) + R3 * sin( n * u ) );
+		z = scale * ( ( R2 + R1 * cos( v ) ) * sin( u ) );
 		return new THREE.Vector3( x, y, z );
 	}
 
 	function cos( a ){ return Math.cos( a ); }
 	function sin( a ){ return Math.sin( a ); }
+/*
 	function tan( a ){ return Math.tan( a ); }
 
 	function cos2( a ){ return Math.cos( a ) * Math.cos( a ); }
@@ -67,12 +67,14 @@
 	function pow( a, b ){ return Math.pow( a, b ); }
 	function ran(){ return Math.random(); }
 	function sqrt( a ){ return Math.sqrt( a ); }	
+*/
 
 	function animate() {
 		requestAnimationFrame( animate );
 		renderer.render( scene, camera );
 		controls.update();
 	}
+
 
 </script>
 </body>

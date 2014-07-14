@@ -51,23 +51,6 @@
 		};
 	};
 
-	JAPR.setWireframe = function() {
-
-		scene.add( new THREE.WireframeHelper( mesh ) );
-
-/*
-		if ( wires ) { JATH.scene.remove( wires ); }
-		wires = JATH.selectedObject.clone();
-		wires.material = new THREE.MeshBasicMaterial( { wireframe: true } );
-		wires.position = JATH.selectedObject.position; 
-		wires.rotation = JATH.selectedObject.rotation; 
-		wires.scale = JATH.selectedObject.scale; 
-		JATH.scene.add( wires );
-*/
-
-		
-	}
-
 	JAPR.updateBackground = function( id ) {
 		if ( JAPR.cssBackround ) { ASFR.ifr.contentDocument.body.removeChild( JAPR.cssBackround ); }
 		if ( id === 'randomGradient' ) {

@@ -18,20 +18,28 @@
 		var fileList = '';
 		var file;
 		for ( var i = 0, len = ASFR.files.length; i < len; i++ ) {
-			file = ASFR.files[ i ][0];
-			fileList += '<a href=JavaScript:ASFR.updateIframe("' + file + '"); >' + file + '</a><br>';
+			file = ASFR.files[ i ][ 1 ];
+			fileList += '<a href=JavaScript:ASFR.updateIframe("' + i + '"); >' + file + '</a><br>';
 		}
 		ASFR.FileReader.innerHTML =
 			'<h3>Parametric Equations</h3>' +
 			'<div >' + fileList + '</div>' +
 			'<p style=text-align:right; >' +
-				'<a class=button href=JavaScript:JA.toggleDialogs(ASFR.FileReader);ASFR.ifr.style.display="";ASFR.ifr.style.zIndex=0; ); >Close</a> ' +
+				'<a class=button href=JavaScript:JA.toggleTab(ASFR.FileReader); ); >Close</a> ' +
 			'</p>' +
 		'';
 	};
 
-	ASFR.updateIframe = function( file ) { 
-// console.log( ASFR.ifr, file );
+	ASFR.init = function() {
+//		var file = ASFR.files[ Math.floor( Math.random() * ASFR.files.length ) ][0];
+		chkMaterial.checked = true;
+		var number = Math.floor( Math.random() * ASFR.files.length );
+		ASFR.updateIframe( number );
+	};
+
+	ASFR.updateIframe = function( number ) { 
+		var file = ASFR.files[ number ][ 0 ];
+
 		if ( !ASFR.ifr ) {
 			ASFR.ifr = JA.container.appendChild( document.createElement( 'iframe' ) );
 			ASFR.ifr.height =  window.innerHeight;
@@ -42,6 +50,7 @@
 		divCon.innerHTML = '';
 
 		ASFR.ifr.onload = function() {
+			JAPR.setRandomGradient();
 			app = ASFR.ifr.contentWindow;
 			THREE = app.THREE;
 			JATH.renderer = app.renderer;
@@ -50,21 +59,24 @@
 			JATH.controls = controls = app.controls;
 // console.log( scene );
 
-			JAPR.setRandomGradient();
-			JATH.selectedObject = scene.children[0]; 
 			ASFR.updateRenderer();
-//			addLights();
-
 			JALI.toggleLightAmbient();
 			JALI.toggleLightCamera();
 			JALI.toggleLightPosition();
 
-//			JAMA.updateMaterial( JAMA.materials.NormalSmooth );
-			divMsg1.innerText = 'Equation: ' + file;
+			JATH.selectedObject = scene.children[0];
+			JATH.selectedObject.castShadow = true;
+			JATH.selectedObject.receiveShadow = true;
+			if ( chkMaterial.checked === false ) {
+				JAMA.updateMaterial( JATH.materialKey );
+//console.log( 'reader', JATH.materialKey );
+			} else {
+				divMsg2.innerHTML = 'Material: <b>from HTML file</b>';
+			}
+
+ 			divMsg1.innerHTML = 'Equation: <b>' + ASFR.files[ number ][ 1 ] + '</b>';
 			divMsg3.style.cssText += 'font-size: small; width: 300px;';
 			divMsg3.innerText = app.curve;
-
- // console.log( app.a, app.aMin, app.aMax, app.aStep );
 
 			if ( app.a ) { 
 				divCon.innerHTML += 'a: <input type=range id=inpA title="default ' + app.a + '" ' +
@@ -143,7 +155,7 @@
 					' onmousemove=outR2.value=inpR2.value;updateMesh(); style=width:195px; > ' +
 					'<input id=outR2 style=width:30px; onchange=inpR2.value=outR2.value;updateMesh(); value=' + app.R2 + ' ><br>'; 
 			}
-			divCon.innerHTML += '<button onclick=ASFR.updateIframe("' + file + '"); >Reset</button>';
+			divCon.innerHTML += '<button onclick=ASFR.updateIframe("' + number + '"); >Reset</button>';
 			
 
 		}
@@ -154,13 +166,12 @@
 		app.renderer.shadowMapEnabled = true;
 		app.renderer.shadowMapSoft = true;
 
-		JATH.selectedObject.castShadow = true;
-		JATH.selectedObject.receiveShadow = true;
+
 	}
 
 	ASFR.files = [
 		['apple-surface','Apple Surface I'],
-		['apple-surface-ii','Apple Surface III'],
+		['apple-surface-ii','Apple Surface II'],
 		['bell','Bell'],
 		['bell-polar','Bell Polar'],
 		['bell-wave','Bell Wave'],
@@ -202,7 +213,7 @@
 		['eight-surface','Eight Surface'],
 		['ellipsoid','Ellipsoid'],
 		['enneper-surface','Enneper Surface'],
-		['enneper-surface-polar','Enneper Surface Polar'],
+		['enneper-surface-polar','Enneper Surface Polar *'],
 		['facing-snail','Facing Snail'],
 		['fish-surface','Fish Surface'],
 		['folium','Folium'],
@@ -214,39 +225,39 @@
 		['henneberg-surface','Henneberg Surface'],
 		['horn','Horn'],
 		['hyperbolic-helicoid','Hyperbolic Helicoid'],
-		['hyperbolic-octahedron','Hyperbolic Octahedron'],
-		['hyperbolic paraboloid','Hyperbolic Paraboloid'],
+		['hyperbolic-octahedron','Hyperbolic Octahedron *'],
+		['hyperbolic-paraboloid','Hyperbolic Paraboloid'],
 		['hyperboloid','Hyperboloid'],
 		['isolator','Isolator'],
-		['jeener-klein-surface','Jeener Klein Surface'],
+		['jeener-klein-surface','Jeener Klein Surface *'],
 		['jet-surface','Jet Surface'],
 		['kappa-surface','Kappa Surface'],
 		['kidney-surface','Kidney Surface'],
-		['klein-bottle','Klein Bottle'],
-		['klein-cycloid','Klein Cycloid'],
-		['kuen-surface','Kuen Surface'],
-		['lemniscape','Lemniscape'],
+		['klein-bottle','Klein Bottle *'],
+		['klein-cycloid','Klein Cycloid *'],
+		['kuen-surface','Kuen\s Surface *'],
+		['lemniscape','Lemniscape *'],
 		['lemon-surface','Lemon Surface'],
 		['lochdiscus','Lochdiscus'],
 		['lockdisk','Lockdisk'],
 		['loop','Loop'],
-		['maeder-owl','Maeder\'s Owl'],
+		['maeder-owl','Maeder\'s Owl *'],
 		['menn-surface','Menn\'s Surface'],
-		['milk carton','Milk Carton'],
+		['milk-carton','Milk Carton'],
 		['mobius-band','Mobius Band'],
 		['monkey-saddle','Monkey Saddle'],
-		['nautilus','Nautilus'],
+//		['nautilus','Nautilus'],
 		['paper-bag','Paper Bag'],
 		['paraboloid','Paraboloid'],
 		['pillow-shape','Pillow Shape'],
 		['piriform-surface','Piriform Surface'],
-		['pisot-triaxial','Pisot Triaxial'],
+		['pisot-triaxial','Pisot Triaxial *'],
 		['plane','Plane'],
 		['plucker-conoid','Plucker Conoid'],
-		['pseudo-cross cap','Pseudo Cross Cap'],
+		['pseudo-cross-cap','Pseudo Cross Cap'],
 		['pseudosphere','Pseudosphere'],
 		['richmond-surface','Richmond Surface'],
-		['roman-surface','roman Surface'],
+		['roman-surface','Roman Surface *'],
 		['roundabout','Roundabout'],
 		['scherk-surface','Scherk Surface'],
 		['seashell','Seashell'],
@@ -258,28 +269,28 @@
 		['snail-surface','Snail Surface'],
 		['soucoupoid','Soucoupoid'],
 		['sphere-double','Spheredouble'],
-		['sphere-i','Sphere-i'],
+		['sphere-i','Sphere I'],
 		['sphere-ii','Sphere II'],
 		['sphere-iii','Sphere III'],
-		['sphere-iv','Sphere iv'],
+		['sphere-iv','Sphere IV'],
 		['spiral-archimedes','Spiral Archimedes'],
 		['spiral-fermat','Spiral Fermat'],
 		['spiral-hyperbolic','Spiral Hyperbolic'],
 		['spiral-logarithmic','Spiral Logarithmic'],
 		['spiral-tanh','Spiral Tanh'],
 		['spiral-wave','Spiral Wave'],
-		['spring-i','Spring i'],
+		['spring-i','Spring I'],
 		['spring-ii','Spring II'],
-		['steinbach-screw','Steinbach Screw'],
-		['stiletto-surface','Stiletto Surface'],
+		['steinbach-screw','Steinbach Screw *'],
+		['stiletto-surface','Stiletto Surface *'],
 		['swallow-surface','Swallow Surface'],
 		['torus','Torus'],
 		['torus-8','Torus 8'],
 		['torus-astroid','Torus Astroid'],
 		['torus-asymmetric','Torus Asymmetric'],
-		['torus-bicorn i','Torus Bicorn I'],
+		['torus-bicorn-i','Torus Bicorn I'],
 		['torus-bicorn-ii','Torus Bicorn II'],
-		['torus-braided','Torus Braided'],
+		['torus-braided','Torus Braided *'],
 		['torus-cardioid-i','Torus Cardioid I'],
 		['torus-cardioid-ii','Torus Cardioid II'],
 		['torus-cassinian-oval-i','Torus Cassinian Oval I'],
@@ -287,13 +298,13 @@
 		['torus-corrugated-i','Torus Corrugated I'],
 		['torus-corrugated-ii','Torus Corrugated II'],
 		['torus-elliptic','Torus Elliptic'],
-		['torus-epicycloid-i','Torus Epicycloid i'],
+		['torus-epicycloid-i','Torus Epicycloid I'],
 		['torus-epicycloid-ii','Torus Epicycloid II'],
 		['torus-gear','Torus Gear'],
 		['torus-hypocycloid-i','Torus Hypocycloid i'],
 		['torus-hypocycloid-ii','Torus Hypocycloid II'],
-		['torus-knot','Torus Knot'],
-		['torus-lemniscate-gerono-i','Torus Lemniscate Gerono i'],
+		['torus-knot','Torus Knot *'],
+		['torus-lemniscate-gerono-i','Torus Lemniscate Gerono I'],
 		['torus-lemniscate-gerono-ii','Torus Lemniscate Gerono II'],
 		['torus-lemniscate-i','Torus Lemniscate I'],
 		['torus-lemniscate-ii','Torus Lemniscate II'],
@@ -302,37 +313,37 @@
 		['torus-nephroid-ii','Torus Nephroid II'],
 		['torus-piriform-i','Torus Piriform I'],
 		['torus-piriform-ii','Torus Piriform II'],
-		['torus-saddle','Torus Saddle'],
-		['torus-spiral','Torus Spiral'],
+//		['torus-saddle','Torus Saddle'],
+		['torus-spiral','Torus Spiral *'],
 		['torus-strangled-i','Torus Strangled I'],
 		['torus-strangled-ii','Torus Strangled II'],
 		['torus-tricuspoid-i','Torus Tricuspoid iI'],
 		['torus-tricuspoid-ii','Torus Tricuspoid II'],
-		['torus-twisted-eight','Torus Twisted Eight'],
+		['torus-twisted-eight','Torus Twisted Eight *'],
 		['torus-umbilic','Torus Umbilic'],
-		['torus-wave','Torus Wave'],
+		['torus-wave','Torus Wave *'],
 		['tractroid','Tractroid'],
-		['tranguloid-trefoil','Tranguloid Trefoil'],
+		['tranguloid-trefoil','Tranguloid Trefoil *'],
 		['trash-can','Trash Can'],
-		['trefoil-knot','Trefoil Knot'],
-		['trefoil-knot-ii','Trefoil Knot II'],
-		['triaxial-hexatorus','Triaxial Hexatorus'],
+		['trefoil-knot','Trefoil Knot *'],
+		['trefoil-knot-ii','Trefoil Knot II *'],
+		['triaxial-hexatorus','Triaxial Hexatorus *'],
 		['triaxial-teardrop','Triaxial Teardrop'],
-		['triaxial-tritorus','Triaxial Tritorus'],
-		['triple-corkscrew i','Triple Corkscrew I'],
+		['triaxial-tritorus','Triaxial Tritorus *'],
+		['triple-corkscrew-i','Triple Corkscrew I'],
 		['triple-corkscrew-ii','Triple Corkscrew II'],
 		['triple-corkscrew-iii','Triple Corkscrew III'],
 		['triple-point-twist','Triple Point Twist'],
 		['twisted-heart','Twisted Heart'],
-		['twisted-pipe-surface','Twisted Pipe Surface'],
+		['twisted-pipe-surface','Twisted Pipe Surface *'],
 		['twisted-sphere','Twisted Sphere'],
 		['vase-and-spearhead','Vase and Spearhead'],
 		['verrill-surface','Verrill Surface'],
-		['wallis-conical edge','Wallis Conical Edge'],
+		['wallis-conical-edge','Wallis Conical Edge'],
 		['wave','Wave'],
-		['wave-sphere','Wave Sphere'],
-		['whitney-umbrella','Hhitney Umbrella'],
+		['wave-sphere','Wave Sphere *'],
+		['whitney-umbrella','Whitney Umbrella *'],
 		['worm','Worm'],
-		['wreath','Wreath'],
+		['wreath','Wreath *'],
 		['zindler-conoid','Zindler\'s Conoid'] 
 	];

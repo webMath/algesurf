@@ -108,7 +108,7 @@
 			'<div id=divMsg1 >Msg aaa</div>' +
 			'<div id=divMsg2 >Msg bbb</div>' +
 			'<div id=divMsg3 >Msg ccc</div>' +
-			'<div id=divMsg4 >Msg ddd</div>' +
-			'<div id=divMsg5 >Msg eee</div>' +
+			'<div id=divMsg4 ></div>' +
+			'<div id=divMsg5 ></div>' +
 		''; 
 	};

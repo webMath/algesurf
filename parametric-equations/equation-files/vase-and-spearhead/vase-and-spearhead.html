@@ -8,20 +8,23 @@
 <body>
 <script src=http://mrdoob.github.io/three.js/build/three.min.js ></script>
 <script src=http://mrdoob.github.io/three.js/examples/js/controls/TrackballControls.js ></script>
-
 <script>
 // http://www.3d-meier.de/tut3/Seite107.html
 
 	var renderer, scene, camera, controls;
+	var geometry, material, mesh;
+	var pi = Math.PI;
+	var scale = 15;
+	var x, y, z;
+	var a = 1;
+	var b = 1;
+
 
 	init();
 	animate();
 
 	function init() {
-		var geometry, material, mesh;
-
 		document.body.style.cssText = 'margin: 0; overflow: hidden; ' ;
-
 
 		renderer = new THREE.WebGLRenderer( { alpha: 1, antialias: true, clearColor: 0xffffff }  );
 		renderer.setSize( window.innerWidth, window.innerHeight );
@@ -31,11 +34,12 @@
 		camera = new THREE.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 1, 1000 );
 		camera.position.set( 100, 200, 100 );
 		controls = new THREE.TrackballControls( camera, renderer.domElement );
-		var pi = Math.PI;
-		var scale = 15;
-		var x, y, z;
-		var a = 1;
-		var b = 1;
+
+		geometry = new THREE.ParametricGeometry( curve, 20, 20 );
+		material = new THREE.MeshNormalMaterial( { shading: THREE.SmoothShading, side: 2 } )
+		mesh = new THREE.Mesh( geometry, material );
+		scene.add( mesh );
+	}
 
 		function curve( u, v ) {		
 			u = 2 * pi * ( u - 0.5 );
@@ -48,12 +52,6 @@
 			return new THREE.Vector3( x, y, z );
 		}
 
-		geometry = new THREE.ParametricGeometry( curve, 20, 20 );
-		material = new THREE.MeshNormalMaterial( { shading: THREE.SmoothShading, side: 2 } )
-		mesh = new THREE.Mesh( geometry, material );
-		scene.add( mesh );
-	}
-
 	function cos( a ){ return Math.cos( a ); }
 	function sin( a ){ return Math.sin( a ); }
 	function tan( a ){ return Math.tan( a ); }
@@ -64,17 +62,12 @@
 	function ran(){ return Math.random(); }
 	function sqrt( a ){ return Math.sqrt( a ); }	
 
-	function cosh( a ){ return Math.cosh( a ); }
-	function sinh( a ){ return Math.sinh( a ); }
-	function tanh( a ){ return Math.tanh( a ); }
-
-	function sech( a ){ return Math.sech( a ); }
-
 	function animate() {
 		requestAnimationFrame( animate );
 		renderer.render( scene, camera );
 		controls.update();
 	}
+
 </script>
 </body>
 </html>
