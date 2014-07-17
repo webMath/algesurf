@@ -4,19 +4,17 @@ AlgeSurf Read Me
 <iframe src="http://jaanga.github.io/algesurf/parametric-equations/r2/boy-surface/boy-surface.html" width=100% height=500px class='overview' >
 There is an iframe here. It is not visible when viewed on github.com/jaanga. To view <a href="http://jaanga.github.io/algesurf/parametric-equations/" target="_blank">Web Page</a>
 </iframe>
-_The sample above is the display of Boy's Surface as a paramteric equation_
-
-[Full Screen]
+_The sample above is the display of Boy's Surface as a parametric equation_
 
 ## Concept
 
 ### Mission  
 <!-- a statement of a rationale, applicable now as well as in the future -->
-Part of an effort to make the visualization of mathematic equations faster, simpler and easier
+AlgeSurf is an effort to make the visualization of mathematical things faster, simpler and easier
 
 ### Vision  
 <!--  a descriptive picture of a desired future state -->
-To visualize math and phisics in entirely new ways
+Visualize math and physics in ways never seen before
 
 ## The Apps
 
@@ -34,7 +32,12 @@ To visualize math and phisics in entirely new ways
 
 ### Function Graphs
 
-[Source Code]( https://github.com/jaanga/algesurf/tree/gh-pages/function-graphs )
+[Source Code]( https://github.com/jaanga/algesurf/tree/gh-pages/function-graphs/ )
+
+Not much here, but see also related technologies here:
+
+[SoundViz]( http://soundviz.github.io )  
+[Jaanga Terrain Viewer]( http://jaanga.github.io/terrain-viewer/ )
 
 ### Cookbook
 
@@ -42,21 +45,26 @@ To visualize math and phisics in entirely new ways
 
 ## Road Map
 
+* Consider ways of using vector gradients as possible pounters oards singilarities
+* Add shaders
+* Have ways of animating some parameters while you update a partular parameter
+* Save updated equations and materials back to HTML files
+* Leap-enabled simultaneous multiple parameter updates
 
 ## Issues / Bugs
 
 
 ## Project Links
 
-Jaanga is a [GitGub]( http://github.com) [organization account]( https://help.github.com/articles/what-s-the-difference-between-user-and-organization-accounts ) and has multiple owners and admins. 
+Jaanga is a [GitHub]( http://github.com) [organization account]( https://help.github.com/articles/what-s-the-difference-between-user-and-organization-accounts ) and has multiple owners and admins. 
 All Jaanga scripts are [FOSS]( https://en.wikipedia.org/wiki/Free_and_open-source_software ).
 Scripts are hosted on GitHub and are viewable as web pages, as described in the 'Read Me' files and as source code.
 
-The three ways of looking at the algeSurf scripts:
+The three ways of looking at the AlgeSurf scripts:
 
-1. [Live Demos (sample)]( http://jaanga.github.io/algesurf/parametric-equations/r2/boy-surface/boy-surface.html )  
-2. [Read Me]( http://jaanga.github.io/algesurf/parametric-equations/ "view the files as apps." ) <input value="<< You are now probably here." size=28 style="font:bold 12pt monospace;border-width:0;" >   
-3. [Source Code]( https://github.com/jaanga/algesurf/tree/gh-pages/parametric-equations "View the files as source code." ) <scan style=display:none ><< You are now probably here.</scan>  
+1. [Live Demos (sample)]( http://jaanga.github.io/algesurf/parametric-equations/latest/ )  
+2. [Read Me]( http://jaanga.github.io/algesurf/ "view the files as apps." ) <input value="<< You are now probably here." size=28 style="font:bold 12pt monospace;border-width:0;" >   
+3. [Source Code]( https://github.com/jaanga/algesurf/ "View the files as source code." ) <scan style=display:none ><< You are now probably here.</scan>  
 
 
 ## System Requirements
@@ -82,16 +90,7 @@ This repository contains files that are at an early and volatile stage. Not all 
 
 ## Change Log
 
-2014-07-03 ~ Theo
 
-* Add twenty more equations
-* Add build-menu.js
-* Mino fizes to meier-request...
-
-
-2014-07-02 ~ Theo
-
-* First Commit
 
 
 

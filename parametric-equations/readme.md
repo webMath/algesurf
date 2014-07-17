@@ -15,7 +15,7 @@ Part of an effort to make the visualization of mathematic equations faster, simp
 
 ### Vision  
 <!--  a descriptive picture of a desired future state -->
-To visualize math and phisics in entirely new ways
+To visualize math and physics in entirely new ways
 
 ## Features
 <!-- and benefits -->
@@ -74,7 +74,7 @@ This repository contains files that are at an early and volatile stage. Not all 
 
 * Add twenty more equations
 * Add build-menu.js
-* Mino fizes to meier-request...
+* Minor fixes to meier-request...
 
 
 2014-07-02 ~ Theo

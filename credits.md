@@ -32,7 +32,13 @@ Jaume Sanchez's [Blocky Earth]( http://www.clicktorelease.com/code/blocky_earth/
 
 
 ## Generally
-And none of this would be possible without Three.js]( https://github.com/mrdoob/three.js ), [Mr.doob]( mrdoob.com ) and WebGL.
+None of this would be possible without [Three.js]( https://github.com/mrdoob/three.js ), [Mr.doob]( mrdoob.com ) and WebGL.
+
+In turn Altered Qualia, zz85, West Langley and other have been able to take stuffy old Math symbols and turn them into living, breathing, useful algorithms.
+
+Bret Victor's [Kill Math]( http://worrydream.com/#!/KillMath ) and Steven Wittens' [Making Things with Math]( http://acko.net/files/fullfrontal/fullfrontal/wdcode/online.html ) 
+are also very much part of this whole equation.
+ 
 
 
 [Source code on GitHub]( https://github.com/jaanga/algesurf/ )
