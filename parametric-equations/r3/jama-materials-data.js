@@ -1,7 +1,6 @@
 	JAMA.materials = {} || JAMA.materials;
 
-
-
+// type - color - surface
 
 	JAMA.materials.NormalSmooth = {
 		title: "Normal Smooth",
@@ -33,8 +32,7 @@
 		}
 	};
 
-
-	JAMA.materials.BasicFlatRed = {
+	JAMA.materials.BasicRedFlat = {
 		title: "Basic Flat Red",
 		category: "Basic",
 		set: function() {
@@ -44,8 +42,7 @@
 		}
 	};
 
-
-	JAMA.materials.LambertRandom = {
+	JAMA.materials.LambertRandomSmooth = {
 		title: "Lambert Smooth Random",
 		category: "Basic",
 		set: function() {
@@ -59,147 +56,182 @@
 /*
 http://mrdoob.github.io/three.js/docs/#Reference/Materials/MeshPhongMaterial
 materials.push( new THREE.MeshPhongMaterial( { ambient: 0x030303, color: 0xdddddd, specular: 0x009900, shininess: 30, shading: THREE.FlatShading } ) );
-
 */
 
-	JAMA.materials.PhongRandom = {
-		title: "Phong Random",
+	JAMA.materials.PhongDefault = {
+		title: "Phong Default",
 		category: "Basic",
 		set: function() {
-			var material = new THREE.MeshPhongMaterial();
-			material.title = "Phong Random";
-			material.ambient.setHex( 0xffffff * Math.random() );
-			material.color.setHex( 0xffffff * Math.random() );
-			material.emissive.setHex( 0x333333 * Math.random() );
-			material.metal = Math.floor( 2 * Math.random() );
-			material.opacity = Math.random().toFixed(2);
-			material.side = 2;
-			material.shininess = (100 * Math.random()).toFixed(0);
-			material.specular.setHex( 0x888888 * Math.random() );
-			material.transparent = true;
-			material.wireframe = Math.floor( 1.1 * Math.random() );
-			material.type = 3;
-			return material;
-		}
-	};
-
-
-	JAMA.materials.PhongPlasticRed = {
-		title: "Phong Plastic Red",
-		category: "Basic",
-		set: function() {
-			var material = new THREE.MeshPhongMaterial( { color: 0xff0000, specular: 0x888888, ambient: 0xff0000, shininess: 250, side: 2 } );
-			material.type = 3;
-			return material;
-		}
-	};
-
-
-	JAMA.materials.PhongFlatBlue = {
-		title: "Phong Flat Blue",
-		category: "Basic",
-		set: function() {
-			var material = new THREE.MeshPhongMaterial( { 
-				ambient: 0x0000ff, color: 0x0000ff, emissive: 0x000055, specular: 0x550000, shininess: 20, shading: THREE.FlatShading, side: 2 } );
-			material.type = 3;
-			return material;
-		}
-	};
-
-	JAMA.materials.PhongFlatPurple = {
-		title: "Phong Flat Purple",
-		category: "Basic",
-		set: function() {
-			var material =  new THREE.MeshPhongMaterial( { 
-			ambient: 0x888800, color: 0xdd00ff, emissive: 0x220033, specular: 0x009900, shininess: 30, shading: THREE.FlatShading, side: 2 });
-			material.type = 3;
-			return material;
-		}
-	};
-
-	JAMA.materials.PhongSmoothGreen = {
-		title: "Phong Smooth Green",
-		category: "Basic",
-		set: function() {
-			var material = new THREE.MeshPhongMaterial( { 
-				ambient: 0x03aa03, color: 0xddffdd, emissive: 0x005500, reflectivity: 0.5, specular: 0x009900, shininess: 10, 
-				shading: THREE.SmoothShading, side: 2 });
-			material.type = 3;
-			return material;
-		}
-	};
-
-	JAMA.materials.PhongPureWhiteRandom = {
-		title: "Phong Pure White Random",
-		set: function() {
-			var p = JAMA.basePath + 'textures/';
-			var urls = [ p + 'pure-white.png', p + 'pure-white.png', p + 'pure-white.png', p + 'pure-white.png', p + 'pure-white.png', p + 'pure-white.png' ];
-			var reflectionCube = THREE.ImageUtils.loadTextureCube( urls );
-			reflectionCube.format = THREE.RGBFormat;
-			var refractionCube = new THREE.Texture( reflectionCube.image, new THREE.CubeRefractionMapping() );
-
-			material = new THREE.MeshPhongMaterial( {
-				color: 0xffffff * Math.random(), 
-				ambient: 0xffffff * Math.random(),
-//				envMap: refractionCube, refractionRatio: 0.85,
-				envMap: reflectionCube, combine: THREE.MixOperation, reflectivity: 0.3, metal: true,
-				opacity: 0.9,
-				specular: 0xffffff * Math.random(),
-				shininess: 100,
-				side: THREE.DoubleSide,
-				transparent: true
+			var material = new THREE.MeshPhongMaterial( {
+				side: 2
 			} );
 			material.type = 3;
 			return material;
 		}
 	};
 
-	JAMA.materials.PhongPureWhiteRefLect = {
-		title: "Phong Pure White Reflect",
+	JAMA.materials.PhongRandom = {
+		title: "Phong Random Smooth",
+		category: "Basic",
 		set: function() {
-			var p = JAMA.basePath + 'textures/';
-			var urls = [ p + 'pure-white.png', p + 'pure-white.png', p + 'pure-white.png', p + 'pure-white.png', p + 'pure-white.png', p + 'pure-white.png' ];
-
-			var reflectionCube = THREE.ImageUtils.loadTextureCube( urls );
-			reflectionCube.format = THREE.RGBFormat;
-
-			var refractionCube = new THREE.Texture( reflectionCube.image, new THREE.CubeRefractionMapping() );
-			refractionCube.format = THREE.RGBFormat;
-
-			material = new THREE.MeshPhongMaterial( {   
-				color: 'gold', 
-				ambient: 'gold',
-//				emissive: 0x222222,
-//				envMap: refractionCube, refractionRatio: 0.85,
-				envMap: reflectionCube, combine: THREE.MixOperation, 
-				metal: true,
-				reflectivity: 0.3,
-				shininess: 50,
+			var material = new THREE.MeshPhongMaterial( {
+				ambient: 0xffffff * Math.random(),
+				color: 0xffffff * Math.random(),
+				emissive: 0x333333 * Math.random(),
+				metal: Math.floor( 2 * Math.random() ),
+				opacity: 0.2 + 0.8 * Math.random().toFixed(2),
+				shading: THREE.SmoothShading,
+				shininess: ( 200 * Math.random() ).toFixed(0),
 				side: 2,
-				specular: 0xffffff
+				specular: 0x888888 * Math.random(),
+				transparent: true,
+				wireframe: Math.floor( 1.1 * Math.random() )
+			} );
+			material.type = 3;
+			return material;
+		}
+	};
+
+	JAMA.materials.PhongRedPlastic = {
+		title: "Phong Red Plastic",
+		category: "Basic",
+		set: function() {
+			var material = new THREE.MeshPhongMaterial( {
+				ambient: 0xff0000,
+				color: 0xff0000,
+				emissive: 0x330000,
+				metal: true,
+				opacity: 1,
+				shading: THREE.SmoothShading,
+				shininess: 250,
+				side: 2,
+				specular: 0xff5555,
+				transparent: false,
+				wireframe: false
+			} );
+			material.type = 3;
+			return material;
+		}
+	};
+
+	JAMA.materials.PhongBlueFlat = {
+		title: "Phong Blue Flat",
+		category: "Basic",
+		set: function() {
+			var material = new THREE.MeshPhongMaterial( {
+				ambient: 0x0000ff,
+				color: 0x0000ff,
+				emissive: 0x000055,
+				shading: THREE.FlatShading,
+				shininess: 10,
+				side: 2,
+				specular: 0x550000
+			} );
+			material.type = 3;
+			return material;
+		}
+	};
+
+	JAMA.materials.PhongPurpleFlat = {
+		title: "Phong Purple Flat",
+		category: "Basic",
+		set: function() {
+			var material = new THREE.MeshPhongMaterial( {
+				ambient: 0x888800,
+				color: 0xdd00ff,
+				emissive: 0x220033,
+				shading: THREE.FlatShading,
+				shininess: 10,
+				side: 2,
+				specular: 0x009900
 			});
 			material.type = 3;
 			return material;
 		}
 	};
 
-	JAMA.materials.PhongGriddedRandom = {
-		title: "Phong Gridded Random",
+	JAMA.materials.PhongGreenSmooth = {
+		title: "Phong Green Smooth",
+		category: "Basic",
 		set: function() {
-			var p = JAMA.basePath + 'textures/';
-			var urls = [ p + 'square.png', p + 'square.png', p + 'square.png', p + 'square.png', p + 'square.png', p + 'square.png' ];
+			var material = new THREE.MeshPhongMaterial( {
+				ambient: 0x03aa03,
+				color: 0xddffdd,
+				emissive: 0x005500,
+				reflectivity: 1,
+				shading: THREE.SmoothShading,
+				shininess: 10,
+				side: 2,
+				specular: 0x009900
+			});
+			material.type = 3;
+			return material;
+		}
+	};
+
+// envMap Reflections
+
+	JAMA.materials.PhongDefaultReflectWhite = {
+		title: "Phong Default Reflect White",
+		set: function() {
+			var p = JAMA.basePath + 'textures/pure-white.png';
+			var urls = [ p, p, p, p, p, p ];
+			var reflectionCube = THREE.ImageUtils.loadTextureCube( urls );
+			material = new THREE.MeshPhongMaterial( {
+				envMap: reflectionCube,
+				side: THREE.DoubleSide,
+			} );
+			material.type = 3;
+			return material;
+		}
+	};
+
+	JAMA.materials.PhongRandomReflectWhite = {
+		title: "Phong Random Reflect White",
+		set: function() {
+			var p = JAMA.basePath + 'textures/pure-white.png';
+			var urls = [ p, p, p, p, p, p ];
 			var reflectionCube = THREE.ImageUtils.loadTextureCube( urls );
 			reflectionCube.format = THREE.RGBFormat;
-			var refractionCube = new THREE.Texture( reflectionCube.image, new THREE.CubeRefractionMapping() );
-
 			material = new THREE.MeshPhongMaterial( {
-				color: 0xffffff * Math.random(), 
 				ambient: 0xffffff * Math.random(),
-//				envMap: refractionCube, refractionRatio: 0.85,
-				envMap: reflectionCube, combine: THREE.MixOperation, reflectivity: 0.3, metal: true,
+				color: 0xffffff * Math.random(),
+				combine: THREE.MixOperation,
+				emissive: 0x222222,
+				envMap: reflectionCube,
+				metal: true,
 				opacity: 0.9,
+				reflectivity: Math.random(),
+				shading: THREE.SmoothShading,
+				shininess: ( 200 * Math.random() ).toFixed(0),
+				side: THREE.DoubleSide,
 				specular: 0xffffff * Math.random(),
-				shininess: 50,
+				transparent: true
+			} );
+			material.type = 3;
+			return material;
+		}
+	};
+
+	JAMA.materials.PhongWhiteReflectWhite = {
+		title: "Phong White Reflect White",
+		set: function() {
+			var p = JAMA.basePath + 'textures/pure-white.png';
+			var urls = [ p, p, p, p, p, p ];
+			var reflectionCube = THREE.ImageUtils.loadTextureCube( urls );
+			reflectionCube.format = THREE.RGBFormat;
+			material = new THREE.MeshPhongMaterial( {
+				ambient: 0xffffff,
+				color: 0xffffff,
+				combine: THREE.MixOperation,
+				emissive: 0x555555,
+				envMap: reflectionCube,
+				metal: true,
+				opacity: 1,
+				reflectivity: 0.7,
+				shading: THREE.SmoothShading,
+				shininess: 30,
+				specular: 0xffffff,
 				side: THREE.DoubleSide,
 				transparent: true
 			} );
@@ -208,26 +240,80 @@ materials.push( new THREE.MeshPhongMaterial( { ambient: 0x030303, color: 0xddddd
 		}
 	};
 
-	JAMA.materials.PhongUVGrid = {
-		title: "Phong UV Grid Random",
+	JAMA.materials.PhongGoldRefLectWhite = {
+		title: "Phong Gold Reflect White",
+		set: function() {
+			var p = JAMA.basePath + 'textures/pure-white.png';
+			var urls = [ p, p, p, p, p, p ];
+			var reflectionCube = THREE.ImageUtils.loadTextureCube( urls );
+			reflectionCube.format = THREE.RGBFormat;
+			material = new THREE.MeshPhongMaterial( {
+				ambient: 'gold',
+				color: 'gold',
+				combine: THREE.MixOperation,
+				emissive: 0x222222,
+				envMap: reflectionCube,
+				metal: true,
+				opacity: 1,
+				reflectivity: 0.3,
+				shading: THREE.SmoothShading,
+				shininess: 30,
+				side: 2,
+				specular: 0xffffff,
+				transparent: true
+			});
+			material.type = 3;
+			return material;
+		}
+	};
+
+	JAMA.materials.PhongRandomReflectGrid = {
+		title: "Phong Random Reflect Grid",
+		set: function() {
+			var p = JAMA.basePath + 'textures/square.png';
+			var urls = [ p, p, p, p, p, p ];
+			var reflectionCube = THREE.ImageUtils.loadTextureCube( urls );
+			reflectionCube.format = THREE.RGBFormat;
+			material = new THREE.MeshPhongMaterial( {
+				ambient: 0xffffff * Math.random(),
+				color: 0xffffff * Math.random(),
+				combine: THREE.MixOperation,
+				emissive: 0x222222,
+				envMap: reflectionCube,
+				metal: true,
+				opacity: 0.9,
+				shading: THREE.SmoothShading,
+				reflectivity: 0.3,
+				shininess: 30,
+				side: THREE.DoubleSide,
+				specular: 0xffffff * Math.random(),
+				transparent: true
+			} );
+			material.type = 3;
+			return material;
+		}
+	};
+
+	JAMA.materials.PhongRandomReflectUVGrid = {
+		title: "Phong Random Reflect UVGrid ",
 		set: function() {
 			var p = JAMA.basePath + 'textures/';
 			var urls = [ p + 'ash_uvgrid01.jpg', p + 'ash_uvgrid01.jpg', p + 'ash_uvgrid01.jpg', p + 'ash_uvgrid01.jpg', p + 'ash_uvgrid01.jpg', p + 'ash_uvgrid01.jpg' ];
 			var reflectionCube = THREE.ImageUtils.loadTextureCube( urls );
 			reflectionCube.format = THREE.RGBFormat;
-
-			var refractionCube = new THREE.Texture( reflectionCube.image, new THREE.CubeRefractionMapping() );
-			refractionCube.format = THREE.RGBFormat;
-
 			material = new THREE.MeshPhongMaterial( {
-				color: 0xffffff * Math.random(), 
 				ambient: 0xffffff * Math.random(),
-				envMap: reflectionCube, combine: THREE.MixOperation, reflectivity: 0.3, metal: true,
-//				envMap: refractionCube, refractionRatio: 0.85,
-//				opacity: 0.9,
-				specular: 0xffffff * Math.random(),
-				shininess: 50,
+				color: 0xffffff * Math.random(),
+				combine: THREE.MixOperation,
+				emissive: 0x222222,
+				envMap: reflectionCube,
+				metal: true,
+				opacity: 0.9,
+				shading: THREE.SmoothShading,
+				reflectivity: 0.9,
+				shininess: 30,
 				side: THREE.DoubleSide,
+				specular: 0xffffff * Math.random(),
 				transparent: true
 			} );
 			material.type = 3;
@@ -235,26 +321,51 @@ materials.push( new THREE.MeshPhongMaterial( { ambient: 0x030303, color: 0xddddd
 		}
 	};
 
-	JAMA.materials.PhongLavatileRandom = {
-		title: "Phong Lavatile Random",
+	JAMA.materials.PhongRandomReflectLavatile = {
+		title: "Phong Random Reflect Lava",
 		set: function() {
-//			var p = JAMA.basePath + 'textures/lavatile.jpg';
+			var p = JAMA.basePath + 'textures/lavatile.jpg';
+			var urls = [ p, p, p, p, p, p ];
+			var reflectionCube = THREE.ImageUtils.loadTextureCube( urls );
+			material = new THREE.MeshPhongMaterial( {
+				ambient: 0xffffff * Math.random(),
+				color: 0xffffff * Math.random(),
+				combine: THREE.MixOperation,
+				emissive: 0x222222,
+				envMap: reflectionCube,
+				metal: true,
+				opacity: 0.9,
+				shading: THREE.SmoothShading,
+				reflectivity: 1,
+				shininess: 50,
+				side: THREE.DoubleSide,
+				specular: 0xffffff * Math.random(),
+				transparent: true
+			} );
+			material.type = 3;
+			return material;
+		}
+	};
+
+	JAMA.materials.PhongRandomReflectWire = {
+		title: "Phong Random Reflect Wire",
+		set: function() {
 			var p = JAMA.basePath + 'textures/wire.jpg';
 			var urls = [ p, p, p, p, p, p ];
 			var reflectionCube = THREE.ImageUtils.loadTextureCube( urls );
 			material = new THREE.MeshPhongMaterial( {
 				ambient: 0xffffff * Math.random(),
-				color: 0xffffff * Math.random(), 
-//				combine: THREE.MixOperation,  // Options are THREE.MultiplyOperation (default), THREE.MixOperation, 
-//				combine: THREE.AddOperation,
-				emissive: 0xffffff * Math.random(), 
-				envMap: reflectionCube, 
-				metal: false,
-// 				opacity: 0.9,
+				color: 0xffffff * Math.random(),
+				combine: THREE.MixOperation,
+				emissive: 0x222222,
+				envMap: reflectionCube,
+				metal: true,
+				opacity: 0.9,
+				shading: THREE.SmoothShading,
 				reflectivity: 0.3,
-				specular: 0xffffff * Math.random(),
 				shininess: 50,
 				side: THREE.DoubleSide,
+				specular: 0xffffff * Math.random(),
 				transparent: true
 			} );
 			material.type = 3;
@@ -262,9 +373,9 @@ materials.push( new THREE.MeshPhongMaterial( { ambient: 0x030303, color: 0xddddd
 		}
 	};
 
-	JAMA.materials.PhongDisturbReflectRandom = {
+	JAMA.materials.PhongRandomReflectDisturb = {
 
-		title: "Phong Disturb Reflect Random",
+		title: "Phong Random Reflect Disturb",
 		set: function() {
 			var p = JAMA.basePath + 'textures/disturb.jpg';
 			var urls = [ p, p, p, p, p, p ];
@@ -272,182 +383,151 @@ materials.push( new THREE.MeshPhongMaterial( { ambient: 0x030303, color: 0xddddd
 			reflectionCube.format = THREE.RGBFormat;
 			material = new THREE.MeshPhongMaterial( {
 				ambient: 0xffffff * Math.random(),
-				color: 0xffffff * Math.random(), 
-				emissive: 0xffffff * Math.random(), 
-				envMap: reflectionCube, combine: THREE.MixOperation, reflectivity: 0.3, metal: true,
+				color: 0xffffff * Math.random(),
+				combine: THREE.MixOperation,
+				emissive: 0x222222,
+				envMap: reflectionCube,
+				metal: true,
 				opacity: 0.9,
-				specular: 0xffffff * Math.random(),
+				shading: THREE.SmoothShading,
+				reflectivity: 0.5,
 				shininess: 50,
 				side: THREE.DoubleSide,
+				specular: 0xffffff * Math.random(),
 				transparent: true
 			} );
 			material.type = 3;
 			return material;
 		}
-/*
-		set: function() {
-			var p = JAMA.basePath + 'textures/';
-			var urls = [ p + 'disturb.jpg', p + 'disturb.jpg', p + 'disturb.jpg', p + 'disturb.jpg', p + 'disturb.jpg', p + 'disturb.jpg' ];
-			var texture = THREE.ImageUtils.loadTextureCube( urls, new THREE.CubeRefractionMapping() );
-			var material = new THREE.MeshPhongMaterial( { 
-color: 0xccddff, envMap: texture, refractionRatio: 0.98, reflectivity: 0.9 } );
-			material.ambient.setHex( 0xffffff * Math.random() );
-			material.color.setHex( 0xffffff * Math.random() );
-			material.emissive.setHex( 0x333333 * Math.random() );
-			material.metal = Math.floor( 2 * Math.random() );
-			material.opacity = Math.random().toFixed(2);
-			material.side = 2;
-			material.shininess = (100 * Math.random()).toFixed(0);
-			material.specular.setHex( 0x888888 * Math.random() );
-			material.transparent = true;
-			material.wireframe = Math.floor( 1.3 * Math.random() );
-			material.type = 3;
-			return material;
-		}
-*/
 	};
 
-	JAMA.materials.PhongDenimReflectionRandom = {
-		title: "Phong Denim Reflect Random",
+	JAMA.materials.PhongRandomReflectDenim = {
+		title: "Phong Random Reflect Denim",
 		set: function() {
-			var p = JAMA.basePath + 'textures/';
-			var urls = [ p + 'denim.jpg', p + 'denim.jpg', p + 'denim.jpg', p + 'denim.jpg', p + 'denim.jpg', p + 'denim.jpg' ];
-
+			var p = JAMA.basePath + 'textures/denim.jpg';
+			var urls = [ p, p, p, p, p, p ];
 			var reflectionCube = THREE.ImageUtils.loadTextureCube( urls );
-			reflectionCube.format = THREE.RGBFormat;
-
-			var refractionCube = new THREE.Texture( reflectionCube.image, new THREE.CubeRefractionMapping() );
-/*
-			var material = new THREE.MeshPhongMaterial( { 
-
-//color: 0xccddff, envMap: texture, refractionRatio: 0.98, reflectivity: 0.9 } );
-			material.ambient.setHex( 0xffffff * Math.random() );
-			material.color.setHex( 0xffffff * Math.random() );
-			material.emissive.setHex( 0x333333 * Math.random() );
-			material.metal = Math.floor( 2 * Math.random() );
-			material.opacity = Math.random().toFixed(2);
-			material.side = 2;
-			material.shininess = (100 * Math.random()).toFixed(0);
-			material.specular.setHex( 0x888888 * Math.random() );
-			material.transparent = true;
-			material.wireframe = Math.floor( 1.3 * Math.random() );
-*/
-		material = new THREE.MeshPhongMaterial( {
-			color: 0xffffff * Math.random(), 
-			ambient: 0xffffff * Math.random(),
-//			envMap: refractionCube, refractionRatio: 0.85,
-			envMap: reflectionCube, combine: THREE.MixOperation, reflectivity: 0.3, metal: true,
-			opacity: 0.9,
-			specular: 0xffffff * Math.random(),
-			shininess: 50,
-			side: THREE.DoubleSide,
-			transparent: true
-		} );
+			material = new THREE.MeshPhongMaterial( {
+				ambient: 0xffffff * Math.random(),
+				color: 0xffffff * Math.random(),
+				combine: THREE.MixOperation,
+				emissive: 0x222222,
+				envMap: reflectionCube,
+				metal: true,
+				opacity: 0.9,
+				shading: THREE.SmoothShading,
+				reflectivity: 0.5,
+				shininess: 50,
+				side: THREE.DoubleSide,
+				specular: 0xffffff * Math.random(),
+				transparent: true
+			} );
 			material.type = 3;
 			return material
 		}
 	};
 
-	JAMA.materials.PhongDenimReflectionBasic = {
-		title: "Phong Denim Reflect Basic",
+	JAMA.materials.PhongDefaultReflectDenim = {
+		title: "Phong Default Reflect Denim",
 		category: "Evironment Map",
 		set: function() {
-			var p = JAMA.basePath + 'textures/';
-			var urls = [ p + 'denim.jpg', p + 'denim.jpg', p + 'denim.jpg', p + 'denim.jpg', p + 'denim.jpg', p + 'denim.jpg' ];
-
+			var p = JAMA.basePath + 'textures/denim.jpg';
+			var urls = [ p, p, p, p, p, p ];
 			var reflectionCube = THREE.ImageUtils.loadTextureCube( urls );
-
-			var material = new THREE.MeshBasicMaterial( { color: 0xffffff, envMap: reflectionCube, side: 2 } );
+			var material = new THREE.MeshBasicMaterial( { 
+				envMap: reflectionCube, 
+				side: 2 } );
 			material.type = 3;
 			return material;
 		}
 	};
 
-	JAMA.materials.PhongDenimRefractionBasic = {
-		title: "Phong Denim Refract Basic",
+	JAMA.materials.PhongDefaultRefractDenim = {
+		title: "Phong Default Refract Denim",
 		category: "Evironment Map",
 		set: function() {
-			var p = JAMA.basePath + 'textures/';
-			var urls = [ p + 'denim.jpg', p + 'denim.jpg', p + 'denim.jpg', p + 'denim.jpg', p + 'denim.jpg', p + 'denim.jpg' ];
-
+			var p = JAMA.basePath + 'textures/denim.jpg';
+			var urls = [ p, p, p, p, p, p ];
 			var refractionCube = THREE.ImageUtils.loadTextureCube( urls, new THREE.CubeRefractionMapping() );
-
-			var material = new THREE.MeshBasicMaterial( { color: 0xffffff, envMap: refractionCube, side: 2 } );
+			var material = new THREE.MeshBasicMaterial( { 
+				envMap: refractionCube, 
+				side: 2 
+			} );
 			material.type = 3;
 			return material;
 		}
 	};
 
-	JAMA.materials.PhongEnvMapCar = {
-		title: "Phong Cadillac Random",
+	JAMA.materials.PhongRandomReflectCadillac = {
+		title: "Phong Random Reflect Caddy",
 		category: "Evironment Map",
 		set: function() {
-			var p = JAMA.basePath + 'textures/';
-			var urls = [ p + 'im5.jpg', p + 'im5.jpg', p + 'im5.jpg', p + 'im5.jpg', p + 'im5.jpg', p + 'im5.jpg' ];
-			var texture = THREE.ImageUtils.loadTextureCube( urls, new THREE.CubeRefractionMapping() );
-			var material = new THREE.MeshPhongMaterial( { color: 0xccddff, envMap: texture, refractionRatio: 0.98, reflectivity: 0.9 } );
-			material.ambient.setHex( 0xffffff * Math.random() );
-			material.color.setHex( 0xffffff * Math.random() );
-			material.emissive.setHex( 0x333333 * Math.random() );
-			material.metal = Math.floor( 2 * Math.random() );
-			material.opacity = Math.random().toFixed(2);
-			material.side = 2;
-			material.shininess = (100 * Math.random()).toFixed(0);
-			material.specular.setHex( 0x888888 * Math.random() );
-			material.transparent = true;
-			material.wireframe = Math.floor( 1.3 * Math.random() );
+			var p = JAMA.basePath + 'textures/im5.jpg';
+			var urls = [ p, p, p, p, p, p ];
+			var reflectionCube = THREE.ImageUtils.loadTextureCube( urls );
+			material = new THREE.MeshPhongMaterial( {
+				ambient: 0xffffff * Math.random(),
+				color: 0xffffff * Math.random(),
+				combine: THREE.MixOperation,
+				emissive: 0x222222,
+				envMap: reflectionCube,
+				metal: true,
+				opacity: 0.9,
+				shading: THREE.SmoothShading,
+				reflectivity: 0.5,
+				shininess: 50,
+				side: THREE.DoubleSide,
+				specular: 0xffffff * Math.random(),
+				transparent: true
+			} );
 			material.type = 3;
 			return material;
 		}
 	};
 
-	JAMA.materials.PhongChrome = {
-		title: "Phong Swedish Palace Chrome",
+	JAMA.materials.PhongWhiteRelectPalace = {
+		title: "Phong Whitee Reflect Palace",
 		category: "Evironment Map",
 		set: function() {
 			var path = JAMA.basePath + 'textures/cube/SwedishRoyalCastle/';
-			var format = '.jpg';
-			var urls = [
-				path + 'px' + format, path + 'nx' + format,
-				path + 'py' + format, path + 'ny' + format,
-				path + 'pz' + format, path + 'nz' + format
-			];
+			var f = '.jpg';
+			var urls = [ path + 'px' + f, path + 'nx' + f, path + 'py' + f, path + 'ny' + f, path + 'pz' + f, path + 'nz' + f ];
 			var texture = THREE.ImageUtils.loadTextureCube( urls, new THREE.CubeRefractionMapping() );
-			var material = new THREE.MeshPhongMaterial( { ambient: 0xffffff, color: 0xffffff, emissive: 0xffffff, envMap: texture, refractionRatio: 0.98, reflectivity: 0.9, side: 2 } );
+			material = new THREE.MeshPhongMaterial( { 
+				ambient: 0xffffff, 
+				color: 0xffffff, 
+				emissive: 0xffffff, 
+				envMap: texture, 
+				refractionRatio: 0.98, 
+				reflectivity: 0.9, 
+				side: 2 
+			} );
 			material.type = 3;
 			return material;
 		}
 	};
 
-	JAMA.materials.PhongPisaRefraction = {
-		title: "Phong Pisa Refract Bluish",
+	JAMA.materials.PhongBlueRefractPisa = {
+		title: "Phong Blue Refract Pisa",
 		category: "Evironment Map",
 		set: function() {
 			var path = JAMA.basePath + 'textures/cube/pisa/';
-			var format = '.png';
-			var urls = [
-				path + 'px' + format, path + 'nx' + format,
-				path + 'py' + format, path + 'ny' + format,
-				path + 'pz' + format, path + 'nz' + format
-			];
+			var f = '.png';
+			var urls = [ path + 'px' + f, path + 'nx' + f, path + 'py' + f, path + 'ny' + f, path + 'pz' + f, path + 'nz' + f ];
 			var refraction = THREE.ImageUtils.loadTextureCube( urls, new THREE.CubeRefractionMapping() );
-			var material = new THREE.MeshBasicMaterial( { color: 0xccccff, envMap: refraction, refractionRatio: 0.85, eflectivity: 0.9, side: 2 } );
+			material = new THREE.MeshBasicMaterial( { color: 0xccccff, envMap: refraction, refractionRatio: 0.85, eflectivity: 0.9, side: 2 } );
 			material.type = 3;
 			return material;
 		}
 	};
 
-	JAMA.materials.PhongPisaReflection = {
-		title: "Phong Pisa Reflect White",
+	JAMA.materials.PhongWhiteReflectPisa = {
+		title: "Phong White Reflect Pisa",
 		category: "Evironment Map",
 		set: function() {
 			var path = JAMA.basePath + 'textures/cube/pisa/';
-			var format = '.png';
-			var urls = [
-				path + 'px' + format, path + 'nx' + format,
-				path + 'py' + format, path + 'ny' + format,
-				path + 'pz' + format, path + 'nz' + format
-			];
+			var f = '.png';
+			var urls = [ path + 'px' + f, path + 'nx' + f, path + 'py' + f, path + 'ny' + f, path + 'pz' + f, path + 'nz' + f ];
 			var reflectionCube = THREE.ImageUtils.loadTextureCube( urls );
 			reflectionCube.format = THREE.RGBFormat;
 			var material = new THREE.MeshBasicMaterial( { color: 0xffffff, envMap: reflectionCube, side: 2 } );
@@ -461,17 +541,14 @@ color: 0xccddff, envMap: texture, refractionRatio: 0.98, reflectivity: 0.9 } );
 		category: "Evironment Map",
 		set: function() {
 //			var p = JAMA.basePath + 'textures/svg_48427/icon_48427_64.png';
-//			var p = JAMA.basePath + 'textures/cube/check-2x.jpg';
+			var p = JAMA.basePath + 'textures/cube/check-2x.jpg';
 //			var p = JAMA.basePath + 'textures/cube/sm.png';
-			var p = JAMA.basePath + 'textures/wire.jpg';
 
 			var urls = [ p, p, p, p, p, p ];
 			var reflectionCube = THREE.ImageUtils.loadTextureCube( urls );
-			var material = new THREE.MeshPhongMaterial( { 
-				color: 0xffffff, 
+			var material = new THREE.MeshPhongMaterial( {
 				envMap: reflectionCube,
-				side: 2 
-
+				side: 2
 			} );
 			material.type = 3;
 			return material;
