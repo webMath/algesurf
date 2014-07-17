@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang=en >
 <head>
-<title>Braided Torus</title>
+<title>Torus Braided *</title>
 <meta charset=utf-8 >
 <meta name=viewport content=width=device-width,user-scalable=no,minimum-scale=1.0,maximum-scale=1.0 >
 </head>
@@ -14,12 +14,32 @@
 	var renderer, scene, camera, controls;
 	var geometry, material, mesh;
 	var pi = Math.PI;
-	var scale = 25;
 	var x, y, z;
+
+	var scale = 25;
+
 	var R1 = 0.5;
 	var R2 = 3;
 	var a = 0.85;
 	var n = 1.25;
+
+	var a = 0.5, aMin = -5, aMax = 5, aStep = 0.1;
+	var b = 3, bMin = -5, bMax = 5, bStep = 0.1;
+	var c = 0.85, cMin = -5, cMax = 5, cStep = 0.1;
+
+	var d = 2.5, dMin = -5, dMax = 5, dStep = 0.1;
+	var e = 0.5, eMin = -5, eMax = 5, eStep = 0.1;
+	var f = 0.85, fMin = -5, fMax = 5, fStep = 0.1;
+
+	var g = 0.5, gMin = -5, gMax = 5, gStep = 0.1;
+	var h = 3, hMin = -5, hMax = 5, hStep = 0.1;
+	var i = 0.85, iMin = -5, iMax = 5, iStep = 0.1;
+
+	var R1 = 1, R1Min = -5, R1Max = 5, R1Step = 0.1;
+	var R2 = 1, R2Min = -5, R2Max = 5, R2Step = 0.1;
+
+	var u = 80;
+	var v = 20;
 
 	init();
 	animate();
@@ -36,32 +56,34 @@
 		camera.position.set( 100, 100, 100 );
 		controls = new THREE.TrackballControls( camera, renderer.domElement );
 
-		geometry = new THREE.ParametricGeometry( curve, 80, 20 );
+		geometry = new THREE.ParametricGeometry( curve, u, v );
 		material = new THREE.MeshNormalMaterial( { shading: THREE.SmoothShading, side: 2 } )
 		mesh = new THREE.Mesh( geometry, material );
 		scene.add( mesh );
 	}
 
-	function curve( u, v ) {		
+	function curve( u, v ) {
 		u = 8 * pi * ( u );
 		v = 2 * pi * ( v );
 
-		x = scale * ( R1 * cos( v ) * cos( u ) + R2 * cos( u ) * ( 1 + a * cos( n * u ) )  );
-		y = scale * ( 2.5 * ( R1 * sin( v ) + a * sin( n * u ) )  );
-		z = scale * ( R1 * cos( v ) * sin( u ) + R2 * sin( u ) * ( 1 + a * cos( n * u ) )  );
+		x = scale * ( a * cos( v ) * cos( u ) + b * cos( u ) * ( 1 + c * cos( n * u ) )  );
+		y = scale * ( d * ( e * sin( v ) + f * sin( n * u ) )  );
+		z = scale * ( g * cos( v ) * sin( u ) + h * sin( u ) * ( 1 + i * cos( n * u ) )  );
 
 		return new THREE.Vector3( x, y, z );
 	}
 
+	function abs( a ){ return Math.abs( a ); }
 	function cos( a ){ return Math.cos( a ); }
-	function sin( a ){ return Math.sin( a ); }
-	function tan( a ){ return Math.tan( a ); }
-
+	function cos2( a ){ return Math.cos( a ) * Math.cos( a ); }
 	function exp( a ){ return Math.exp( a ); }
 	function log( a ){ return Math.log( a ); }
 	function pow( a, b ){ return Math.pow( a, b ); }
 	function ran(){ return Math.random(); }
-	function sqrt( a ){ return Math.sqrt( a ); }	
+	function sin( a ){ return Math.sin( a ); }
+	function sin2( a ){ return Math.sin( a ) * Math.sin( a ); }
+	function sqrt( a ){ return Math.sqrt( a ); }
+	function tan( a ){ return Math.tan( a ); }
 
 	function animate() {
 		requestAnimationFrame( animate );

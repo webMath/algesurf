@@ -1,7 +1,7 @@
 	var JA = {} || JA;
 
-	JA.titleIcon = '<i class="fa fa-bomb"></i>';
-	JA.TitleText = '"3D View-Maker"';
+	JA.titleIcon = '<i class="fa fa-bomb"></i>';  // screen grab please
+	JA.TitleText = '"3D Parametric Equations"';
 
 	JA.camX = 100;
 	JA.camY = 100;
@@ -17,8 +17,8 @@
 			'h1 { margin: 0; }' +
 			'a { text-decoration: none; opacity: 0.8; }' +
 			'#closer p { margin: 0; opacity: 0.8; }' +
-			'#movable { background-color: #ccc; opacity: 0.8; cursor: move; left: 20px; min-width: 300px; max-height: ' + (window.innerHeight - 100) + 'px; ' +
-				'overflow: auto; padding: 10px; position: absolute; top: 20px; z-index: 50; }' +
+			'#movable { background-color: #ccc; opacity: 0.8; cursor: move; left: 20px; width: 300px; max-height: ' + (window.innerHeight - 100) + 'px; ' +
+				'overflow-x: hidden; overflow-y: auto; padding: 10px; position: absolute; top: 20px; z-index: 50; }' +
 			'.button { background-color: #eee; outline: 1px #aaa solid; padding: 5px; }' +
 		'';
 	};
@@ -79,7 +79,7 @@
 		JA.msg.innerHTML =
 			'<div id=divMsg1 >Msg aaa</div>' +
 			'<div id=divMsg2 >Msg bbb</div>' +
-			'<div id=divMsg3 >Msg ccc</div>' +
+			'<div id=divMsg3 ></div>' +
 			'<div id=divMsg4 ></div>' +
 			'<div id=divMsg5 ></div>' +
 		''; 
@@ -93,9 +93,15 @@
 				'<a id=iconHome ><i class="fa fa-home"></i></a> ' +
 			'</h2>'; 
 		iconHome.title = "Reset to default view";
-		iconHome.href = 'JavaScript:TATH.resetCamera();'
+		iconHome.href = 'JavaScript:JA.resetCamera();';
 	};
 
+	JA.resetCamera = function() {
+		app.camera = new THREE.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 1, 5000 );
+		app.camera.position.set( JA.camX, JA.camY, JA.camZ );
+		app.controls = new THREE.TrackballControls( app.camera, app.renderer.domElement );
+		app.controls.target.set( JA.tarX, JA.tarY, JA.tarZ );
+	};
 
 // Toggles
 	JA.toggleMenu = function(  ) {
@@ -118,13 +124,12 @@
 	};
 
 // Events
-
 	JA.onWindowResize = function () {
 		JATH.camera.aspect = window.innerWidth / window.innerHeight;
 		JATH.camera.updateProjectionMatrix();
 		JATH.renderer.setSize( window.innerWidth, window.innerHeight );
 		JATH.controls.handleResize(); // todo: verify if needed?
-	}
+	};
 
 	JA.mouseUp = function() {
 		window.removeEventListener('mousemove', JA.divMove, true);

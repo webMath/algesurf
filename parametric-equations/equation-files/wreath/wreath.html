@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang=en >
 <head>
-<title>Wreath</title>
+<title>Wreath *</title>
 <meta charset=utf-8 >
 <meta name=viewport content=width=device-width,user-scalable=no,minimum-scale=1.0,maximum-scale=1.0 >
 </head>
@@ -14,10 +14,29 @@
 	var renderer, scene, camera, controls;
 	var geometry, material, mesh;
 	var pi = Math.PI;
-	var scale = 100;
 	var x, y, z;
 
+	var scale = 100;
 
+	var a = 2, aMin = -5, aMax = 5, aStep = 0.1;
+	var b = 4, bMin = -5, bMax = 5, bStep = 0.1;
+//	var c = 1, cMin = -5, cMax = 5, cStep = 0.1;
+
+	var d = 1, dMin = -5, dMax = 5, dStep = 0.1;
+	var e = 0.5, eMin = -5, eMax = 5, eStep = 0.1;
+//	var f = 1, fMin = -5, fMax = 5, fStep = 0.1;
+
+	var g = 1, gMin = -5, gMax = 5, gStep = 0.1;
+//	var h = 1, hMin = -5, hMax = 5, hStep = 0.1;
+//	var i = 1, iMin = -5, iMax = 5, iStep = 0.1;
+
+//	var n = 5, nMin = 1, iMax = 20, nStep = 1;
+
+	var R1 = 1, R1Min = -5, R1Max = 5, R1Step = 0.1;
+	var R2 = 1, R2Min = -5, R2Max = 5, R2Step = 0.1;
+
+	var u = 50;
+	var v = 30;
 
 	init();
 	animate();
@@ -34,19 +53,19 @@
 		camera.position.set( 0, 50, 180 );
 		controls = new THREE.TrackballControls( camera, renderer.domElement );
 
-		geometry = new THREE.ParametricGeometry( curve, 50, 30 );
+		geometry = new THREE.ParametricGeometry( curve, u, v );
 		material = new THREE.MeshNormalMaterial( { shading: THREE.SmoothShading, side: 2 } )
 		mesh = new THREE.Mesh( geometry, material );
 		scene.add( mesh );
 	}
 
-	function curve( u, v ) {		
+	function curve( u, v ) {
 		u = 2 * pi * ( u);
 		v = 2 * pi * ( v );
 
-		x = scale * ( 2 * cos( u + 4 ) / 3 );
-		y = scale * ( cos( u ) * sin( v ) * cos( v ) * sin( u ) * cos( v ) + 0.5 * cos( u ) );
-		z = scale * ( cos( v ) * sin( u ) * cos( u ) * sin( v ) );
+		x = scale * R1 * ( a * cos( u + b ) / 3 );
+		y = scale * R2 * ( d * cos( u ) * sin( v ) * cos( v ) * sin( u ) * cos( v ) + e * cos( u ) );
+		z = scale * R1 * ( g * cos( v ) * sin( u ) * cos( u ) * sin( v ) );
 
 		return new THREE.Vector3( x, y, z );
 	}
@@ -59,7 +78,7 @@
 	function log( a ){ return Math.log( a ); }
 	function pow( a, b ){ return Math.pow( a, b ); }
 	function ran(){ return Math.random(); }
-	function sqrt( a ){ return Math.sqrt( a ); }	
+	function sqrt( a ){ return Math.sqrt( a ); }
 
 	function animate() {
 		requestAnimationFrame( animate );

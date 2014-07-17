@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang=en >
 <head>
-<title>Twisted Pipe Surface</title>
+<title>Twisted Pipe Surface *</title>
 <meta charset=utf-8 >
 <meta name=viewport content=width=device-width,user-scalable=no,minimum-scale=1.0,maximum-scale=1.0 >
 </head>
@@ -19,6 +19,7 @@
 	var r, s, t;
 
 	var scale = 15;
+
 	var a = 1, aMin = -5, aMax = 5, aStep = 0.1;
 	var b = 2, bMin = -5, bMax = 5, bStep = 0.1;
 	var c = 2, cMin = -5, cMax = 5, cStep = 0.1;
@@ -31,6 +32,9 @@
 
 	var R1 = 1, R1Min = -5, R1Max = 5, R1Step = 0.1;
 	var R2 = 1, R2Min = -5, R2Max = 5, R2Step = 0.1;
+
+	var u = 20;
+	var v = 20;
 
 	init();
 	animate();
@@ -47,13 +51,13 @@
 		camera.position.set( 100, 100, 100 );
 		controls = new THREE.TrackballControls( camera, renderer.domElement );
 
-		geometry = new THREE.ParametricGeometry( curve, 20, 20 );
+		geometry = new THREE.ParametricGeometry( curve, u, v );
 		material = new THREE.MeshNormalMaterial( { shading: THREE.SmoothShading, side: 2 } )
 		mesh = new THREE.Mesh( geometry, material );
 		scene.add( mesh );
 	}
 
-	function curve( u, v ) {		
+	function curve( u, v ) {
 		u = 2 * pi * ( u );
 		v = 2 * pi * ( v );
 		
@@ -74,7 +78,7 @@
 	function log( a ){ return Math.log( a ); }
 	function pow( a, b ){ return Math.pow( a, b ); }
 	function ran(){ return Math.random(); }
-	function sqrt( a ){ return Math.sqrt( a ); }	
+	function sqrt( a ){ return Math.sqrt( a ); }
 
 	function animate() {
 		requestAnimationFrame( animate );

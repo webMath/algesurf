@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang=en >
 <head>
-<title>Triaxial Tritorus</title>
+<title>Triaxial Tritorus *</title>
 <meta charset=utf-8 >
 <meta name=viewport content=width=device-width,user-scalable=no,minimum-scale=1.0,maximum-scale=1.0 >
 </head>
@@ -13,11 +13,30 @@
 
 	var renderer, scene, camera, controls;
 	var geometry, material, mesh;
-
 	var pi = Math.PI;
-	var scale = 35;
 	var x, y, z;
 
+	var scale = 35;
+
+	var a = 1, aMin = -5, aMax = 5, aStep = 0.1;
+	var b = 2, bMin = -5, bMax = 5, bStep = 0.1;
+	var c = 4, cMin = -5, cMax = 5, cStep = 0.1;
+
+	var d = 1, dMin = -5, dMax = 5, dStep = 0.1;
+	var e = 1, eMin = -5, eMax = 5, eStep = 0.1;
+	var f = 2, fMin = -5, fMax = 5, fStep = 0.1;
+
+	var g = 4, gMin = -5, gMax = 5, gStep = 0.1;
+//	var h = 1, hMin = -5, hMax = 5, hStep = 0.1;
+//	var i = 1, iMin = -5, iMax = 5, iStep = 0.1;
+
+//	var n = 5, nMin = 1, iMax = 20, nStep = 1;
+
+	var R1 = 1, R1Min = -5, R1Max = 5, R1Step = 0.1;
+	var R2 = 1, R2Min = -5, R2Max = 5, R2Step = 0.1;
+
+	var u = 50;
+	var v = 50;
 
 	init();
 	animate();
@@ -34,19 +53,19 @@
 		camera.position.set( 100, 100, 100 );
 		controls = new THREE.TrackballControls( camera, renderer.domElement );
 
-		geometry = new THREE.ParametricGeometry( curve, 50, 50 );
+		geometry = new THREE.ParametricGeometry( curve, u, v );
 		material = new THREE.MeshNormalMaterial( { shading: THREE.SmoothShading, side: 2 } )
 		mesh = new THREE.Mesh( geometry, material );
 		scene.add( mesh );
 	}
 
-	function curve( u, v ) {		
+	function curve( u, v ) {
 		u = 2 * pi * ( u - 0.5 );
 		v = 2 * pi * ( v - 0.5 );
 
-		x = scale * ( sin( u ) * ( 1 + cos( v ) )  );
-		y = scale * ( sin( u + 2 * pi / 3 ) * ( 1 + cos( v + 2 * pi / 3 ) )  );
-		z = scale * ( sin( u + 4 * pi / 3 ) * ( 1 + cos( v + 4 * pi / 3 ) )  );
+		x = scale * R1 * ( sin( u ) * ( a + cos( v ) )  );
+		y = scale * R2 * ( sin( u + b * pi / 3 ) * ( d + cos( v + f * pi / 3 ) )  );
+		z = scale * R1 * ( sin( u + c * pi / 3 ) * ( e + cos( v + g * pi / 3 ) )  );
 
 		return new THREE.Vector3( x, y, z );
 	}

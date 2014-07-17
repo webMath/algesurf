@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang=en >
 <head>
-<title>Pisot Triaxial</title>
+<title>Pisot Triaxial *</title>
 <meta charset=utf-8 >
 <meta name=viewport content=width=device-width,user-scalable=no,minimum-scale=1.0,maximum-scale=1.0 >
 </head>
@@ -14,8 +14,27 @@
 	var renderer, scene, camera, controls;
 	var geometry, material, mesh;
 	var pi = Math.PI;
-	var scale = 25;
 	var x, y, z;
+
+	var scale = 25;
+
+	var a = 2, aMin = -5, aMax = 5, aStep = 0.1;
+	var b = 2, bMin = -5, bMax = 5, bStep = 0.1;
+	var c = 2, cMin = -5, cMax = 5, cStep = 0.1;
+
+	var d = 0.655866, dMin = -1, dMax = 1, dStep = 0.00001;
+	var e = 0.74878, eMin = -1, eMax = 1, eStep = 0.00001;
+	var f = 0.868837, fMin = -1, fMax = 1, fStep = 0.00001;
+
+	var g = 1.03002, gMin = 0, gMax = 2, gStep = 0.00001;
+	var h = 1.40772, hMin = 0, hMax = 2, hStep = 0.00001;
+	var i = 2.43773, hMin = 1, hMax = 3, hStep = 0.00001;
+
+	var R1 = 1, R1Min = -5, R1Max = 5, R1Step = 0.1;
+	var R2 = 1, R2Min = -5, R2Max = 5, R2Step = 0.1;
+
+	var u = 30;
+	var v = 20;
 
 	init();
 	animate();
@@ -32,19 +51,19 @@
 		camera.position.set( 100, 100, 100 );
 		controls = new THREE.TrackballControls( camera, renderer.domElement );
 
-		geometry = new THREE.ParametricGeometry( curve, 30, 20 );
+		geometry = new THREE.ParametricGeometry( curve, u, v );
 		material = new THREE.MeshNormalMaterial( { shading: THREE.SmoothShading, side: 2 } )
 		mesh = new THREE.Mesh( geometry, material );
 		scene.add( mesh );
 	}
 
-	function curve( u, v ) {		
+	function curve( u, v ) {
 		u = 2 * pi * ( u - 0.5 );
 		v = 2 * pi * ( v - 0.5 );
 
-		x = scale * ( 0.655866 * cos( 1.03002 + u ) * ( 2 + cos( v ) )  );
-		y = scale * ( 0.74878 * cos( 1.40772 - u ) * ( 2 + 0.868837 * cos( 2.43773 + v ) )  );
-		z = scale * ( 0.868837 * cos( 2.43773 + u ) * ( 2 + 0.495098 * cos( 0.377696 - v ) )  );
+		x = scale * R1 * ( d * cos( g + u ) * ( a + cos( v ) )  );
+		y = scale * R2 * ( e * cos( h - u ) * ( b + 0.868837 * cos( 2.43773 + v ) )  );
+		z = scale * R1 * ( f * cos( i + u ) * ( c + 0.495098 * cos( 0.377696 - v ) )  );
 
 		return new THREE.Vector3( x, y, z );
 	}
@@ -64,6 +83,7 @@
 		renderer.render( scene, camera );
 		controls.update();
 	}
+
 </script>
 </body>
 </html>

@@ -1,6 +1,4 @@
-// http://stackoverflow.com/questions/11944932/how-to-download-a-file-with-node-js
 
-	var request = require( "../node_modules/request");	
 	var fs = require( "fs" );
 	var fileList = [];
 	var fileText = '';

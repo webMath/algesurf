@@ -1,12 +1,11 @@
-AlgeSurf Read Me
+Parametric Equations Read Me
 ===
 
-<iframe src="http://jaanga.github.io/algesurf/parametric-equations/r2/boy-surface/boy-surface.html" width=100% height=500px class='overview' >
+<iframe src="http://jaanga.github.io/algesurf/parametric-equations/r2/torus-8/torus-8.html" width=100% height=500px class='overview' >
 There is an iframe here. It is not visible when viewed on github.com/jaanga. To view <a href="http://jaanga.github.io/algesurf/parametric-equations/" target="_blank">Web Page</a>
 </iframe>
-_The sample above is the display of Boy's Surface as a paramteric equation_
+[Full Screen]( http://jaanga.github.io/algesurf/parametric-equations/r2/index.html )
 
-[Full Screen]
 
 ## Concept
 
@@ -18,30 +17,21 @@ Part of an effort to make the visualization of mathematic equations faster, simp
 <!--  a descriptive picture of a desired future state -->
 To visualize math and phisics in entirely new ways
 
-## The Apps
+## Features
+<!-- and benefits -->
 
-### Parametric Equations
-
-[Source Code]( https://github.com/jaanga/algesurf/tree/gh-pages/parametric-equations )
-
-### Marching Cubes
-
-[Player]( http://jaanga.github.io/algesurf/marching-cubes/r2/1-Overview/Player.html )  
-[Builder]( http://jaanga.github.io/algesurf/marching-cubes/r2/1-Overview/Builder.html )  
-[Source Code ]( https://github.com/jaanga/algesurf/tree/gh-pages/marching-cubes/r2 )  
-
-### Function Graphs
-
-[Source Code]( https://github.com/jaanga/algesurf/tree/gh-pages/function-graphs )
-
-### Cookbook
-
-[Source Code]( https://github.com/jaanga/algesurf/tree/gh-pages/cookbook )
 
 ## Road Map
 
+* Translate folder and file names to English
+* Center in screen each object
+* Add slider bars that update coefficients in real-time
+* Add categories to each file
+* Add source to each file
+
 
 ## Issues / Bugs
+
 
 
 ## Project Links

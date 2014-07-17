@@ -1,14 +1,13 @@
 <!doctype html>
 <html lang=en >
 <head>
-<title>Catalan Surface</title>
+<title>Catalan Surface *</title>
 <meta charset=utf-8 >
 <meta name=viewport content=width=device-width,user-scalable=no,minimum-scale=1.0,maximum-scale=1.0 >
 </head>
 <body>
 <script src=http://mrdoob.github.io/three.js/build/three.min.js ></script>
 <script src=http://mrdoob.github.io/three.js/examples/js/controls/TrackballControls.js ></script>
-
 <script>
 // http://www.3d-meier.de/tut3/Seite29.html
 
@@ -22,6 +21,9 @@
 	var b = -4, bMin = -9, bMax = 5, bStep = 0.5;
 	var c = 2, cMin = -5, cMax = 5, cStep = 0.1;
 	var d = 2, dMin = -5, dMax = 5, dStep = 0.1;
+
+	var u = 50;
+	var v = 20;
 
 	init();
 	animate();
@@ -38,7 +40,7 @@
 		camera.position.set( 100, 100, 100 );
 		controls = new THREE.TrackballControls( camera, renderer.domElement );
 
-		geometry = new THREE.ParametricGeometry( curve, 50, 20 );
+		geometry = new THREE.ParametricGeometry( curve, u, v );
 		material = new THREE.MeshNormalMaterial( { shading: THREE.SmoothShading, side: 2 } )
 		mesh = new THREE.Mesh( geometry, material );
 
@@ -70,7 +72,6 @@
 	function sinh( a ){ return Math.sinh( a ); }
 	function tanh( a ){ return Math.tanh( a ); }
 	function sech( a ){ return Math.sech( a ); }
-
 */
 
 	function sinh( a ){ return ( exp( a ) - exp( -a ) ) / 2; }
@@ -78,12 +79,12 @@
 	function tanh( a ){ return sinh( a ) / cosh( a ); }
 	function sech( a ){ return 1 / cosh( a ); }
 
-
 	function animate() {
 		requestAnimationFrame( animate );
 		renderer.render( scene, camera );
 		controls.update();
 	}
+
 </script>
 </body>
 </html>

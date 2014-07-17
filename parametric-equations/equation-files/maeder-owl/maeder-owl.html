@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang=en >
 <head>
-<title>Maeder's Owl</title>
+<title>Maeder's Owl *</title>
 <meta charset=utf-8 >
 <meta name=viewport content=width=device-width,user-scalable=no,minimum-scale=1.0,maximum-scale=1.0 >
 </head>
@@ -13,12 +13,26 @@
 
 	var renderer, scene, camera, controls;
 	var geometry, material, mesh;
+	var pi = Math.PI;
+	var x, y, z;
 
-		var pi = Math.PI;
-		var scale = 100;
-		var x, y, z;
+	var scale = 100;
+	var a = 0.5, aMin = -5, aMax = 5, aStep = 0.1;
+	var b = 2, bMin = -5, bMax = 5, bStep = 0.1;
+	var c = 2, cMin = -5, cMax = 5, cStep = 0.1;
 
+	var d = 0.5, dMin = -5, dMax = 5, dStep = 0.1;
+	var e = 2, eMin = -5, eMax = 5, eStep = 0.1;
+	var f = 2, fMin = -5, fMax = 5, fStep = 0.1;
 
+	var g = 1.5, gMin = -5, gMax = 5, gStep = 0.1;
+	var h = 3, hMin = -5, hMax = 5, hStep = 0.1;
+
+	var R1 = 1, R1Min = -5, R1Max = 5, R1Step = 0.1;
+	var R2 = 1, R2Min = -5, R2Max = 5, R2Step = 0.1;
+
+	var u = 80;
+	var v = 20;
 
 	init();
 	animate();
@@ -35,38 +49,34 @@
 		camera.position.set( 100, 100, 100 );
 		controls = new THREE.TrackballControls( camera, renderer.domElement );
 
-		geometry = new THREE.ParametricGeometry( curve, 80, 20 );
+		geometry = new THREE.ParametricGeometry( curve, u, v );
 		material = new THREE.MeshNormalMaterial( { shading: THREE.SmoothShading, side: 2 } )
 		mesh = new THREE.Mesh( geometry, material );
 		scene.add( mesh );
 	}
 
-	function curve( u, v ) {		
+	function curve( u, v ) {
 		u = 4 * pi * ( u - 0.5 );
 		v = 1 * ( v - 0.5 );
 
-		x = scale * ( v * cos( u ) - 0.5 * v * v * cos( 2 * u ) );
-		y = scale * ( -v * sin( u ) - 0.5 * v * v * sin( 2 * u ) );
-		z = scale * ( 0.25 * exp( 1.5, log( v ) ) * cos( 3 * u / 2) / 3 );
+		x = scale * R1 * ( v * cos( u ) - a * pow( v, b ) * cos( c * u ) );
+		y = scale * R2 * ( -v * sin( u ) - d * pow( v, e ) * sin( f * u ) );
+		z = scale * R1 * ( 0.25 * exp( g, log( v ) ) * cos( h * u / 2) / 3 );
 
 		return new THREE.Vector3( x, y, z );
 	}
 
+	function abs( a ){ return Math.abs( a ); }
 	function cos( a ){ return Math.cos( a ); }
-	function sin( a ){ return Math.sin( a ); }
-	function tan( a ){ return Math.tan( a ); }
-
+	function cos2( a ){ return Math.cos( a ) * Math.cos( a ); }
 	function exp( a ){ return Math.exp( a ); }
 	function log( a ){ return Math.log( a ); }
 	function pow( a, b ){ return Math.pow( a, b ); }
 	function ran(){ return Math.random(); }
-	function sqrt( a ){ return Math.sqrt( a ); }	
-
-	function cosh( a ){ return Math.cosh( a ); }
-	function sinh( a ){ return Math.sinh( a ); }
-	function tanh( a ){ return Math.tanh( a ); }
-
-	function sech( a ){ return Math.sech( a ); }
+	function sin( a ){ return Math.sin( a ); }
+	function sin2( a ){ return Math.sin( a ) * Math.sin( a ); }
+	function sqrt( a ){ return Math.sqrt( a ); }
+	function tan( a ){ return Math.tan( a ); }
 
 	function animate() {
 		requestAnimationFrame( animate );

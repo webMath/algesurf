@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang=en >
 <head>
-<title>Bonan Jeener Klein Surface</title>
+<title>Bonan Jeener Klein Surface *</title>
 <meta charset=utf-8 >
 <meta name=viewport content=width=device-width,user-scalable=no,minimum-scale=1.0,maximum-scale=1.0 >
 </head>
@@ -32,6 +32,9 @@
 	var g = 1, gMin = -5, gMax = 5, gStep = 0.05;
 	var h = 1, hMin = -5, hMax = 5, hStep = 0.05;
 
+	var u = 80;
+	var v = 50;
+
 	var W;
 
 	init();
@@ -49,7 +52,7 @@
 		camera.position.set( 100, 100, 100 );
 		controls = new THREE.TrackballControls( camera, renderer.domElement );
 
-		geometry = new THREE.ParametricGeometry( curve, 80, 50 );
+		geometry = new THREE.ParametricGeometry( curve, u, v );
 		material = new THREE.MeshNormalMaterial( { shading: THREE.SmoothShading, side: 2 } )
 		mesh = new THREE.Mesh( geometry, material );
 

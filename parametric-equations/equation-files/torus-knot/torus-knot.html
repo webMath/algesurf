@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang=en >
 <head>
-<title>Torus Knot</title>
+<title>Torus Knot *</title>
 <meta charset=utf-8 >
 <meta name=viewport content=width=device-width,user-scalable=no,minimum-scale=1.0,maximum-scale=1.0 >
 </head>
@@ -14,15 +14,27 @@
 	var renderer, scene, camera, controls;
 	var geometry, material, mesh;
 	var pi = Math.PI;
-	var scale = 10;
 	var x, y, z;
 
-	var p = 8;
-	var q = 5;
+	var scale = 10;
 
-	var R = 1.5;
-	var R1 = 8;
-	var R2 = 3;
+	var a = 8, aMin = -5, aMax = 15, aStep = 0.1;
+	var b = 3, bMin = -5, bMax = 10, bStep = 0.1;
+	var c = 1.5, cMin = -5, cMax = 5, cStep = 0.1;
+
+	var d = 8, dMin = -5, dMax = 15, dStep = 0.1;
+	var e = 5, eMin = -5, eMax = 10, eStep = 0.1;
+//	var f = 1, fMin = -5, fMax = 5, fStep = 0.1;
+
+//	var g = 1, gMin = -5, gMax = 5, gStep = 0.1;
+//	var h = 1, hMin = -5, hMax = 5, hStep = 0.1;
+//	var i = 1, iMin = -5, iMax = 5, iStep = 0.1;
+
+//	var R1 = 1, R1Min = -5, R1Max = 5, R1Step = 0.1;
+//	var R2 = 1, R2Min = -5, R2Max = 5, R2Step = 0.1;
+
+	var u = 100;
+	var v = 20;
 
 	init();
 	animate();
@@ -39,36 +51,34 @@
 		camera.position.set( 100, 100, 100 );
 		controls = new THREE.TrackballControls( camera, renderer.domElement );
 
-		geometry = new THREE.ParametricGeometry( curve, 100, 20 );
+		geometry = new THREE.ParametricGeometry( curve, u, v);
 		material = new THREE.MeshNormalMaterial( { shading: THREE.SmoothShading, side: 2 } )
 		mesh = new THREE.Mesh( geometry, material );
 		scene.add( mesh );
 	}
 
-	function curve( u, v ) {		
+	function curve( u, v ) {
 		u = 2 * pi * ( u - 0.5 );
 		v = 2 * pi * ( v - 0.5 );
 
-		x = scale * ( ( R1 + R2 * cos( p * u ) + R * cos( v ) ) * cos( q * u ) );
-		y = scale * ( R * sin( v ) + R2 * sin( p * u ) );
-		z = scale * ( ( R1 + R2 * cos( p * u ) + R * cos( v ) ) * sin( q * u ) );
+		x = scale * ( ( a + b * cos( d * u ) + c * cos( v ) ) * cos( e * u ) );
+		y = scale * ( c * sin( v ) + b * sin( d * u ) );
+		z = scale * ( ( a + b * cos( d * u ) + c * cos( v ) ) * sin( e * u ) );
 
 		return new THREE.Vector3( x, y, z );
 	}
 
-	function cos( a ){ return Math.cos( a ); }
-	function sin( a ){ return Math.sin( a ); }
-	function tan( a ){ return Math.tan( a ); }
-
-	function cos2( a ){ return Math.cos( a ) * Math.cos( a ); }
-	function sin2( a ){ return Math.sin( a ) * Math.sin( a ); }
-
 	function abs( a ){ return Math.abs( a ); }
+	function cos( a ){ return Math.cos( a ); }
+	function cos2( a ){ return Math.cos( a ) * Math.cos( a ); }
 	function exp( a ){ return Math.exp( a ); }
 	function log( a ){ return Math.log( a ); }
 	function pow( a, b ){ return Math.pow( a, b ); }
 	function ran(){ return Math.random(); }
-	function sqrt( a ){ return Math.sqrt( a ); }	
+	function sin( a ){ return Math.sin( a ); }
+	function sin2( a ){ return Math.sin( a ) * Math.sin( a ); }
+	function sqrt( a ){ return Math.sqrt( a ); }
+	function tan( a ){ return Math.tan( a ); }
 
 	function animate() {
 		requestAnimationFrame( animate );

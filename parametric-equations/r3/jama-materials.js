@@ -1,14 +1,16 @@
 	JAMA = {} || JAMA;
 
-	JAMA.basePath = '../../../';
+	JAMA.basePath = '../../../../../';
 
 	JAMA.addMaterialSelectTab = function() {
+
 		var tab = JA.menu.appendChild( document.createElement( 'div' ) );
 		tab.title = 'Choose from a number of materials to apply to the surface';
 		tab.innerHTML =
 			'<a href=# id=tabMaterialSelect ><p class=button >' +
 				'<i class="fa fa-cubes"></i> Material Select...' +
 			'</p></a>';
+
 		tabMaterialSelect.onclick = function() { JA.toggleTab( JAMA.MaterialSelectTab ); } ;
 
 		JAMA.MaterialSelectTab = tab.appendChild( document.createElement( 'div' ) );
@@ -35,17 +37,20 @@
 			'<h3 style=margin:0; >Evironment Map</h3>' +
 			envMap +
 		'';
+
 	};
 
 	JAMA.updateMaterial = function( key ) {
+
 		chkMaterial.checked = false;
 		JATH.materialKey = key;
 		JATH.selectedObject.material = JAMA.materials[ key ].set();
-		divMsg2.innerHTML = 'Material: <b>' + JAMA.materials[ key ].title + '</b>';
-// console.log( 'update',  key );
+		divMsg3.innerHTML = 'Material: <b>' + JAMA.materials[ key ].title + '</b>';
+
 	};
 
 	JAMA.addMaterialEditorTab = function() {
+
 		var tab = JA.menu.appendChild( document.createElement( 'div' ) );
 		tab.title = 'Edit the parameters of the current material';
 		tab.innerHTML =
@@ -56,11 +61,13 @@
 
 		JAMA.MaterialEditorTab = tab.appendChild( document.createElement( 'div' ) );
 		JAMA.MaterialEditorTab.style.cssText = 'cursor: auto; display: none; ' ;
+
 	};
 
 	JAMA.updateMaterialEditorTab = function() {
+
 		var m = JATH.selectedObject.material;
-		var txt = 
+		var txt =
 			'<p>Selected id: ' + JATH.selectedObject.id + '</p>' +
 			'<p>' +
 				'Material: <select id=selMaterial title="Select type" >' +
@@ -78,7 +85,7 @@
 					'<option>Front</option>' +
 					'<option>Back</option>' +
 					'<option selected>Both</option>' +
-				'<select><br>'; 
+				'<select><br>';
 
 				if ( m.ambient ) txt += 'Ambient: &nbsp;<input type=color id=inpAmbient value=#' + m.ambient.getHexString() + ' > <output id=outAmbient >#' + m.ambient.getHexString() + '</output><br>';
 				if ( m.color ) txt += 'Color: &nbsp; &nbsp;<input type=color id=inpColor value=#' + m.color.getHexString() + '> <output id=outColor >#' + m.color.getHexString() + '</output><br>';
@@ -117,7 +124,7 @@
 			}
 			JAMA.updateMaterialEditorTab();
 		};
-// console.log( JATH.selectedObject.material, JATH.selectedObject.material.type );
+
 		selShading.selectedIndex = m.shading;
 		selShading.onchange = function() { m.shading = selShading.selectedIndex; JAMA.updateMaterialEditorTab(); };
 
@@ -134,6 +141,7 @@
 		inpWireframe.checked = m.wireframe;
 		inpWireframe.onchange = function() { m.wireframe = inpWireframe.checked; JAMA.updateMaterialEditorTab(); };
 
-		inpOpacity.onchange = function() {  m.opacity = parseFloat( this.value ); m.transparent = true; JAMA.updateMaterialEditorTab(); };
+		inpOpacity.onchange = function() { m.opacity = parseFloat( this.value ); m.transparent = true; JAMA.updateMaterialEditorTab(); };
 		inpShininess.onchange = function() { m.shininess = this.value; JAMA.updateMaterialEditorTab(); };
+
 	};

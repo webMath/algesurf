@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang=en >
 <head>
-<title>Stiletto Surface</title>
+<title>Stiletto Surface *</title>
 <meta charset=utf-8 >
 <meta name=viewport content=width=device-width,user-scalable=no,minimum-scale=1.0,maximum-scale=1.0 >
 </head>
@@ -15,8 +15,27 @@
 	var geometry, material, mesh;
 
 	var pi = Math.PI;
-	var scale = 90;
 	var x, y, z;
+
+	var scale = 90;
+
+	var a = 2, aMin = -5, aMax = 5, aStep = 0.1;
+	var b = 1, bMin = -5, bMax = 5, bStep = 0.1;
+	var c = 3, cMin = -5, cMax = 5, cStep = 0.1;
+
+	var d = 0.5, dMin = -5, dMax = 5, dStep = 0.1;
+	var e = 2, eMin = -5, eMax = 5, eStep = 0.1;
+	var f = 1, fMin = -5, fMax = 5, fStep = 0.1;
+
+	var g = 2, gMin = -5, gMax = 5, gStep = 0.1;
+	var h = 1, hMin = -5, hMax = 5, hStep = 0.1;
+	var i = 2, iMin = -5, iMax = 5, iStep = 0.1;
+
+	var R1 = 1, R1Min = -5, R1Max = 5, R1Step = 0.1;
+	var R2 = 1, R2Min = -5, R2Max = 5, R2Step = 0.1;
+
+	var u = 30;
+	var v = 30;
 
 	init();
 	animate();
@@ -34,32 +53,34 @@
 		camera.position.set( 100, 100, 100 );
 		controls = new THREE.TrackballControls( camera, renderer.domElement );
 
-		geometry = new THREE.ParametricGeometry( curve, 30, 30 );
+		geometry = new THREE.ParametricGeometry( curve, u, v );
 		material = new THREE.MeshNormalMaterial( { shading: THREE.SmoothShading, side: 2 } )
 		mesh = new THREE.Mesh( geometry, material );
 		scene.add( mesh );
 	}
 
-	function curve( u, v ) {		
+	function curve( u, v ) {
 		u = 2 * pi * ( u - 0.5 );
 		v = pi * ( v - 0.5 );
 
-		x = scale * ( ( 2 + cos( u ) ) * cos( v ) * cos( v ) * cos( v ) * sin( v ) );
-		y = scale * ( -0.5 + ( 2 + cos( u + 2 * pi / 3 ) ) * cos( v + 2 * pi / 3) * cos( v + 2 * pi / 3 ) * sin( v + 2 * pi / 3 ) * sin( v + 2 * pi / 3)  );
-		z = scale * ( -( 2 + cos( u - 2 * pi / 3 ) ) * cos( v + 2 * pi / 3 ) * cos( v + 2 * pi / 3 ) * sin( v + 2 * pi / 3) * sin( v + 2 * pi / 3 ) );
+		x = scale * R1 * ( ( a + b * cos( u ) ) * pow( cos( v ), c ) * sin( v ) );
+		y = scale * R2 * ( -d + ( e + f * cos( u + 2 * pi / 3 ) ) * pow( cos( v + 2 * pi / 3 ), 2 ) * pow( sin( v + 2 * pi / 3), 2 )  );
+		z = scale * R1 * ( -( g + h * cos( u - i * pi / 3 ) ) * pow( cos( v + 2 * pi / 3 ), 2 ) * pow( sin( v + 2 * pi / 3), 2 ) );
 
 		return new THREE.Vector3( x, y, z );
 	}
 
+	function abs( a ){ return Math.abs( a ); }
 	function cos( a ){ return Math.cos( a ); }
-	function sin( a ){ return Math.sin( a ); }
-	function tan( a ){ return Math.tan( a ); }
-
+	function cos2( a ){ return Math.cos( a ) * Math.cos( a ); }
 	function exp( a ){ return Math.exp( a ); }
 	function log( a ){ return Math.log( a ); }
 	function pow( a, b ){ return Math.pow( a, b ); }
 	function ran(){ return Math.random(); }
-	function sqrt( a ){ return Math.sqrt( a ); }	
+	function sin( a ){ return Math.sin( a ); }
+	function sin2( a ){ return Math.sin( a ) * Math.sin( a ); }
+	function sqrt( a ){ return Math.sqrt( a ); }
+	function tan( a ){ return Math.tan( a ); }
 
 	function animate() {
 		requestAnimationFrame( animate );

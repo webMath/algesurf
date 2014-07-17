@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang=en >
 <head>
-<title>Boy's Surface</title>
+<title>Boy's Surface *</title>
 <meta charset=utf-8 >
 <meta name=viewport content=width=device-width,user-scalable=no,minimum-scale=1.0,maximum-scale=1.0 >
 </head>
@@ -9,7 +9,7 @@
 <script src=http://mrdoob.github.io/three.js/build/three.min.js ></script>
 <script src=http://mrdoob.github.io/three.js/examples/js/controls/TrackballControls.js ></script>
 <script>
-// http://www.3d-meier.de/tut3/Seite0.html
+// http://www.3d-meier.de/tut3/Seite6.html
 // http://paulbourke.net/geometry/
 
 	var renderer, scene, camera, controls;
@@ -29,6 +29,9 @@
 	var g = 2, gMin = -5, gMax = 5, gStep = 0.1;
 	var h = 2, hMin = -5, hMax = 5, hStep = 0.1;
 
+	var u = 40;
+	var v = 40;
+
 	init();
 	animate();
 
@@ -44,7 +47,7 @@
 		camera.position.set( 100, 100, 100 );
 		controls = new THREE.TrackballControls( camera, renderer.domElement );
 
-		geometry = new THREE.ParametricGeometry( curve, 40, 40 );
+		geometry = new THREE.ParametricGeometry( curve, u, v );
 		material = new THREE.MeshNormalMaterial( { shading: THREE.SmoothShading, side: 2 } )
 		mesh = new THREE.Mesh( geometry, material );
 

@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang=en >
 <head>
-<title>Enneper Surface (Polar)</title>
+<title>Enneper Surface Polar *</title>
 <meta charset=utf-8 >
 <meta name=viewport content=width=device-width,user-scalable=no,minimum-scale=1.0,maximum-scale=1.0 >
 </head>
@@ -33,6 +33,9 @@
 	var R1 = 1, R1Min = -5, R1Max = 5, R1Step = 0.1;
 	var R2 = 1, R2Min = -5, R2Max = 5, R2Step = 0.1;
 
+	var u = 80;
+	var v = 15;
+
 	init();
 	animate();
 
@@ -48,13 +51,13 @@
 		camera.position.set( 100, 100, 100 );
 		controls = new THREE.TrackballControls( camera, renderer.domElement );
 
-		geometry = new THREE.ParametricGeometry( curve, 80, 15 );
+		geometry = new THREE.ParametricGeometry( curve, u, v );
 		material = new THREE.MeshNormalMaterial( { shading: THREE.SmoothShading, side: 2 } )
 		mesh = new THREE.Mesh( geometry, material );
 		scene.add( mesh );
 	}
 
-	function curve( u, v ) {		
+	function curve( u, v ) {
 		u = 2 * pi * ( u );
 		v = 2.5 * ( v );
 
@@ -84,6 +87,7 @@
 		renderer.render( scene, camera );
 		controls.update();
 	}
+
 </script>
 </body>
 </html>
