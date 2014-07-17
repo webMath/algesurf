@@ -1,10 +1,10 @@
 Parametric Equations Read Me
 ===
 
-<iframe src="http://jaanga.github.io/algesurf/parametric-equations/r2/torus-8/torus-8.html" width=100% height=500px class='overview' >
+<iframe src="http://jaanga.github.io/algesurf/parametric-equations/equation-files/torus-8/torus-8.html" width=100% height=500px class='overview' >
 There is an iframe here. It is not visible when viewed on github.com/jaanga. To view <a href="http://jaanga.github.io/algesurf/parametric-equations/" target="_blank">Web Page</a>
 </iframe>
-[Full Screen]( http://jaanga.github.io/algesurf/parametric-equations/r2/index.html )
+[Full Screen]( http://jaanga.github.io/algesurf/parametric-equations/latest/index.html )
 
 
 ## Concept
@@ -36,7 +36,7 @@ To visualize math and phisics in entirely new ways
 
 ## Project Links
 
-Jaanga is a [GitGub]( http://github.com) [organization account]( https://help.github.com/articles/what-s-the-difference-between-user-and-organization-accounts ) and has multiple owners and admins. 
+Jaanga is a [GitHub]( http://github.com) [organization account]( https://help.github.com/articles/what-s-the-difference-between-user-and-organization-accounts ) and has multiple owners and admins. 
 All Jaanga scripts are [FOSS]( https://en.wikipedia.org/wiki/Free_and_open-source_software ).
 Scripts are hosted on GitHub and are viewable as web pages, as described in the 'Read Me' files and as source code.
 

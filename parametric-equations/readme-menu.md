@@ -1,4 +1,4 @@
-[Jaanga](../../index.html ) &raquo;<br>[algeSurf]( ../../index.html ) &raquo;<br>[Parametric Equations]( ./index.html )
+[Jaanga](../../index.html ) &raquo;<br>[AlgeSurf]( ../index.html ) &raquo;<br>[Parametric Equations]( ./index.html )
 ===
 
 <p id=rm >

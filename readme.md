@@ -22,6 +22,8 @@ To visualize math and phisics in entirely new ways
 
 ### Parametric Equations
 
+[Equation Browser]( http://jaanga.github.io/algesurf/parametric-equations/latest/ )  
+[Read Me]( http://jaanga.github.io/algesurf/parametric-equations/ )  
 [Source Code]( https://github.com/jaanga/algesurf/tree/gh-pages/parametric-equations )
 
 ### Marching Cubes
