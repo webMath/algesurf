@@ -9,7 +9,7 @@
 	<a href=JavaScript:displayMD('#./parametric-equations/r2/readme.md#pe'); >Parametric Equations</a>
 </div>
 
-<div><i class="fa fa-external-link"></i> <a href=http://jaanga.github.io/algesurf/parametric-equations/r2/readme-reader.html >Equation Browser</a></div>
+<div><i class="fa fa-external-link"></i> <a href=http://jaanga.github.io/algesurf/parametric-equations/latest/index.html >Equation Browser</a></div>
 
 
 <br>
