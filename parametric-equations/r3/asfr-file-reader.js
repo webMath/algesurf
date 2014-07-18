@@ -113,7 +113,8 @@
 			'<p>Many thanks to <a href=http://www.3d-meier.de/ target=_blank >Jürgen Meier</a>...</p>' +
 
 			'<small>' +
-				'<a href="https://github.com/jaanga/algesurf/" target="_blank">Source code</a> ~ ' +
+				'<a href="http://jaanga.github.io/algesurf/parametric-equations/readme-reader.html" target="_blank">Read me</a> ~ ' +
+				'<a href="https://github.com/jaanga/algesurf/tree/gh-pages/parametric-equations" target="_blank">Source code</a> ~ ' +
 				'Credits: <a href="http://threejs.org" target="_blank">three.js</a> - ' +
 				'<a href="http://khronos.org/webgl/" target="_blank">webgl</a> - ' +
 				'<a href="http://jaanga.github.io" target="_blank">jaanga</a><br>' +

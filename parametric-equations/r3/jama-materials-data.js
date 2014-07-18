@@ -169,6 +169,7 @@ materials.push( new THREE.MeshPhongMaterial( { ambient: 0x030303, color: 0xddddd
 		}
 	};
 
+
 // envMap Reflections
 
 	JAMA.materials.PhongDefaultReflectWhite = {
