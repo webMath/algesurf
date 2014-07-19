@@ -1,17 +1,17 @@
 	JAPR = {} || JAPR;
 
-	JAPR.addPreferencesBox = function() {
+	JAPR.addPreferencesTab = function() {
 		var tab = JA.menu.appendChild( document.createElement( 'div' ) );
 		tab.title = 'Change the ways things are viewed';
 		tab.innerHTML =
 			'<a href=# id=tabPreferences ><p class=button >' +
 				'<i class="fa fa-wrench"></i> Preferences...' +
 			'</p></a>';
-		tabPreferences.onclick = function() {JA.toggleTab( JAPR.PreferencesBox ); };
+		tabPreferences.onclick = function() {JA.toggleTab( JAPR.Preferences ); };
 
-		JAPR.PreferencesBox = tab.appendChild( document.createElement( 'div' ) );
-		JAPR.PreferencesBox.style.cssText = 'cursor: auto; display: none; ' ;
-		JAPR.PreferencesBox.innerHTML =
+		JAPR.Preferences = tab.appendChild( document.createElement( 'div' ) );
+		JAPR.Preferences.style.cssText = 'cursor: auto; display: none; ' ;
+		JAPR.Preferences.innerHTML =
 			'<h3 >Helpers</h3>' +
 			'<p>' +
 				'<input type=checkbox id=chkWires /> Wireframe<br>' +
@@ -20,7 +20,7 @@
 				'<input type=checkbox id=chkVertexNormals /> Vertex Normals<br>' +
 //				'<input type=checkbox id=chkVertexTangents /> Vertex Tangents<br>' +
 
-				'Vertical scale<br><input type=range id=rngVerticalScale min=1 max=100 step=1 value=50 >' +
+//				'Vertical scale<br><input type=range id=rngVerticalScale min=1 max=100 step=1 value=50 >' +
 
 			'</p>' +
 			'<h3 >Background</h3>' +
@@ -42,57 +42,58 @@
 		chkWires.checked = false;
 		chkWires.onchange = function() {
 			if ( chkWires.checked === true ) {
-				JATH.wires = new THREE.WireframeHelper( JATH.selectedObject );
-				JATH.scene.add( JATH.wires );
+				JAPR.wires = new THREE.WireframeHelper( scene.select );
+				scene.add( JAPR.wires );
 			} else {
-				JATH.scene.remove( JATH.wires );
+				scene.remove( JAPR.wires );
 			}
 		}
 
 		chkFaceNormals.checked = false;
 		chkFaceNormals.onchange = function() {
 			if ( chkFaceNormals.checked === true ) {
-				JATH.FaceNormals = new THREE.Object3D();
-				JATH.FaceNormals.add( new THREE.FaceNormalsHelper( JATH.selectedObject, 5 ) );
-				JATH.FaceNormals.add( new THREE.FaceNormalsHelper( JATH.selectedObject, -5 ) );
-				JATH.scene.add( JATH.FaceNormals );
+				JAPR.FaceNormals = new THREE.Object3D();
+				JAPR.FaceNormals.add( new THREE.FaceNormalsHelper( scene.select, 5 ) );
+				JAPR.FaceNormals.add( new THREE.FaceNormalsHelper( scene.select, -5 ) );
+				scene.add( JAPR.FaceNormals );
 			} else {
-				JATH.scene.remove( JATH.FaceNormals );
+				scene.remove( JAPR.FaceNormals );
 			}
 		}
 
 		chkVertexNormals.checked = false;
 		chkVertexNormals.onchange = function() {
 			if ( chkVertexNormals.checked === true ) {
-				JATH.VertexNormals = new THREE.Object3D();
-				JATH.VertexNormals.add( new THREE.VertexNormalsHelper( JATH.selectedObject, 5, 'magenta' ) );
-				JATH.VertexNormals.add( new THREE.VertexNormalsHelper( JATH.selectedObject, -5, 'magenta' ) );
-				JATH.scene.add( JATH.VertexNormals );
+				JAPR.VertexNormals = new THREE.Object3D();
+				JAPR.VertexNormals.add( new THREE.VertexNormalsHelper( scene.select, 5, 'magenta' ) );
+				JAPR.VertexNormals.add( new THREE.VertexNormalsHelper( scene.select, -5, 'magenta' ) );
+				scene.add( JAPR.VertexNormals );
 			} else {
-				JATH.scene.remove( JATH.VertexNormals );
+				scene.remove( JAPR.VertexNormals );
 			}
 		}
 /* broken?
 		chkVertexTangents.checked = false;
 		chkVertexTangents.onchange = function() {
 			if ( chkVertexTangents.checked === true ) {
-				JATH.VertexTangents = new THREE.Object3D();
-				JATH.VertexTangents.add( new THREE.VertexTangentsHelper( JATH.selectedObject, 50, 'red' ) );
-//				JATH.VertexTangents.add( new THREE.VertexTangentsHelper( JATH.selectedObject, -5, 'red' ) );
-				JATH.scene.add( JATH.VertexTangents );
+				JAPR.VertexTangents = new THREE.Object3D();
+				JAPR.VertexTangents.add( new THREE.VertexTangentsHelper( JAPR.selectedObject, 50, 'red' ) );
+//				JAPR.VertexTangents.add( new THREE.VertexTangentsHelper( JAPR.selectedObject, -5, 'red' ) );
+				JAPR.scene.add( JAPR.VertexTangents );
 			} else {
-				JATH.scene.remove( JATH.VertexTangents );
+				JAPR.scene.remove( JAPR.VertexTangents );
 			}
 		}
 */
 
+/*
 		rngVerticalScale.onchange = function() {
-			JATH.selectedObject.scale.y = rngVerticalScale.value * 0.02 * JATH.selectedObject.scale.y; 
-			if ( wires ) { wires.scale.y = JATH.selectedObject.scale.y ; }
+			JAPR.selectedObject.scale.y = rngVerticalScale.value * 0.02 * JAPR.selectedObject.scale.y; 
+			if ( wires ) { wires.scale.y = JAPR.selectedObject.scale.y ; }
 		};
+*/
+
 	};
-
-
 
 //		scene.add( new THREE.FaceNormalsHelper( mesh, -50, col ) );
 

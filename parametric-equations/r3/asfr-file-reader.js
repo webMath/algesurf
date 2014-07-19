@@ -36,8 +36,8 @@
 
 	ASFR.init = function() {
 		chkMaterial.checked = true;
-		var number = Math.floor( Math.random() * ASFR.files.length );
-		ASFR.updateIframe( number );
+//		var number = Math.floor( Math.random() * ASFR.files.length );
+		ASFR.updateIframe( 12 );
 	};
 
 	ASFR.updateIframe = function( number ) {
@@ -45,7 +45,7 @@
 		var fname = '../equation-files/' + file + '/' + file + '.html';
 
 		if ( !ASFR.ifr ) {
-			ASFR.ifr = JA.container.appendChild( document.createElement( 'iframe' ) );
+			ASFR.ifr = document.body.appendChild( document.createElement( 'iframe' ) );
 			ASFR.ifr.height = window.innerHeight;
 			ASFR.ifr.width = window.innerWidth;
 			ASFR.ifr.style.cssText = 'border-width: 0; position: absolute; ';
@@ -57,24 +57,25 @@
 
 		ASFR.ifr.onload = function() {
 			JAPR.setRandomGradient();
+
 			app = ASFR.ifr.contentWindow;
 			THREE = app.THREE;
-			JATH.renderer = app.renderer;
-			JATH.scene = app.scene;
-			JATH.camera = app.camera;
-			JATH.controls = app.controls;
+			renderer = app.renderer;
+			scene = app.scene;
+			camera = app.camera;
+			controls = app.controls;
 
 			ASFR.updateRenderer();
 			JALI.toggleLightAmbient();
 			JALI.toggleLightCamera();
 			JALI.toggleLightPosition();
 
-			JATH.selectedObject = JATH.scene.children[0];
-			JATH.selectedObject.castShadow = true;
-			JATH.selectedObject.receiveShadow = true;
+			scene.select = scene.children[0];
+			scene.select.castShadow = true;
+			scene.select.receiveShadow = true;
 
 			if ( chkMaterial.checked === false ) {
-				JAMA.updateMaterial( JATH.materialKey );
+				JAMA.updateMaterial( scene.materialKey );
 			} else {
 				divMsg2.innerHTML = 'Material: <b>from HTML file</b>';
 			}
@@ -240,9 +241,9 @@
 		[ "steinbach-screw", "Steinbach Screw *", "http://www.3d-meier.de/tut3/Seite21.html", "3.17. Steinbach Screw" ],
 		[ "swallow-surface", "Swallow Surface", "http://www.3d-meier.de/tut3/Seite33.html", "3.29. Swallow Surface" ],
 		[ "torus", "Torus", "http://www.3d-meier.de/tut3/Seite58.html", "3.54. Torus" ],
-		[ "torus-8", "8 Torus", "http://www.3d-meier.de/tut3/Seite67.html", "3.63. 8-Torus" ],
+		[ "torus-8", "Torus 8", "http://www.3d-meier.de/tut3/Seite67.html", "3.63. 8-Torus" ],
 		[ "torus-astroid", "Astroid Torus", "http://www.3d-meier.de/tut3/Seite139.html", "3.132. Astroid Torus" ],
-		[ "torus-bicorn-i", "Bicorn Torus I", "http://www.3d-meier.de/tut3/Seite163.html", "3.156. Bicorn Torus I" ],
+		[ "torus-bicorn-i", "Torus Bicorn I", "http://www.3d-meier.de/tut3/Seite163.html", "3.156. Bicorn Torus I" ],
 		[ "torus-asymmetric", "Torus Asymmetric", "http://www.3d-meier.de/tut3/Seite59.html", "3.55. Antisymmetrischer Torus" ],
 		[ "torus-bicorn-ii", "Torus Bicorn II", "http://www.3d-meier.de/tut3/Seite164.html", "3.157. Bicorn Torus II" ],
 		[ "torus-braided", "Torus Braided *", "http://www.3d-meier.de/tut3/Seite110.html", "3.103. Braided Torus" ],
@@ -267,11 +268,11 @@
 		[ "torus-piriform-i", "Torus Piriform I", "http://www.3d-meier.de/tut3/Seite161.html", "3.154. Piriform Torus I" ],
 		[ "torus-nephroid-ii", "Nephroid Torus II", "http://www.3d-meier.de/tut3/Seite143.html", "3.136. Nephroid Torus II" ],
 		[ "torus-piriform-ii", "Torus Piriform II", "http://www.3d-meier.de/tut3/Seite162.html", "3.155. Piriform Torus II" ],
-		[ "torus-limpet", "Limpet Torus", "http://www.3d-meier.de/tut3/Seite112.html", "3.105. Limpet Torus" ],
-		[ "torus-saddle", "Saddle Torus", "http://www.3d-meier.de/tut3/Seite73.html", "3.69. Saddle Torus" ],
+		[ "torus-limpet", "Torus Limpet", "http://www.3d-meier.de/tut3/Seite112.html", "3.105. Limpet Torus" ],
+//		[ "torus-saddle", "Saddle Torus", "http://www.3d-meier.de/tut3/Seite73.html", "3.69. Saddle Torus" ],
 		[ "torus-spiral", "Torus Spiral *", "http://www.3d-meier.de/tut3/Seite174.html", "3.167. Spiraltorus" ],
-		[ "torus-strangled-i", "Strangled Torus I", "http://www.3d-meier.de/tut3/Seite137.html", "3.130. Strangled Torus I" ],
-		[ "torus-strangled-ii", "Strangled Torus II", "http://www.3d-meier.de/tut3/Seite138.html", "3.131. Strangled Torus II" ],
+		[ "torus-strangled-i", "Torus Strangled I", "http://www.3d-meier.de/tut3/Seite137.html", "3.130. Strangled Torus I" ],
+		[ "torus-strangled-ii", "Torus Strangled II", "http://www.3d-meier.de/tut3/Seite138.html", "3.131. Strangled Torus II" ],
 		[ "torus-tricuspoid-i", "Tricuspoid Torus I", "http://www.3d-meier.de/tut3/Seite140.html", "3.133. Tricuspoid Torus I" ],
 		[ "torus-tricuspoid-ii", "Tricuspoid Torus Ii", "http://www.3d-meier.de/tut3/Seite141.html", "3.134. Tricuspoid Torus II" ],
 		[ "torus-twisted-eight", "Torus Twisted Eight", "http://www.3d-meier.de/tut3/Seite60.html", "3.56. Gedrehte Acht Torus" ],

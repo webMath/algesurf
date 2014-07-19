@@ -1,6 +1,6 @@
 	var JALI = [] || JALI;
 
-	JALI.addLightsBox = function() {
+	JALI.addLightsTab = function() {
 		var tab = JA.menu.appendChild( document.createElement( 'div' ) );
 
 		tab.innerHTML =
@@ -60,17 +60,17 @@
 	JALI.toggleLightAmbient = function() {
 		if ( chkLightAmbient.checked === true ) {
 			JALI.lightAmbient = new THREE.AmbientLight( 0x333333 );
-			JATH.scene.add( JALI.lightAmbient );
-			JALI.updateMaterials( JATH.scene.children );
+			scene.add( JALI.lightAmbient );
+			JALI.updateMaterials( scene.children );
 		} else {
-			JATH.scene.remove( JALI.lightAmbient );
+			scene.remove( JALI.lightAmbient );
 		}
 	};
 
 	JALI.toggleLightCamera = function( d ) {
 		if ( chkLightCamera.checked === true ) {
 			JALI.lightCamera = new THREE.DirectionalLight( 0xffffff, 0.25 );
-			JALI.lightCamera.position = JATH.camera.position;
+			JALI.lightCamera.position = camera.position;
 //			JALI.lightCamera.position.set( -100, 100, 100 );
 			JALI.lightCamera.castShadow = true;
 
@@ -85,11 +85,11 @@
 			JALI.lightCamera.shadowCameraTop = d;
 			JALI.lightCamera.shadowCameraBottom = -d;
 
-			JATH.scene.add( JALI.lightCamera );
-			JALI.updateMaterials( JATH.scene.children );
+			scene.add( JALI.lightCamera );
+			JALI.updateMaterials( scene.children );
 
 		} else {
-			JATH.scene.remove( JALI.lightCamera );
+			scene.remove( JALI.lightCamera );
 		}
 	};
 
@@ -124,10 +124,10 @@ http://mrdoob.github.io/three.js/docs/#Reference/Lights/DirectionalLight
 			JALI.lightPosition.shadowMapHeight = 2048;
 //			JALI.lightPosition.shadowCameraVisible;
 	
-			JATH.scene.add( JALI.lightPosition );
-			JALI.updateMaterials( JATH.scene.children );
+			scene.add( JALI.lightPosition );
+			JALI.updateMaterials( scene.children );
 		} else {
-			JATH.scene.remove( JALI.lightPosition );
+			scene.remove( JALI.lightPosition );
 		}
 	};
 

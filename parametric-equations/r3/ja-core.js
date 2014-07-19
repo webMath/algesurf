@@ -17,7 +17,7 @@
 			'h1 { margin: 0; }' +
 			'a { text-decoration: none; opacity: 0.8; }' +
 			'#closer p { margin: 0; opacity: 0.8; }' +
-			'#movable { background-color: #ccc; opacity: 0.8; cursor: move; left: 20px; width: 300px; max-height: ' + (window.innerHeight - 100) + 'px; ' +
+			'#movable { background-color: #ccc; opacity: 0.8; cursor: move; left: 20px; max-width: 320px; max-height: ' + (window.innerHeight - 100) + 'px; ' +
 				'overflow-x: hidden; overflow-y: auto; padding: 10px; position: absolute; top: 20px; z-index: 50; }' +
 			'.button { background-color: #eee; outline: 1px #aaa solid; padding: 5px; }' +
 		'';
@@ -45,7 +45,7 @@
 		var tab = JA.menu.appendChild( document.createElement( 'div' ) );
 		tab.title = 'View useful information';
 		tab.innerHTML =
-			'<a href=# onclick=JA.toggleDialogs(JA.about);ASFR.ifr.style.display=""; ><p class=button >' +
+			'<a href=# onclick=JA.toggleDialogs(JA.about); ><p class=button >' +
 				'<i class="fa fa-paw"></i> About...' +
 			'</p></a>'; 
 
@@ -61,7 +61,8 @@
 			'</ul>' +
 
 			'<small>' +
-				'<a href="https://github.com/jaanga/xxxxxxxxxxxxxx" target="_blank">Source code</a> ' +
+				'<a href="https://github.com/jaanga/xxxxxxxxxxxxxx" target="_blank">Read Me ~</a> ' +
+				'<a href="https://github.com/jaanga/xxxxxxxxxxxxxx" target="_blank">Source Code ~ </a> ' +
 				'Credits: <a href="http://threejs.org" target="_blank">three.js</a> - ' +
 				'<a href="http://khronos.org/webgl/" target="_blank">webgl</a> - ' +
 				'<a href="http://jaanga.github.io" target="_blank">jaanga</a><br>' +
@@ -125,10 +126,10 @@
 
 // Events
 	JA.onWindowResize = function () {
-		JATH.camera.aspect = window.innerWidth / window.innerHeight;
-		JATH.camera.updateProjectionMatrix();
-		JATH.renderer.setSize( window.innerWidth, window.innerHeight );
-		JATH.controls.handleResize(); // todo: verify if needed?
+		camera.aspect = window.innerWidth / window.innerHeight;
+		camera.updateProjectionMatrix();
+		renderer.setSize( window.innerWidth, window.innerHeight );
+		controls.handleResize(); // todo: verify if needed?
 	};
 
 	JA.mouseUp = function() {
@@ -144,6 +145,7 @@
 			window.addEventListener('mousemove', JA.divMove, true);
 		}
 	};
+
 // add move cursor 
 	JA.divMove = function( event ){
 		event.target.style.left = ( event.clientX - offsetX ) + 'px';

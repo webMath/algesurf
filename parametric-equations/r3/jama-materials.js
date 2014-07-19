@@ -43,8 +43,8 @@
 	JAMA.updateMaterial = function( key ) {
 
 		chkMaterial.checked = false;
-		JATH.materialKey = key;
-		JATH.selectedObject.material = JAMA.materials[ key ].set();
+		scene.materialKey = key;
+		scene.select.material = JAMA.materials[ key ].set();
 		divMsg3.innerHTML = 'Material: <b>' + JAMA.materials[ key ].title + '</b>';
 
 	};
@@ -57,7 +57,7 @@
 			'<a href=# id=tabMaterialEditor ><p class=button >' +
 				'<i class="fa fa-cube"></i> Material Editor...' +
 			'</p></a>';
-		tabMaterialEditor.onclick = function() { JA.toggleTab( JAMA.MaterialEditorTab ); JAMA.updateMaterialEditorTab( JATH.selectedObject ); } ;
+		tabMaterialEditor.onclick = function() { JA.toggleTab( JAMA.MaterialEditorTab ); JAMA.updateMaterialEditorTab(); } ;
 
 		JAMA.MaterialEditorTab = tab.appendChild( document.createElement( 'div' ) );
 		JAMA.MaterialEditorTab.style.cssText = 'cursor: auto; display: none; ' ;
@@ -66,9 +66,9 @@
 
 	JAMA.updateMaterialEditorTab = function() {
 
-		var m = JATH.selectedObject.material;
+		var m = scene.select.material;
 		var txt =
-			'<p>Selected id: ' + JATH.selectedObject.id + '</p>' +
+			'<p>Selected id: ' + scene.select.id + '</p>' +
 			'<p>' +
 				'Material: <select id=selMaterial title="Select type" >' +
 					'<option>Normal</option>' +
@@ -110,17 +110,17 @@
 		selMaterial.selectedIndex = m.type;
 		selMaterial.onchange = function() {
 			if ( selMaterial.selectedIndex === 0 ) {
-				JATH.selectedObject.material = new THREE.MeshNormalMaterial();
-				JATH.selectedObject.material.type = 0;
+				scene.select.material = new THREE.MeshNormalMaterial();
+				scene.select.material.type = 0;
 			} else if ( selMaterial.selectedIndex === 1 ) {
-				JATH.selectedObject.material = new THREE.MeshBasicMaterial( { color: 0x000000 } );
-				JATH.selectedObject.material.type = 1;
+				scene.select.material = new THREE.MeshBasicMaterial( { color: 0x000000 } );
+				scene.select.material.type = 1;
 			} else if ( selMaterial.selectedIndex === 2 ) {
-				JATH.selectedObject.material = new THREE.MeshLambertMaterial( { color: 0x000000 } );
-				JATH.selectedObject.material.type = 2;
+				scene.select.material = new THREE.MeshLambertMaterial( { color: 0x000000 } );
+				scene.select.material.type = 2;
 			} else {
-				JATH.selectedObject.material = new THREE.MeshPhongMaterial( { color: 0x000000 } );
-				JATH.selectedObject.material.type = 3;
+				scene.select.material = new THREE.MeshPhongMaterial( { color: 0x000000 } );
+				scene.select.material.type = 3;
 			}
 			JAMA.updateMaterialEditorTab();
 		};

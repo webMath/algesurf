@@ -138,8 +138,8 @@
 
 	ASCO.updateMesh = function() {
 
-		material = JATH.selectedObject.material;
-		if ( JATH.selectedObject ) { app.scene.remove( JATH.selectedObject ); }
+		material = scene.select.material;
+		if ( scene.select ) { scene.remove( scene.select ); }
 
 		if ( app.a !== undefined ) app.a = parseFloat( outA.value );
 		if ( app.b !== undefined ) app.b = parseFloat( outB.value );
