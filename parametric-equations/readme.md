@@ -8,6 +8,7 @@ _View of the Torus 8 HTML file_
 
 Load and view files with many enhancements [Equation Browser]( http://jaanga.github.io/algesurf/parametric-equations/latest/index.html )
 
+Blog post: [AlgeSurf Parametric Equations: Math in 3D - fast, pretty and easy](http://www.jaanga.com/2014/07/algesurf-parametric-equations-math-in.html )
 
 ## Concept
 

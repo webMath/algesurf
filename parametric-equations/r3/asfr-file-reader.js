@@ -104,10 +104,10 @@
 			'<ul>' +
 				'<li>Reads, parses and displays remote Three.js HTML files</li>' +
 				'<li>Real-time 3D pan, rotate and zoom</li>' +
-				'<li>Adds access to full compliment of materials, reflections, lights, shade and shadows</li>' +
+				'<li>Adds access to full complement of materials, reflections, lights, shade and shadows</li>' +
 				'<li>Update geometry parameters in real-time</li>' +
 				'<li>Display wireframe, face & vertex normals</li>' +
-				'<li>Select back-ground colors</li>' +
+				'<li>Select background colors</li>' +
 				'<li>Experiment with over 170 parametric equations</li>' +
 			'</ul>' +
 
