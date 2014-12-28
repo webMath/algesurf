@@ -69,39 +69,22 @@
 
 	JALI.toggleLightCamera = function( d ) {
 		if ( chkLightCamera.checked === true ) {
-			JALI.lightCamera = new THREE.DirectionalLight( 0xffffff, 0.25 );
+			JALI.lightCamera= new THREE.PointLight( 0xffffff, 0.95, 0 );
 			JALI.lightCamera.position = camera.position;
-//			JALI.lightCamera.position.set( -100, 100, 100 );
-			JALI.lightCamera.castShadow = true;
-
-
-			JALI.lightCamera.shadowCameraNear = 100;
-			JALI.lightCamera.shadowCameraFar = 400;
-			JALI.lightCamera.shadowBias = -0.002; // default 0 ~ distance fron corners?
-
-			d = d ? d : 110;
-			JALI.lightCamera.shadowCameraLeft = -d;
-			JALI.lightCamera.shadowCameraRight = d;
-			JALI.lightCamera.shadowCameraTop = d;
-			JALI.lightCamera.shadowCameraBottom = -d;
-
-			scene.add( JALI.lightCamera );
+			camera.add( JALI.lightCamera );
 			JALI.updateMaterials( scene.children );
-
 		} else {
-			scene.remove( JALI.lightCamera );
+			camera.remove( JALI.lightCamera );
 		}
 	};
 
 /*
 http://mrdoob.github.io/three.js/docs/#Reference/Lights/DirectionalLight
-
 */
 
 	JALI.toggleLightPosition = function( d ) {
 		if ( chkLightPosition.checked === true ) {
 			JALI.lightPosition = new THREE.DirectionalLight( 0xffffff, 0.25 );  // 0xffffff 1.0
-//			JALI.lightDirectional = new THREE.SpotLight( 0xffffff, 1 );
 
 			JALI.updateLightPosition( rngLightLat.value, rngLightLon.value );
 
@@ -130,7 +113,6 @@ http://mrdoob.github.io/three.js/docs/#Reference/Lights/DirectionalLight
 			scene.remove( JALI.lightPosition );
 		}
 	};
-
 
 	JALI.updateMaterials = function( children ) {
 		for (var i = 0, len = children.length; i < len; i++) {

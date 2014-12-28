@@ -57,7 +57,8 @@
 	function init() {
 		document.body.style.cssText = 'margin: 0; overflow: hidden; padding: 0;';
 		
-		renderer = new THREE.WebGLRenderer( { antialias: true } );
+//		renderer = new THREE.WebGLRenderer( { antialias: true } );
+		renderer = new THREE.WebGLRenderer( { alpha: 1, antialias: true, clearColor: 0xffffff } );
 		renderer.setSize( window.innerWidth, window.innerHeight );
 		document.body.appendChild( renderer.domElement );
 
@@ -198,8 +199,8 @@
 	function animate() {
 		requestAnimationFrame( animate );
 		controls.update();
-		scene.children[4].rotation.x = Date.now() * 0.000025 * spin;
-		scene.children[4].rotation.y = Date.now() * 0.0005 * spin;
+		scene.children[3].rotation.x = Date.now() * 0.000025 * spin;
+		scene.children[3].rotation.y = Date.now() * 0.0005 * spin;
 		if ( play < 10 && (clock.getElapsedTime() - start > play) ) {
 			getSurface(keys[cnt], cnt)
 			cnt++;

@@ -53,7 +53,8 @@ var txt;
 	function init() {
 		document.body.style.cssText = 'margin: 0;  padding: 0;';
 
-		renderer = new THREE.WebGLRenderer( { antialias: true } );
+//		renderer = new THREE.WebGLRenderer( { antialias: true } );
+		renderer = new THREE.WebGLRenderer( { alpha: 1, antialias: true, clearColor: 0xffffff } );
 		renderer.setSize( window.innerWidth, window.innerHeight );
 		document.body.appendChild( renderer.domElement );
 
@@ -369,8 +370,8 @@ var tt = '';
 	function animate() {
 		requestAnimationFrame( animate );
 		controls.update();
-		scene.children[4].rotation.x = Date.now() * 0.000025 * spin.value;
-		scene.children[4].rotation.y = Date.now() * 0.0005 * spin.value;
+		scene.children[3].rotation.x = Date.now() * 0.000025 * spin.value;
+		scene.children[3].rotation.y = Date.now() * 0.0005 * spin.value;
 		renderer.render( scene, camera );
 	}
 
