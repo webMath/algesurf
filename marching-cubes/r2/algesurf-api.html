@@ -97,7 +97,8 @@
 		
 		document.body.style.cssText = css;
 
-		renderer = new THREE.WebGLRenderer( { antialias: true } );
+//		renderer = new THREE.WebGLRenderer( { antialias: true } );
+		renderer = new THREE.WebGLRenderer( { alpha: 1, antialias: true, clearColor: 0xffffff } );
 		renderer.setSize( width, height );
 		document.body.appendChild( renderer.domElement );
 
@@ -150,8 +151,8 @@ console.log(spinCtrl, info);
 	function animate() {
 		requestAnimationFrame( animate );
 		controls.update();
-		scene.children[4].rotation.x = Date.now() * 0.00025 * spin;
-		scene.children[4].rotation.y = Date.now() * 0.0005 * spin;
+		scene.children[3].rotation.x = Date.now() * 0.00025 * spin;
+		scene.children[3].rotation.y = Date.now() * 0.0005 * spin;
 		renderer.render( scene, camera );
 	}
 	
