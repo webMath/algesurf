@@ -91,7 +91,7 @@
 	function init() {
 		document.body.style.cssText = 'font: 600 12pt monospace; margin: 0; overflow: hidden; text-align: center';
 
-		renderer = new THREE.WebGLRenderer( { antialias: true } );
+		renderer = new THREE.WebGLRenderer( { alpha: 1, antialias: true, clearColor: 0xffffff } );
 		renderer.setSize( window.innerWidth, window.innerHeight );
 		document.body.appendChild( renderer.domElement );
 
@@ -108,7 +108,7 @@
 		document.body.appendChild( stats.domElement );
 
 		var geometry, material, texture;
-		texture = THREE.ImageUtils.loadTexture( "../textures/im5.jpg" );
+		texture = THREE.ImageUtils.loadTexture( "../../textures/im5.jpg" );
 		material = new THREE.MeshBasicMaterial( {  map: texture, side: THREE.DoubleSide } );
 		geometry = new THREE.PlaneGeometry( 1, 1, 100, 100 );
 

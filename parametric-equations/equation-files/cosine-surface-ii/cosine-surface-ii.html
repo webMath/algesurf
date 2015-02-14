@@ -42,16 +42,16 @@
 		scene.add( mesh );
 	}
 
-		function curve( u, v ) {		
-			u = pi * ( u - 0.5 );
-			v = pi * ( v - 0.5 );
+	function curve( u, v ) {
+		u = pi * ( u - 0.5 );
+		v = pi * ( v - 0.5 );
 
-			x = scale * ( a * cos( u ) );
-			y = scale * ( b * -cos2( u + v ) + 1);
-			z = scale * ( c * cos( v ) );
+		x = scale * ( a * cos( u ) );
+		y = scale * ( b * -cos2( u + v ) + 1);
+		z = scale * ( c * cos( v ) );
 
-			return new THREE.Vector3( x, y, z );
-		}
+		return new THREE.Vector3( x, y, z );
+	}
 
 	function cos( a ){ return Math.cos( a ); }
 	function sin( a ){ return Math.sin( a ); }
@@ -65,7 +65,7 @@
 	function log( a ){ return Math.log( a ); }
 	function pow( a, b ){ return Math.pow( a, b ); }
 	function ran(){ return Math.random(); }
-	function sqrt( a ){ return Math.sqrt( a ); }	
+	function sqrt( a ){ return Math.sqrt( a ); }
 
 	function animate() {
 		requestAnimationFrame( animate );

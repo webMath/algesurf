@@ -142,7 +142,7 @@ function generateMaterials(basePath) {
 		"normal~transparent*" :
 		{
 		  m: new THREE.MeshNormalMaterial( { opacity: 0.9, side: THREE.DoubleSide, transparent: true }),
-		  d: '1. MeshNormalMaterial({ opacity: 0.9, side: THREE.DoubleSide, transparent: true })'
+		  d: '1. MeshNormalMaterial({ opacity: 0.9, shading: THREE.SmoothShading, side: THREE.DoubleSide, transparent: true })'
 		},
 
 		"normal~flat" :
@@ -169,7 +169,7 @@ function generateMaterials(basePath) {
 		  d: '5. MeshBasicMaterial({ map: texture1, fog: false, side: THREE.DoubleSide })'
 		},    
 
-		"basic~texture1" :
+		"basic~texture2" :
 		{
 		  m: new THREE.MeshBasicMaterial( { map: texture2, side: THREE.DoubleSide }),
 		  d: '6. MeshBasicMaterial( { map: texture2, side: THREE.DoubleSide'

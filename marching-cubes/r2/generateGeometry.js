@@ -14,7 +14,7 @@ function generateGeometry( func, axisMin, axisMax ) {
 	  var z = axisMin + axisRange * k / (size - 1);
 	  points.push( new THREE.Vector3(x,y,z) );
 	  // var value = PC(x,y,z);
-	  var value = func(x,y,z);
+	  var value = func( x,y,z );
 	  values.push( value );
 	}
 // console.log(values);	
@@ -76,7 +76,7 @@ function generateGeometry( func, axisMin, axisMax ) {
 	  // check which edges are crossed, and estimate the point location
 	  // using a weighted average of scalar values at edge endpoints.
 	  // store the vertex in an array for use later.
-	  var mu = 0.5; 
+	  var mu = 0.5; // 0.5 
 
 	  // bottom of the cube
 	  if ( bits & 1 )
@@ -173,4 +173,8 @@ function generateGeometry( func, axisMin, axisMax ) {
 	geometry.computeVertexNormals();
 	geometry.computeTangents();
 	geometry.verticesNeedUpdate = true; 
+	geometry.normalsNeedUpdate = true;
+
+
+
 } 

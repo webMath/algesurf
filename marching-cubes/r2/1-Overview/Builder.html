@@ -11,8 +11,11 @@
 <link type="text/css" rel="stylesheet" href="../../page.css" />
 </head>
 <body>
-
+<!--
 <script src='http://mrdoob.github.com/three.js/build/three.min.js'></script>
+-->
+<script src='https://cdnjs.cloudflare.com/ajax/libs/three.js/r68/three.min.js'></script>
+
 <script src='http://mrdoob.github.com/three.js/examples/js/controls/TrackballControls.js'></script>
 <script src='http://mrdoob.github.com/three.js/examples/js/libs/stats.min.js'></script>
 <script src='http://mrdoob.github.com/three.js/examples/js/Detector.js'></script>
@@ -125,7 +128,7 @@ var txt;
 			'<input type="range" id="background" min="0" max="15" onchange="updateBackground(this.value);" step="1" value="15" title="Change the background gray shade"><\/td>' +
 			'<td>Spin ' +
 			'<input type="checkbox" id="spinCheck" title="Check to display Spin Speed slider bat in title"><br>' +
-			'<input type="range" id="spin" min="0" max="5" onchange="spin.value=this.value;" step="0.5" value="2" title="Drag bar to change the rotation speed of the surface. Left edge = No spin."><\/td>' +
+			'<input type="range" id="spin" min="0" max="5" onchange="spin.value=this.value;" step="0.1" value="0.2" title="Drag bar to change the rotation speed of the surface. Left edge = No spin."><\/td>' +
 			'<td>' +
 
 			'Select a Material ' +
@@ -276,6 +279,10 @@ var tt = '';
 
 		mesh = new THREE.Mesh( geometry, material );
 		mesh.scale.multiplyScalar( parseFloat( scale.value ) );
+
+	mesh.geometry.verticesNeedUpdate = true; 
+	mesh.geometry.normalsNeedUpdate = true;
+
 		scene.add(mesh);
 
 		var location = document.URL;

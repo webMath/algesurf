@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang=en >
+<head>
+<title>materials-list-menu-maker.html</title>
+<meta charset=utf-8 />
+<meta name=author content='Theo Armour' />
+</head>
+<body>
+<script>
+
+	init();
+
+	function init() {
+		document.body.style.cssText = ' font: bold 12pt monospace; ';
+
+		var info = document.body.appendChild( document.createElement( 'div' ) );
+		info.innerHTML = '<a href="" ><h1>' + document.title + '</h1></a>' +
+			'<div id=msg ></div>';
+
+		materials = [
+			"Orange metal",
+			"Blue metal",
+			"Red metal",
+			"Green metal",
+			"Black metal",
+			"Pure chrome",
+			"Dark chrome",
+			"Darker chrome",
+			"Black glass",
+			"Dark glass",
+			"Blue glass",
+			"Light glass",
+			"Red glass",
+			"Yellow glass",
+			"Orange glass",
+			"Orange glass 50",
+			"Red glass 50",
+			"Fullblack rough",
+			"Black rough",
+			"Darkgray rough",
+			"Red rough",
+			"Darkgray shiny",
+			"Gray shiny",
+			"Normal",
+			"Liquid",
+			"Plastic",
+			"Normal Smooth",
+			"Normal Flat",
+			"Normal Wireframe",
+			"Basic Flat Red",
+			"Lambert Smooth Random",
+			"Phong Default",
+			"Phong Random Smooth",
+			"Phong Red Plastic",
+			"Phong Blue Flat",
+			"Phong Purple Flat",
+			"Phong Green Smooth",
+			"PhongDefaultTextureLavatile",
+			"PhongWhiteTextureWhite",
+			"PhongDefaultTextureSquare",
+			"PhongDefaultTextureUVgrid",
+			"PhongWhiteTextureDisturb",
+			"PhongWhiteTextureCar",
+			"Phong Default Reflect White",
+			"Phong Random Reflect Lava",
+			"Phong Reflect Disturb"
+		];
+
+		txt = '';
+
+		for ( var i = 0; i < materials.length; i++ ) {
+
+			txt += '[' + materials[ i ] + ']( #material#' + materials[ i ] + '# )&nbsp; <br>'; 
+
+		}
+
+		msg.innerHTML = txt;
+	}
+
+</script>
+</body>
+</html>
