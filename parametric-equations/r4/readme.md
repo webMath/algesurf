@@ -256,3 +256,4 @@ Ground <input type=checkbox onchange=addGround(); />
 </details>
 
 
+[Source code]( https://github.com/jaanga/algesurf/tree/gh-pages/parametric-equations )
