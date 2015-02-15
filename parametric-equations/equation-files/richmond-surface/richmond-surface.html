@@ -18,6 +18,9 @@
 	var scale = 25;
 	var x, y, z;
 
+	var u = 80;
+	var v = 20;
+
 	init();
 	animate();
 
@@ -33,13 +36,13 @@
 		camera.position.set( 100, 100, 100 );
 		controls = new THREE.TrackballControls( camera, renderer.domElement );
 
-		geometry = new THREE.ParametricGeometry( curve, 20, 20 );
+		geometry = new THREE.ParametricGeometry( curve, u, v );
 		material = new THREE.MeshNormalMaterial( { shading: THREE.SmoothShading, side: 1 } )
 		mesh = new THREE.Mesh( geometry, material );
 		scene.add( mesh );
 	}
 
-	function curve( u, v ) {		
+	function curve( u, v ) {
 		u = 3 * ( u - 0.5 );
 		v = 2 * ( v - 0.5 );
 

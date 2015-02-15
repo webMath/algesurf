@@ -31,10 +31,17 @@ There are two aspects to this effort:
 
 ## Road Map
 
-* Permalinks for equation files and materials
-* Save changes back to HTML file
-* Improve handling and cataloguing of materials
-* Add categories to each equation file
+* 2015-02-14 ~ Add start with random equation and material
+* 2015-02-14 ~ Add wireframe, face and vertex helpers
+* 2015-02-14 ~ Add background radio buttons
+* 2015-02-14 ~ Add light controls
+* 2015-02-14 ~ Add material editor
+* 2015-02-14 ~ Add display of the equation
+* 2015-02-14 ~ Add the Jurgen Meier sources
+* 2015-02-14 Add finder page: lists all the files in compacts single screen with small iframe preview
+* 2014 Permalinks for equation files and materials
+* 2014 Save changes back to HTML/JSON file
+* 2014 Add categories to each equation file
 
 
 
@@ -77,6 +84,35 @@ This repository contains files that are at an early and volatile stage. Not all 
 
 
 ## Change Log
+
+2015-02-14 ~ Theo
+
+* Add the sliders
+* Materials work OK
+* Add the toggles
+
+* Improve handling and cataloguing of materials << road map item completed
+
+2015-02-13 ~ Theo
+
+* PE 4 starting to look good
+* Built a script that builds an equations menu from the file names
+* Built a script that builds a materials menu
+* Add toggleGradient
+* Add toggleRotate
+* Many updates to Read Me
+* Add u,v sliders
+
+
+
+2014-07-17 ~ Theo
+
+Materials is such a work in progress. I have not yet completed the required 10,000 hours. Not by a long shot/
+
+
+2014 ? ~ Theo
+
+* Create R4 folders and files
 
 2014-07-17 ~ Theo
 

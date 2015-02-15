@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang=en >
 <head>
-<title>AlgeSurf R4</title>
+<title>AlgeSurf PE R4</title>
 <meta charset=utf-8 />
 <meta name=viewport content=width=device-width,user-scalable=no,minimum-scale=1.0,maximum-scale=1.0 />
 </head>
@@ -12,10 +12,15 @@
 
 	var header, menu;
 	var currentMaterial = "Red";
+
+	var a, b, c, d, e, f, g, h, i, R1, R2, u, v;
+
 	var lightAmbient, lightPoint, lightDirectional;
 
 	var startTime = performance.now();
 	var delayTime = 2000;
+
+	var orginalHash;
 
 	init();
 
@@ -27,7 +32,6 @@
 			'h2 { display: inline; margin: 0; }' +
 			'input { width: 30px; }' +
 			'input[type=range] { width: 200px; }' +
-
 			'#bars { color: #ccc; }' +
 		'';
 
@@ -41,7 +45,7 @@
 		menu.style.cssText = 'background-color: #eee; height: ' + ( 0.95 * window.innerHeight ) + 'px; padding: 0 15px; overflow: auto; ' +
 			'position: absolute; left: -350px;  top: 0; width: 300px; ';
 
-		loadMarkdownInMenu( 'readme.md', menu );
+		loadMarkdownInMenu( 'algesurf-pe-r4.md', menu );
 
 		loadHTMLInIframe( '#../equation-files/bonan-jeener-klein-surface/bonan-jeener-klein-surface.html#', callback );
 
@@ -59,9 +63,11 @@
 
 	function onHashChange() {
 
+		if ( location.hash === '#' ) { return; }
+
 		hashes = location.hash.split ( '#' );
 
-		if ( hashes.length < 1 ) { return; }
+		if ( hashes.length < 2 ) { return; }
 
 		var fileName = hashes[ 1 ].toLowerCase();
 
@@ -77,8 +83,6 @@
 
 		} else if ( hashes[ 1 ] === 'file' ) {
 
-//			ifr.onload = function() { mesh.material = materials[ currentMaterial ]; }
-
 			ifr.src = '../equation-files/' + hashes[ 2 ] + '/' + hashes[ 2 ] + '.html';
 
 			callback();
@@ -89,10 +93,9 @@
 
 			callback();
 
-		} else if ( hashes[ 1] === 'edit' ) {
+		} else if ( hashes[ 1] === 'reset' ) {
 
-			edit();
-
+			location.hash = orginalHash;
 
 		}
 
@@ -100,59 +103,141 @@
 
 	function edit() {
 
-//		var geometry = new THREE.BoxGeometry( 300, 2, 300 );
-		var material = new THREE.MeshPhongMaterial( {
-			color: 0xffffff * Math.random(),
-			ambient: 0xffffff * Math.random(),
-			specular: 0xffffff * Math.random(),
-			shininess: 5
-		} );
-
 		scene.remove( mesh );
 
-		u = parseInt( document.getElementById( 'txtU' ).value, 10);
-		v = parseInt( document.getElementById( 'txtV' ).value, 10 );
-console.log( u, v );
+		getSliderValues();
+
 		geometry = new THREE.ParametricGeometry( app.curve, u, v );
-		material = new THREE.MeshNormalMaterial( { shading: THREE.SmoothShading, side: 2 } )
-//		material = materials[ currentMaterial ];
+
+		material = materials[ currentMaterial ];
 		material.side = 2;
+
 		mesh = new THREE.Mesh( geometry, material );
 		mesh.castShadow = true;
 		mesh.receiveShadow = true;
 
 		scene.add( mesh );
+//		app.mesh = mesh;
 
-		app.mesh = mesh;
-
-location.hash = "";
-
-		callback();
 	}
 
 	function callback() {
 
-console.log( 'callback: ', location.hash );
+		mesh.material = materials[ currentMaterial ];
+		mesh.material.side = 2;
+		mesh.name = location.hash;
+
+		initSliders();
+
+		updateLights();
+
+		toggleRotate();
+		toggleGradient();
+
+		location.hash = "";
+
+	}
+
+	function callbackLoadHTMLInIframe() {
+
+//console.log( 'callbackLoadHTMLInIframe: ', location.hash );
 
 		app = ifr.contentWindow;
 		THREE = app.THREE;
 		scene = app.scene;
 		camera = app.camera;
 		controls = app.controls;
-		mesh = app.mesh;
+		controls.maxDistance = 500;
+
 		renderer = app.renderer;
+		renderer.shadowMapEnabled = true;
+		mesh = app.mesh;
 
 		materialsInit();
 
 		mesh.material = materials[ currentMaterial ];
 		mesh.material.side = 2;
-		mesh.name = location.hash;
+
+		mesh.castShadow = true;
+		mesh.receiveShadow = true;
+
+		initSliders();
 
 		updateLights();
 
 		toggleRotate();
 		toggleGradient();
-location.hash = "";
+
+		title = document.getElementById( 'title' );
+		title.innerHTML = ifr.contentDocument.title;
+
+	}
+
+	function getSliderValues() {
+
+		app.a = parseFloat( document.getElementById( 'txtA' ).value );
+		app.b = parseFloat( document.getElementById( 'txtB' ).value );
+		app.c = parseFloat( document.getElementById( 'txtC' ).value );
+		app.d = parseFloat( document.getElementById( 'txtD' ).value );
+		app.e = parseFloat( document.getElementById( 'txtE' ).value );
+		app.f = parseFloat( document.getElementById( 'txtF' ).value );
+		app.g = parseFloat( document.getElementById( 'txtG' ).value );
+		app.h = parseFloat( document.getElementById( 'txtH' ).value );
+		app.i = parseFloat( document.getElementById( 'txtI' ).value );
+
+		u = parseInt( document.getElementById( 'txtU' ).value, 10);
+		v = parseInt( document.getElementById( 'txtV' ).value, 10 );
+
+	}
+
+	function initSliders() {
+
+		vars = [ 
+			[ 'rngA', 'txtA', app.aMin, app.aMax, app.aStep, app.a ],
+			[ 'rngB', 'txtB', app.bMin, app.bMax, app.bStep, app.b ],
+			[ 'rngC', 'txtC', app.cMin, app.cMax, app.cStep, app.c ],
+			[ 'rngD', 'txtD', app.dMin, app.dMax, app.dStep, app.d ],
+			[ 'rngE', 'txtE', app.eMin, app.eMax, app.eStep, app.e ],
+			[ 'rngF', 'txtF', app.fMin, app.fMax, app.fStep, app.f ],
+			[ 'rngG', 'txtG', app.gMin, app.gMax, app.gStep, app.g ],
+			[ 'rngH', 'txtH', app.hMin, app.hMax, app.hStep, app.h ],
+			[ 'rngI', 'txtI', app.iMin, app.iMax, app.iStep, app.i ],
+			[ 'rngR1', 'txtR1', app.R1Min, app.R1Max, app.R1Step, app.R1 ],
+			[ 'rngR2', 'txtR2', app.R2Min, app.R2Max, app.R2Step, app.R2 ],
+			[ 'rngU', 'txtU', app.uMin, app.uMax, app.uStep, app.u ],
+			[ 'rngV', 'txtV', app.vMin, app.vMax, app.vStep, app.v ]
+
+		];
+
+		for ( var i = 0; i < vars.length; i++ ) {
+
+			v = vars[ i ];
+// console.log( v );
+			if ( v[ 5 ] ) {
+
+				updateSlider( v[0], v[1], v[2], v[3], v[4], v[5] );
+
+			} else {
+
+				slider = document.getElementById( 'p' + i );
+				slider.style.display = 'none';
+
+			}
+
+		}
+
+	}
+
+	function updateSlider( sld, txt, min, max, step, value ) {
+
+		slider = document.getElementById( sld );
+		text = document.getElementById( txt );
+
+		slider.min = min;
+		slider.max = max;
+		slider.step = step;
+		slider.value = value;
+		text.value = value;
 
 	}
 
@@ -162,7 +247,7 @@ location.hash = "";
 
 		if ( lightAmbient ) { scene.remove( lightAmbient ); }
 
-		lightAmbient = new THREE.AmbientLight( 0x555555 );
+		lightAmbient = new THREE.AmbientLight( 0x888888 );
 		scene.add( lightAmbient );
 
 		if ( lightPoint ) { scene.remove( lightPoint ); camera.remove( lightPoint ); }
@@ -179,7 +264,7 @@ location.hash = "";
 		lightDirectional.shadowMapWidth = 2048;
 		lightDirectional.shadowMapHeight = 2048;
 
-		var r = 100;
+		var r = 170;
 		lightDirectional.position.set( 100, 100, 100);
 
 		lightDirectional.shadowCameraLeft = -r;
@@ -225,7 +310,7 @@ location.hash = "";
 
 			"<script>" +
 
-			"	doc.style.cssText = 'font: bold 12pt monospace; max-width: 900px';" +
+			"	doc.style.cssText = 'font: bold 12pt monospace; margin-left: 80px; max-width: 900px';" +
 
 			"	var xmlHttp;" +
 
@@ -258,16 +343,19 @@ location.hash = "";
 
 		slideMenu(); // to hide
 
+		location.hash = '';
+
 	};
 
 	function loadHTMLInIframe( hash, callback ) {
+		
+		orginalHash = hash;
 
-		ifr = resetIframe( callback );
+		ifr = resetIframe( callbackLoadHTMLInIframe );
 
 		ifr.src = hash.substr( 1 );
 
 	}
-
 
 	function resetIframe( callback ) {
 
@@ -289,25 +377,46 @@ location.hash = "";
 
 	}
 
+	function toggleAxis( length ) {
+
+		var length = length ? length : 50;
+
+		chkAxis = document.getElementById( 'chkAxis' );
+
+		if ( chkAxis.checked ) {
+
+			axisHelper = new THREE.AxisHelper( length );
+			scene.add( axisHelper );
+
+		} else {
+
+			scene.remove( axisHelper );
+
+		}
+
+	}
+
 	function toggleGradient () {
 
 		gradient = document.getElementById( 'chkGradient' );
+
 		if ( gradient.checked ) { 
 
-		cssBackround = renderer.domElement.appendChild( document.createElement('style') );
+			cssBackround = renderer.domElement.appendChild( document.createElement('style') );
 
-		var col1 = "#" + Math.random().toString(16).slice(2, 8);
-		var col2 = "#" + Math.random().toString(16).slice(2, 8);
-		var col3 = "#" + Math.random().toString(16).slice(2, 8);
-		var X = ( Math.random() * window.innerWidth ).toFixed(0);
-		var Y = ( Math.random() * window.innerHeight ).toFixed(0);
-		var center =  20 + ( Math.random() * 60 ).toFixed(0);
+			var col1 = "#" + Math.random().toString(16).slice(2, 8);
+			var col2 = "#" + Math.random().toString(16).slice(2, 8);
+			var col3 = "#" + Math.random().toString(16).slice(2, 8);
+			var X = ( Math.random() * window.innerWidth ).toFixed(0);
+			var Y = ( Math.random() * window.innerHeight ).toFixed(0);
+			var center =  20 + ( Math.random() * 60 ).toFixed(0);
 
-		cssBackround.innerText = 'body { ' +
-			'background: -webkit-radial-gradient(' + X + 'px ' + Y + 'px, farthest-corner, ' + col1 + ' 0%, ' + col2 + ' 50%, ' + col3 + ' 100%); ' +
-			'background: -moz-radial-gradient(' + X + 'px ' + Y + 'px, farthest-corner, ' + col1 + ' 0%, ' + col2 + ' 50%, ' + col3 + ' 100%); ' +
-			'background: radial-gradient(' + X + 'px ' + Y + 'px, farthest-corner, ' + col1 + ' 0%, ' + col2 + ' 50%, ' + col3 + ' 100%); }' +
-		'';
+			cssBackround.innerText = 'body { ' +
+				'background: -webkit-radial-gradient(' + X + 'px ' + Y + 'px, farthest-corner, ' + col1 + ' 0%, ' + col2 + ' 50%, ' + col3 + ' 100%); ' +
+				'background: -moz-radial-gradient(' + X + 'px ' + Y + 'px, farthest-corner, ' + col1 + ' 0%, ' + col2 + ' 50%, ' + col3 + ' 100%); ' +
+				'background: radial-gradient(' + X + 'px ' + Y + 'px, farthest-corner, ' + col1 + ' 0%, ' + col2 + ' 50%, ' + col3 + ' 100%); }' +
+			'';
+
 		} else {
 
 			cssBackround.innerText = 'body { background: #fff; }';
@@ -316,25 +425,53 @@ location.hash = "";
 
 	};
 
-	function addGround() {
+	function toggleGrid() {
 
-		var geometry = new THREE.BoxGeometry( 300, 2, 300 );
-		var material = new THREE.MeshPhongMaterial( {
-			color: 0xffffff * Math.random(),
-			ambient: 0xffffff * Math.random(),
-			specular: 0xffffff * Math.random(),
-			shininess: 5
-		} );
+		chkGrid = document.getElementById( 'chkGrid' );
 
-		var ground = new THREE.Mesh( geometry, material );
-		ground.position.set( 0, -1, 0 );
-		ground.castShadow = true;
-		ground.receiveShadow = true;
-		scene.add( ground );
+		if ( chkGrid.checked ) { 
 
-		var helper = new THREE.BoxHelper( ground );
-		helper.material.color.setRGB( 1, 0, 1 );
-		scene.add( helper );
+			gridHelper = new THREE.GridHelper( 50, 10 );
+			scene.add( gridHelper );
+
+		} else {
+
+			scene.remove( gridHelper );
+
+		}
+
+	}
+
+	function toggleGround() {
+
+		chkGround = document.getElementById( 'chkGround' );
+
+		if ( chkGround.checked ) { 
+
+			var geometry = new THREE.BoxGeometry( 300, 2, 300 );
+			var material = new THREE.MeshPhongMaterial( {
+				color: 0xffffff * Math.random(),
+				ambient: 0xffffff * Math.random(),
+				specular: 0xffffff * Math.random(),
+				shininess: 5
+			} );
+
+			ground = new THREE.Mesh( geometry, material );
+			ground.position.set( 0, -50, 0 );
+			ground.castShadow = true;
+			ground.receiveShadow = true;
+			scene.add( ground );
+
+			helper = new THREE.BoxHelper( ground );
+			helper.material.color.setRGB( 1, 0, 1 );
+			scene.add( helper );
+
+		} else {
+
+			scene.remove( ground );
+			scene.remove( helper );
+
+		}
 
 	}
 

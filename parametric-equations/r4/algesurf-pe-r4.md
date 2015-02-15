@@ -1,12 +1,30 @@
 [algeSurf PE R4]( ./algesurf-pe-r4.html )
 ===
-Parametric Equation go to Bollywood.
+2015-02-14 ~ [Parametric Equations](http://en.wikipedia.org/wiki/Parametric_equation) go to [Bollywood]( http://en.wikipedia.org/wiki/Bollywood ). 
+Not quite finished with the update, nonetheless do go ahead, drag one of the sliders...
 
+[Read Me]( #../readme.md# )  
+[Source code]( https://github.com/jaanga/algesurf/tree/gh-pages/parametric-equations )
 
-U <input type=range id=rngU min=3 max=200 value=20 onchange=txtU.value=rngU.value /> <input id=txtU value=20 />  
-V <input type=range id=rngV min=3 max=200 value=20 onchange=txtV.value=rngV.value /> <input id=txtV value=20 />
+***
+<h2 id=title ></h2>
+<span id=p0 >a: <input type=range id=rngA min=1 max=10 value=5 onmousemove=txtA.value=rngA.value;edit(); /> <input id=txtA value=5 onchange=edit(); /><br></span>
+<span id=p1 >b: <input type=range id=rngB min=1 max=10 value=5 onmousemove=txtB.value=rngB.value;edit(); /> <input id=txtB value=5 onchange=edit(); /><br></span>
+<span id=p2 >c: <input type=range id=rngC min=1 max=10 value=5 onmousemove=txtC.value=rngC.value;edit(); /> <input id=txtC value=5 onchange=edit(); /><br></span>
+<span id=p3 >d: <input type=range id=rngD min=1 max=10 value=5 onmousemove=txtD.value=rngD.value;edit(); /> <input id=txtD value=5 onchange=edit(); /><br></span>
+<span id=p4 >e: <input type=range id=rngE min=1 max=10 value=5 onmousemove=txtE.value=rngE.value;edit(); /> <input id=txtE value=5 onchange=edit(); /><br></span>
+<span id=p5 >f: <input type=range id=rngF min=1 max=10 value=5 onmousemove=txtF.value=rngF.value;edit(); /> <input id=txtF value=5 onchange=edit(); /><br></span>
+<span id=p6 >g: <input type=range id=rngG min=1 max=10 value=5 onmousemove=txtG.value=rngG.value;edit(); /> <input id=txtG value=5 onchange=edit(); /><br></span>
+<span id=p7 >h: <input type=range id=rngH min=1 max=10 value=5 onmousemove=txtH.value=rngH.value;edit(); /> <input id=txtH value=5 onchange=edit(); /><br></span>
+<spam id=p8 >i: <input type=range id=rngI min=1 max=10 value=5 onmousemove=txtI.value=rngI.value;edit(); /> <input id=txtI value=5 onchange=edit(); /><br></span>
+<span id=p9 >R1: <input type=range id=rngR1 min=1 max=10 value=5 onmousemove=txtR1.value=rngR1.value;edit(); /> <input id=txtR1 value=5 /></span>  
+<span id=p10 >R2: <input type=range id=rngR2 min=1 max=10 value=5 onmousemove=txtR1.value=rngR2.value;edit(); /> <input id=txtR2 value=5 /></span>  
+  
+<span id=p11 >U <input type=range id=rngU min=3 max=200 value=20 onchange=txtU.value=rngU.value;edit(); /> <input id=txtU value=20 /></span>  
+<span id=p12 >V <input type=range id=rngV min=3 max=200 value=20 onchange=txtV.value=rngV.value;edit(); /> <input id=txtV value=20 /></span>  
 
-[Update equation parameters]( #edit# )
+[Reset equation parameters]( #reset# )
+
 
 <details>
 <summary><h2>Select Equation A-I</h2></summary>
@@ -251,9 +269,29 @@ V <input type=range id=rngV min=3 max=200 value=20 onchange=txtV.value=rngV.valu
 <summary><h2>Preferences</h2></summary>
 Auto Rotate after two seconds inactivity <input type=checkbox id=chkRotate  checked />  
 
+Axis <input type=checkbox id=chkAxis onchange=toggleAxis(); />  
+Grid <input type=checkbox id=chkGrid onchange=toggleGrid(); />  
+Ground <input type=checkbox id=chkGround onchange=toggleGround(); />  
+
 Gradient <input type=checkbox id=chkGradient onchange=toggleGradient(); checked />  
-Ground <input type=checkbox onchange=addGround(); />
+</details>
+<details>
+<summary><h2>About</h2></summary>
+
+Features include the following:
+
+* Reads, parses and displays remote Three.js HTML files
+* Real-time 3D pan, rotate and zoom
+* Access to full complement of materials, reflections, lights, shade and shadows
+* Update geometry parameters in real-time
+* Display wireframe, face & vertex normals
+* Select background colors
+* Experiment with over 170 parametric equations
+* Many thanks to [Jürgen Meier]( http://www.3d-meier.de/ )...
+
+Credits: [Three.js]( http://threejs.org ) ~ [WebGL]( http://khronos.org/webgl/ ) ~ [GitHub]( http://GitHub.com )
+
+copyright © 2015 vA3C authors ~ MIT license
+
 </details>
 
-
-[Source code]( https://github.com/jaanga/algesurf/tree/gh-pages/parametric-equations )
