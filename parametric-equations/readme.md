@@ -31,6 +31,7 @@ There are two aspects to this effort:
 
 ## Road Map
 
+* 2015-02-14 ~ Put all the equations in a single file?
 * 2015-02-14 ~ Add start with random equation and material
 * 2015-02-14 ~ Add wireframe, face and vertex helpers
 * 2015-02-14 ~ Add background radio buttons
