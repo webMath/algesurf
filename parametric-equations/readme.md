@@ -22,6 +22,17 @@ To visualize math and physics in entirely new ways
 
 ## Features
 <!-- and benefits -->
+Features include the following:
+
+* Loads randomly selected equation and material at start-up and whenever you click the title
+* Reads, parses and displays remote Three.js HTML files
+* Real-time 3D pan, rotate and zoom
+* Access to full complement of materials, reflections, lights, shade and shadows
+* Update geometry parameters in real-time
+* Topple a variety of parameters wireframe, face & vertex normals
+* Select background colors
+* Experiment with over 170 parametric equations
+* Many thanks to [Jürgen Meier]( http://www.3d-meier.de/ )...
 
 There are two aspects to this effort:
 
@@ -43,7 +54,9 @@ There are two aspects to this effort:
 
 ## Issues / Bugs
 
-* Auto eotate does not always toggle properly
+* IE & FF: background gradient a no-show
+* IE & FF: menu accordion (HTML5 <details>) no show
+* Auto rotate does not always toggle properly
 
 
 ## Project Links
