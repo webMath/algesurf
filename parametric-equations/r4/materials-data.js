@@ -14,7 +14,7 @@
 		var color =  Math.random() * 0xffffff;
 
 		materials = {
-			'<Standard': '<div><h3 style=display:inline; >Car Colors</h3> <a href=http://mrdoob.github.io/three.js/examples/#webgl_materials_cars target="_blank" ><i>source</i></a></div>',
+//			'<Standard': '<div><h3 style=display:inline; >Car Colors</h3> <a href=http://mrdoob.github.io/three.js/examples/#webgl_materials_cars target="_blank" ><i>source</i></a></div>',
 // http://mrdoob.github.io/three.js/examples/#webgl_materials_cars
 
 			"Orange": 	new THREE.MeshLambertMaterial( { color: 0xff6600, ambient: 0xff2200, envMap: textureCube, combine: THREE.MixOperation, reflectivity: 0.3 } ),
@@ -28,19 +28,19 @@
 			"Bronze":	new THREE.MeshPhongMaterial( { color: 0x150505, specular:0xee6600, shininess:10, envMap: textureCube, combine: THREE.MixOperation, reflectivity: 0.25 } ),
 			"Chrome": 	new THREE.MeshPhongMaterial( { color: 0xffffff, specular:0xffffff, envMap: textureCube, combine: THREE.MultiplyOperation } ),
 
-			'<metal' : '<br>',
+//			'<metal' : '<br>',
 			"Orange metal": new THREE.MeshLambertMaterial( { color: 0xff6600, ambient: 0xff2200, envMap: textureCube, combine: THREE.MultiplyOperation } ),
 			"Blue metal": 	new THREE.MeshLambertMaterial( { color: 0x001133, ambient: 0x002266, envMap: textureCube, combine: THREE.MultiplyOperation } ),
 			"Red metal": 	new THREE.MeshLambertMaterial( { color: 0x770000, envMap: textureCube, combine: THREE.MultiplyOperation } ),
 			"Green metal": 	new THREE.MeshLambertMaterial( { color: 0x007711, envMap: textureCube, combine: THREE.MultiplyOperation } ),
 			"Black metal":	new THREE.MeshLambertMaterial( { color: 0x222222, envMap: textureCube, combine: THREE.MultiplyOperation } ),
 
-			'<chrome>' : '<br>',
+//			'<chrome>' : '<br>',
 			"Pure chrome": 	new THREE.MeshLambertMaterial( { color: 0xffffff, envMap: textureCube } ),
 			"Dark chrome":	new THREE.MeshLambertMaterial( { color: 0x444444, envMap: textureCube } ),
 			"Darker chrome":new THREE.MeshLambertMaterial( { color: 0x222222, envMap: textureCube } ),
 
-			'<glass>' : '<br>',
+//			'<glass>' : '<br>',
 			"Black glass": 	new THREE.MeshLambertMaterial( { color: 0x101016, envMap: textureCube, opacity: 0.975, transparent: true } ),
 			"Dark glass":	new THREE.MeshLambertMaterial( { color: 0x101046, envMap: textureCube, opacity: 0.25, transparent: true } ),
 			"Blue glass":	new THREE.MeshLambertMaterial( { color: 0x668899, envMap: textureCube, opacity: 0.75, transparent: true } ),
@@ -53,13 +53,13 @@
 			"Orange glass 50":	new THREE.MeshLambertMaterial( { color: 0xffbb00, opacity: 0.5, transparent: true } ),
 			"Red glass 50": 	new THREE.MeshLambertMaterial( { color: 0xff0000, opacity: 0.5, transparent: true } ),
 
-			'<rough>' : '<br>',
+//			'<rough>' : '<br>',
 			"Fullblack rough":	new THREE.MeshLambertMaterial( { color: 0x000000 } ),
 			"Black rough":		new THREE.MeshLambertMaterial( { color: 0x050505 } ),
 			"Darkgray rough":	new THREE.MeshLambertMaterial( { color: 0x090909 } ),
 			"Red rough":		new THREE.MeshLambertMaterial( { color: 0x330500 } ),
 
-			'<shiny' : '<br>',
+//			'<shiny' : '<br>',
 			"Darkgray shiny":	new THREE.MeshPhongMaterial( { color: 0x000000, specular: 0x050505 } ),
 			"Gray shiny":		new THREE.MeshPhongMaterial( { color: 0x050505, shininess: 20 } ),
 
@@ -68,7 +68,7 @@
 
 
 //		matLib2 = {
-			'<specials' : '<h3>Specials</h3>',
+//			'<specials' : '<h3>Specials</h3>',
 			'Normal':			new THREE.MeshNormalMaterial(),
 			'Liquid': 			new THREE.MeshLambertMaterial( { color: 0xffffff, envMap: textureCube, refractionRatio: 0.85 } ),
 			'Plastic':			new THREE.MeshPhongMaterial( { color: 0x000000, specular: 0x888888, ambient: 0x000000, shininess: 250, side: THREE.DoubleSide } ),
@@ -78,7 +78,7 @@
 			"Basic Flat Red":	new THREE.MeshBasicMaterial( { color: 0xff0000, shading: THREE.FlatShading, side: 2 }),
 			"Lambert Smooth Random": new THREE.MeshLambertMaterial( { ambient: color, color: color, emissive: color, shading: THREE.SmoothShading, side: 2 }),
 
-			'<phong' : '<br>',
+//			'<phong' : '<br>',
 			"Phong Default":	new THREE.MeshPhongMaterial(),
 			"Phong Random Smooth": new THREE.MeshPhongMaterial( {
 				ambient: 0xffffff * Math.random(),
@@ -136,7 +136,7 @@
 			"PhongWhiteTextureDisturb": new THREE.MeshPhongMaterial( { map: new THREE.ImageUtils.loadTexture( '../../../textures/disturb.jpg' ) } ),
 			"PhongWhiteTextureCar": new THREE.MeshPhongMaterial( { map: new THREE.ImageUtils.loadTexture( '../../../textures/im5.jpg' ) } ),
 
-			'<envmap' : '<br>',
+//			'<envmap' : '<br>',
 			"Phong Default Reflect White": new THREE.MeshPhongMaterial( { envMap: new THREE.ImageUtils.loadTextureCube( [ pw,pw,pw,pw,pw,pw ] )   } ),
 
 			"Phong Random Reflect Lava": new THREE.MeshPhongMaterial( { 

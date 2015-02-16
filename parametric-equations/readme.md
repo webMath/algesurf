@@ -32,15 +32,10 @@ There are two aspects to this effort:
 ## Road Map
 
 * 2015-02-14 ~ Put all the equations in a single file?
-* 2015-02-14 ~ Add start with random equation and material
-* 2015-02-14 ~ Add wireframe, face and vertex helpers
 * 2015-02-14 ~ Add background radio buttons
 * 2015-02-14 ~ Add light controls
 * 2015-02-14 ~ Add material editor
-* 2015-02-14 ~ Add display of the equation
-* 2015-02-14 ~ Add the Jurgen Meier sources
 * 2015-02-14 Add finder page: lists all the files in compacts single screen with small iframe preview
-* 2014 Permalinks for equation files and materials
 * 2014 Save changes back to HTML/JSON file
 * 2014 Add categories to each equation file
 
@@ -48,6 +43,7 @@ There are two aspects to this effort:
 
 ## Issues / Bugs
 
+* Auto eotate does not always toggle properly
 
 
 ## Project Links
@@ -85,6 +81,14 @@ This repository contains files that are at an early and volatile stage. Not all 
 
 
 ## Change Log
+
+2015-02-15 ~ Theo
+
+* 2015-02-14 ~ Add display of the equation
+* 2015-02-14 ~ Add the Jurgen Meier sources
+* 2014 Permalinks for equation files and materials
+* 2015-02-14 ~ Add start with random equation and material
+* 2015-02-14 ~ Add wireframe, face and vertex helpers
 
 2015-02-14 ~ Theo
 

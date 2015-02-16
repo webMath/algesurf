@@ -4,8 +4,8 @@
 Not quite finished with the update, nonetheless do go ahead, drag one of the sliders...
 
 [Read Me]( #../readme.md# )  
-[Source code]( https://github.com/jaanga/algesurf/tree/gh-pages/parametric-equations )
-
+[Source code]( https://github.com/jaanga/algesurf/tree/gh-pages/parametric-equations )  
+[Random Display]( #random# )
 ***
 <h2 id=title ></h2>
 <span id=p0 >a: <input type=range id=rngA min=1 max=10 value=5 onmousemove=txtA.value=rngA.value;edit(); /> <input id=txtA value=5 onchange=edit(); /><br></span>
@@ -17,11 +17,11 @@ Not quite finished with the update, nonetheless do go ahead, drag one of the sli
 <span id=p6 >g: <input type=range id=rngG min=1 max=10 value=5 onmousemove=txtG.value=rngG.value;edit(); /> <input id=txtG value=5 onchange=edit(); /><br></span>
 <span id=p7 >h: <input type=range id=rngH min=1 max=10 value=5 onmousemove=txtH.value=rngH.value;edit(); /> <input id=txtH value=5 onchange=edit(); /><br></span>
 <spam id=p8 >i: <input type=range id=rngI min=1 max=10 value=5 onmousemove=txtI.value=rngI.value;edit(); /> <input id=txtI value=5 onchange=edit(); /><br></span>
-<span id=p9 >R1: <input type=range id=rngR1 min=1 max=10 value=5 onmousemove=txtR1.value=rngR1.value;edit(); /> <input id=txtR1 value=5 /></span>  
-<span id=p10 >R2: <input type=range id=rngR2 min=1 max=10 value=5 onmousemove=txtR1.value=rngR2.value;edit(); /> <input id=txtR2 value=5 /></span>  
-  
-<span id=p11 >U <input type=range id=rngU min=3 max=200 value=20 onchange=txtU.value=rngU.value;edit(); /> <input id=txtU value=20 /></span>  
-<span id=p12 >V <input type=range id=rngV min=3 max=200 value=20 onchange=txtV.value=rngV.value;edit(); /> <input id=txtV value=20 /></span>  
+<span id=p9 >R1: <input type=range id=rngR1 min=1 max=10 value=5 onmousemove=txtR1.value=rngR1.value;edit(); /> <input id=txtR1 value=5 /><br></span>
+<span id=p10 >R2: <input type=range id=rngR2 min=1 max=10 value=5 onmousemove=txtR1.value=rngR2.value;edit(); /> <input id=txtR2 value=5 /><br><br></span>
+
+<span id=p11 >U <input type=range id=rngU min=3 max=200 value=20 onchange=txtU.value=rngU.value;edit(); /> <input id=txtU value=20 /><br></span>
+<span id=p12 >V <input type=range id=rngV min=3 max=200 value=20 onchange=txtV.value=rngV.value;edit(); /> <input id=txtV value=20 /></span>
 
 [Reset equation parameters]( #reset# )
 
@@ -267,31 +267,39 @@ Not quite finished with the update, nonetheless do go ahead, drag one of the sli
 </details>
 <details>
 <summary><h2>Preferences</h2></summary>
-Auto Rotate after two seconds inactivity <input type=checkbox id=chkRotate  checked />  
+<input type=checkbox id=chkRotate  checked /> Auto rotate after two seconds of inactivity
 
-Axis <input type=checkbox id=chkAxis onchange=toggleAxis(); />  
-Grid <input type=checkbox id=chkGrid onchange=toggleGrid(); />  
-Ground <input type=checkbox id=chkGround onchange=toggleGround(); />  
+<input type=checkbox id=chkAxis onchange=toggleAxis(); /> Axis  
+<input type=checkbox id=chkGrid onchange=toggleGrid(); /> Grid    
+<input type=checkbox id=chkGround onchange=toggleGround(); /> Ground  
 
-Gradient <input type=checkbox id=chkGradient onchange=toggleGradient(); checked />  
+<input type=checkbox id=chkGradient onchange=toggleGradient(); checked /> Gradient   
+
+<input type=checkbox id=chkWireframe onchange=toggleWireframe(); /> Wireframe  
+<input type=checkbox id=chkFaceNormals onchange=toggleFaceNormals(); /> Face Normals  
+<input type=checkbox id=chkVertexNormals onchange=toggleVertexNormals(); /> Vertex Normals 
+
 </details>
 <details>
 <summary><h2>About</h2></summary>
 
 Features include the following:
 
+* Loads randomly selected equation and material at start-up and whenever you click the title
 * Reads, parses and displays remote Three.js HTML files
 * Real-time 3D pan, rotate and zoom
 * Access to full complement of materials, reflections, lights, shade and shadows
 * Update geometry parameters in real-time
-* Display wireframe, face & vertex normals
+* Topple a variety of parameters wireframe, face & vertex normals
 * Select background colors
 * Experiment with over 170 parametric equations
 * Many thanks to [Jürgen Meier]( http://www.3d-meier.de/ )...
 
 Credits: [Three.js]( http://threejs.org ) ~ [WebGL]( http://khronos.org/webgl/ ) ~ [GitHub]( http://GitHub.com )
 
-copyright © 2015 vA3C authors ~ MIT license
+copyright © 2015 Jaanga authors ~ MIT license
 
 </details>
 
+<p id=source ></p>
+<div id=equation style=font-size:9pt; ></div>

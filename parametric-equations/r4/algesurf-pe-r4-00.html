@@ -1,0 +1,513 @@
+<!doctype html>
+<html lang=en >
+<head>
+<title>AlgeSurf PE R4</title>
+<meta charset=utf-8 />
+<meta name=viewport content=width=device-width,user-scalable=no,minimum-scale=1.0,maximum-scale=1.0 />
+</head>
+<body>
+<script src=http://cdnjs.cloudflare.com/ajax/libs/showdown/0.3.1/showdown.min.js ></script>
+<script src=materials-data.js ></script>
+<script>
+
+	var header, menu;
+	var currentMaterial = "Red";
+
+	var a, b, c, d, e, f, g, h, i, R1, R2, u, v;
+
+	var lightAmbient, lightPoint, lightDirectional;
+
+	var startTime = performance.now();
+	var delayTime = 2000;
+
+	var orginalHash;
+
+	init();
+
+	function init() {
+
+		var css = document.body.appendChild( document.createElement('style') );
+		css.innerHTML = 'body { font: 600 12pt monospace; margin: 0; overflow: hidden; }' +
+			'h1 a, #bars { text-decoration: none; }' +
+			'h2 { display: inline; margin: 0; }' +
+			'input { width: 30px; }' +
+			'input[type=range] { width: 200px; }' +
+			'#bars { color: #ccc; }' +
+		'';
+
+		header = document.body.appendChild( document.createElement( 'div' ) );
+		header.style.cssText = 'position: absolute; left: 20px; transition: left 1s; ';
+		header.innerHTML = '<h1>' +
+			'<a href=JavaScript:slideMenu(); id=bars >&#9776;</a>'+
+		'</h1>';
+
+		menu =  header.appendChild( document.createElement( 'div' ) );
+		menu.style.cssText = 'background-color: #eee; height: ' + ( 0.95 * window.innerHeight ) + 'px; padding: 0 15px; overflow: auto; ' +
+			'position: absolute; left: -350px;  top: 0; width: 300px; ';
+
+		loadMarkdownInMenu( 'algesurf-pe-r4.md', menu );
+
+		loadHTMLInIframe( '#../equation-files/bonan-jeener-klein-surface/bonan-jeener-klein-surface.html#', callback );
+
+		slideMenu();
+
+		window.addEventListener ( 'hashchange', onHashChange, false );
+
+	}
+
+	function slideMenu(){
+
+		header.style.left = header.style.left === '20px' ? '350px' : '20px';
+
+	}
+
+	function onHashChange() {
+
+		if ( location.hash === '#' ) { return; }
+
+		hashes = location.hash.split ( '#' );
+
+		if ( hashes.length < 2 ) { return; }
+
+		var fileName = hashes[ 1 ].toLowerCase();
+
+		var fileType = (fileName.substr( fileName.lastIndexOf( '.' )).toLowerCase() );
+
+		if ( fileType === '.html' || fileType === '.htm' ) {
+
+			loadHTMLInIframe( location.hash );
+
+		} else if ( fileType === '.md' ) {
+
+			loadMarkdownInIframe( location.hash );
+
+		} else if ( hashes[ 1 ] === 'file' ) {
+
+			ifr.src = '../equation-files/' + hashes[ 2 ] + '/' + hashes[ 2 ] + '.html';
+
+			callback();
+
+ 		} else if ( hashes[ 1] === 'material' ) {
+
+			currentMaterial = hashes[ 2 ];
+
+			callback();
+
+		} else if ( hashes[ 1] === 'reset' ) {
+
+			location.hash = orginalHash;
+
+		}
+
+	}
+
+	function edit() {
+
+		scene.remove( mesh );
+
+		getSliderValues();
+
+		geometry = new THREE.ParametricGeometry( app.curve, u, v );
+
+		material = materials[ currentMaterial ];
+		material.side = 2;
+
+		mesh = new THREE.Mesh( geometry, material );
+		mesh.castShadow = true;
+		mesh.receiveShadow = true;
+
+		scene.add( mesh );
+//		app.mesh = mesh;
+
+	}
+
+	function callback() {
+
+		mesh.material = materials[ currentMaterial ];
+		mesh.material.side = 2;
+		mesh.name = location.hash;
+
+		initSliders();
+
+		updateLights();
+
+		toggleRotate();
+		toggleGradient();
+
+		location.hash = "";
+
+	}
+
+	function callbackLoadHTMLInIframe() {
+
+//console.log( 'callbackLoadHTMLInIframe: ', location.hash );
+
+		app = ifr.contentWindow;
+		THREE = app.THREE;
+		scene = app.scene;
+		camera = app.camera;
+		controls = app.controls;
+		controls.maxDistance = 500;
+
+		renderer = app.renderer;
+		renderer.shadowMapEnabled = true;
+		mesh = app.mesh;
+
+		materialsInit();
+
+		mesh.material = materials[ currentMaterial ];
+		mesh.material.side = 2;
+
+		mesh.castShadow = true;
+		mesh.receiveShadow = true;
+
+		initSliders();
+
+		updateLights();
+
+		toggleRotate();
+		toggleGradient();
+
+		title = document.getElementById( 'title' );
+		title.innerHTML = ifr.contentDocument.title;
+
+	}
+
+	function getSliderValues() {
+
+		app.a = parseFloat( document.getElementById( 'txtA' ).value );
+		app.b = parseFloat( document.getElementById( 'txtB' ).value );
+		app.c = parseFloat( document.getElementById( 'txtC' ).value );
+		app.d = parseFloat( document.getElementById( 'txtD' ).value );
+		app.e = parseFloat( document.getElementById( 'txtE' ).value );
+		app.f = parseFloat( document.getElementById( 'txtF' ).value );
+		app.g = parseFloat( document.getElementById( 'txtG' ).value );
+		app.h = parseFloat( document.getElementById( 'txtH' ).value );
+		app.i = parseFloat( document.getElementById( 'txtI' ).value );
+
+		u = parseInt( document.getElementById( 'txtU' ).value, 10);
+		v = parseInt( document.getElementById( 'txtV' ).value, 10 );
+
+	}
+
+	function initSliders() {
+
+		vars = [ 
+			[ 'rngA', 'txtA', app.aMin, app.aMax, app.aStep, app.a ],
+			[ 'rngB', 'txtB', app.bMin, app.bMax, app.bStep, app.b ],
+			[ 'rngC', 'txtC', app.cMin, app.cMax, app.cStep, app.c ],
+			[ 'rngD', 'txtD', app.dMin, app.dMax, app.dStep, app.d ],
+			[ 'rngE', 'txtE', app.eMin, app.eMax, app.eStep, app.e ],
+			[ 'rngF', 'txtF', app.fMin, app.fMax, app.fStep, app.f ],
+			[ 'rngG', 'txtG', app.gMin, app.gMax, app.gStep, app.g ],
+			[ 'rngH', 'txtH', app.hMin, app.hMax, app.hStep, app.h ],
+			[ 'rngI', 'txtI', app.iMin, app.iMax, app.iStep, app.i ],
+			[ 'rngR1', 'txtR1', app.R1Min, app.R1Max, app.R1Step, app.R1 ],
+			[ 'rngR2', 'txtR2', app.R2Min, app.R2Max, app.R2Step, app.R2 ],
+			[ 'rngU', 'txtU', app.uMin, app.uMax, app.uStep, app.u ],
+			[ 'rngV', 'txtV', app.vMin, app.vMax, app.vStep, app.v ]
+
+		];
+
+		for ( var i = 0; i < vars.length; i++ ) {
+
+			v = vars[ i ];
+// console.log( v );
+			if ( v[ 5 ] ) {
+
+				updateSlider( v[0], v[1], v[2], v[3], v[4], v[5] );
+
+			} else {
+
+				slider = document.getElementById( 'p' + i );
+				slider.style.display = 'none';
+
+			}
+
+		}
+
+	}
+
+	function updateSlider( sld, txt, min, max, step, value ) {
+
+		slider = document.getElementById( sld );
+		text = document.getElementById( txt );
+
+		slider.min = min;
+		slider.max = max;
+		slider.step = step;
+		slider.value = value;
+		text.value = value;
+
+	}
+
+	function updateLights() {
+	
+		scene.add( camera );  // needed for light to track
+
+		if ( lightAmbient ) { scene.remove( lightAmbient ); }
+
+		lightAmbient = new THREE.AmbientLight( 0x888888 );
+		scene.add( lightAmbient );
+
+		if ( lightPoint ) { scene.remove( lightPoint ); camera.remove( lightPoint ); }
+
+		lightPoint = new THREE.PointLight( 0xffffff, 1 );
+		lightPoint.position = camera.position;
+		camera.add( lightPoint );
+
+		if ( lightDirectional ) { scene.remove( lightDirectional ); }
+
+		lightDirectional = new THREE.DirectionalLight( 0xffffff, 0.5 );
+
+		lightDirectional.castShadow = true;
+		lightDirectional.shadowMapWidth = 2048;
+		lightDirectional.shadowMapHeight = 2048;
+
+		var r = 170;
+		lightDirectional.position.set( 100, 100, 100);
+
+		lightDirectional.shadowCameraLeft = -r;
+		lightDirectional.shadowCameraRight = r;
+		lightDirectional.shadowCameraTop = r;
+		lightDirectional.shadowCameraBottom = -r;
+
+		lightDirectional.shadowCameraNear = 0;
+		lightDirectional.shadowCameraFar = 3 * r;
+
+		scene.add( lightDirectional );
+
+	}
+
+	function loadMarkdownInMenu( fileName, panel ) {
+
+		var converter = new Showdown.converter();
+
+		var xmlHttp = new XMLHttpRequest ();
+		xmlHttp.open( 'GET', fileName, true );
+		xmlHttp.onreadystatechange = callback;
+		xmlHttp.send( null );
+
+		function callback() {
+
+			text = xmlHttp.responseText;
+
+			panel.innerHTML = converter.makeHtml( text );
+
+		}
+
+	}
+
+	function loadMarkdownInIframe( hash, callback ) {
+
+		ifr = resetIframe( callback );
+
+		var srcdoc =
+
+			"<div id=doc ><\/div>" +
+
+			"<script src=http://cdnjs.cloudflare.com/ajax/libs/showdown/0.3.1/showdown.min.js ><\/script>" +
+
+			"<script>" +
+
+			"	doc.style.cssText = 'font: bold 12pt monospace; margin-left: 80px; max-width: 900px';" +
+
+			"	var xmlHttp;" +
+
+			"	var converter = new Showdown.converter();" +
+
+			"	requestFile( '" + hash.substr( 1 ) + "' );" +
+
+			"	function callback() {" +
+
+			"		text = xmlHttp.responseText;" +
+			"		text = converter.makeHtml( text );" +
+			"		doc.innerHTML = text;" +
+
+			"	}" +
+
+			"	function requestFile( fileName ) {" +
+
+			"		xmlHttp = new XMLHttpRequest();" +
+			"		xmlHttp.open( 'GET', fileName, true );" +
+			"		xmlHttp.onreadystatechange = callback;" +
+			"		xmlHttp.send( null );" +
+
+			"	}" +
+
+			"<\/script>" +
+
+		"";
+
+		ifr.srcdoc = srcdoc;
+
+		slideMenu(); // to hide
+
+		location.hash = '';
+
+	};
+
+	function loadHTMLInIframe( hash, callback ) {
+		
+		orginalHash = hash;
+
+		ifr = resetIframe( callbackLoadHTMLInIframe );
+
+		ifr.src = hash.substr( 1 );
+
+	}
+
+	function resetIframe( callback ) {
+
+		var iframes = document.getElementsByTagName( 'iframe' );
+
+		for ( var i = 0; i < iframes.length; i++ ) {
+
+			iframes[0].parentNode.removeChild( iframes[ 0 ] );
+
+		}
+
+		var ifr = document.body.appendChild( document.createElement( 'iframe' ) );
+		ifr.width = window.innerWidth;
+		ifr.height = window.innerHeight;
+		ifr.style.cssText = 'border-width: 0; position: absolute; z-index: -10';
+		ifr.onload = callback || function() {};
+
+		return ifr;
+
+	}
+
+	function toggleAxis( length ) {
+
+		var length = length ? length : 50;
+
+		chkAxis = document.getElementById( 'chkAxis' );
+
+		if ( chkAxis.checked ) {
+
+			axisHelper = new THREE.AxisHelper( length );
+			scene.add( axisHelper );
+
+		} else {
+
+			scene.remove( axisHelper );
+
+		}
+
+	}
+
+	function toggleGradient () {
+
+		gradient = document.getElementById( 'chkGradient' );
+
+		if ( gradient.checked ) { 
+
+			cssBackround = renderer.domElement.appendChild( document.createElement('style') );
+
+			var col1 = "#" + Math.random().toString(16).slice(2, 8);
+			var col2 = "#" + Math.random().toString(16).slice(2, 8);
+			var col3 = "#" + Math.random().toString(16).slice(2, 8);
+			var X = ( Math.random() * window.innerWidth ).toFixed(0);
+			var Y = ( Math.random() * window.innerHeight ).toFixed(0);
+			var center =  20 + ( Math.random() * 60 ).toFixed(0);
+
+			cssBackround.innerText = 'body { ' +
+				'background: -webkit-radial-gradient(' + X + 'px ' + Y + 'px, farthest-corner, ' + col1 + ' 0%, ' + col2 + ' 50%, ' + col3 + ' 100%); ' +
+				'background: -moz-radial-gradient(' + X + 'px ' + Y + 'px, farthest-corner, ' + col1 + ' 0%, ' + col2 + ' 50%, ' + col3 + ' 100%); ' +
+				'background: radial-gradient(' + X + 'px ' + Y + 'px, farthest-corner, ' + col1 + ' 0%, ' + col2 + ' 50%, ' + col3 + ' 100%); }' +
+			'';
+
+		} else {
+
+			cssBackround.innerText = 'body { background: #fff; }';
+
+		}
+
+	};
+
+	function toggleGrid() {
+
+		chkGrid = document.getElementById( 'chkGrid' );
+
+		if ( chkGrid.checked ) { 
+
+			gridHelper = new THREE.GridHelper( 50, 10 );
+			scene.add( gridHelper );
+
+		} else {
+
+			scene.remove( gridHelper );
+
+		}
+
+	}
+
+	function toggleGround() {
+
+		chkGround = document.getElementById( 'chkGround' );
+
+		if ( chkGround.checked ) { 
+
+			var geometry = new THREE.BoxGeometry( 300, 2, 300 );
+			var material = new THREE.MeshPhongMaterial( {
+				color: 0xffffff * Math.random(),
+				ambient: 0xffffff * Math.random(),
+				specular: 0xffffff * Math.random(),
+				shininess: 5
+			} );
+
+			ground = new THREE.Mesh( geometry, material );
+			ground.position.set( 0, -50, 0 );
+			ground.castShadow = true;
+			ground.receiveShadow = true;
+			scene.add( ground );
+
+			helper = new THREE.BoxHelper( ground );
+			helper.material.color.setRGB( 1, 0, 1 );
+			scene.add( helper );
+
+		} else {
+
+			scene.remove( ground );
+			scene.remove( helper );
+
+		}
+
+	}
+
+	function toggleRotate() {
+
+		rotate = document.getElementById( 'chkRotate' );
+
+		renderer.domElement.addEventListener( 'mousemove', onMouseMove, false ); // or mousedown?
+
+		app.animate = animate;
+
+// or remove event listener? And reset animate?
+
+	}
+
+	function onMouseMove() {
+
+		startTime = rotate.checked ? performance.now() : 1000000 ;
+
+	}
+
+	function animate( timestamp ) {
+
+		if ( timestamp - startTime > delayTime ) {
+
+			mesh.rotation.y +=0.001;
+
+		}
+
+		renderer.render( scene, camera );
+		controls.update();
+		requestAnimationFrame( animate);
+
+	}
+
+
+</script>
+</body>
+</html>
