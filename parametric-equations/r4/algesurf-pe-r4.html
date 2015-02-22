@@ -501,7 +501,9 @@
 			var Y = ( Math.random() * window.innerHeight ).toFixed(0);
 			var center =  20 + ( Math.random() * 60 ).toFixed(0);
 
-			cssBackround.innerText = 'body { ' +
+//		console.log( col1, col2, X, Y );
+
+			cssBackround.innerHTML = 'body { ' +
 				'background: -webkit-radial-gradient(' + X + 'px ' + Y + 'px, farthest-corner, ' + col1 + ' 0%, ' + col2 + ' 50%, ' + col3 + ' 100%); ' +
 				'background: -moz-radial-gradient(' + X + 'px ' + Y + 'px, farthest-corner, ' + col1 + ' 0%, ' + col2 + ' 50%, ' + col3 + ' 100%); ' +
 				'background: radial-gradient(' + X + 'px ' + Y + 'px, farthest-corner, ' + col1 + ' 0%, ' + col2 + ' 50%, ' + col3 + ' 100%); }' +

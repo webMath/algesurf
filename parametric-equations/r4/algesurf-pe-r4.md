@@ -51,7 +51,7 @@ Not quite finished with the update, nonetheless do go ahead, drag one of the sli
 [Cosine Surface II]( #../equation-files/cosine-surface-ii/cosine-surface-ii.html# )  
 [Cosine Wave]( #../equation-files/cosine-wave/cosine-wave.html# )  
 [Costa Surface]( #../equation-files/costa-surface/costa-surface.html# )  
-[Cresent]( #../equation-files/crescent/crescent.html# )  
+[Crescent]( #../equation-files/crescent/crescent.html# )  
 [Cross Cap]( #../equation-files/cross-cap/cross-cap.html# )  
 [Cross Cup]( #../equation-files/cross-cup/cross-cup.html# )  
 [Cylinder]( #../equation-files/cylinder/cylinder.html# )  
