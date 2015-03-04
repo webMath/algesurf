@@ -52,8 +52,6 @@
 		line = new THREE.Line( geometry, material );
 		scene.add( line );
 
-console.log( geometry.vertices.length );
-
 		for ( var i = 0; i < 100; i++ ) {
 			x =  i * 5;
 			geometry = new THREE.BoxGeometry( 5, 5, 5 );
@@ -64,16 +62,11 @@ console.log( geometry.vertices.length );
 			boxes.push( mesh );
 		}
 
-
 		animate();
 
 	}
 
 	function addStep( x, y, z ) {
-
-		var step = 0.5;
-		var steps = 1000000;
-		var current = 1;
 
 		var beta = 8/3;
 		var rho = 28;
