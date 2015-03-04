@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang=en >
+<head>
+<title>lorenz attractor</title>
+<meta charset=utf-8 >
+<meta name=viewport content=width=device-width,user-scalable=no,minimum-scale=1.0,maximum-scale=1.0 >
+</head>
+<body>
+<script src=http://mrdoob.github.io/three.js/build/three.min.js ></script>
+<script src=http://mrdoob.github.io/three.js/examples/js/controls/TrackballControls.js ></script>
+<script>
+// http://obscureapps.com/test/lorentz.htm
+// http://en.wikipedia.org/wiki/List_of_chaotic_maps
+
+	var renderer, scene, camera, controls;
+	var geometry, material, mesh;
+	var pi = Math.PI;
+	var x, y, z;
+	var vertex = v( 0, 0, 0 );
+	var vertexPrevious;
+	var boxes = [];
+
+	init();
+
+
+	function init() {
+		document.body.style.cssText = 'margin: 0; overflow: hidden; ' ;
+
+		renderer = new THREE.WebGLRenderer( { alpha: 1, antialias: true, clearColor: 0xffffff }  );
+		renderer.setSize( window.innerWidth, window.innerHeight );
+		document.body.appendChild( renderer.domElement );
+		scene = new THREE.Scene();
+
+		camera = new THREE.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 1, 1000 );
+		camera.position.set( 100, 100, 100 );
+		controls = new THREE.TrackballControls( camera, renderer.domElement );
+
+		x = 1;
+		y = 1;
+		z = 10;
+
+		geometry = new THREE.Geometry;
+
+		for ( var i = 0; i < 1000; i++ ) {
+			vertex = addStep( x, y, z )
+			geometry.vertices.push( vertex );
+			x = vertex.x; y = vertex.y; z = vertex.z;
+			
+		}
+
+		material = new THREE.LineBasicMaterial( { color: 0xff0000 } );
+		line = new THREE.Line( geometry, material );
+		scene.add( line );
+
+console.log( geometry.vertices.length );
+
+		for ( var i = 0; i < 100; i++ ) {
+			x =  i * 5;
+			geometry = new THREE.BoxGeometry( 5, 5, 5 );
+			material = new THREE.MeshNormalMaterial();
+			mesh = new THREE.Mesh( geometry, material );
+			mesh.position.x = x;
+			scene.add( mesh );
+			boxes.push( mesh );
+		}
+
+
+		animate();
+
+	}
+
+	function addStep( x, y, z ) {
+
+		var step = 0.5;
+		var steps = 1000000;
+		var current = 1;
+
+		var beta = 8/3;
+		var rho = 28;
+		var sigma = 10;
+
+		var dt = 0.005;
+
+		x += sigma * ( y - x ) * dt;
+		y += ( x * ( rho - z ) - y ) * dt;
+		z += ( x * y - beta * z ) * dt;
+
+		return v( x, y, z );
+
+	}
+
+	function v( x, y, z ){ return new THREE.Vector3( x, y, z ); }
+
+	function animate() {
+		requestAnimationFrame( animate );
+		renderer.render( scene, camera );
+		controls.update();
+
+		boxes.forEach( function( element ) {
+			element.vertexPrevious = vertex;
+			vertex = addStep( element.position.x, element.position.y, element.position.z  );
+			element.position.set( vertex.x, vertex.y, vertex.z );
+			element.lookAt( element.vertexPrevious );
+		} );
+
+	}
+
+</script>
+</body>
+</html>
