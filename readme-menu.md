@@ -12,7 +12,7 @@
 <div><i class="fa fa-external-link"></i> <a href=http://jaanga.github.io/algesurf/parametric-equations/latest/index.html >Equation Browser</a></div>
 <br>
 
-<div><i class="fa fa-external-link"></i> <a href=http://jaanga.github.io/algesurf/chaotic-maps/lorenz-attractor/lorenz-attractor.html >Lorenz Attractor</a></div>
+<div><i class="fa fa-external-link"></i> <a href=http://jaanga.github.io/algesurf/chaotic-maps/lorenz-attractor/latest/ >Lorenz Attractor Latest</a></div>
 
 
 <br>

@@ -1,7 +1,7 @@
 Lorenz Attractor Read Me
 ===
 
-[Lorenz Attractor R2]( http://jaanga.github.io/algesurf/chaotic-maps/lorenz-attractor/r1/lorenz-attractor.html )  
+[Lorenz Attractor R2]( http://jaanga.github.io/algesurf/chaotic-maps/lorenz-attractor/r2/lorenz-attractor.html )  
 [Lorenz Attractor R1]( http://jaanga.github.io/algesurf/chaotic-maps/lorenz-attractor/r1/lorenz-attractor.html )
 
 ## Two Question after R1
