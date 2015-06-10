@@ -154,10 +154,15 @@
 		var sigma = 10;
 
 		var dt = 0.005;
+		var dx, dy, dz;
 
-		x += sigma * ( y - x ) * dt;
-		y += ( x * ( rho - z ) - y ) * dt;
-		z += ( x * y - beta * z ) * dt;
+		dx = sigma * ( y - x ) * dt;
+		dy = ( x * ( rho - z ) - y ) * dt;
+		dz = ( x * y - beta * z ) * dt;
+		
+		x += dx;
+		y += dy;
+		z += dz;
 
 		return v( x, y, z );
 
