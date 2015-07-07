@@ -24,7 +24,7 @@ function generateMaterials(basePath) {
 	reflectionCube.format = THREE.RGBFormat; 
 
 	// toons
-
+/*
 	var toonMaterial1 = createShaderMaterial( "toon1", light, ambientLight ),
 	toonMaterial2 = createShaderMaterial( "toon2", light, ambientLight ),
 	hatchingMaterial = createShaderMaterial( "hatching", light, ambientLight ),
@@ -40,7 +40,7 @@ function generateMaterials(basePath) {
 
 	dottedMaterial2.uniforms.uBaseColor.value.setRGB( 0, 0, 0 );
 	dottedMaterial2.uniforms.uLineColor1.value.setHSL( 0.05, 1.0, 1.0 );
-
+*/
 	var texture = THREE.ImageUtils.loadTexture( basePath + 'textures/ash_uvgrid01.jpg' );
 	texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
       
@@ -102,6 +102,7 @@ function generateMaterials(basePath) {
 			h: 0.6, s: 0.9, v: 0.2
 		},
 
+/*
 		"toon1"  :
 		{
 			m: toonMaterial1,
@@ -137,7 +138,7 @@ function generateMaterials(basePath) {
 			m: dottedMaterial2,
 			h: 0.1, s: 1.0, v: 1
 		},
-      
+*/
  
 		"normal~transparent*" :
 		{

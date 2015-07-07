@@ -1,9 +1,9 @@
-function generateGeometry( func, axisMin, axisMax ) { 
+function generateGeometry( func, axisMin, axisMax ) {
 	var points = [];
 	// number of cubes along a side
 	var size = 70;
 	var axisRange = axisMax - axisMin;
-	var values = [];    
+	var values = [];
 	// Generate a list of 3D points and values at those points
 	for (var k = 0; k < size; k++)
 	for (var j = 0; j < size; j++)
@@ -17,7 +17,7 @@ function generateGeometry( func, axisMin, axisMax ) {
 	  var value = func( x,y,z );
 	  values.push( value );
 	}
-// console.log(values);	
+// console.log(values);
 	// Marching Cubes Algorithm
 
 	var size2 = size * size;
@@ -34,7 +34,7 @@ function generateGeometry( func, axisMin, axisMax ) {
 	for (var y = 0; y < size - 1; y++)
 	for (var x = 0; x < size - 1; x++) {
 	  // index of base point, and also adjacent points on cube
-	  var p    = x + size * y + size2 * z,
+	  var p  = x + size * y + size2 * z,
 		px   = p   + 1,
 		py   = p   + size,
 		pxy  = py  + 1,
@@ -76,11 +76,11 @@ function generateGeometry( func, axisMin, axisMax ) {
 	  // check which edges are crossed, and estimate the point location
 	  // using a weighted average of scalar values at edge endpoints.
 	  // store the vertex in an array for use later.
-	  var mu = 0.5; // 0.5 
+	  var mu = 0.5; // 0.5
 
 	  // bottom of the cube
 	  if ( bits & 1 )
-	  {	
+	  {
 		mu = ( isolevel - value0 ) / ( value1 - value0 );
 		vlist[0] = points[p].clone().lerp( points[px], mu );
 	  }
@@ -143,14 +143,14 @@ function generateGeometry( func, axisMin, axisMax ) {
 	  }
 
 	  // construct triangles -- get correct vertices from triTable.
-	  var i = 0;
-	  cubeindex <<= 4;  // multiply by 16... 
-	  // "Re-purpose cubeindex into an offset into triTable." 
+	var i = 0;
+	cubeindex <<= 4;  // multiply by 16...
+	  // "Re-purpose cubeindex into an offset into triTable."
 	  //  since each row really isn't a row.
 
 	  // the while loop should run at most 5 times,
 	  // since the 16th entry in each row is a -1.
-	  while ( THREE.triTable[ cubeindex + i ] != -1 ) {
+	while ( THREE.triTable[ cubeindex + i ] != -1 ) {
 		var index1 = THREE.triTable[cubeindex + i];
 		var index2 = THREE.triTable[cubeindex + i + 1];
 		var index3 = THREE.triTable[cubeindex + i + 2];
@@ -167,14 +167,15 @@ function generateGeometry( func, axisMin, axisMax ) {
 		vertexIndex += 3;
 		i += 3;
 	  }
-	}  
+	}
+
 	geometry.mergeVertices();
 	geometry.computeFaceNormals();
 	geometry.computeVertexNormals();
 	geometry.computeTangents();
-	geometry.verticesNeedUpdate = true; 
+	geometry.verticesNeedUpdate = true;
 	geometry.normalsNeedUpdate = true;
 
 
 
-} 
+}
