@@ -1,10 +1,10 @@
 var selectedMaterial = 'normal~transparent*';
-  
+
 function selectMaterial(m) {
-	//document.getElementById(selectedMaterial).style.fontWeight = '400';
 	material = materials[m].m;    
-	//document.getElementById(m).style.fontWeight = '600';
 	selectedMaterial = m;
+	
+	plane.material = material;
 console.log('sel menu: ', material, m ); 
 }  
   
@@ -20,11 +20,11 @@ function generateMaterials(basePath) {
 	var reflectionCube = THREE.ImageUtils.loadTextureCube( urls );
 	reflectionCube.format = THREE.RGBFormat;
 
-	var refractionCube = new THREE.Texture( reflectionCube.image, THREE.CubeRefractionMapping );
+	var refractionCube = new THREE.Texture( reflectionCube.image, new THREE.CubeRefractionMapping() );
 	reflectionCube.format = THREE.RGBFormat; 
 
 	// toons
-/*
+
 	var toonMaterial1 = createShaderMaterial( "toon1", light, ambientLight ),
 	toonMaterial2 = createShaderMaterial( "toon2", light, ambientLight ),
 	hatchingMaterial = createShaderMaterial( "hatching", light, ambientLight ),
@@ -40,18 +40,20 @@ function generateMaterials(basePath) {
 
 	dottedMaterial2.uniforms.uBaseColor.value.setRGB( 0, 0, 0 );
 	dottedMaterial2.uniforms.uLineColor1.value.setHSL( 0.05, 1.0, 1.0 );
-*/
-	var texture = THREE.ImageUtils.loadTexture( basePath + 'textures/ash_uvgrid01.jpg' );
+
+	texture = THREE.ImageUtils.loadTexture( basePath + 'textures/ash_uvgrid01.jpg' );
+	// texture = THREE.ImageUtils.loadTexture( '../../textures/ash_uvgrid01.jpg' );
 	texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
       
-
-    var texture1 = new THREE.Texture( generateTexture( 0, 0.5, 1 ), THREE.UVMapping );
-    var texture2 = new THREE.Texture( generateTexture( 0, 1, 0 ), THREE.SphericalReflectionMapping );
+    var texture1 = new THREE.Texture( generateTexture( 0, 0.5, 1 ), new THREE.UVMapping() );
+    var texture2 = new THREE.Texture( generateTexture( 0, 1, 0 ), new THREE.SphericalReflectionMapping() );
     var texture3 = THREE.ImageUtils.loadTexture( basePath + 'textures/land_ocean_ice_cloud_2048.jpg' )
 
+	texture.needsUpdate = true;
     texture1.needsUpdate = true;
     texture2.needsUpdate = true;
-    
+    texture3.needsUpdate = true;
+	
     materials = {
     
 		"chrome" :
@@ -86,7 +88,7 @@ function generateMaterials(basePath) {
 
 		"textured" :
 		{
-			m: new THREE.MeshPhongMaterial( { color: 0xffffff, specular: 0x111111, shininess: 1, map: texture, side: THREE.DoubleSide  } ),
+			m: new THREE.MeshBasicMaterial( { color: 0xffffff, specular: 0x111111, shininess: 1, map: texture, side: THREE.DoubleSide  } ),
 			h: 0, s: 0, v: 1
 		},
 
@@ -102,7 +104,6 @@ function generateMaterials(basePath) {
 			h: 0.6, s: 0.9, v: 0.2
 		},
 
-/*
 		"toon1"  :
 		{
 			m: toonMaterial1,
@@ -138,12 +139,11 @@ function generateMaterials(basePath) {
 			m: dottedMaterial2,
 			h: 0.1, s: 1.0, v: 1
 		},
-*/
  
 		"normal~transparent*" :
 		{
-		  m: new THREE.MeshNormalMaterial( { opacity: 0.9, side: THREE.DoubleSide, transparent: true }),
-		  d: '1. MeshNormalMaterial({ opacity: 0.9, shading: THREE.SmoothShading, side: THREE.DoubleSide, transparent: true })'
+		  m: new THREE.MeshNormalMaterial( { opacity: 0.8, shading: THREE.SmoothShading, side: THREE.DoubleSide, transparent: true }),
+		  d: '1. MeshNormalMaterial({ opacity: 0.9, side: THREE.DoubleSide, transparent: true })'
 		},
 
 		"normal~flat" :
@@ -160,7 +160,7 @@ function generateMaterials(basePath) {
 
 		"normal~wireframe" :
 		{
-		  m:  new THREE.MeshNormalMaterial({wireframe: true }),
+		  m:  new THREE.MeshBasicMaterial({ side: THREE.DoubleSide, wireframe: true }),
 		  d: '4. MeshNormalMaterial({ wireframe: true })'
 		},
 		
@@ -173,13 +173,13 @@ function generateMaterials(basePath) {
 		"basic~texture2" :
 		{
 		  m: new THREE.MeshBasicMaterial( { map: texture2, side: THREE.DoubleSide }),
-		  d: '6. MeshBasicMaterial( { map: texture2, side: THREE.DoubleSide'
+		  d: '6. MeshBasicMaterial( { map: texture2, side: THREE.DoubleSide } )'
 		},
 		
 		"basic~texture3" :
 		{
 		  m: new THREE.MeshBasicMaterial( { map: texture3, tansparent: true, side: THREE.DoubleSide }),
-		  d: '7. MeshBasicMaterial( { map: texture3, tansparent: true, side: THREE.DoubleSide'
+		  d: '7. MeshBasicMaterial( { map: texture3, tansparent: true, side: THREE.DoubleSide } )'
 		},
 		
 		"basic~map1" :
@@ -191,7 +191,7 @@ function generateMaterials(basePath) {
 		"basic~map2" :
 		{
 		  m: new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( basePath + 'textures/cynthia-draw-lightning.jpg' ), side: THREE.DoubleSide }),
-		  d: "9. MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( basePath + 'textures/cynthia-draw-lightning.jpg' ), side: THREE.DoubleSide })"
+		  d: "9. MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( basePath + '../../textures/cynthia-draw-lightning.jpg' ), side: THREE.DoubleSide })"
 		},
 
 		"phong~flat" :
