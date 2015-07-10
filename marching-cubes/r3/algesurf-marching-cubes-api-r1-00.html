@@ -17,12 +17,9 @@
 <script>
 
 	var equation = 'x^2+y^2-z^2-70';
-	var htm = 'x<sup>2</sup> + y<sup>2</sup> - z<sup>2</sup> - 70'
-	var min = -10;
 	var max =  10;
-	var mat = 'normal~transparent*';
-	var scl = 1;
-	var ttl = 'Stemkoski (default)';
+	var mat ='normal~transparent*';
+	var min = -10;
 
 	var css, info, stats, renderer, scene, camera, controls;
 	var geometry, material, mesh;
@@ -42,8 +39,8 @@
 			info = document.body.appendChild( document.createElement( 'div' ) );
 			info.style.cssText = 'margin: 0 20px; position: absolute; ';
 			info.innerHTML = '<h2 style=margin:0; ><a href="" >' + document.title + '</a> ' +
-				'<a id=i href=http://jaanga.github.io/ >&#x24D8;</a></h2>' +
-				'<div id=msg1 ></div>' +
+				'<a id=i href=http://jaanga.github.io/ >&#x24D8;</a><h2>' +
+				'<div id=msg ></div>' +
 			'';
 
 		}
@@ -57,14 +54,14 @@
 		document.body.appendChild( renderer.domElement );
 
 		camera = new THREE.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 1, 1000 );
-		camera.position.set( 20, 20, 20 );
+		camera.position.set( 100, 100, 100 );
 
 		controls = new THREE.OrbitControls( camera, renderer.domElement );
-		controls.maxDistance = 80;
+		controls.maxDistance = 800;
 
 		scene = new THREE.Scene();
 
-		var axisHelper = new THREE.AxisHelper( 5 );
+		var axisHelper = new THREE.AxisHelper( 50 );
 		scene.add( axisHelper );
 
 		window.addEventListener( 'resize', onWindowResize, false );
@@ -76,29 +73,9 @@
 
 	function drawEquation() {
 
-		var hashes = location.hash.split ( '#' );
+		hashes = location.hash.split ( '#' );
 
-		for ( var i = 0; i < hashes.length; i++) {
-
-			var param = hashes[i].split( '=' );
-
-			if ( param[ 0 ] === 'eqn' ) {
-				equation = param[ 1 ];
-			} else if ( param[ 0 ] === 'htm' ) {
-				htm = param[ 1 ];
-			} else if ( param[ 0 ] === 'max' ) {
-				max = parseFloat( param[ 1 ] );
-			} else if ( param[ 0 ] === 'min' ) {
-				min = parseFloat( param[ 1 ] );
-			} else if ( param[ 0 ] === 'mat' ) {
-				mat = param[ 1 ];
-			} else if ( param[ 0 ] === 'scl' ) {
-				scl = parseFloat( param[ 1 ] );
-			} else if ( param[ 0 ] === 'ttl' ) {
-				ttl = param[ 1 ];
-			}
-
-		}
+		equation = hashes[ 1 ] ? hashes[ 1 ] : equation;
 
 		scene.remove( mesh );
 
@@ -109,14 +86,8 @@
 		material = materials[ mat ].m;
 
 		mesh = new THREE.Mesh( geometry, material );
-		mesh.scale.multiplyScalar( scl );
+		mesh.scale.multiplyScalar( 5 );
 		scene.add(mesh);
-
-		if ( window.self === window.top ) {
-
-			msg1.innerHTML = ttl + ': ' + htm;
-
-		}
 
 	}
 

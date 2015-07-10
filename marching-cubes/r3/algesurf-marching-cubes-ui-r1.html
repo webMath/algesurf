@@ -19,68 +19,113 @@
 			'#i { text-decoration: none; }' +
 		'';
 
-		var menu = document.body.appendChild( document.createElement( 'div' ) );
+		menu = document.body.appendChild( document.createElement( 'div' ) );
 		menu.style.cssText = 'margin: 0 20px; position: absolute;';
 		menu.innerHTML = '<h2>' +
 				'<a href="" >' + document.title + '</a> ' +
 				'<a id=i href=http://jaanga.github.io/algesurf/ >&#x24D8;</a>' +
 			'</h2>' +
-			'<p>Select a different equation' +
-			'<br><select id=selEquation ></p>';
-			'<div id=messages></div>' +
+			'<p>Select an equation' +
+			'<br><select id=selEquation ></select></p>' +
+			'<div id=msg ></div>' +
+			'<p>Edit the equation:<br><textarea id=txt cols=30 ></textarea></p>' +
+			'<button onclick=editEquation() >Update the display</button>' +
+			'<p><button onclick=createPermalink(); >Create permalink</button></p>' +
 		'';
 
 		keys = Object.keys( surfaces );
 		offset = 0;
 		for ( var i = 0; i < keys.length ; i++ ) {
 
-/*
-			if (i == 0) {
-				selEquation.appendChild( document.createElement( 'optgroup' ) );
-				selEquation.children[ i ].label = 'Hauser 1';
-				offset++;
-			} else if ( i == 37) {
+			if ( i == 1 ) {
 
-				selEquation.appendChild( document.createElement( 'optgroup' ) );
-				selEquation.children[ i ].label = 'Hauser 2';
-				offset++;
+				node = document.createElement( 'optgroup' );
+				selEquation.appendChild( node );
+				node.label = 'Hauser 1';
+
+			} else if ( i == 37 ) {
+
+				node = document.createElement( 'optgroup' );
+				selEquation.appendChild( node );
+				node.label = 'Hauser 2';
+
 			} else if ( i == 74 ) {
-				selEquation.appendChild( document.createElement( 'optgroup' ) );
-				selEquation.children[ i ].label = 'Jalape';
-				offset++;
-			} else if ( i == 85 ) {
-//				htm += '</optgroup><optgroup label="Sing Surf">';
-				selEquation.appendChild( document.createElement( 'optgroup' ) );
-				selEquation.children[ i ].label = 'Sing Surf';
-				offset++;
-			}
-*/
-				selEquation.appendChild( document.createElement( 'option' ) );
-				selEquation.children[ i ].text = keys[ i ];
+				node = document.createElement( 'optgroup' );
+				selEquation.appendChild( node );
+				node.label =  'Jalape';
 
+			} else if ( i == 85 ) {
+				node = document.createElement( 'optgroup' );
+				selEquation.appendChild( node );
+				node.label = 'Sing Surf';
+
+			}
+
+			node = document.createElement( 'option' );
+			selEquation.appendChild( node );
+			node.text = keys[ i ];
 
 		}
 
 		selEquation.selectedIndex = 3;
 		selEquation.onchange = updateEquation;
 
+
 		ifr = document.body.appendChild( document.createElement( 'iframe' ) );
 		ifr.width = window.innerWidth;
 		ifr.height = window.innerHeight;
 		ifr.style.cssText = 'border: 0px solid red; margin: 0; overflow: hidden; ';
 
-	//	ifr.style.cssText = 'height: ' + (window.innerHeight - 50) + 'px; left: 300px; position: absolute; top: 5px; width: ' + (window.innerWidth - 350) + 'px; ';
-		ifr.src = 'algesurf-marching-cubes-api-r1.html';
-
+		updateEquation();
 
 	}
 
+
+	function editEquation() {
+
+		equation = txt.value;
+
+		ifr.src = 'algesurf-marching-cubes-api-r1.html#eqn=' + equation.replace( / /gi, '' );
+
+//console.log( equation );
+
+	}
+
+
+
+
 	function updateEquation() {
-		eq = surfaces[ this.value ].eqn.replace( / /gi, '' );
 
-		ifr.src = 'algesurf-marching-cubes-api-r1.html#' + eq;
+		equation = surfaces[ selEquation.value ].eqn;
 
-console.log( this.value, eq );
+		msg.innerHTML = 'Formatted equation:<br>' + surfaces[ selEquation.value ].htm;
+
+		txt.value = equation;
+
+		ifr.src = 'algesurf-marching-cubes-api-r1.html#eqn=' + equation.replace( / /gi, '' );
+
+// console.log( selEquation.value, ifr.contentWindow.location.hash );
+
+	}
+
+	function createPermalink() {
+
+		s = surfaces[ selEquation.value ];
+
+		window.open( 
+
+			'algesurf-marching-cubes-api-r1.html' +
+
+			'#eqn=' + equation.replace( / /gi, '' ) +
+			'#htm=' + s.htm +
+			'#min=' + s.min +
+			'#max=' + s.max +
+//			'#mat=' + s.mat +
+			'#scl=' + s.scl +
+			'#ttl=' + s.ttl +
+			''
+
+		)
 
 	}
 

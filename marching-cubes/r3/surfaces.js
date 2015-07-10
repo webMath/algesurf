@@ -36,7 +36,7 @@ ttl:'Calypso'
 },
 
 'columpius' : {
-eqn:'x^3*y+x*z^3+y^3*z+z*3+7*z^2+5*z', //x^3*y + y^3*z + z^3*x',
+eqn:'x^3*y + x*z^3 + y^3*z + z*3 + 7*z^2 + 5*z', //x^3*y + y^3*z + z^3*x',
 htm:'x<sup>3</sup>y + xz<sup>3</sup> + y<sup>3</sup>z + z<sup>3</sup> + 7z<sup>2</sup> + 5z = 0 ',
 mat: '',
 max:5,
