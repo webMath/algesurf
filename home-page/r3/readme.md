@@ -30,11 +30,11 @@ Visualize math and physics in ways never seen before
 
 [Player]( http://jaanga.github.io/algesurf/marching-cubes/r2/1-Overview/Player.html )  
 [Builder]( http://jaanga.github.io/algesurf/marching-cubes/r2/1-Overview/Builder.html )  
-[Source Code ]( https://github.com/jaanga/algesurf/tree/gh-pages/marching-cubes/r2 )  
+[Source Code ]( https://github.com/jaanga/algesurf/tree/gh-pages/marching-cubes/ )  
 
-### Function Graphs
-[Function Graphs Sandbox - latest]( http://jaanga.github.io/algesurf/function-graphs/latest/ )  
-[Read Me]( https://github.com/jaanga/algesurf/tree/gh-pages/function-graphs )
+### Function Graph
+[Function Graph Sandbox - latest]( http://jaanga.github.io/algesurf/function-graph/latest/ )  
+[Read Me]( https://github.com/jaanga/algesurf/tree/gh-pages/function-graph )
 
 See also related technologies here:
 
