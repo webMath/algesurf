@@ -1,12 +1,12 @@
-[Jaanga]( http://jaanga.github.io/ ) &raquo;  [libs]( http://jaanga.github.io/libs/ ) &raquo; [templates]( http://jaanga.github.io/libs/ ) &raquo;  
-[algeSurf Read Me]( http://jaanga.github.io/ )
+[Jaanga]( http://jaanga.github.io/ ) &raquo;  
+[algeSurf Read Me]( http://jaanga.github.io/algesurf/ )
 ===
 
-<span style=display:none; >[View as web page]( http://jaanga.github.io/algesurf "View file as a web page." ) </span>
+<span style=display:none; >[View as web page]( http://jaanga.github.io/algesurf/ "View file as a web page." ) </span>
 <input type=button value='View file as source code on GitHub' onclick=window.location.href='https://github.com/jaanga/algesurf/'; />
 
-<iframe src="http://jaanga.github.io/algeSurf/function-graph/latest/index.html" width=100% height=500px ></iframe>  
-_XXX - latest revision_ / [Full Screen]( http://algesurf.github.io/function-graph/latest/index.html )
+<iframe src="http://jaanga.github.io/algesurf/function-graphs/latest/index.html" width=100% height=500px ></iframe>  
+_XXX - latest revision_ / [Full Screen]( http://jaanga.github.io/algesurf/function-graphs/latest/index.html )
 
 ## Concept
 
