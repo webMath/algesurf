@@ -1,8 +1,10 @@
 Function Graphs Read Me
 ===
 
-<iframe src="http://jaanga.github.io/algesurf/function-graphs/r3/transcend-fiddle.html" width=100% height=500px class='overview' >
-There is an iframe here. It is not visible when viewed on github.com/jaanga. To view <a href="http://jaanga.github.io/algesurf/parametric-equations/" target="_blank">Web Page</a>
-</iframe>
+<span style=display:none; >[View as web page]( http://jaanga.github.io/algesurf/function-graphs/ "View file as a web page." ) </span>
+<input type=button value='View file as source code on GitHub' onclick=window.location.href='https://github.com/jaanga/algesurf/tree/gh-pages/function-graphs'; />
 
-[Full Screen]( http://jaanga.github.io/algesurf/function-graphs/r3/transcend-fiddle.html )
+
+<iframe src="http://jaanga.github.io/algesurf/function-graphs/latest/" width=100% height=500px class='overview' ></iframe>
+
+[Full Screen]( http://jaanga.github.io/algesurf/function-graphs/latest/ )
