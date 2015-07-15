@@ -1,12 +1,13 @@
-Parametric Equations Read Me
+[Jaanga]( http://jaanga.github.io/ ) &raquo; [algeSurf Read Me]( http://jaanga.github.io/algesurf/ ) &raquo;  
+[Parametric Equations Read Me]( http://jaanga.github.io/algesurf/parametric-equations/ )
 ===
+<span style=display:none; >[View as web page]( http://jaanga.github.io/algesurf/parametric-equations/ "View file as a web page." ) </span>
+<input type=button value='View file as source code on GitHub' onclick=window.location.href='https://github.com/jaanga/algesurf/tree/gh-pages/parametric-equations'; />
 
-<iframe src="http://jaanga.github.io/algesurf/parametric-equations/equation-files/torus-8/torus-8.html" width=100% height=500px class='overview' >
-There is an iframe here. It is not visible when viewed on github.com/jaanga. To view <a href="http://jaanga.github.io/algesurf/parametric-equations/" target="_blank">Web Page</a>
-</iframe>
-_View of the Torus 8 HTML file_
+<iframe src="http://jaanga.github.io/algesurf/parametric-equations/latest/" width=100% height=500px class='overview' ></iframe>
 
-Load and view files with many enhancements [Equation Browser]( http://jaanga.github.io/algesurf/parametric-equations/latest/index.html )
+_Parametric Equations - Latest_ / [Full Screen]( http://jaanga.github.io/algesurf/parametric-equations/latest/ )
+
 
 Blog post: [AlgeSurf Parametric Equations: Math in 3D - fast, pretty and easy](http://www.jaanga.com/2014/07/algesurf-parametric-equations-math-in.html )
 

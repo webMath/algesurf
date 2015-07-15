@@ -28,8 +28,13 @@ Visualize math and physics in ways never seen before
 
 ### Marching Cubes
 
-[Player]( http://jaanga.github.io/algesurf/marching-cubes/r2/1-Overview/Player.html )  
-[Builder]( http://jaanga.github.io/algesurf/marching-cubes/r2/1-Overview/Builder.html )  
+[Marching Cubes R3 - UI]( http://jaanga.github.io/algesurf/marching-cubes/r3/algesurf-marching-cubes-ui-r1.html )  
+[Marching Cubes R3 - API]( http://jaanga.github.io/algesurf/marching-cubes/r3/algesurf-marching-cubes-api-r1.html )  
+
+[Marching Cubes R2 - Player]( http://jaanga.github.io/algesurf/marching-cubes/r2/1-Overview/Player.html )  
+[Marching Cubes R2 - Builder]( http://jaanga.github.io/algesurf/marching-cubes/r2/1-Overview/Builder.html )  
+
+[Read Me]( http://jaanga.github.io/algesurf/marching-cubes/ ) 
 [Source Code ]( https://github.com/jaanga/algesurf/tree/gh-pages/marching-cubes/ )  
 
 ### Function Graph
