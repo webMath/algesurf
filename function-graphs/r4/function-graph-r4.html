@@ -44,13 +44,22 @@
 	function init() {
 		css = document.head.appendChild( document.createElement('style') );
 		css.innerHTML ='body { font: 600 12pt monospace; margin: 0; overflow: hidden; }' +
-			'#i {text-decoration: none; }' +
+			'h1 { margin: 0; }' +
 			'textarea { font-size: 12pt; }' +
+			'#bars, #i { text-decoration: none; }' +
+			'#bars { color: #fcf; }' +
 		'';
 
-		info = document.body.appendChild( document.createElement( 'div' ) );
-		info.style.cssText = 'margin: 0 20px; position: absolute; ';
-		info.innerHTML = '<h2 style=margin:0; ><a href="" >' + document.title + '</a> ' +
+		header = document.body.appendChild( document.createElement( 'div' ) );
+		header.style.cssText = 'position: absolute; left: 340px; top: 20px; transition: left 1s; ';
+		header.innerHTML = '<h1><a href=JavaScript:slideMenu(); id=bars >&#9776;</a></h1>';
+
+		menu = header.appendChild( document.createElement( 'div' ) );
+		menu.style.cssText = 'background-color: #eee; height: ' + ( window.innerHeight - 25 ) + 'px; left: -340px; max-width: 300px; opacity: 0.85; overflow: auto; padding: 0 15px; position: absolute; top: 0;';
+
+//		info = document.body.appendChild( document.createElement( 'div' ) );
+//		info.style.cssText = 'margin: 0 20px; position: absolute; ';
+		menu.innerHTML = '<h2 style=margin:0; ><a href="" >' + document.title + '</a> ' +
 			'<a id=i href=http://jaanga.github.io/algesurf/function-graphs/ >&#x24D8;</a></h2>' +
 
 			'<p>Select an equation' +
@@ -184,6 +193,12 @@
 	function editEquation() {
 
 		eqn = eval ( 'eqn = function( x, y ) { ' + textarea.value +  '; }' );
+
+	}
+
+	function slideMenu(){
+
+		header.style.left = header.style.left === '20px' ? '340px' : '20px';
 
 	}
 
