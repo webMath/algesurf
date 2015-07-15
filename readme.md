@@ -22,7 +22,8 @@ Visualize math and physics in ways never seen before
 
 ### Parametric Equations
 
-[Equation Browser]( http://jaanga.github.io/algesurf/parametric-equations/latest/ )  
+[Parametric Equations Browser]( http://jaanga.github.io/algesurf/parametric-equations/latest/ )  
+
 [Read Me]( http://jaanga.github.io/algesurf/parametric-equations/ )  
 [Source Code]( https://github.com/jaanga/algesurf/tree/gh-pages/parametric-equations )
 
@@ -34,12 +35,14 @@ Visualize math and physics in ways never seen before
 [Marching Cubes R2 - Player]( http://jaanga.github.io/algesurf/marching-cubes/r2/1-Overview/Player.html )  
 [Marching Cubes R2 - Builder]( http://jaanga.github.io/algesurf/marching-cubes/r2/1-Overview/Builder.html )  
 
-[Read Me]( http://jaanga.github.io/algesurf/marching-cubes/ ) 
+[Read Me]( http://jaanga.github.io/algesurf/marching-cubes/ )  
 [Source Code ]( https://github.com/jaanga/algesurf/tree/gh-pages/marching-cubes/ )  
 
 ### Function Graph
 [Function Graph Sandbox - latest]( http://jaanga.github.io/algesurf/function-graph/latest/ )  
-[Read Me]( https://github.com/jaanga/algesurf/tree/gh-pages/function-graph )
+
+[Read Me]( http://jaanga.github.io/algesurf/function-graph/ )
+[Source Code]( https://github.com/jaanga/algesurf/tree/gh-pages/function-graph )
 
 See also related technologies here:
 
