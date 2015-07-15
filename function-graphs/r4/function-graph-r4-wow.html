@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang=en>
+<head>
+<title>algeSurf Function Graph R4</title>
+<meta charset=utf-8 />
+<meta name=viewport content='width=device-width,user-scalable=no,minimum-scale=1.0,maximum-scale=1.0' />
+</head>
+<body>
+<script src=http://mrdoob.github.com/three.js/build/three.min.js ></script>
+<script src=http://mrdoob.github.com/three.js/examples/js/controls/OrbitControls.js ></script>
+<script src=http://mrdoob.github.com/three.js/examples/js/libs/stats.min.js ></script>
+<script src=https://cdn.rawgit.com/mrdoob/texgen.js/master/build/texgen.min.js ></script>
+<script src=materials-no-lights.js ></script>
+<script>
+	var defaultEquation = 0;
+	var defaultMaterial = 1;
+
+	var renderer, scene, camera, controls, stats;
+	var geometry, material, mesh;
+
+	var materials, plane, equationId = 0, delta = 0, x, y;
+	
+	var thing = [];
+	thing[0] = function(x, y) { return 0.5 * sin( x * 0.07 + delta) * sin( y * 0.07 + delta ); };
+	thing[1] = function(x, y) { return 0.08 * sin( x * 0.25 + delta ) * sin( y * 0.25 ); };
+	thing[2] = function(x, y) { return 0.05 * sin( 0.2 * delta * Math.sqrt( x * x + y * y ) ); };
+	thing[3] = function(x, y) { return 0.25 * sin(0.1 * x + delta ) + 0.25 *  cos(0.1 * y) ; }; 
+	thing[4] = function(x, y) { var t = 0.2 * Math.sqrt( (x - 50) * (x - 50) + (y - 50) * (y - 50) ); return 1 * Math.sin( t + delta) / (t - delta); };
+	thing[5] = function(x, y) { return 0.005 *  ( ( x - 0.5 ) * (x - 0.5 + delta) + (y - 0.5) * (y - 0.5) ); };
+// http://www.math.uri.edu/~bkaskosz/flashmo/graph3d/
+	thing[6] = function(x, y) { return 0.00005 * cos( (x-1)*(y-1) * delta ) * ( (x-1)*(x-1)-(y-1)*(y-1) ); };
+	thing[7] = function(x, y) { return 0.05 * sin( 4.0 * (x - 1.0) * (y - 1.0) + delta); };
+	thing[8] = function(x, y) { return 0.0005 * cos( Math.abs(x - 0.5) + Math.abs(y - 0.5) + delta) * ( Math.abs(x - 0.5)+Math.abs(y - 0.5) ); };
+	// thing[] = function(x, y) { return  };
+
+	init();
+	animate();
+
+	function init() {
+		css = document.head.appendChild( document.createElement('style') );
+		css.innerHTML ='body { font: 600 12pt monospace; margin: 0; overflow: hidden; }' +
+			'#i {text-decoration: none; }' +
+		'';
+
+		info = document.body.appendChild( document.createElement( 'div' ) );
+		info.style.cssText = 'margin: 0 20px; position: absolute; ';
+		info.innerHTML = '<h2 style=margin:0; ><a href="" >' + document.title + '</a> ' +
+			'<a id=i href=http://jaanga.github.io/ >&#x24D8;</a></h2>' +
+
+
+			'<p>Select an equation' +
+			'<br><select id=selEquation ></select></p>' +
+
+			'<p>Select a material' +
+			'<br><select id=selMaterial ></select></p>' +
+
+			'<div id=equationHTM ></div>' +
+
+			'<p>Edit the equation:<br><textarea id=txt cols=30 ></textarea></p>' +
+			'<button onclick=editEquation() >Update the display</button>' +
+
+			'<p><button onclick=createPermalink(); >Create permalink</button></p>' +
+
+		'';
+
+		stats = new Stats();
+		stats.domElement.style.cssText = 'position: absolute; right: 0; top: 0; z-index: 100; ';
+		document.body.appendChild( stats.domElement );
+
+		renderer = new THREE.WebGLRenderer( { alpha: 1, antialias: true, clearColor: 0xffffff }  );
+		renderer.setSize( window.innerWidth, window.innerHeight );
+		document.body.appendChild( renderer.domElement );
+
+		camera = new THREE.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 1, 1000 );
+		camera.position.set( 100, 100, 100 );
+
+		controls = new THREE.OrbitControls( camera, renderer.domElement );
+		controls.maxDistance = 800;
+
+		scene = new THREE.Scene();
+
+		window.addEventListener( 'resize', onWindowResize, false );
+
+
+		for ( var i = 0;  i < thing.length; i++ ) {
+
+			selEquation.innerHTML += '<option>' + thing[i] +'</option>';
+
+		}
+
+		selEquation.selectedIndex = defaultEquation;
+		selEquation.onchange = drawEquation;
+
+		keysMaterials = Object.keys( materialsLibrary );
+
+		for ( var i = 0; i < keysMaterials.length ; i++ ) {
+
+			if ( keysMaterials[ i ].substr( 0, 1 ) === '#' ) {
+
+				node = document.createElement( 'optgroup' );
+				selMaterial.appendChild( node );
+				node.label = keysMaterials[ i ].substr( 1 );
+
+			} else {
+
+				node = document.createElement( 'option' );
+				selMaterial.appendChild( node );
+				node.text = keysMaterials[ i ];
+
+			}
+
+		}
+		selMaterial.selectedIndex = defaultMaterial;
+		selMaterial.onchange = updateMaterial;
+
+/*
+		geometry = new THREE.PlaneGeometry( 1, 1, 29, 29 );
+		material = materialsLibrary[ selMaterial.value ].material;
+
+		plane = new THREE.Mesh(geometry, material);
+		plane.rotation.x = -1.5708;
+		plane.scale.multiplyScalar( 100 );
+		scene.add( plane );
+
+		v = plane.geometry.vertices;
+
+		drawEquation();
+*/
+
+		material = materialsLibrary[ selMaterial.value ].material;
+
+		f = thing[ selEquation.selectedIndex ];
+		geometry = new THREE.PlaneBufferGeometry( 1, 1, 29, 29 );
+		vertices = geometry.attributes.position.array;
+
+		for ( var x = 0, i = 2; x < 30; x++ ) {
+			for ( var y = 0; y < 30; y++ ) {
+
+				vertices[ i ] = Math.sin( x * 0.08 ) * Math.sin( y * 0.08 )
+				i += 3;
+
+			}
+		}
+
+		geometry.applyMatrix( new THREE.Matrix4().makeRotationX( - Math.PI / 2 ) );
+		geometry.computeFaceNormals();
+		geometry.computeVertexNormals();
+		geometry.verticesNeedUpdate = true;  
+		geometry.normalsNeedUpdate = true;
+
+
+		plane = new THREE.Mesh( geometry, material );
+//		plane.position.set( -30, 35, 60 );
+		plane.scale.set( 100, 100, 100 );
+		scene.add( plane );
+
+	}
+
+	function cos(a){return Math.cos(a);}
+	function sin(a){return Math.sin(a);}
+ 
+	function drawEquation() {
+
+		delta += 0.01;
+
+		for ( var x = 0, i = 2; x < 30; x++ ) {
+			for ( var y = 0; y < 30; y++ ) {
+
+				vertices[ i++ ] = f( x, y );
+				i += 3;
+
+			}
+		}
+
+		geometry.verticesNeedUpdate = true;
+		geometry.computeFaceNormals();
+		geometry.computeVertexNormals();
+		// plane.geometry.computeTangents();
+	}
+
+  	function updateMaterial() {
+
+		plane.material = eval( materialsLibrary[ selMaterial.value ].material );
+
+		if ( materialsLibrary[ selMaterial.value ].texture !== undefined ) {
+
+			texture = eval( materialsLibrary[ selMaterial.value ].texture );
+
+console.log( texture );
+			texture.needsUpdate = true;
+			plane.material.map = texture;
+
+		}
+
+	}
+
+	function onWindowResize() {
+		windowHalfX = window.innerWidth / 2;
+		windowHalfY = window.innerHeight / 2;
+		camera.aspect = window.innerWidth / window.innerHeight;
+		camera.updateProjectionMatrix();
+	}
+
+	function animate() {
+		requestAnimationFrame( animate );
+		controls.update();
+		drawEquation();
+		renderer.render( scene, camera );
+		stats.update();
+	}
+
+</script>
+</body>
+</html>

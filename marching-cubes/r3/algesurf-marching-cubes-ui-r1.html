@@ -7,7 +7,12 @@
 </head>
 <body>
 <script src=surfaces.js ></script>
+<script src=materials-no-lights.js ></script>
 <script>
+
+	var defaultEquation = 3;
+	var defaultMaterial = 2;
+	var materialsLibrarySrc = 'materials-no-lights.js';
 
 	init();
 
@@ -15,7 +20,7 @@
 
 		var css = document.body.appendChild( document.createElement('style') );
 		css.innerHTML = 'body { font: 600 12pt monospace; margin: 0; overflow: hidden; }' +
-			'h1, a { margin: 0; }' +
+			'h2, a { margin: 0; }' +
 			'#i { text-decoration: none; }' +
 		'';
 
@@ -25,17 +30,24 @@
 				'<a href="" >' + document.title + '</a> ' +
 				'<a id=i href=http://jaanga.github.io/algesurf/ >&#x24D8;</a>' +
 			'</h2>' +
+
 			'<p>Select an equation' +
 			'<br><select id=selEquation ></select></p>' +
-			'<div id=msg ></div>' +
+
+			'<p>Select a material' +
+			'<br><select id=selMaterial ></select></p>' +
+
+			'<div id=equationHTM ></div>' +
+
 			'<p>Edit the equation:<br><textarea id=txt cols=30 ></textarea></p>' +
 			'<button onclick=editEquation() >Update the display</button>' +
+
 			'<p><button onclick=createPermalink(); >Create permalink</button></p>' +
 		'';
 
-		keys = Object.keys( surfaces );
-		offset = 0;
-		for ( var i = 0; i < keys.length ; i++ ) {
+		keysSurfaces = Object.keys( surfaces );
+
+		for ( var i = 0; i < keysSurfaces.length ; i++ ) {
 
 			if ( i == 1 ) {
 
@@ -63,20 +75,42 @@
 
 			node = document.createElement( 'option' );
 			selEquation.appendChild( node );
-			node.text = keys[ i ];
+			node.text = surfaces[ keysSurfaces[ i ] ].ttl;
 
 		}
 
-		selEquation.selectedIndex = 3;
-		selEquation.onchange = updateEquation;
+		selEquation.selectedIndex = defaultEquation;
+		selEquation.onchange = drawEquation;
 
+		keysMaterials = Object.keys( materialsLibrary );
+
+		for ( var i = 0; i < keysMaterials.length ; i++ ) {
+
+			if ( keysMaterials[ i ].substr( 0, 1 ) === '#' ) {
+
+				node = document.createElement( 'optgroup' );
+				selMaterial.appendChild( node );
+				node.label = keysMaterials[ i ].substr( 1 );
+
+			} else {
+
+				node = document.createElement( 'option' );
+				selMaterial.appendChild( node );
+				node.text = keysMaterials[ i ];
+
+			}
+
+		}
+
+		selMaterial.selectedIndex = defaultMaterial;
+		selMaterial.onchange = updateMaterial;
 
 		ifr = document.body.appendChild( document.createElement( 'iframe' ) );
 		ifr.width = window.innerWidth;
 		ifr.height = window.innerHeight;
 		ifr.style.cssText = 'border: 0px solid red; margin: 0; overflow: hidden; ';
 
-		updateEquation();
+		drawEquation();
 
 	}
 
@@ -87,30 +121,43 @@
 
 		ifr.src = 'algesurf-marching-cubes-api-r1.html#eqn=' + equation.replace( / /gi, '' );
 
-//console.log( equation );
-
 	}
 
 
+	function drawEquation() {
 
+		equation = surfaces[ keysSurfaces[ selEquation.selectedIndex ] ].eqn;
 
-	function updateEquation() {
-
-		equation = surfaces[ selEquation.value ].eqn;
-
-		msg.innerHTML = 'Formatted equation:<br>' + surfaces[ selEquation.value ].htm;
+		equationHTM.innerHTML = 'Formatted equation:<br>' + surfaces[ keysSurfaces[ selEquation.selectedIndex ] ].htm;
 
 		txt.value = equation;
 
-		ifr.src = 'algesurf-marching-cubes-api-r1.html#eqn=' + equation.replace( / /gi, '' );
+		tex = materialsLibrary[ selMaterial.value ].texture === undefined ? '' : '#tex=' + materialsLibrary[ selMaterial.value ].texture;
 
-// console.log( selEquation.value, ifr.contentWindow.location.hash );
+		ifr.src = 'algesurf-marching-cubes-api-r1.html#eqn=' + equation.replace( / /gi, '' ) +
+			'#mat=' + materialsLibrary[ selMaterial.value ].material + 
+			tex +
+		'';
+
+//console.log( selEquation.value, ifr.src );
+
+	}
+
+	function updateEquation( equation ){
+
+		ifr.contentWindow.updateEquation( surfaces[ keysSurfaces[ selEquation.selectedIndex ] ].eqn );
+
+	}
+
+	function updateMaterial() {
+
+		ifr.contentWindow.updateMaterial( materialsLibrary[ selMaterial.value ].material, materialsLibrary[ selMaterial.value ].texture );
 
 	}
 
 	function createPermalink() {
 
-		s = surfaces[ selEquation.value ];
+		s = surfaces[ keysSurfaces[ selEquation.selectedIndex ] ];
 
 		window.open( 
 
@@ -120,8 +167,9 @@
 			'#htm=' + s.htm +
 			'#min=' + s.min +
 			'#max=' + s.max +
-//			'#mat=' + s.mat +
+			'#mat=' + materialsLibrary[ selMaterial.value ].material +
 			'#scl=' + s.scl +
+			'#tex=' + materialsLibrary[ selMaterial.value ].texture +
 			'#ttl=' + s.ttl +
 			''
 

@@ -5,7 +5,9 @@ function selectMaterial(m) {
 	material = materials[m].m;    
 	//document.getElementById(m).style.fontWeight = '600';
 	selectedMaterial = m;
+
 console.log('sel menu: ', material, m ); 
+
 }  
   
 function generateMaterials(basePath) {
@@ -235,6 +237,7 @@ function generateTexture( r, g, b ) {
 	}
 	context.putImageData( image, 0, 0 );
 	return canvas;
+
 }      
 
 function createShaderMaterial( id, light, ambientLight ) {

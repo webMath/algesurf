@@ -32,7 +32,7 @@
 			<option>equation 6</option>
 			<option>equation 7</option>
 			<option>equation 8</option>
-		-->	
+		-->
 		</select>
 	</p>
 
@@ -43,7 +43,7 @@
 	var light, pointLight, ambientLight;
 
 	var materials, plane, equationId = 0, delta = 0, x, y;
-	
+
 	var thing = [];
 	thing[0] = function(x, y) { return 0.5 * sin( x * 0.07 + delta) * sin( y * 0.07 + delta)  ; };
 	thing[1] = function(x, y) { return 0.08 * sin( x * 0.25 + delta ) * sin( y * 0.25 ); };
@@ -111,7 +111,7 @@
 		scene.add(light);
 
 		generateMaterials( '../../' );
-		
+
 		for ( var m in materials ) {
 			if ( m !== selectedMaterial ) {
 				selMaterials.innerHTML += '<option>' + m +'</option>';
@@ -119,17 +119,18 @@
 				selMaterials.innerHTML += '<option selected="selected" >' + m +'</option>';
 			}
 		}
-		
+
 		for ( var i = 0;  i < thing.length; i++ ) {
 			if ( i !== selectedMaterial ) {
 				selEquation.innerHTML += '<option>' + thing[i] +'</option>';
 			} else {
 				selMaterials.innerHTML += '<option selected="selected" >' + m +'</option>';
 			}
-		}		
-		selectMaterial( selectedMaterial);	
+		}
 
-		
+		selectMaterial( selectedMaterial);
+
+
 	}
 
 	function cos(a){return Math.cos(a);}

@@ -95,8 +95,8 @@ function generateGeometry( func, axisMin, axisMax ) {
 			vlist[0] = points[p].clone().lerp( points[px], mu );
 		}
 		if ( bits & 2 ) {
-		mu = ( isolevel - value1 ) / ( value3 - value1 );
-		vlist[1] = points[px].clone().lerp( points[pxy], mu );
+			mu = ( isolevel - value1 ) / ( value3 - value1 );
+			vlist[1] = points[px].clone().lerp( points[pxy], mu );
 		}
 		if ( bits & 4 ) {
 		mu = ( isolevel - value2 ) / ( value3 - value2 );
@@ -142,7 +142,7 @@ function generateGeometry( func, axisMin, axisMax ) {
 
 		if ( bits & 2048 ) {
 			mu = ( isolevel - value2 ) / ( value6 - value2 );
-			vlist[11] = points[py].clone().lerp( points[pyz], mu );
+			vlist[ 11 ] = points[py].clone().lerp( points[pyz], mu );
 		}
 
 // construct triangles -- get correct vertices from triTable.
@@ -156,9 +156,9 @@ function generateGeometry( func, axisMin, axisMax ) {
 // the while loop should run at most 5 times,
 // since the 16th entry in each row is a -1.
 		while ( THREE.triTable[ cubeindex + i ] != -1 ) {
-			var index1 = THREE.triTable[cubeindex + i];
-			var index2 = THREE.triTable[cubeindex + i + 1];
-			var index3 = THREE.triTable[cubeindex + i + 2];
+			var index1 = THREE.triTable[ cubeindex + i ];
+			var index2 = THREE.triTable[ cubeindex + i + 1 ];
+			var index3 = THREE.triTable[ cubeindex + i + 2 ];
 
 			geometry.vertices.push( vlist[index1].clone() );
 			geometry.vertices.push( vlist[index2].clone() );
@@ -167,8 +167,7 @@ function generateGeometry( func, axisMin, axisMax ) {
 			var face = new THREE.Face3(vertexIndex, vertexIndex+1, vertexIndex+2);
 			geometry.faces.push( face );
 
-			//geometry.faceVertexUvs[ 0 ].push( [ new THREE.UV(0,0), new THREE.UV(0,1), new THREE.UV(1,1) ] );
-			geometry.faceVertexUvs[ 0 ].push( [ new THREE.Vector2(0,0), new THREE.Vector2(0,1), new THREE.Vector2(1,1) ] );
+			geometry.faceVertexUvs[ 0 ].push( [ new THREE.Vector2( 0, 0 ), new THREE.Vector2( 0, 1 ), new THREE.Vector2( 1, 1 ) ] );
 
 			vertexIndex += 3;
 			i += 3;
@@ -182,4 +181,5 @@ function generateGeometry( func, axisMin, axisMax ) {
 	geometry.verticesNeedUpdate = true;
 	geometry.normalsNeedUpdate = true;
 
+	return geometry
 }
