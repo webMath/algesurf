@@ -17,6 +17,7 @@
 	var pi = Math.PI;
 	var scale = 10;
 	var x, y, z;
+	var n = 8;
 
 	var a = 8, aMin = -5, aMax = 15, aStep = 0.1;
 	var b = 3, bMin = -5, bMax = 10, bStep = 0.1;
@@ -31,7 +32,8 @@
 //	var h = 1, hMin = -5, hMax = 5, hStep = 0.1;
 //	var i = 1, iMin = -5, iMax = 5, iStep = 0.1;
 
-	var n = 8;
+	var d = 8, dMin = -5, dMax = 10, dStep = 0.1;
+
 
 	var R1 = 1, R1Min = -5, R1Max = 5, R1Step = 0.1;
 	var R2 = 1, R2Min = -5, R2Max = 5, R2Step = 0.1;
@@ -64,9 +66,9 @@
 		u = 2 * pi * ( u - 0.5 );
 		v = 2 * pi * ( v - 0.5 );
 
-		x = scale * R1 * ( ( a + b * cos( n * u ) + c * cos( v ) ) * cos( u ) );
-		y = scale * R2 * ( c * sin( v ) + b * sin( n * u ) );
-		z = scale * R1 * ( ( a + b * cos( n * u ) + c * cos( v ) ) * sin( u ) );
+		x = scale * R1 * ( ( a + b * cos( d * u ) + c * cos( v ) ) * cos( u ) );
+		y = scale * R2 * ( c * sin( v ) + b * sin( d * u ) );
+		z = scale * R1 * ( ( a + b * cos( d * u ) + c * cos( v ) ) * sin( u ) );
 
 		return new THREE.Vector3( x, y, z );
 	}

@@ -244,8 +244,8 @@
 
 		messages.innerHTML += txt + '\n\n';
 
-		if ( ++index < 140 ) {
-//		if ( ++index < titles.length - 165 ) {
+//		if ( ++index < 170 ) {
+		if ( ++index < titles.length ) {
 
 			requestFile();
 
@@ -271,7 +271,7 @@
 				'function sinh( a ){ return Math.sinh( a ); }\n' +
 				'function tanh( a ){ return Math.tanh( a ); }\n\n' +
 
-				'function sech( a ){ return Math.sech( a ); }\n' +
+				'function sech( a ){ if ( Math.sech !== undefined ) { a = Math.sech( a ) } else { a = 1 / cosh( a ) }; return a; }\n' +
 
 			'';
 

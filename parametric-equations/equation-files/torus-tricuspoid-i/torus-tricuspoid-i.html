@@ -12,13 +12,16 @@
 // http://www.3d-meier.de/tut3/Seite140.html
 
 	var renderer, scene, camera, controls;
-		var geometry, material, mesh;
-		var pi = Math.PI;
-		var scale = 25;
-		var x, y, z;
+	var geometry, material, mesh;
+	var pi = Math.PI;
+	var scale = 25;
+	var x, y, z;
 
-		var R1 = 0.3;
-		var R2 = 3;
+	var R1 = 0.3;
+	var R2 = 3;
+
+	var R1 = 0.3, R1Min = -5, R1Max = 5, R1Step = 0.1;
+	var R2 = 3, R2Min = -5, R2Max = 5, R2Step = 0.1;
 
 	init();
 	animate();
@@ -41,11 +44,11 @@
 		scene.add( mesh );
 	}
 
-	function curve( u, v ) {		
+	function curve( u, v ) {
 		u = 2 * pi * ( u - 0.5 );
 		v = 2 * pi * ( v - 0.5 );
 
-		x = scale * ( ( R2 + R1 * (2 * cos ( v ) + cos( 2 * v ) ) ) * cos ( u )  );
+		x = scale * ( ( R2 + R1 * ( 2 * cos ( v ) + cos( 2 * v ) ) ) * cos ( u )  );
 		y = scale * (  R1 * ( 2 * sin( v ) - sin( 2 * v ) ) );
 		z = scale * ( ( R2 + R1 * ( 2 * cos( v ) + cos( 2 * v ) ) ) * sin( u ) );
 
@@ -61,7 +64,7 @@
 	function log( a ){ return Math.log( a ); }
 	function pow( a, b ){ return Math.pow( a, b ); }
 	function ran(){ return Math.random(); }
-	function sqrt( a ){ return Math.sqrt( a ); }	
+	function sqrt( a ){ return Math.sqrt( a ); }
 
 	function animate() {
 		requestAnimationFrame( animate );

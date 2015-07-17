@@ -30,7 +30,7 @@
 	var h = 1, hMin = -5, hMax = 5, hStep = 0.1;
 	var i = 1, iMin = -5, iMax = 5, iStep = 0.1;
 
-	var n = 7, nMin = 1, iMax = 20, nStep = 1;
+	var j = 7, jMin = 1, jMax = 20, jStep = 1;
 
 	var R1 = 1.5, R1Min = -5, R1Max = 5, R1Step = 0.1;
 	var R2 = 10, R2Min = -5, R2Max = 15, R2Step = 0.1;
@@ -65,9 +65,9 @@
 
 		// R1 = 3 + 3 * sin ( n * u );
 
-		x = scale * ( ( R2 + ( R1 + a * b * sin( n * u ) ) * cos( v ) ) * cos( u ) );
-		y = scale * ( ( R2 + ( R1 + a * c * sin( n * u ) ) * cos( v ) ) * sin( u ) );
-		z = scale * ( ( R1 + a * d * sin( n * u ) ) * sin( v ) );
+		x = scale * ( ( R2 + ( R1 + a * b * sin( j * u ) ) * cos( v ) ) * cos( u ) );
+		y = scale * ( ( R2 + ( R1 + a * c * sin( j * u ) ) * cos( v ) ) * sin( u ) );
+		z = scale * ( ( R1 + a * d * sin( j * u ) ) * sin( v ) );
 
 		return new THREE.Vector3( x, y, z );
 	}
