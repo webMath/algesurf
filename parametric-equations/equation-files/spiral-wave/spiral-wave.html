@@ -12,14 +12,22 @@
 // http://www.3d-meier.de/tut3/Seite129.html
 
 	var renderer, scene, camera, controls;
-		var geometry, material, mesh;
-		var pi = Math.PI;
-		var scale = 10;
-		var x, y, z;
+	var geometry, material, mesh;
+	var pi = Math.PI;
+	var scale = 10;
+	var x, y, z;
 
-		var a = 1;
-		var b = 2;
-		var c = 2;
+	var a = 1;
+	var b = 2;
+	var c = 2;
+
+	var a = 1, aMin = -5, aMax = 5, aStep = 0.1;
+	var b = 2, bMin = -5, bMax = 5, bStep = 0.1;
+	var c = 2, cMin = -5, cMax = 5, cStep = 0.1;
+	var d = 2, dMin = -5, dMax = 5, dStep = 0.1;
+
+	var u = 30;
+	var v = 30;
 
 	init();
 	animate();
@@ -36,13 +44,13 @@
 		camera.position.set( 100, 100, 100 );
 		controls = new THREE.TrackballControls( camera, renderer.domElement );
 
-		geometry = new THREE.ParametricGeometry( curve, 30, 30 );
+		geometry = new THREE.ParametricGeometry( curve, u, v );
 		material = new THREE.MeshNormalMaterial( { shading: THREE.SmoothShading, side: 2 } )
 		mesh = new THREE.Mesh( geometry, material );
 		scene.add( mesh );
 	}
 
-	function curve( u, v ) {		
+	function curve( u, v ) {
 		u = pi * ( u  - 0.5 );
 		v = 20 * ( v - 0.5 );
 

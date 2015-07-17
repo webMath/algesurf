@@ -12,15 +12,15 @@
 // http://www.3d-meier.de/tut3/Seite68.html
 
 	var renderer, scene, camera, controls;
-		var geometry, material, mesh;
-		var pi = Math.PI;
-		var x, y, z;
+	var geometry, material, mesh;
+	var pi = Math.PI;
+	var x, y, z;
 
-		var scale = 5;
-		var a = 5.5;
-		var b = 5;
-		var c = 2;
-		var d = 3;
+	var scale = 5;
+	var a = 5.5;
+	var b = 5;
+	var c = 2;
+	var d = 3;
 
 	var a = 5.5, aMin = -5, aMax = 10, aStep = 0.1;
 	var b = 5, bMin = -5, bMax = 10, bStep = 0.1;
@@ -51,7 +51,7 @@
 		scene.add( mesh );
 	}
 
-	function curve( u, v ) {		
+	function curve( u, v ) {
 		u = 2 * pi * ( u );
 		v = 2 * pi * ( v );
 		h = a - c * cos( u ) * cos( v )

@@ -12,15 +12,21 @@
 // http://www.3d-meier.de/tut3/Seite146.html
 
 	var renderer, scene, camera, controls;
-		var geometry, material, mesh;
-		var pi = Math.PI;
-		var scale = 15;
-		var x, y, z;
+	var geometry, material, mesh;
+	var pi = Math.PI;
+	var scale = 15;
+	var x, y, z;
 
-		var R1 = 5;
-		var h = 5;
-		var R2 = 2;
-		var R1 = 12;
+	var R1 = 5;
+	var h = 5;
+	var R2 = 2;
+	var R1 = 12;
+
+	var h = 5, hMin = -5, hMax = 5, hStep = 0.1;
+
+	var R1 = 12, R1Min = -5, R1Max = 5, R1Step = 0.1;
+	var R2 = 2, R2Min = -5, R2Max = 5, R2Step = 0.1;
+
 	init();
 	animate();
 

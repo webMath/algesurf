@@ -13,14 +13,14 @@
 // Gauß Zylinder
 
 	var renderer, scene, camera, controls;
-		var geometry, material, mesh;
+	var geometry, material, mesh;
 
-		var pi = Math.PI;
-		var scale = 15;
-		var x, y, z;
+	var pi = Math.PI;
+	var scale = 15;
+	var x, y, z;
 
-		var a = 2;
-		var b = 2;
+	var a = 2;
+	var b = 2;
 
 	var a = 2, aMin = -5, aMax = 5, aStep = 0.1;
 	var b = 2, bMin = -5, bMax = 5, bStep = 0.1;
@@ -57,7 +57,7 @@
 		scene.add( mesh );
 	}
 
-	function curve( u, v ) {		
+	function curve( u, v ) {
 		u = 2 * pi * ( u - 0.5 );
 		v = pi * ( v - 0.5 );
 
@@ -77,7 +77,7 @@
 	function log( a ){ return Math.log( a ); }
 	function pow( a, b ){ return Math.pow( a, b ); }
 	function ran(){ return Math.random(); }
-	function sqrt( a ){ return Math.sqrt( a ); }	
+	function sqrt( a ){ return Math.sqrt( a ); }
 
 	function animate() {
 		requestAnimationFrame( animate );

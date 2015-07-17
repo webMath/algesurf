@@ -23,6 +23,15 @@
 	var R1 = 2;
 	var R2 = 6;
 
+	var a = 2, aMin = -5, aMax = 5, aStep = 0.1;
+	var b = 2, bMin = -5, bMax = 5, bStep = 0.1;
+
+	var R1 = 2, R1Min = -5, R1Max = 5, R1Step = 0.1;
+	var R2 = 6, R2Min = -5, R2Max = 5, R2Step = 0.1;
+
+	var u = 30;
+	var v = 30;
+
 	init();
 	animate();
 
@@ -38,7 +47,7 @@
 		camera.position.set( 100, 100, 100 );
 		controls = new THREE.TrackballControls( camera, renderer.domElement );
 
-		geometry = new THREE.ParametricGeometry( curve, 30, 30 );
+		geometry = new THREE.ParametricGeometry( curve, u, v );
 		material = new THREE.MeshNormalMaterial( { shading: THREE.SmoothShading, side: 2 } )
 		mesh = new THREE.Mesh( geometry, material );
 		scene.add( mesh );

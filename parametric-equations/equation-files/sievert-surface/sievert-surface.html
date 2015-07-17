@@ -21,7 +21,13 @@
 	var C = 3;
 	var R1;
 
+	var a = 2, aMin = -5, aMax = 5, aStep = 0.1;
+//	var b = 2, bMin = -5, bMax = 5, bStep = 0.1;
+	var c = 3, cMin = -5, cMax = 5, cStep = 0.1;
+//	var d = 2, dMin = -5, dMax = 5, dStep = 0.1;
 
+	var R1 = 1, R1Min = -5, R1Max = 5, R1Step = 0.1;
+//	var R2 = 1, R2Min = -5, R2Max = 5, R2Step = 0.1;
 
 	init();
 	animate();
@@ -44,17 +50,17 @@
 		scene.add( mesh );
 	}
 
-	function curve( u, v ) {		
+	function curve( u, v ) {
 		u = 1 * pi * ( u - 0.5 );
 		v = 3 * ( v ) + 0.03;
 
-		p = -u / sqrt( C + 1 ) + Math.atan( tan (u) * sqrt( C + 1 ) );
-		a = 2 / ( C + 1 - C * sin( v ) * sin( v ) * cos( u ) * cos( v ) );
-		R1 = a * sqrt( ( C + 1 ) * ( 1 + C * sin( u ) * sin( u ) ) ) * sin( v ) / sqrt( C );
+		p = -u / sqrt( c + 1 ) + Math.atan( tan (u) * sqrt( c + 1 ) );
+		a = 2 / ( c + 1 - c * sin( v ) * sin( v ) * cos( u ) * cos( v ) );
+		R1 = a * sqrt( ( c + 1 ) * ( 1 + c * sin( u ) * sin( u ) ) ) * sin( v ) / sqrt( c );
 
 		x = scale * ( R1 * cos( p ) );
 		y = scale * ( R1 * sin( p ) );
-		z = scale * ( ( log( tan( v / 2 ) ) + a * ( C + 1 ) * cos( v ) ) / sqrt( C ) );
+		z = scale * ( ( log( tan( v / 2 ) ) + a * ( c + 1 ) * cos( v ) ) / sqrt( c ) );
 
 		return new THREE.Vector3( x, y, z );
 	}

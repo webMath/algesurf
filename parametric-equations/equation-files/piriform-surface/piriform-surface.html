@@ -21,6 +21,11 @@
 	var b = 0.5;
 	var R1 = 0.5;
 
+	var a = 0.5, aMin = -5, aMax = 5, aStep = 0.1;
+	var b = 0.5, bMin = -5, bMax = 5, bStep = 0.1;
+	var c = 0.5, cMin = -5, cMax = 5, cStep = 0.1;
+	var d = 2, dMin = -5, dMax = 5, dStep = 0.1;
+
 
 	init();
 	animate();
@@ -43,16 +48,16 @@
 		scene.add( mesh );
 	}
 
-		function curve( u, v ) {		
-			u = pi * ( u - 0.5 );
-			v = 2 * pi * ( v - 0.5 );
+	function curve( u, v ) {
+		u = pi * ( u - 0.5 );
+		v = 2 * pi * ( v - 0.5 );
 
-			x = scale * ( b * ( cos( v ) * ( R1 + sin( v ) ) ) * cos( u ) );
-			y = scale * ( a * ( R1 + sin( v ) )  );
-			z = scale * ( b * ( cos( v ) * ( R1 + sin( v ) ) ) * sin( u ) );
+		x = scale * ( b * ( cos( v ) * ( c + sin( v ) ) ) * cos( u ) );
+		y = scale * ( a * ( c + sin( v ) )  );
+		z = scale * ( b * ( cos( v ) * ( c + sin( v ) ) ) * sin( u ) );
 
-			return new THREE.Vector3( x, y, z );
-		}
+		return new THREE.Vector3( x, y, z );
+	}
 
 
 	function cos( a ){ return Math.cos( a ); }

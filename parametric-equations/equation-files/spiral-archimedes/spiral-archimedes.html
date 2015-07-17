@@ -17,7 +17,13 @@
 	var scale = 5;
 	var x, y, z;
 
-	var H = 3;
+//	var H = 3;
+
+	var h = 3, hMin = -5, hMax = 5, hStep = 0.1;
+
+
+	var u = 200;
+	var v = 2;
 
 	init();
 	animate();
@@ -34,18 +40,18 @@
 		camera.position.set( 100, 100, 100 );
 		controls = new THREE.TrackballControls( camera, renderer.domElement );
 
-		geometry = new THREE.ParametricGeometry( curve, 200, 2 );
+		geometry = new THREE.ParametricGeometry( curve, u, v );
 		material = new THREE.MeshNormalMaterial( { shading: THREE.SmoothShading, side: 2 } )
 		mesh = new THREE.Mesh( geometry, material );
 		scene.add( mesh );
 	}
 
-	function curve( u, v ) {		
+	function curve( u, v ) {
 		u = 10 * pi * ( u );
 		v = 1 * ( v - 0.5 );
 
 		x = scale * ( u * cos( u ) );
-		y = scale * ( H * v );
+		y = scale * ( h * v );
 		z = scale * ( u * sin( u ) );
 
 		return new THREE.Vector3( x, y, z );
@@ -63,7 +69,7 @@
 	function log( a ){ return Math.log( a ); }
 	function pow( a, b ){ return Math.pow( a, b ); }
 	function ran(){ return Math.random(); }
-	function sqrt( a ){ return Math.sqrt( a ); }	
+	function sqrt( a ){ return Math.sqrt( a ); }
 
 	function animate() {
 		requestAnimationFrame( animate );

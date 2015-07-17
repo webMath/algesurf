@@ -12,15 +12,24 @@
 // http://www.3d-meier.de/tut3/Seite173.html
 
 	var renderer, scene, camera, controls;
-		var geometry, material, mesh;
-		var pi = Math.PI;
-		var scale = 5;
-		var x, y, z;
+	var geometry, material, mesh;
+	var pi = Math.PI;
+	var scale = 5;
+	var x, y, z;
 
-		var n = 8;
-		var R1 = 1.5;
-		var R2 = 8;
-		var R3 = 2;
+	var n = 8;
+	var R1 = 1.5;
+	var R2 = 8;
+	var R3 = 2;
+
+	var a = 8, aMin = -5, aMax = 5, aStep = 0.1;
+	var b = 2, bMin = -5, bMax = 5, bStep = 0.1;
+
+	var R1 = 1, R1Min = -5, R1Max = 5, R1Step = 0.1;
+	var R2 = 1, R2Min = -5, R2Max = 5, R2Step = 0.1;
+
+	var u = 80;
+	var v = 20;
 
 	init();
 	animate();
@@ -43,13 +52,13 @@
 		scene.add( mesh );
 	}
 
-	function curve( u, v ) {		
+	function curve( u, v ) {
 		u = 2 * pi * ( u - 0.5 );
 		v = 2 * pi * ( v - 0.5 );
 
-		x = scale * ( ( R2 + R3 * cos( n * u ) + R1 * cos( v ) ) * cos( u ) );
+		x = scale * ( ( R2 + R3 * cos( a * u ) + R1 * cos( v ) ) * cos( u ) );
 		y = scale * ( R1 * sin( v ) );
-		z = scale * ( ( R2 + R3 * cos( n * u ) + R1 * cos( v ) ) * sin( u ) );
+		z = scale * ( ( R2 + b * cos( a * u ) + R1 * cos( v ) ) * sin( u ) );
 
 		return new THREE.Vector3( x, y, z );
 	}
@@ -66,7 +75,7 @@
 	function log( a ){ return Math.log( a ); }
 	function pow( a, b ){ return Math.pow( a, b ); }
 	function ran(){ return Math.random(); }
-	function sqrt( a ){ return Math.sqrt( a ); }	
+	function sqrt( a ){ return Math.sqrt( a ); }
 
 	function animate() {
 		requestAnimationFrame( animate );

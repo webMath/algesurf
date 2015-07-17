@@ -20,6 +20,11 @@
 
 	k = 0.5;
 
+	var a = 0.5, aMin = -5, aMax = 5, aStep = 0.1;
+	var b = 2, bMin = -5, bMax = 5, bStep = 0.1;
+	var c = 2, cMin = -5, cMax = 5, cStep = 0.1;
+	var d = 2, dMin = -5, dMax = 5, dStep = 0.1;
+
 	init();
 	animate();
 
@@ -42,12 +47,12 @@
 		scene.add( mesh );
 	}
 
-	function curve( u, v ) {		
+	function curve( u, v ) {
 		u = 2 * ( u - 0.5 );
 		v = 2 * pi * ( v - 0.5 );
 
-		x = scale * ( k * ( 1 + u ) * cos( v ) );
-		y = scale * ( k * ( 1 - u ) * sin( v ) );
+		x = scale * ( a * ( 1 + u ) * cos( v ) );
+		y = scale * ( a * ( 1 - u ) * sin( v ) );
 		z = scale * ( u );
 
 		return new THREE.Vector3( x, y, z );

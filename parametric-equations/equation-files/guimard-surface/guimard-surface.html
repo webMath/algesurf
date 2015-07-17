@@ -22,6 +22,11 @@
 	b = 1.5;
 	c = 0.5;
 
+	var a = 0.5, aMin = -5, aMax = 5, aStep = 0.1;
+	var b = 1.5, bMin = -5, bMax = 5, bStep = 0.1;
+	var c = 0.5, cMin = -5, cMax = 5, cStep = 0.1;
+	var d = 2, dMin = -5, dMax = 5, dStep = 0.1;
+
 	init();
 	animate();
 
@@ -43,16 +48,16 @@
 		scene.add( mesh );
 	}
 
-		function curve( u, v ) {		
-			u = 2 * ( u - 0.5 );
-			v = 2 * ( v - 0.5 );
+	function curve( u, v ) {
+		u = 2 * ( u - 0.5 );
+		v = 2 * ( v - 0.5 );
 
-			x = scale * ( ( ( 1 - u ) * a + u * b ) * cos( v )  );
-			y = scale * ( b * u * sin( v ) );
-			z = scale * ( c * u * sin( v ) * sin( v ) );
+		x = scale * ( ( ( 1 - u ) * a + u * b ) * cos( v )  );
+		y = scale * ( b * u * sin( v ) );
+		z = scale * ( c * u * sin( v ) * sin( v ) );
 
-			return new THREE.Vector3( x, y, z );
-		}
+		return new THREE.Vector3( x, y, z );
+	}
 
 	function cos( a ){ return Math.cos( a ); }
 	function sin( a ){ return Math.sin( a ); }
@@ -62,7 +67,7 @@
 	function log( a ){ return Math.log( a ); }
 	function pow( a, b ){ return Math.pow( a, b ); }
 	function ran(){ return Math.random(); }
-	function sqrt( a ){ return Math.sqrt( a ); }	
+	function sqrt( a ){ return Math.sqrt( a ); }
 
 	function animate() {
 		requestAnimationFrame( animate );

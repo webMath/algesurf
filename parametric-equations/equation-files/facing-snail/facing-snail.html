@@ -18,6 +18,7 @@
 	var x, y, z;
 	var a = 1;
 
+	var a = 1, aMin = -5, aMax = 5, aStep = 0.1;
 
 	init();
 	animate();
@@ -40,7 +41,7 @@
 		scene.add( mesh );
 	}
 
-	function curve( u, v ) {		
+	function curve( u, v ) {
 		u = 2 * pi * ( u );
 		v = 1 * pi * ( v  );
 

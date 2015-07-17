@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang=en >
 <head>
-<title>Boy's Surface *</title>
+<title>Boys Surface *</title>
 <meta charset=utf-8 >
 <meta name=viewport content=width=device-width,user-scalable=no,minimum-scale=1.0,maximum-scale=1.0 >
 </head>
@@ -62,7 +62,7 @@
 		s = b - R1 * sin( c * u ) * sin( d * v );
 
 		x = scale * ( R1 * cos ( v ) * cos( v ) * cos( f * u ) + cos( u ) * sin( g * v ) / s );
-		y = scale * ( e * cos ( v ) * cos( v ) / s  - 1);
+		y = scale * ( e * cos ( v ) * cos( v ) / s - 1 );
 		z = scale * ( R1 * cos ( v ) * cos( v ) * sin( h * u ) + cos( u ) * sin( h * v ) / s );
 
 		return new THREE.Vector3( x, y, z );

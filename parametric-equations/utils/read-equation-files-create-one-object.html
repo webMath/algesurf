@@ -28,14 +28,20 @@
 		menu.style.cssText = 'margin: 0 20px; position: absolute;';
 		menu.innerHTML = '<h2>' +
 				'<a href="" >' + document.title + '</a> ' +
-				'<a id=i href=http://jaanga.github.io/ >&#x24D8;</a>' +
+				'<a id=i href=http://jaanga.github.io/algesurf/parametric-equations/ >&#x24D8;</a> ' +
+				'<button onclick=saveFile(); >Save File</button>' +
 			'</h2>' +
+
 			'<textarea id=messages style="width:1200px;height: ' + (window.innerHeight - 100 ) + 'px;" ></textarea>' +
 		'';
 
 // console.log( titles );
 
-	messages.innerHTML =  '\equations = {\n';
+	messages.innerHTML =  'var x, y, z;\n' +
+			'var pi = Math.PI;\n\n' +
+			'equations = {\n' +
+		'';
+
 	requestFile();
 
 	}
@@ -59,24 +65,161 @@
 		var lines = text.split(/\r\n|\n/);
 		finding = false;
 
-		txt = '\t"' + titles[ index ] + '" : {\n';
- 
 		title = lines[3].replace( /<(.*?)>/gi, '' );
+		txt = '\t\'' + titles[ index ] + '\' : {\n';
+ 
 
-		txt += '\t\ttitle: "' + title + '",\n';
+
+		txt += '\t\t\'title\' : \'' + title + '\',\n';
+
 
 		for ( var i = 10; i < lines.length; i++ ) {
 
 
 			if ( lines[ i ].substr( 0, 10 ) === '	var scale' ) {
 
-				txt += '\t\tscale: ' + lines[ i ].substr( 12 ).replace( ';',',' ) + '\n';
+				txt += '\t\t\'scale\' : ' + lines[ i ].substr( 12 ).replace( ';',',' ) + '\n';
+
+			}
+
+			if ( lines[ i ].substr( 0, 9 ) === '	var a = ' && lines[ i ].length > 15 ) {
+
+				vars = lines[ i ].split( ',' )
+				txt += '\t\t\'a\' : ' + vars[ 0 ].substr( 9 ) + ',\n';
+				txt += '\t\t\'aMin\' : ' + vars[ 1 ].substr( 8 ) + ',\n';
+				txt += '\t\t\'aMax\' : ' + vars[ 2 ].substr( 8 ) + ',\n';
+				txt += '\t\t\'aStep\' : ' + vars[ 3 ].substr( 9 ).replace( ';','' ) + ',\n';
+
+			}
+
+			if ( lines[ i ].substr( 0, 9 ) === '	var b = ' && lines[ i ].length > 15 ) {
+
+				vars = lines[ i ].split( ',' )
+				txt += '\t\t\'b\' : ' + vars[ 0 ].substr( 9 ) + ',\n';
+				txt += '\t\t\'bMin\' : ' + vars[ 1 ].substr( 8 ) + ',\n';
+				txt += '\t\t\'bMax\' : ' + vars[ 2 ].substr( 8 ) + ',\n';
+				txt += '\t\t\'bStep\' : ' + vars[ 3 ].substr( 9 ).replace( ';','' ) + ',\n';
+
+			}
+
+			if ( lines[ i ].substr( 0, 9 ) === '	var c = ' && lines[ i ].length > 15 ) {
+
+				vars = lines[ i ].split( ',' )
+				txt += '\t\t\'c\' : ' + vars[ 0 ].substr( 9 ) + ',\n';
+				txt += '\t\t\'cMin\' : ' + vars[ 1 ].substr( 8 ) + ',\n';
+				txt += '\t\t\'cMax\' : ' + vars[ 2 ].substr( 8 ) + ',\n';
+				txt += '\t\t\'cStep\' : ' + vars[ 3 ].substr( 9 ).replace( ';','' ) + ',\n';
+
+			}
+
+			if ( lines[ i ].substr( 0, 9 ) === '	var d = ' && lines[ i ].length > 15 ) {
+
+				vars = lines[ i ].split( ',' )
+				txt += '\t\t\'d\' : ' + vars[ 0 ].substr( 9 ) + ',\n';
+				txt += '\t\t\'dMin\' : ' + vars[ 1 ].substr( 8 ) + ',\n';
+				txt += '\t\t\'dMax\' : ' + vars[ 2 ].substr( 8 ) + ',\n';
+				txt += '\t\t\'dStep\' : ' + vars[ 3 ].substr( 9 ).replace( ';','' ) + ',\n';
+
+			}
+
+			if ( lines[ i ].substr( 0, 9 ) === '	var e = ' ) {
+
+				vars = lines[ i ].split( ',' )
+				txt += '\t\t\'e\' : ' + vars[ 0 ].substr( 9 ) + ',\n';
+				txt += '\t\t\'eMin\' : ' + vars[ 1 ].substr( 8 ) + ',\n';
+				txt += '\t\t\'eMax\' : ' + vars[ 2 ].substr( 8 ) + ',\n';
+				txt += '\t\t\'eStep\' : ' + vars[ 3 ].substr( 9 ).replace( ';','' ) + ',\n';
+
+			}
+
+			if ( lines[ i ].substr( 0, 9 ) === '	var f = ' && lines[ i ].length > 15 ) {
+
+				vars = lines[ i ].split( ',' )
+				txt += '\t\t\'f\' : ' + vars[ 0 ].substr( 9 ) + ',\n';
+				txt += '\t\t\'fMin\' : ' + vars[ 1 ].substr( 8 ) + ',\n';
+				txt += '\t\t\'fMax\' : ' + vars[ 2 ].substr( 8 ) + ',\n';
+				txt += '\t\t\'fStep\' : ' + vars[ 3 ].substr( 9 ).replace( ';','' ) + ',\n';
+
+			}
+
+			if ( lines[ i ].substr( 0, 9 ) === '	var g = ' && lines[ i ].length > 15 ) {
+
+				vars = lines[ i ].split( ',' )
+				txt += '\t\t\'g\' : ' + vars[ 0 ].substr( 9 ) + ',\n';
+				txt += '\t\t\'gMin\' : ' + vars[ 1 ].substr( 8 ) + ',\n';
+				txt += '\t\t\'gMax\' : ' + vars[ 2 ].substr( 8 ) + ',\n';
+				txt += '\t\t\'gStep\' : ' + vars[ 3 ].substr( 9 ).replace( ';','' ) + ',\n';
+
+			}
+
+			if ( lines[ i ].substr( 0, 9 ) === '	var h = ' && lines[ i ].length > 15 ) {
+
+				vars = lines[ i ].split( ',' )
+				txt += '\t\t\'h\' : ' + vars[ 0 ].substr( 9 ) + ',\n';
+				txt += '\t\t\'hMin\' : ' + vars[ 1 ].substr( 8 ) + ',\n';
+				txt += '\t\t\'hMax\' : ' + vars[ 2 ].substr( 8 ) + ',\n';
+				txt += '\t\t\'hStep\' : ' + vars[ 3 ].substr( 9 ).replace( ';','' ) + ',\n';
+
+			}
+
+			if ( lines[ i ].substr( 0, 9 ) === '	var i = ' && lines[ i ].length > 15 ) {
+
+				vars = lines[ i ].split( ',' )
+				txt += '\t\t\'i\' : ' + vars[ 0 ].substr( 9 ) + ',\n';
+				txt += '\t\t\'iMin\' : ' + vars[ 1 ].substr( 8 ) + ',\n';
+				txt += '\t\t\'iMax\' : ' + vars[ 2 ].substr( 8 ) + ',\n';
+				txt += '\t\t\'iStep\' : ' + vars[ 3 ].substr( 9 ).replace( ';','' ) + ',\n';
+
+			}
+
+			if ( lines[ i ].substr( 0, 9 ) === '	var j = ' && lines[ i ].length > 15 ) {
+
+				vars = lines[ i ].split( ',' )
+				txt += '\t\t\'j\' : ' + vars[ 0 ].substr( 9 ) + ',\n';
+				txt += '\t\t\'jMin\' : ' + vars[ 1 ].substr( 8 ) + ',\n';
+				txt += '\t\t\'jMax\' : ' + vars[ 2 ].substr( 8 ) + ',\n';
+				txt += '\t\t\'jStep\' : ' + vars[ 3 ].substr( 9 ).replace( ';','' ) + ',\n';
+
+			}
+
+			if ( lines[ i ].substr( 0, 10 ) === '	var R1 = ' && lines[ i ].length > 15 ) {
+
+				vars = lines[ i ].split( ',' )
+				txt += '\t\t\'R1\' : ' + vars[ 0 ].substr( 10 ) + ',\n';
+				txt += '\t\t\'R1Min\' : ' + vars[ 1 ].substr( 9 ) + ',\n';
+				txt += '\t\t\'R1Max\' : ' + vars[ 2 ].substr( 9 ) + ',\n';
+				txt += '\t\t\'R1Step\' : ' + vars[ 3 ].substr( 10 ).replace( ';','' ) + ',\n';
+
+			}
+
+			if ( lines[ i ].substr( 0, 10 ) === '	var R2 = ' && lines[ i ].length > 15 ) {
+
+				vars = lines[ i ].split( ',' )
+				txt += '\t\t\'R2\' : ' + vars[ 0 ].substr( 10 ) + ',\n';
+				txt += '\t\t\'R2Min\' : ' + vars[ 1 ].substr( 9 ) + ',\n';
+				txt += '\t\t\'R2Max\' : ' + vars[ 2 ].substr( 9 ) + ',\n';
+				txt += '\t\t\'R2Step\' : ' + vars[ 3 ].substr( 10 ).replace( ';','' ) + ',\n';
+
+			}
+
+
+			if ( lines[ i ].substr( 0, 9 ) === '	var u = ' ) {
+
+				vars = lines[ i ].split( ',' )
+				txt += '\t\t\'u\' : ' + vars[ 0 ].substr( 9 ).replace( ';','' ) + ',\n';
+
+			}
+
+			if ( lines[ i ].substr( 0, 9 ) === '	var v = ' ) {
+
+				vars = lines[ i ].split( ',' )
+				txt += '\t\t\'v\' : ' + vars[ 0 ].substr( 9 ).replace( ';','' ) + ',\n';
 
 			}
 
 			if ( lines[ i ] === '	function curve( u, v ) {' || lines[ i ] === '	function curve( u, v ) {		') {
 
-				lines[ i ] = '\tcurve: function( u, v ) {';
+				lines[ i ] = '\t\'curve\' : function( u, v ) {';
 
 				finding = true;
 
@@ -101,19 +244,51 @@
 
 		messages.innerHTML += txt + '\n\n';
 
-		if ( ++index < 10 ) {
-//		if ( ++index < titles.length ) {
+		if ( ++index < 140 ) {
+//		if ( ++index < titles.length - 165 ) {
 
 			requestFile();
 
 		} else {
 
-				messages.innerHTML += txt + '}\n\n';
+			messages.innerHTML += '}\n\n' +
+
+				'function cos( a ){ return Math.cos( a ); }\n' +
+				'function sin( a ){ return Math.sin( a ); }\n' +
+				'function tan( a ){ return Math.tan( a ); }\n\n' +
+
+				'function cos2( a ){ return Math.cos( a ) * Math.cos( a ); }\n' +
+				'function sin2( a ){ return Math.sin( a ) * Math.sin( a ); }\n\n' +
+
+				'function abs( a ){ return Math.abs( a ); }\n' +
+				'function exp( a ){ return Math.exp( a ); }\n' +
+				'function log( a ){ return Math.log( a ); }\n' +
+				'function pow( a, b ){ return Math.pow( a, b ); }\n' +
+				'function ran(){ return Math.random(); }\n' +
+				'function sqrt( a ){ return Math.sqrt( a ); }\n\n' +
+
+				'function cosh( a ){ return Math.cosh( a ); }\n' +
+				'function sinh( a ){ return Math.sinh( a ); }\n' +
+				'function tanh( a ){ return Math.tanh( a ); }\n\n' +
+
+				'function sech( a ){ return Math.sech( a ); }\n' +
+
+			'';
 
 		}
 
 	}
 
+	function saveFile() {
+
+		var blob = new Blob( [ messages.innerHTML ] );
+		var a = document.body.appendChild( document.createElement( 'a' ) );
+		a.href = window.URL.createObjectURL( blob );
+		a.download = 'equations-library-r1.js';
+		a.click();
+		delete a;
+
+	}
 
 </script>
 </body>

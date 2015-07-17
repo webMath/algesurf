@@ -41,16 +41,16 @@
 		scene.add( mesh );
 	}
 
-		function curve( u, v ) {		
-			u = pi * ( u - 0.5 );
-			v = pi * ( v - 0.5 );
+	function curve( u, v ) {
+		u = pi * ( u - 0.5 );
+		v = pi * ( v - 0.5 );
 
-			x = scale * ( u * cos( v ) );
-			y = scale * ( u * sin( v ) );
-			z = scale * ( 1 * v );
+		x = scale * ( u * cos( v ) );
+		y = scale * ( u * sin( v ) );
+		z = scale * ( 1 * v );
 
-			return new THREE.Vector3( x, y, z );
-		}
+		return new THREE.Vector3( x, y, z );
+	}
 
 	function cos( a ){ return Math.cos( a ); }
 	function sin( a ){ return Math.sin( a ); }	

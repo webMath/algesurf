@@ -13,14 +13,19 @@
 // 3.151. Fresnelsche Elastizitätsfläche
 
 	var renderer, scene, camera, controls;
-		var geometry, material, mesh;
-		var pi = Math.PI;
-		var scale = 25;
-		var x, y, z;
+	var geometry, material, mesh;
+	var pi = Math.PI;
+	var scale = 25;
+	var x, y, z;
 
-		var a = 1;
-		var b = 1;
-		var c = 2;
+	var a = 1;
+	var b = 1;
+	var c = 2;
+
+	var a = 1, aMin = -5, aMax = 5, aStep = 0.1;
+	var b = 1, bMin = -5, bMax = 5, bStep = 0.1;
+	var c = 2, cMin = -5, cMax = 5, cStep = 0.1;
+	var d = 2, dMin = -5, dMax = 5, dStep = 0.1;
 
 
 	init();
@@ -44,16 +49,16 @@
 		scene.add( mesh );
 	}
 
-		function curve( u, v ) {		
-			u = pi * ( u - 0.5 );
-			v = pi * ( v - 0.5 );
+	function curve( u, v ) {
+		u = pi * ( u - 0.5 );
+		v = pi * ( v - 0.5 );
 
-			x = scale * ( ( c * c / a ) * ( ( cos( u ) * cos( u ) ) / ( sin( v ) * sin( v ) + c * c * cos( v ) * cos( v ) * ( cos( u ) * cos( u ) / a * a + sin( u ) * sin( u ) / b * b ) ) ) );
-			y = scale * ( ( c * c / b ) * ( ( sin( u ) * cos( v ) ) / ( sin( v ) * sin( v ) + c * c * cos( v ) * cos( v ) * ( cos( u ) * cos( u ) / a * a + sin( u ) * sin( u ) / b * b ) ) ) );
-			z = scale * ( c * ( ( sin( v ) ) / ( sin( v ) * sin( v ) + c * c * cos( v ) * cos( v ) * ( cos( u ) * cos( u ) / a * a + sin( u ) * sin( u ) / b * b ) ) ) );
+		x = scale * ( ( c * c / a ) * ( ( cos( u ) * cos( u ) ) / ( sin( v ) * sin( v ) + c * c * cos( v ) * cos( v ) * ( cos( u ) * cos( u ) / a * a + sin( u ) * sin( u ) / b * b ) ) ) );
+		y = scale * ( ( c * c / b ) * ( ( sin( u ) * cos( v ) ) / ( sin( v ) * sin( v ) + c * c * cos( v ) * cos( v ) * ( cos( u ) * cos( u ) / a * a + sin( u ) * sin( u ) / b * b ) ) ) );
+		z = scale * ( c * ( ( sin( v ) ) / ( sin( v ) * sin( v ) + c * c * cos( v ) * cos( v ) * ( cos( u ) * cos( u ) / a * a + sin( u ) * sin( u ) / b * b ) ) ) );
 
-			return new THREE.Vector3( x, y, z );
-		}
+		return new THREE.Vector3( x, y, z );
+	}
 
 	function cos( a ){ return Math.cos( a ); }
 	function sin( a ){ return Math.sin( a ); }
