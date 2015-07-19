@@ -56,7 +56,7 @@
 		u = 2 * pi * ( u - 0.5 );
 		v = 2 * pi * ( v - 0.5 );
 
-		x = scale * ( ( R2 + R3 * cos( a * u ) + R1 * cos( v ) ) * cos( u ) );
+		x = scale * ( ( R2 + b * cos( a * u ) + R1 * cos( v ) ) * cos( u ) );
 		y = scale * ( R1 * sin( v ) );
 		z = scale * ( ( R2 + b * cos( a * u ) + R1 * cos( v ) ) * sin( u ) );
 

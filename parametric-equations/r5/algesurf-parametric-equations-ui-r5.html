@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang=en >
+<head>
+<title>algeSurf Parametric Equations UI R5</title>
+<meta charset=utf-8 >
+<meta name='viewport content=width=device-width,user-scalable=no,minimum-scale=1.0,maximum-scale=1.0' />
+</head>
+<body>
+<script src=equations-library-r1.js ></script>
+<script>
+
+	var equationsKeys = Object.keys( equations );
+	var defaultEquation = Math.floor( equationsKeys.length * ran() );
+
+	init();
+
+	function init() {
+
+		css = document.head.appendChild( document.createElement('style') );
+		css.innerHTML ='body { font: 600 12pt monospace; margin: 0; overflow: hidden; }' +
+			'#i {text-decoration: none; }' +
+		'';
+
+		info = document.body.appendChild( document.createElement( 'div' ) );
+		info.style.cssText = ' margin: 0 20px; max-height: ' + ( window.innerHeight - 50 ) + 'px; max-width: 270px; overflow: auto; position: absolute; ';
+		info.innerHTML = '<h2 style=margin:0; ><a href="" >' + document.title + '</a> ' +
+			'<a id=i href=http://jaanga.github.io/algesurf/parametric-equations/ >&#x24D8;</a></h2>' +
+
+			'<p>Select an equation' +
+			'<br><select id=selEquation ></select><p>' +
+
+			'<p>Select a material' +
+			'<br><select id=selMaterial ></select></p>' +
+
+			'<button onclick=ifr.src="algesurf-parametric-equations-gallery-r1.html" >View equations gallery</button>' +
+
+			'<p><input type=checkbox id=chkRotate checked /> Enable auto-rotation</p>' +
+
+			'<p><input type=checkbox id=chkGradient onchange=toggleGradient(); /> Background </p>' +
+
+		'';
+
+		for ( var i = 0; i < equationsKeys.length ; i++ ) {
+
+			node = document.createElement( 'option' );
+			selEquation.appendChild( node );
+			node.text = equations[ equationsKeys[ i ] ].title;
+
+		}
+
+		selEquation.selectedIndex = defaultEquation;
+		selEquation.onchange = function() { drawEquation( selEquation.selectedIndex ); };
+
+		ifr = document.body.appendChild( document.createElement( 'iframe' ) );
+		ifr.width = window.innerWidth;
+		ifr.height = window.innerHeight;
+		ifr.style.cssText = 'border: 0px solid red; margin: 0; overflow: hidden; ';
+
+		ifr.onload = function() {
+			if ( ifr.contentWindow.controls ) {
+				chkRotate.checked = ifr.contentWindow.controls.autoRotate = true;
+				chkGradient.checked = true;
+				toggleGradient();
+
+				materialsKeys = Object.keys( ifr.contentWindow.materialsLibrary );
+
+				for ( var i = 0; i < materialsKeys.length ; i++ ) {
+
+					if ( materialsKeys[ i ].substr( 0, 1 ) === '#' ) {
+
+						node = document.createElement( 'optgroup' );
+						selMaterial.appendChild( node );
+						node.label = materialsKeys[ i ].substr( 1 );
+
+					} else {
+
+						node = document.createElement( 'option' );
+						selMaterial.appendChild( node );
+						node.text = materialsKeys[ i ];
+
+					}
+
+				}
+
+				selMaterial.selectedIndex = ifr.contentWindow.defaultMaterial;
+				selMaterial.onchange = function() { ifr.contentWindow.mesh.material = ifr.contentWindow.getMaterial(); };
+
+			}
+
+		}
+
+		ifr.src="algesurf-parametric-equations-api-r5.html";
+
+	} 
+
+
+	function drawEquation( index ) {
+
+		if ( index !== undefined ) {
+
+			selEquation.selectedIndex = index;
+
+		}
+
+		ifr.src = 'algesurf-parametric-equations-api-r5.html#' + selEquation.selectedIndex ;
+
+	}
+
+	function toggleGradient () {
+
+		gradient = document.getElementById( 'chkGradient' );
+
+		if ( gradient.checked ) { 
+/*
+			cssBackround = ifr.contentWindow.renderer.domElement.appendChild( document.createElement('style') );
+
+			var col1 = "#" + Math.random().toString(16).slice(2, 8);
+			var col2 = "#" + Math.random().toString(16).slice(2, 8);
+			var col3 = "#" + Math.random().toString(16).slice(2, 8);
+			var X = ( Math.random() * window.innerWidth ).toFixed(0);
+			var Y = ( Math.random() * window.innerHeight ).toFixed(0);
+			var center =  20 + ( Math.random() * 60 ).toFixed(0);
+
+			cssBackround.innerText = 'body { ' +
+				'background: -webkit-radial-gradient(' + X + 'px ' + Y + 'px, farthest-corner, ' + col1 + ' 0%, ' + col2 + ' 50%, ' + col3 + ' 100%); ' +
+				'background: -moz-radial-gradient(' + X + 'px ' + Y + 'px, farthest-corner, ' + col1 + ' 0%, ' + col2 + ' 50%, ' + col3 + ' 100%); ' +
+				'background: radial-gradient(' + X + 'px ' + Y + 'px, farthest-corner, ' + col1 + ' 0%, ' + col2 + ' 50%, ' + col3 + ' 100%); }' +
+			'';
+*/
+
+//				document.body.style.cssText += ' height: ' + window.innerHeight + 'px; ';
+
+				var col1 = Math.random().toString(16).slice(2, 8);
+				var col2 = Math.random().toString(16).slice(2, 8);
+				var col3 = Math.random().toString(16).slice(2, 8);
+				var x = ( Math.random() * window.innerWidth ).toFixed(0);
+				var y = ( Math.random() * window.innerHeight ).toFixed(0);
+
+				document.body.style.backgroundImage = 'radial-gradient( circle farthest-corner at ' + x + 'px ' + y + 'px, #' + col1 + ' 0%, #' + col2 + ' 50%, #' + col3 + ' 100%)';
+
+		} else {
+
+			cssBackround.innerText = 'body { background: #fff; }';
+
+		}
+
+	};
+
+</script>
+</body>
+</html>

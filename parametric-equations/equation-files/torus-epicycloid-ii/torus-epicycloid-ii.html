@@ -22,6 +22,11 @@
 	var R2 = 3;
 	var R1 = 12;
 
+	var a = 3, aMin = -5, aMax = 5, aStep = 0.1;
+
+	var R1 = 12, R1Min = -5, R1Max = 15, R1Step = 0.1;
+	var R2 = 3, R2Min = -5, R2Max = 5, R2Step = 0.1;
+
 	init();
 	animate();
 
@@ -43,13 +48,13 @@
 		scene.add( mesh );
 	}
 
-	function curve( u, v ) {		
+	function curve( u, v ) {
 		u = 2 * pi * ( u );
 		v = 2 * pi * ( v );
 
-		x = scale * ( ( R1 + ( R2 + R1 ) * sin( v ) - h * sin( ( ( R2 + R1 ) / R1 ) * v ) ) * cos( u ) );
-		y = scale * ( ( R2 + R1 ) * cos( v ) - h * cos( ( ( R2 + R1 ) / R1 ) * v ) );
-		z = scale * ( ( R1 + ( R2 + R1 ) * sin( v ) - h * sin( ( ( R2 + R1 ) / R1 ) * v ) ) * sin( u ) );
+		x = scale * ( ( R1 + ( R2 + R1 ) * sin( v ) - a * sin( ( ( R2 + R1 ) / R1 ) * v ) ) * cos( u ) );
+		y = scale * ( ( R2 + R1 ) * cos( v ) - a * cos( ( ( R2 + R1 ) / R1 ) * v ) );
+		z = scale * ( ( R1 + ( R2 + R1 ) * sin( v ) - a * sin( ( ( R2 + R1 ) / R1 ) * v ) ) * sin( u ) );
 
 		return new THREE.Vector3( x, y, z );
 	}
@@ -63,7 +68,7 @@
 	function log( a ){ return Math.log( a ); }
 	function pow( a, b ){ return Math.pow( a, b ); }
 	function ran(){ return Math.random(); }
-	function sqrt( a ){ return Math.sqrt( a ); }	
+	function sqrt( a ){ return Math.sqrt( a ); }
 
 	function animate() {
 		requestAnimationFrame( animate );

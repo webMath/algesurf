@@ -68,13 +68,16 @@
 		title = lines[3].replace( /<(.*?)>/gi, '' );
 		txt = '\t\'' + titles[ index ] + '\' : {\n';
  
-
-
 		txt += '\t\t\'title\' : \'' + title + '\',\n';
 
 
 		for ( var i = 10; i < lines.length; i++ ) {
 
+			if ( lines[ i ].substr( 0, 7 ) === '// http' ) {
+
+				txt += '\t\t\'link\' : \'' + lines[ i ].substr( 3 ) + '\',\n';
+
+			}
 
 			if ( lines[ i ].substr( 0, 10 ) === '	var scale' ) {
 
@@ -241,6 +244,7 @@
 
 		}
 
+		txt.replace( /\\/gi, '' );
 
 		messages.innerHTML += txt + '\n\n';
 

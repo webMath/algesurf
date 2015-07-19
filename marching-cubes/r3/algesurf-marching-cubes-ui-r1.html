@@ -25,14 +25,16 @@
 		'';
 
 		menu = document.body.appendChild( document.createElement( 'div' ) );
-		menu.style.cssText = 'margin: 0 20px; position: absolute;';
+		menu.style.cssText = 'margin: 0 20px; max-width: 250px; position: absolute;';
 		menu.innerHTML = '<h2>' +
 				'<a href="" >' + document.title + '</a> ' +
 				'<a id=i href=http://jaanga.github.io/algesurf/marching-cubes/ >&#x24D8;</a>' +
 			'</h2>' +
 
 			'<p>Select an equation' +
-			'<br><select id=selEquation ></select></p>' +
+			'<br><select id=selEquation ></select><p>' +
+
+			'<button onclick=ifr.src="algesurf-marching-cubes-gallery-r1.html" >View equations gallery</button>' +
 
 			'<p>Select a material' +
 			'<br><select id=selMaterial ></select></p>' +
@@ -43,6 +45,11 @@
 			'<button onclick=editEquation() >Update the display</button>' +
 
 			'<p><button onclick=createPermalink(); >Create permalink</button></p>' +
+
+			'<p><input type=checkbox id=chkRotate onchange=ifr.contentWindow.controls.autoRotate=ifr.contentWindow.controls.autoRotate===true?false:true; /> Auto Rotate </p>' +
+
+			'<p><input type=checkbox id=chkGradient onchange=toggleGradient(); /> Background </p>' +
+
 		'';
 
 		keysSurfaces = Object.keys( surfaces );
@@ -110,7 +117,16 @@
 		ifr.height = window.innerHeight;
 		ifr.style.cssText = 'border: 0px solid red; margin: 0; overflow: hidden; ';
 
-		drawEquation();
+		ifr.onload = function() {
+			if ( ifr.contentWindow.controls ) {
+				chkRotate.checked = ifr.contentWindow.controls.autoRotate = true;
+				chkGradient.checked = true;
+				toggleGradient();
+			}
+		}
+//		drawEquation();
+
+		ifr.src="algesurf-marching-cubes-gallery-r1.html";
 
 	}
 
@@ -124,18 +140,35 @@
 	}
 
 
-	function drawEquation() {
+	function drawEquation( surface ) {
 
-		equation = surfaces[ keysSurfaces[ selEquation.selectedIndex ] ].eqn;
+		if ( surface.length ) {
 
-		equationHTM.innerHTML = 'Formatted equation:<br>' + surfaces[ keysSurfaces[ selEquation.selectedIndex ] ].htm;
+			var s = surfaces[ surface ];
+
+			selEquation.selectedIndex = keysSurfaces.indexOf( surface );
+
+		} else  {
+
+			s = surfaces[ keysSurfaces[ selEquation.selectedIndex ] ];
+
+		}
+
+		equation = s.eqn;
+
+		equationHTM.innerHTML = 'Formatted equation:<br>' + s.htm;
 
 		txt.value = equation;
 
 		tex = materialsLibrary[ selMaterial.value ].texture === undefined ? '' : '#tex=' + materialsLibrary[ selMaterial.value ].texture;
 
 		ifr.src = 'algesurf-marching-cubes-api-r1.html#eqn=' + equation.replace( / /gi, '' ) +
-			'#mat=' + materialsLibrary[ selMaterial.value ].material + 
+			'#htm=' + s.htm + 
+			'#max=' + s.max +
+			'#min=' + s.min + 
+			'#mat=' + materialsLibrary[ selMaterial.value ].material +
+			'#scl=' + s.scl + 
+			'#ttl=' + s.ttl + 
 			tex +
 		'';
 
@@ -159,6 +192,8 @@
 
 		s = surfaces[ keysSurfaces[ selEquation.selectedIndex ] ];
 
+		tex = materialsLibrary[ selMaterial.value ].texture === undefined ? '' : '#tex=' + materialsLibrary[ selMaterial.value ].texture;
+
 		window.open( 
 
 			'algesurf-marching-cubes-api-r1.html' +
@@ -169,13 +204,42 @@
 			'#max=' + s.max +
 			'#mat=' + materialsLibrary[ selMaterial.value ].material +
 			'#scl=' + s.scl +
-			'#tex=' + materialsLibrary[ selMaterial.value ].texture +
+			tex +
 			'#ttl=' + s.ttl +
 			''
 
 		)
 
 	}
+
+	function toggleGradient () {
+
+		gradient = document.getElementById( 'chkGradient' );
+
+		if ( gradient.checked ) { 
+
+			cssBackround = ifr.contentWindow.renderer.domElement.appendChild( document.createElement('style') );
+
+			var col1 = "#" + Math.random().toString(16).slice(2, 8);
+			var col2 = "#" + Math.random().toString(16).slice(2, 8);
+			var col3 = "#" + Math.random().toString(16).slice(2, 8);
+			var X = ( Math.random() * window.innerWidth ).toFixed(0);
+			var Y = ( Math.random() * window.innerHeight ).toFixed(0);
+			var center =  20 + ( Math.random() * 60 ).toFixed(0);
+
+			cssBackround.innerText = 'body { ' +
+				'background: -webkit-radial-gradient(' + X + 'px ' + Y + 'px, farthest-corner, ' + col1 + ' 0%, ' + col2 + ' 50%, ' + col3 + ' 100%); ' +
+				'background: -moz-radial-gradient(' + X + 'px ' + Y + 'px, farthest-corner, ' + col1 + ' 0%, ' + col2 + ' 50%, ' + col3 + ' 100%); ' +
+				'background: radial-gradient(' + X + 'px ' + Y + 'px, farthest-corner, ' + col1 + ' 0%, ' + col2 + ' 50%, ' + col3 + ' 100%); }' +
+			'';
+
+		} else {
+
+			cssBackround.innerText = 'body { background: #fff; }';
+
+		}
+
+	};
 
 </script>
 </body>

@@ -155,7 +155,7 @@ ttl:'Geisha'
 
 'harlekin' : {
 eqn:'x^3*z + 10*x^2*y + x*y^2 + y*z^2 - z^3',
-htm:'x<sup>3</sup>z + 10x<sup>2</sup>y + xy<sup>2</sup> + yz<sup>2</sup> = z<sup>3</sup>',
+htm:'x<sup>3</sup>z + 10x<sup>2</sup>y + xy<sup>2</sup> + yz<sup>2</sup> \= z<sup>3</sup>',
 max:10,
 min:-10,
 scl:1,
@@ -183,14 +183,14 @@ tag: '',
 ttl:'Herz'
 },
 
-'himmel und Hölle' : {
-eqn:'x^2 - y^2*z^2',
+'himmel-und-Holle' : {
+eqn:'x^2 - y^2 * z^2',
 htm:'x<sup>2</sup> - y<sup>2</sup>z<sup>2</sup> = 0',
 max:1.5,
 min:-1.5,
 scl:8,
 tag: '',
-ttl:'Himmel und Hölle'
+ttl:'Himmel und Holle'
 },
 
 'kolobri' : {

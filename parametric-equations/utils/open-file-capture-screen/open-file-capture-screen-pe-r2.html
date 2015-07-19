@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang=en >
+<head>
+<title>open-file-capture-screen-pe-r2</title>
+<meta charset=utf-8 >
+<meta name='viewport content=width=device-width,user-scalable=no,minimum-scale=1.0,maximum-scale=1.0' />
+</head>
+<body>
+<script src=http://mrdoob.github.io/three.js/build/three.min.js ></script>
+<script src=http://mrdoob.github.io/three.js/examples/js/controls/OrbitControls.js ></script>
+<script src=../../r5/equations-library-r1.js ></script>
+<script>
+
+	var equationsKeys = Object.keys( equations );
+	var defaultEquation = Math.floor( equationsKeys.length * ran() );
+	var eqn, scale, a, b, c, d, e, f, g, h, i, j, R1, R1, s, u, v;
+
+	var index = previousIndex = defaultEquation;
+
+	var renderer, scene, camera, controls;
+	var geometry, material, mesh;
+
+	init();
+	animate();
+
+	function init() {
+
+		if ( window.self === window.top ) {
+
+			css = document.head.appendChild( document.createElement('style') );
+			css.innerHTML ='body { font: 600 12pt monospace; margin: 0; overflow: hidden; }' +
+				'#i {text-decoration: none; }' +
+			'';
+
+			info = document.body.appendChild( document.createElement( 'div' ) );
+			info.style.cssText = ' margin: 0 20px; max-height: ' + ( window.innerHeight - 50 ) + 'px; max-width: 270px; overflow: auto; position: absolute; ';
+			info.innerHTML = '<h2 style=margin:0; ><a href="" >' + document.title + '</a> ' +
+				'<a id=i href=http://jaanga.github.io/algesurf/parametric-equations/ >&#x24D8;</a></h2>' +
+				'<p id=equationList ></p>' +
+			'';
+
+			for ( var i = 0, txt = ''; i < equationsKeys.length; i++ ) {
+
+					txt += '<a id=surf' + i + ' href=# onclick=drawEquation(' + i + '); >' + equationsKeys[ i ] + '</a><br>';
+
+			}
+
+			equationList.innerHTML = txt + '<p id=endof ></p>' ;
+
+
+
+		}
+
+		content = document.body.appendChild( document.createElement( 'div' ) );
+		content.style.cssText = 'border: 0px red solid; left: 400px; position: absolute; top: 100px;';
+		content.innerHTML = '<p>' +
+			'<button onclick=grabIt(); >Grab it</button> and ' +
+			'<a id=download href="" onclick=saveIt(); ><button>Save it</button></a>' +
+			'</p>' +
+			'<span id=render ></span>' +
+			'<canvas id=canvas ></canvas>' +
+		''
+
+		canvas.style.cssText = 'border: 1px #000 solid; margin: 0 10px;';
+		canvas.width = canvas.height = 150;
+		context = canvas.getContext( '2d' );
+
+// note: preserveDrawingBuffer: true
+		renderer = new THREE.WebGLRenderer( { alpha: 1, antialias: true, clearColor: 0xffffff, preserveDrawingBuffer: true }  );
+		renderer.domElement.style.cssText = 'border: 1px red solid;';
+		renderer.setSize( 150, 150 );
+		render.appendChild( renderer.domElement );
+		scene = new THREE.Scene();
+
+		camera = new THREE.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 1, 1000 );
+		camera.position.set( 100, 100, 100 );
+		controls = new THREE.OrbitControls( camera, renderer.domElement );
+		controls.noKeys = true;
+
+//
+		material = new THREE.MeshNormalMaterial( { opacity: 0.7, side: 2, transparent: true } );
+
+		drawEquation( defaultEquation );
+
+		window.addEventListener( 'keyup', onKeyUp, false );
+
+	}
+
+	function drawEquation( id ) {
+
+		index = id;
+
+		eqn = equations[ equationsKeys[ index ] ];
+
+		equationList.children[ previousIndex * 2 ].style.backgroundColor = '';
+		equationList.children[ index * 2 ].style.backgroundColor = '#fcc';
+		equationList.children[ index * 2 ].scrollIntoView();
+
+		previousIndex = index;
+
+		scale = eqn.scale;
+		a = eqn.a; b = eqn.b; c = eqn.c; d = eqn.d;
+		e = eqn.e; f = eqn.f; g = eqn.g; h = eqn.h; i = eqn.i; j = eqn.j;
+		R1 = eqn.R1; R2 = eqn.R2;
+		u = eqn.u || 20; v = eqn.v || 20;
+
+		geometry = new THREE.ParametricGeometry( eqn.curve, u, v );
+		geometry.center();
+
+		scene.remove( mesh );
+		mesh = new THREE.Mesh( geometry, material );
+		scene.add( mesh );
+
+	}
+
+	function grabIt() {
+
+		image = new Image();
+
+		image.onload = function() {
+
+			context.clearRect ( 0, 0, 150, 150 );
+			context.drawImage( image, 0, 0 );
+
+		};
+
+		image.src = renderer.domElement.toDataURL( 'image/png' );
+
+	}
+
+	function saveIt() {
+
+		slash = navigator.platform === 'Win32' ? '\\' : '/' ;
+
+		name = equationsKeys[ index ]
+
+		name = name + '.png';
+
+		var c2du = canvas.toDataURL();
+
+		download.download = name;
+
+		download.href = c2du;
+
+	}
+
+	function onKeyUp ( event ) {
+
+		event.preventDefault();
+		event.stopPropagation();
+
+//console.log( 'key', event.keyCode );
+
+		switch( event.keyCode ) {
+
+			case 38: /* cursor up */ drawEquation( --index ); break;
+			case 40: /* cursor down */ drawEquation( ++index ); break;
+
+		}
+
+	}
+
+	function animate() {
+		requestAnimationFrame( animate );
+		renderer.render( scene, camera );
+		controls.update();
+	}
+
+</script>
+</body>
+</html>

@@ -12,6 +12,7 @@
 <script src=https://cdn.rawgit.com/mrdoob/texgen.js/master/build/texgen.min.js ></script>
 <script src=materials-no-lights.js ></script>
 <script>
+
 	var defaultEquation = 0;
 	var defaultMaterial = 1;
 
@@ -75,8 +76,10 @@
 			'<p><button onclick=createPermalink(); >Create permalink</button></p>' +
 
 			'<p><input type=checkbox id=chkRotate onchange=controls.autoRotate=controls.autoRotate===true?false:true; /> Auto Rotate </p>' +
-
+//			'Toggle Auto Rotation <input type=checkbox id=chkRotate checked />' +
 			'<p><input type=range min=0.001 max=0.1 step=0.001 value=0.01 onchange=deltaDelta=parseFloat(this.value); /> Delta</p>' +
+
+			'<p id=msg ></p>' +
 		'';
 
 		stats = new Stats();
@@ -206,7 +209,7 @@
 
 		startTime = chkRotate.checked ? performance.now() : 1000000 ;
 		controls.autoRotate = false;
-
+msg.innerHTML = startTime + ' ' + controls.autoRotate;
 	}
 
 	function onWindowResize() {
@@ -235,11 +238,16 @@
 
 	function animate( timestamp ) {
 		requestAnimationFrame( animate );
-//		controls.autoRotate = timestamp - startTime > delayTime ? true : false;
+
+
 		controls.update();
 		drawEquation();
 		renderer.render( scene, camera );
 		stats.update();
+
+
+//		controls.autoRotate = timestamp - startTime > delayTime ? true : false;
+//msg.innerHTML = startTime + ' ' + controls.autoRotate;
 	}
 
 </script>
