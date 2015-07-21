@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang=en >
 <head>
-<title>algeSurf Parametric Equations API R5</title>
+<title>algeSurf Parametric Equations API Equations Editor R5</title>
 <meta charset=utf-8 >
 <meta name='viewport content=width=device-width,user-scalable=no,minimum-scale=1.0,maximum-scale=1.0' />
 </head>
@@ -14,18 +14,20 @@
 <script>
 
 	var defaultMaterial = 36;
+	var defaultEquation = 20; // Math.floor( equationsKeys.length * ran() );
 
 	var eqns = new equations;
 	var equationsKeys = Object.keys( eqns.equations );
-	var defaultEquation = Math.floor( equationsKeys.length * ran() );
+
+	var idx = defaultEquation;
 
 	var eqn, scale, a, b, c, d, e, f, g, h, i, j, R1, R1, s, u, v;
 
-	var startTime = performance.now();
+	var vars = [ 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'R1', 'R2', 'u', 'v' ];
+
+	var startTime = 10000000000000000000; // performance.now();
 	var delayTime = 2000;
 //	var autoRotateSpeed = 0.2;
-
-	var index;
 
 	var css, menu, renderer, scene, camera, controls;
 	var geometry, material, mesh;
@@ -45,7 +47,7 @@
 			'';
 
 			menu = document.body.appendChild( document.createElement( 'div' ) );
-			menu.style.cssText = ' margin: 0 20px; max-height: ' + ( window.innerHeight - 50 ) + 'px; max-width: 270px; overflow: auto; position: absolute; ';
+			menu.style.cssText = ' margin: 0 20px; max-height: ' + ( window.innerHeight - 20 ) + 'px; max-width: 270px; overflow: auto; position: absolute; ';
 			menu.innerHTML = '<h2 style=margin:0; ><a href="" >' + document.title + '</a> ' +
 				'<a id=i href=http://jaanga.github.io/algesurf/parametric-equations/ >&#x24D8;</a></h2>' +
 
@@ -55,20 +57,24 @@
 				'<p>Select a material' +
 				'<br><select id=selMaterial ></select></p>' +
 
-				'<input type=checkbox id=chkRotate checked /> Enable auto-rotation' +
+				'<input type=checkbox id=chkRotate /> Enable auto-rotation' +
+
+				'<p id=sliders ></p>' +
+
+				'<p id=equation ></p>' +
+
 			'';
 
 			for ( var i = 0, node; i < equationsKeys.length ; i++ ) {
 
 				node = document.createElement( 'option' );
 				selEquation.appendChild( node );
-				node.text = eqns.equations[ equationsKeys[ i ] ].title;
+				node.text = equationsKeys[ i ];
 
 			}
 
 			selEquation.selectedIndex = defaultEquation;
-			selEquation.onchange = function() { drawEquation( selEquation.selectedIndex ); };
-
+			selEquation.onchange = getEquation;
 
 			for ( var i = 0, node; i < materialsKeys.length ; i++ ) {
 
@@ -93,6 +99,7 @@
 
 		}
 
+
 		renderer = new THREE.WebGLRenderer( { alpha: 1, antialias: true, clearColor: 0xffffff }  );
 		renderer.setSize( window.innerWidth, window.innerHeight );
 		document.body.appendChild( renderer.domElement );
@@ -114,17 +121,47 @@
 
 	} 
 
-	function onMouseMove() {
+	function getEquation() {
 
-		startTime = parent.chkRotate.checked ? performance.now() : 1000000 ;
-		controls.autoRotate = false;
+		eqn = eqns.equations[ equationsKeys[ selEquation.selectedIndex ] ];
+
+		txt = '<p><input type=range id=rngscale min=0.5 step=0.05 value=' + eqn[ "scale" ] + ' onmousemove=edit(); /> Scale</p>';
+
+		for ( var i = 0; i < vars.length; i++ ) {
+
+			if ( eqn[ vars[ i ] ] ) {
+
+				txt += '<p><input type=range ' +  
+					' id=rng' + vars[ i ] +
+					' min=' + ( eqn[ vars[ i ] + 'Min' ] ) +
+					' max=' + ( eqn[ vars[ i ] + 'Max' ] ) +
+					' step=' + ( eqn[ vars[ i ] + 'Step' ] ) +
+					' value=' + eqn[ vars[ i ] ] +
+					' onmousemove=edit();' +
+					' title=' + eqn[ vars[ i ] ] +
+					' /> ' + 
+					'<span id=spn' + vars[ i ] + ' >' + vars[ i ] + ' ' + eqn[ vars[ i ] ] + '</span></p>' +
+				'';
+
+			}
+
+		}
+
+		sliders.innerHTML = txt + '<button onclick="eqns = new equations; getEquation(); controls.reset();"; >Reset</button>';
+
+
+// eqns = new equations;
+
+		equation.innerText = eqn.curve.toString();
+
+		drawEquation( selEquation.selectedIndex );
 
 	}
 
 	function drawEquation( id ) {
 
-		index = id;
-		eqn = eqns.equations[ equationsKeys[ index ] ];
+		idx = id;
+		eqn = eqns.equations[ equationsKeys[ idx ] ];
 		scale = eqn.scale;
 		a = eqn.a; b = eqn.b; c = eqn.c; d = eqn.d;
 		e = eqn.e; f = eqn.f; g = eqn.g; h = eqn.h; i = eqn.i; j = eqn.j;
@@ -143,6 +180,28 @@
 
 	}
 
+	function edit() {
+
+		eqn.scale = parseFloat( rngscale.value );
+
+		for ( var i = 0; i < vars.length; i++ ) {
+
+			if ( eqn[ vars[ i ] ] ) {
+
+				eqn[ vars[ i ] ] = parseFloat( eval( 'rng' + vars[ i ] ).value );
+
+				eqn[ vars[ i ] ] = eqn[ vars[ i ] ] === 0 ? 0.01 : eqn[ vars[ i ] ];
+
+				 eval( 'spn' + vars[ i ] ).innerText = vars[ i ] + ' ' + eqn[ vars[ i ] ];
+
+			}
+
+		}
+
+		drawEquation( idx );
+
+	}
+
 	function hashChange() {
 
 		hashes = location.hash.split ( '#' );
@@ -151,17 +210,26 @@
 
 //			if ( window.self === window.top ) {
 
-				parent.selEquation.selectedIndex = index;
+				parent.selEquation.selectedIndex = hashes[ 1 ];
 
 //			}
+
+			eqn = equations[ equationsKeys[ hashes[ 1 ] ] ];
 
 			drawEquation( hashes[ 1 ] );
 
 		} else {
 
-			drawEquation( defaultEquation );
+			getEquation();
 
 		}
+
+	}
+
+	function onMouseMove() {
+
+		startTime = parent.chkRotate.checked ? performance.now() : 1000000 ;
+		controls.autoRotate = false;
 
 	}
 

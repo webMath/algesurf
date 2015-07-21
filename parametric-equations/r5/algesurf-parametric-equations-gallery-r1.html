@@ -9,6 +9,9 @@
 <script src=equations-library-r1.js ></script>
 <script>
 
+	var eqns = new equations;
+	var equationsKeys = Object.keys( eqns.equations );
+
 	init();
 
 	function init() {
@@ -37,7 +40,7 @@
 
 		}
 
-		equationsKeys = Object.keys( equations );
+
 
 		txt = '';
 
@@ -45,9 +48,11 @@
 
 
 			for ( var i = 0; i < equationsKeys.length; i++ ) {
-				eqn = equations[ equationsKeys[ i ] ];
+
+				eqn = eqns.equations[ equationsKeys[ i ] ];
+
 				txt += '<div style="float: left; height: 250px; overflow: auto; padding: 0 5px; width: 250px;" >' +
-					'<a href="algesurf-parametric-equations-r5.1.html#' + i + '" >' + 
+					'<a href="algesurf-parametric-equations-ui-r5.html#' + i + '" >' + 
 					'<img src="../images/' +  equationsKeys[ i ] + '.png" /><br>' + eqn.title + '<br>' + '</a>' +
 				'</div>' ; 
 
@@ -56,7 +61,8 @@
 		} else {
 
 			for ( var i = 0; i < equationsKeys.length; i++ ) {
-				eqn = equations[ equationsKeys[i] ];
+
+				eqn = eqns.equations[ equationsKeys[i] ];
 
 				txt += '<div style="float: left; height: 250px; overflow: auto; padding: 0 5px; width: 250px;" >' +
 					'<a href=JavaScript:parent.drawEquation("' + i + '"); style=text-decoration:none; >' +
@@ -64,7 +70,6 @@
 				'</div>' ; 
 
 			}
-
 
 		}
 

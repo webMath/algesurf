@@ -402,6 +402,8 @@
 
 		};
 
+		materialsKeys = Object.keys( materialsLibrary );
+
 	}
 
 
@@ -607,27 +609,24 @@
 
 			material = materialsLibrary[ parent.selMaterial.value ].material;
 
+			if ( materialsLibrary[ parent.selMaterial.value ].texture ) {
+
+				texture = materialsLibrary[ parent.selMaterial.value ].texture;
+				texture.needsUpdate = true;
+				material.map = texture;
+
+			}
+
 		} else {
 
 			material = materialsLibrary[ 'red triangles' ].material;
-
-		}
-
-		material.side = 2;
-
-		if ( parent.selMaterial.value && materialsLibrary[ parent.selMaterial.value ].texture ) {
-
-			texture = materialsLibrary[ parent.selMaterial.value ].texture;
-			texture.needsUpdate = true;
-			material.map = texture;
-
-		} else if ( materialsLibrary[ 'red triangles' ].texture ) {
-
 			texture = materialsLibrary[ 'red triangles' ].texture;
 			texture.needsUpdate = true;
 			material.map = texture;
 
 		}
+
+		material.side = 2;
 
 		return material;
 

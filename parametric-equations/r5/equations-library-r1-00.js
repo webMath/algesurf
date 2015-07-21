@@ -1,31 +1,28 @@
 var x, y, z;
 var pi = Math.PI;
 
-//equations = {
-
-	var equations = function() { this.equations = {
+equations = {
 	'apple-surface-i' : {
 		'title' : 'Apple Surface I',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite54.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite54.html',
 		'scale' :  5,
 		'a' : 4,
-		'aMin' : -5,
+		'aMin' : 0.05,
 		'aMax' : 10,
 		'aStep' : 0.05,
 		'b' : 3.8,
-		'bMin' : -5,
+		'bMin' : 0.05,
 		'bMax' : 10,
 		'bStep' : 0.05,
 		'c' : 10,
-		'cMin' : -5,
+		'cMin' : 0.05,
 		'cMax' : 20,
 		'cStep' : 0.5,
 		'd' : 7.5,
-		'dMin' : -5,
+		'dMin' : 0.05,
 		'dMax' : 10,
 		'dStep' : 0.05,
 		'curve' : function( u, v ) {
-
 			u = 2 * pi * ( u - 0.5 );
 			v = 2 * pi * ( v - 0.5);
 
@@ -40,38 +37,38 @@ var pi = Math.PI;
 
 	'apple-surface-ii' : {
 		'title' : 'Apple II Surface',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite100.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite100.html',
 		'scale' :  5,
 		'a' : 20,
-		'aMin' : -10,
+		'aMin' : 0,
 		'aMax' : 30,
 		'aStep' : 1,
 		'b' : 0.25,
-		'bMin' : -1,
+		'bMin' : 0.01,
 		'bMax' : 2,
 		'bStep' : 0.01,
 		'c' : 5,
-		'cMin' : -10,
+		'cMin' : 0.01,
 		'cMax' : 20,
 		'cStep' : 0.1,
 		'd' : 2.3,
-		'dMin' : -5,
+		'dMin' : 0.01,
 		'dMax' : 8,
 		'dStep' : 0.1,
 		'e' : 6,
-		'eMin' : -10,
+		'eMin' : 0.01,
 		'eMax' : 10,
 		'eStep' : 0.1,
 		'f' : 2,
-		'fMin' : -10,
+		'fMin' : 0.01,
 		'fMax' : 5,
 		'fStep' : 0.1,
 		'R1' : 5,
-		'R1Min' : -5,
+		'R1Min' : 0.01,
 		'R1Max' : 8,
 		'R1Step' : 0.1,
 		'R2' : 4.8,
-		'R2Min' : -5,
+		'R2Min' : -2,
 		'R2Max' : 8,
 		'R2Step' : 0.1,
 		'curve' : function( u, v ) {
@@ -89,19 +86,19 @@ var pi = Math.PI;
 
 	'bell' : {
 		'title' : 'Bell',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite130.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite130.html',
 		'scale' :  25,
 		'a' : 1,
-		'aMin' : -10,
+		'aMin' : 0.01,
 		'aMax' : 10,
 		'aStep' : 0.1,
 		'b' : 2.2,
-		'bMin' : -5,
+		'bMin' : 0.01,
 		'bMax' : 5,
 		'bStep' : 0.1,
 		'c' : 2,
-		'cMin' : -20,
-		'cMax' : 20,
+		'cMin' : 2,
+		'cMax' : 10,
 		'cStep' : 2,
 		'curve' : function( u, v ) {
 			u = 5 * ( u - 0.5 );
@@ -120,23 +117,23 @@ var pi = Math.PI;
 
 	'bell-polar' : {
 		'title' : 'Bell Polar',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite131.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite131.html',
 		'scale' :  25,
 		'a' : 1,
-		'aMin' : -10,
-		'aMax' : 10,
+		'aMin' : 0.01,
+		'aMax' : 5,
 		'aStep' : 0.1,
 		'b' : 2,
-		'bMin' : -10,
-		'bMax' : 10,
+		'bMin' : 0.01,
+		'bMax' : 5,
 		'bStep' : 0.1,
 		'c' : 2,
-		'cMin' : -10,
-		'cMax' : 20,
+		'cMin' : 2,
+		'cMax' : 10,
 		'cStep' : 2,
 		'd' : 2,
-		'dMin' : -10,
-		'dMax' : 10,
+		'dMin' : 0.01,
+		'dMax' : 5,
 		'dStep' : 0.1,
 		'curve' : function( u, v ) {
 			u = pi * ( u - 0.5 );
@@ -157,30 +154,30 @@ var pi = Math.PI;
 
 	'bell-wave' : {
 		'title' : 'Bell Wave',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite132.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite132.html',
 		'scale' :  25,
 		'a' : 0.5,
-		'aMin' : -2,
-		'aMax' : 2,
-		'aStep' : 0.01,
+		'aMin' : 0.01,
+		'aMax' : 5,
+		'aStep' : 0.1,
 		'b' : 1,
-		'bMin' : -2,
-		'bMax' : 10,
+		'bMin' : 0.01,
+		'bMax' : 5,
 		'bStep' : 0.1,
 		'c' : 5,
-		'cMin' : -5,
+		'cMin' : 0.01,
 		'cMax' : 8,
 		'cStep' : 0.1,
 		'd' : 2,
-		'dMin' : -10,
-		'dMax' : 10,
+		'dMin' : 2,
+		'dMax' : 8,
 		'dStep' : 2,
 		'e' : 2,
-		'eMin' : -10,
+		'eMin' : 2,
 		'eMax' : 10,
 		'eStep' : 2,
 		'f' : 2,
-		'fMin' : -10,
+		'fMin' : 2,
 		'fMax' : 10,
 		'fStep' : 2,
 		'curve' : function( u, v ) {
@@ -201,34 +198,34 @@ var pi = Math.PI;
 
 	'bent-horns' : {
 		'title' : 'Bent Horns',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite49.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite49.html',
 		'scale' :  10,
 		'a' : 2,
-		'aMin' : -10,
-		'aMax' : 10,
+		'aMin' : 0.05,
+		'aMax' : 5,
 		'aStep' : 0.01,
 		'b' : 3,
-		'bMin' : -10,
-		'bMax' : 10,
+		'bMin' : 0.01,
+		'bMax' : 5,
 		'bStep' : 0.05,
 		'c' : 2,
-		'cMin' : -10,
-		'cMax' : 10,
+		'cMin' : 0.01,
+		'cMax' : 5,
 		'cStep' : 0.05,
 		'd' : 3,
-		'dMin' : -10,
-		'dMax' : 10,
+		'dMin' : 0.01,
+		'dMax' : 5,
 		'dStep' : 0.05,
 		'e' : 4,
-		'eMin' : -10,
+		'eMin' : 0.01,
 		'eMax' : 9,
 		'eStep' : 0.1,
 		'f' : 1,
-		'fMin' : -10,
+		'fMin' : 0.01,
 		'fMax' : 5,
 		'fStep' : 0.1,
 		'g' : 1,
-		'gMin' : -10,
+		'gMin' : 0.01,
 		'gMax' : 5,
 		'gStep' : 0.1,
 		'curve' : function( u, v ) {
@@ -246,16 +243,16 @@ var pi = Math.PI;
 
 	'bicorn-surface' : {
 		'title' : 'Bicorn Surface',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite180.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite180.html',
 		'scale' :  50,
 		'a' : 2,
-		'aMin' : -10,
-		'aMax' : 10,
+		'aMin' : -5,
+		'aMax' : 5,
 		'aStep' : 0.1,
 		'b' : 3,
 		'bMin' : -5,
 		'bMax' : 5,
-		'bStep' : 0.01,
+		'bStep' : 0.1,
 		'curve' : function( u, v ) {
 			u = pi * ( u - 0.5 );
 			v = 2 * pi * ( v - 0.5 );
@@ -271,9 +268,9 @@ var pi = Math.PI;
 
 	'bohemian-dome' : {
 		'title' : 'Bohemian Dome',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite5.html',
-		'link2' : 'http://paulbourke.net/geometry/',
-		'link3' : 'http://mathworld.wolfram.com/BohemianDome.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite5.html',
+		'link' : 'http://paulbourke.net/geometry/',
+		'link' : 'http://mathworld.wolfram.com/BohemianDome.html',
 		'scale' :  25,
 		'a' : 0.5,
 		'aMin' : -5,
@@ -290,7 +287,7 @@ var pi = Math.PI;
 		'd' : 0.5,
 		'dMin' : -5,
 		'dMax' : 5,
-		'dStep' : 0.01,
+		'dStep' : 0.1,
 		'curve' : function( u, v ) {
 			u = 2 * pi * ( u - 0.5 );
 			v = 2 * pi * ( v - 0.5 );
@@ -306,20 +303,20 @@ var pi = Math.PI;
 
 	'bonan-jeener-klein-surface' : {
 		'title' : 'Bonan Jeener Klein Surface *',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite109.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite109.html',
 		'scale' :  15,
 		'a' : 4,
 		'aMin' : -5,
 		'aMax' : 5,
-		'aStep' : 0.01,
+		'aStep' : 0.1,
 		'b' : 2,
 		'bMin' : -5,
 		'bMax' : 5,
-		'bStep' : 0.01,
+		'bStep' : 0.1,
 		'c' : 2,
 		'cMin' : -5,
 		'cMax' : 5,
-		'cStep' : 0.01,
+		'cStep' : 0.1,
 		'd' : 1,
 		'dMin' : -5,
 		'dMax' : 5,
@@ -359,16 +356,16 @@ var pi = Math.PI;
 
 	'borromean-rings' : {
 		'title' : 'Borromean Rings',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite160.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite160.html',
 		'scale' :  10,
 		'R1' : 1.5,
-		'R1Min' : -10,
-		'R1Max' : 10,
+		'R1Min' : -5,
+		'R1Max' : 5,
 		'R1Step' : 0.1,
 		'R2' : 8,
 		'R2Min' : -2,
 		'R2Max' : 15,
-		'R2Step' : 0.1,
+		'R2Step' : 0.5,
 		'curve' : function( u, v ) {
 			u = 2 * pi * ( u - 0.5 );
 			v = 2 * pi * ( v - 0.5 );
@@ -384,7 +381,7 @@ var pi = Math.PI;
 
 	'bow-curve' : {
 		'title' : 'Bow Curve',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite171.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite171.html',
 		'scale' :  25,
 		'a' : 0.5,
 		'aMin' : -5,
@@ -412,9 +409,9 @@ var pi = Math.PI;
 
 
 	'boy-surface' : {
-		'title' : 'Boy\'s Surface *',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite6.html',
-		'link2' : 'http://paulbourke.net/geometry/',
+		'title' : 'Boys Surface *',
+		'link' : 'http://www.3d-meier.de/tut3/Seite6.html',
+		'link' : 'http://paulbourke.net/geometry/',
 		'scale' :  35,
 		'a' : 2,
 		'aMin' : -5,
@@ -468,15 +465,15 @@ var pi = Math.PI;
 
 	'breather-surface' : {
 		'title' : 'Breather Surface *',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite176.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite176.html',
 		'scale' :  16,
 		'a' : 0.4,
-		'aMin' : -1,
-		'aMax' : 1,
+		'aMin' : -5,
+		'aMax' : 5,
 		'aStep' : 0.05,
 		'b' : 1,
-		'bMin' : 0.01,
-		'bMax' : pi,
+		'bMin' : -5,
+		'bMax' : 5,
 		'bStep' : 0.05,
 		'c' : 2,
 		'cMin' : -5,
@@ -519,7 +516,7 @@ var pi = Math.PI;
 
 	'bullet-nose' : {
 		'title' : 'Bullet Nose',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite183.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite183.html',
 		'scale' :  50,
 		'a' : 0.5,
 		'aMin' : -5,
@@ -544,7 +541,7 @@ var pi = Math.PI;
 
 	'catalan-surface' : {
 		'title' : 'Catalan Surface *',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite29.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite29.html',
 		'scale' :  15,
 		'a' : 1,
 		'aMin' : -5,
@@ -569,7 +566,7 @@ var pi = Math.PI;
 			v = 2.6 * ( v - 0.5 );
 
 			x = scale * ( u - cosh( v ) * sin( u ) );
-			y = scale * ( a * cos( u ) * cosh( v ) );
+			y = scale * ( a - cos( u ) * cosh( v ) );
 			z = scale * ( -b * sin( u /  c ) * sinh( v /  d) );
 
 			return new THREE.Vector3( x, y, z );
@@ -579,7 +576,7 @@ var pi = Math.PI;
 
 	'catenoid' : {
 		'title' : 'Catenoid',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite23.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite23.html',
 		'scale' :  25,
 		'a' : 1,
 		'aMin' : -5,
@@ -612,7 +609,7 @@ var pi = Math.PI;
 
 	'cone' : {
 		'title' : 'Cone',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite85.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite85.html',
 		'scale' :  25,
 		'a' : 0.8,
 		'aMin' : -5,
@@ -637,9 +634,9 @@ var pi = Math.PI;
 
 	'cornucopia' : {
 		'title' : 'Cornucopia',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite7.html',
-		'link1' : 'http://web.eecs.utk.edu/~djacks36/www-home/cs594/hw01/',
-		'link1' : 'http://mathworld.wolfram.com/Cornucopia.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite7.html',
+		'link' : 'http://web.eecs.utk.edu/~djacks36/www-home/cs594/hw01/',
+		'link' : 'http://mathworld.wolfram.com/Cornucopia.html',
 		'scale' :  10,
 		'a' : 0.7,
 		'aMin' : -5,
@@ -676,7 +673,7 @@ var pi = Math.PI;
 
 	'cosine-surface' : {
 		'title' : 'Cosine Surface',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite39.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite39.html',
 		'scale' :  70,
 		'a' : 1,
 		'aMin' : -5,
@@ -705,7 +702,7 @@ var pi = Math.PI;
 
 	'cosine-surface-ii' : {
 		'title' : 'Cosine Surface II',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite186.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite186.html',
 		'scale' :  50,
 		'a' : 1,
 		'aMin' : -5,
@@ -734,7 +731,7 @@ var pi = Math.PI;
 
 	'cosine-wave' : {
 		'title' : 'Cosine Wave',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite128.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite128.html',
 		'scale' :  50,
 		'a' : 0.2,
 		'aMin' : -5,
@@ -769,12 +766,12 @@ var pi = Math.PI;
 
 	'costa-surface' : {
 		'title' : 'Costa Surface',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite80.html',
-		'link1' : 'http://mathworld.wolfram.com/CostaMinimalSurface.html',
-		'link1' : 'http://virtualmathmuseum.org/Surface/costa-h-m/costa-h-m.html',
-		'link1' : 'http://www.indiana.edu/~minimal/essays/costa/',
-		'link1' : 'http://geometrygym.blogspot.com/2010/03/costa-minimal-surface.html',
-		'link1' : 'http://demonstrations.wolfram.com/TheTopologyOfCostasMinimalSurface/',
+		'link' : 'http://www.3d-meier.de/tut3/Seite80.html',
+		'link' : 'http://mathworld.wolfram.com/CostaMinimalSurface.html',
+		'link' : 'http://virtualmathmuseum.org/Surface/costa-h-m/costa-h-m.html',
+		'link' : 'http://www.indiana.edu/~minimal/essays/costa/',
+		'link' : 'http://geometrygym.blogspot.com/2010/03/costa-minimal-surface.html',
+		'link' : 'http://demonstrations.wolfram.com/TheTopologyOfCostasMinimalSurface/',
 		'scale' :  25,
 		'curve' : function( u, v ) {
 			u = pi * ( u - 0.5 );
@@ -791,7 +788,7 @@ var pi = Math.PI;
 
 	'crescent' : {
 		'title' : 'Cresent',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite52.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite52.html',
 		'scale' :  25,
 		'a' : 2,
 		'aMin' : -5,
@@ -832,8 +829,8 @@ var pi = Math.PI;
 
 	'cross-cap' : {
 		'title' : 'Cross Cap',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite8.html',
-		'link1' : 'http://paulbourke.net/geometry/crosscap/',
+		'link' : 'http://www.3d-meier.de/tut3/Seite8.html',
+		'link' : 'http://paulbourke.net/geometry/crosscap/',
 		'scale' :  50,
 		'a' : 2,
 		'aMin' : -5,
@@ -878,7 +875,7 @@ var pi = Math.PI;
 
 	'cross-cup' : {
 		'title' : 'Cross Cup',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite8.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite8.html',
 		'scale' :  50,
 		'a' : 2,
 		'aMin' : -5,
@@ -931,7 +928,7 @@ var pi = Math.PI;
 
 	'cylinder' : {
 		'title' : 'Cylinder',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite103.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite103.html',
 		'scale' :  25,
 		'a' : 2,
 		'aMin' : -5,
@@ -968,7 +965,7 @@ var pi = Math.PI;
 
 	'cylinder-cissoid' : {
 		'title' : 'Cylinder Cissoid',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite155.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite155.html',
 		'scale' :  25,
 		'a' : 2,
 		'aMin' : -5,
@@ -1021,7 +1018,7 @@ var pi = Math.PI;
 
 	'cylinder-epicycloid' : {
 		'title' : 'Epicycloid Cylinder',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite151.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite151.html',
 		'scale' :  5,
 		'a' : 3,
 		'aMin' : -5,
@@ -1058,7 +1055,7 @@ var pi = Math.PI;
 
 	'cylinder-gauss' : {
 		'title' : 'Cylinder Gauss',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite157.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite157.html',
 		'scale' :  15,
 		'a' : 2,
 		'aMin' : -5,
@@ -1111,7 +1108,7 @@ var pi = Math.PI;
 
 	'cylinder-hypocycloid' : {
 		'title' : 'Cylinder Hypocycloid',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite152.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite152.html',
 		'scale' :  5,
 		'a' : 3,
 		'aMin' : -5,
@@ -1148,7 +1145,7 @@ var pi = Math.PI;
 
 	'cylinder-lemniscate' : {
 		'title' : 'Cylinder Lemniskate',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite153.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite153.html',
 		'scale' :  25,
 		'a' : 1,
 		'aMin' : -5,
@@ -1185,7 +1182,7 @@ var pi = Math.PI;
 
 	'cylinder-strophoid' : {
 		'title' : 'Cylinder Strophoid',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite154.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite154.html',
 		'scale' :  10,
 		'a' : 2,
 		'aMin' : -5,
@@ -1242,7 +1239,7 @@ var pi = Math.PI;
 
 	'cylinder-witch-of-agnesi' : {
 		'title' : 'Cylinder Witch of Agnesi',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite156.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite156.html',
 		'scale' :  5,
 		'a' : 2,
 		'aMin' : -5,
@@ -1295,15 +1292,15 @@ var pi = Math.PI;
 
 	'dini-surface' : {
 		'title' : 'Dinis Surface *',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite9.html',
-		'link1' : 'http://en.wikipedia.org/wiki/Dini\'s_surface',
-		'link1' : 'http://paulbourke.net/geometry/dini/',
-		'link1' : 'http://mathworld.wolfram.com/DinisSurface.html',
-		'link1' : 'http://virtualmathmuseum.org/Surface/dini/dini.html &lt;&lt; more complex rendition',
-		'link1' : 'http://www.geom.uiuc.edu/zoo/diffgeom/surfspace/dini/',
-		'link1' : 'http://mathoverflow.net/questions/149842/geodesics-on-the-twisted-pseudosphere-dinis-surface',
-		'link1' : 'https://www.vismath.eu/en/3d-models/laser-in-glass-dini-surface',
-		'link1' : 'http://www.levygallery.com/inventory/hiroshi_sugimoto/03.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite9.html',
+		'link' : 'http://en.wikipedia.org/wiki/Dini\'s_surface',
+		'link' : 'http://paulbourke.net/geometry/dini/',
+		'link' : 'http://mathworld.wolfram.com/DinisSurface.html',
+		'link' : 'http://virtualmathmuseum.org/Surface/dini/dini.html &lt;&lt; more complex rendition',
+		'link' : 'http://www.geom.uiuc.edu/zoo/diffgeom/surfspace/dini/',
+		'link' : 'http://mathoverflow.net/questions/149842/geodesics-on-the-twisted-pseudosphere-dinis-surface',
+		'link' : 'https://www.vismath.eu/en/3d-models/laser-in-glass-dini-surface',
+		'link' : 'http://www.levygallery.com/inventory/hiroshi_sugimoto/03.html',
 		'scale' :  35,
 		'a' : 1,
 		'aMin' : -5,
@@ -1342,7 +1339,7 @@ var pi = Math.PI;
 
 	'disc' : {
 		'title' : 'Disc',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite125.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite125.html',
 		'scale' :  25,
 		'a' : 1,
 		'aMin' : -5,
@@ -1375,7 +1372,7 @@ var pi = Math.PI;
 
 	'double-cone' : {
 		'title' : 'Double Cone',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite113.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite113.html',
 		'scale' :  50,
 		'a' : 1,
 		'aMin' : -5,
@@ -1408,7 +1405,7 @@ var pi = Math.PI;
 
 	'drop-i' : {
 		'title' : 'Drop',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite44.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite44.html',
 		'scale' :  25,
 		'a' : 1,
 		'aMin' : -5,
@@ -1461,7 +1458,7 @@ var pi = Math.PI;
 
 	'drop-ii' : {
 		'title' : 'Drop II',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite104.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite104.html',
 		'scale' :  50,
 		'a' : 0.5,
 		'aMin' : -5,
@@ -1514,7 +1511,7 @@ var pi = Math.PI;
 
 	'dupin-cyclide' : {
 		'title' : 'Dupin Cyclide',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite68.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite68.html',
 		'scale' :  5,
 		'a' : 5.5,
 		'aMin' : -5,
@@ -1556,7 +1553,7 @@ var pi = Math.PI;
 
 	'egg' : {
 		'title' : 'Egg',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite87.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite87.html',
 		'scale' :  25,
 		'a' : 1.5,
 		'aMin' : -5,
@@ -1605,7 +1602,7 @@ var pi = Math.PI;
 
 	'eight-surface' : {
 		'title' : 'Eight Surface',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite41.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite41.html',
 		'scale' :  50,
 		'curve' : function( u, v ) {
 			u = 2 * pi * ( u - 0.5 );
@@ -1622,7 +1619,7 @@ var pi = Math.PI;
 
 	'ellipsoid' : {
 		'title' : 'Ellipsoid',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite40.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite40.html',
 		'scale' :  50,
 		'a' : 1,
 		'aMin' : -5,
@@ -1655,11 +1652,11 @@ var pi = Math.PI;
 
 	'enneper-surface' : {
 		'title' : 'Ennepers Surface',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite10.html',
-		'link1' : 'http://en.wikipedia.org/wiki/Enneper_surface',
-		'link1' : 'http://paulbourke.net/geometry/ennepers/',
-		'link1' : 'https://secure.msri.org/about/sgp/jim/geom/minimal/library/ennepern/z-index.html',
-		'link1' : 'http://blogs.ams.org/visualinsight/2013/11/01/enneper-surface/',
+		'link' : 'http://www.3d-meier.de/tut3/Seite10.html',
+		'link' : 'http://en.wikipedia.org/wiki/Enneper_surface',
+		'link' : 'http://paulbourke.net/geometry/ennepers/',
+		'link' : 'https://secure.msri.org/about/sgp/jim/geom/minimal/library/ennepern/z-index.html',
+		'link' : 'http://blogs.ams.org/visualinsight/2013/11/01/enneper-surface/',
 		'scale' :  8,
 		'curve' : function( u, v ) {
 			u = 5 * ( u - 0.5 );
@@ -1676,7 +1673,7 @@ var pi = Math.PI;
 
 	'enneper-surface-polar' : {
 		'title' : 'Enneper Surface Polar *',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite134.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite134.html',
 		'scale' :  10,
 		'a' : 3,
 		'aMin' : -5,
@@ -1738,7 +1735,7 @@ var pi = Math.PI;
 
 	'facing-snail' : {
 		'title' : 'Facing Snail',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite105.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite105.html',
 		'scale' :  50,
 		'a' : 1,
 		'aMin' : -5,
@@ -1759,7 +1756,7 @@ var pi = Math.PI;
 
 	'fish-surface' : {
 		'title' : 'Fish Surface',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite47.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite47.html',
 		'scale' :  50,
 		'curve' : function( u, v ) {
 			u = pi * ( u );
@@ -1776,7 +1773,7 @@ var pi = Math.PI;
 
 	'folium' : {
 		'title' : 'Folium',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite77.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite77.html',
 		'scale' :  50,
 		'curve' : function( u, v ) {
 			u = 2 * pi * ( u - 0.5 );
@@ -1793,7 +1790,7 @@ var pi = Math.PI;
 
 	'fresnel-elastic-surface' : {
 		'title' : 'Fresnel Elastic Surface',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite158.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite158.html',
 		'scale' :  25,
 		'a' : 1,
 		'aMin' : -5,
@@ -1826,7 +1823,7 @@ var pi = Math.PI;
 
 	'funnel' : {
 		'title' : 'Funnel',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite27.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite27.html',
 		'scale' :  35,
 		'curve' : function( u, v ) {
 			u = 2 * ( u - 0.5 ) + 0.0001;
@@ -1843,7 +1840,7 @@ var pi = Math.PI;
 
 	'guimard-surface' : {
 		'title' : 'Guimard Surface',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite70.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite70.html',
 		'scale' :  50,
 		'a' : 0.5,
 		'aMin' : -5,
@@ -1876,7 +1873,7 @@ var pi = Math.PI;
 
 	'handkerchief-surface' : {
 		'title' : 'Handkerchief Surface',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite11.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite11.html',
 		'scale' :  25,
 		'curve' : function( u, v ) {
 			u = 2 * ( u - 0.5 );
@@ -1893,7 +1890,7 @@ var pi = Math.PI;
 
 	'helicoid' : {
 		'title' : 'Helicoid',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite24.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite24.html',
 		'scale' :  25,
 		'curve' : function( u, v ) {
 			u = pi * ( u - 0.5 );
@@ -1910,7 +1907,7 @@ var pi = Math.PI;
 
 	'henneberg-surface' : {
 		'title' : 'Henneberg Surface',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite32.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite32.html',
 		'scale' :  2,
 		'curve' : function( u, v ) {
 			u = pi * ( u - 0.5 );
@@ -1927,7 +1924,7 @@ var pi = Math.PI;
 
 	'horn' : {
 		'title' : 'Horn',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite48.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite48.html',
 		'scale' :  25,
 		'a' : 3,
 		'aMin' : -5,
@@ -1960,7 +1957,7 @@ var pi = Math.PI;
 
 	'hyperbolic-helicoid' : {
 		'title' : 'Hyperbolic Helicoid',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite26.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite26.html',
 		'scale' :  90,
 		'curve' : function( u, v ) {
 			u = pi * ( u - 0.5 );
@@ -1977,7 +1974,7 @@ var pi = Math.PI;
 
 	'hyperbolic-octahedron' : {
 		'title' : 'Hyperbolic Octahedron *',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite50.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite50.html',
 		'scale' :  80,
 		'a' : 3,
 		'aMin' : -5,
@@ -2036,7 +2033,7 @@ var pi = Math.PI;
 
 	'hyperbolic-paraboloid' : {
 		'title' : 'Hyperbolic Paraboloid',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite99.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite99.html',
 		'scale' :  25,
 		'curve' : function( u, v ) {
 			u = pi * ( u - 0.5 );
@@ -2053,7 +2050,7 @@ var pi = Math.PI;
 
 	'hyperboloid' : {
 		'title' : 'Hyperboloid',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite30.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite30.html',
 		'scale' :  25,
 		'curve' : function( u, v ) {
 			u = 2 * pi * ( u - 0.5 );
@@ -2070,7 +2067,7 @@ var pi = Math.PI;
 
 	'isolator' : {
 		'title' : 'Isolator',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite86.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite86.html',
 		'scale' :  15,
 		'a' : 3,
 		'aMin' : -5,
@@ -2103,7 +2100,7 @@ var pi = Math.PI;
 
 	'jeener-klein-surface' : {
 		'title' : 'Jeener Klein Surface *',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite108.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite108.html',
 		'scale' :  25,
 		'a' : 2,
 		'aMin' : 0,
@@ -2166,7 +2163,7 @@ var pi = Math.PI;
 
 	'jet-surface' : {
 		'title' : 'Jet Surface',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite43.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite43.html',
 		'scale' :  25,
 		'curve' : function( u, v ) {
 			u = 2 * pi * ( u - 0.5 );
@@ -2183,7 +2180,7 @@ var pi = Math.PI;
 
 	'kappa-surface' : {
 		'title' : 'Kappa Surface',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite182.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite182.html',
 		'scale' :  75,
 		'a' : 0.5,
 		'aMin' : -5,
@@ -2204,7 +2201,7 @@ var pi = Math.PI;
 
 	'kidney-surface' : {
 		'title' : 'Kidney Surface',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite42.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite42.html',
 		'scale' :  15,
 		'curve' : function( u, v ) {
 			u = 2 * pi * ( u - 0.5 );
@@ -2221,8 +2218,8 @@ var pi = Math.PI;
 
 	'klein-bottle' : {
 		'title' : 'Klein Bottle *',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite12.html',
-		'link1' : 'http://paulbourke.net/geometry/klein/',
+		'link' : 'http://www.3d-meier.de/tut3/Seite12.html',
+		'link' : 'http://paulbourke.net/geometry/klein/',
 		'scale' :  25,
 		'a' : 1,
 		'aMin' : -5,
@@ -2281,7 +2278,7 @@ var pi = Math.PI;
 
 	'klein-cycloid' : {
 		'title' : 'Klein Cycloid *',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite111.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite111.html',
 		'scale' :  5,
 		'a' : 10,
 		'aMin' : -5,
@@ -2340,8 +2337,8 @@ var pi = Math.PI;
 
 	'kuen-surface' : {
 		'title' : 'Kuens Surface *',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite55.html',
-		'link1' : 'http://paulbourke.net/geometry/kuen/',
+		'link' : 'http://www.3d-meier.de/tut3/Seite55.html',
+		'link' : 'http://paulbourke.net/geometry/kuen/',
 		'scale' :  50,
 		'a' : 2,
 		'aMin' : -5,
@@ -2402,8 +2399,8 @@ var pi = Math.PI;
 
 	'lemniscape' : {
 		'title' : 'Lemniscape *',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite78.html',
-		'link1' : 'http://paulbourke.net/geometry/lemniscape/',
+		'link' : 'http://www.3d-meier.de/tut3/Seite78.html',
+		'link' : 'http://paulbourke.net/geometry/lemniscape/',
 		'scale' :  100,
 		'a' : 2,
 		'aMin' : -5,
@@ -2462,7 +2459,7 @@ var pi = Math.PI;
 
 	'lemon-surface' : {
 		'title' : 'Lemon Surface',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite135.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite135.html',
 		'scale' :  25,
 		'R1' : 1,
 		'R1Min' : -5,
@@ -2487,7 +2484,7 @@ var pi = Math.PI;
 
 	'lochdiscus' : {
 		'title' : 'Lochdiskus',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite119.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite119.html',
 		'scale' :  75,
 		'a' : 2,
 		'aMin' : -5,
@@ -2520,7 +2517,7 @@ var pi = Math.PI;
 
 	'lockdisk' : {
 		'title' : 'Lockdisk',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite114.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite114.html',
 		'scale' :  50,
 		'curve' : function( u, v ) {
 			u = 2 * pi * ( u );
@@ -2537,7 +2534,7 @@ var pi = Math.PI;
 
 	'loop' : {
 		'title' : 'Loop',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite66.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite66.html',
 		'scale' :  25,
 		'curve' : function( u, v ) {
 			u = 1.5 * ( u );
@@ -2554,7 +2551,7 @@ var pi = Math.PI;
 
 	'maeder-owl' : {
 		'title' : 'Maeders Owl *',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite35.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite35.html',
 		'scale' :  100,
 		'a' : 0.5,
 		'aMin' : -5,
@@ -2613,7 +2610,7 @@ var pi = Math.PI;
 
 	'menn-surface' : {
 		'title' : 'Menn Surface',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite71.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite71.html',
 		'scale' :  90,
 		'a' : 5,
 		'aMin' : -5,
@@ -2646,7 +2643,7 @@ var pi = Math.PI;
 
 	'milk-carton' : {
 		'title' : 'Milk Carton',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite72.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite72.html',
 		'scale' :  50,
 		'a' : 0.5,
 		'aMin' : -5,
@@ -2679,8 +2676,8 @@ var pi = Math.PI;
 
 	'mobius-band' : {
 		'title' : 'Moebius Strip',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite13.html',
-		'link1' : 'http://paulbourke.net/geometry/mobius/',
+		'link' : 'http://www.3d-meier.de/tut3/Seite13.html',
+		'link' : 'http://paulbourke.net/geometry/mobius/',
 		'scale' :  25,
 		'curve' : function( u, v ) {
 			u = 2 * pi * ( u - 0.5 );
@@ -2697,8 +2694,8 @@ var pi = Math.PI;
 
 	'monkey-saddle' : {
 		'title' : 'Monkey Saddle',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite14.html',
-		'link1' : 'http://paulbourke.net/geometry/',
+		'link' : 'http://www.3d-meier.de/tut3/Seite14.html',
+		'link' : 'http://paulbourke.net/geometry/',
 		'scale' :  50,
 		'curve' : function( u, v ) {
 			u = 2 * ( u - 0.5 );
@@ -2715,7 +2712,7 @@ var pi = Math.PI;
 
 	'paper-bag' : {
 		'title' : 'Paper Bag',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite106.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite106.html',
 		'scale' :  15,
 		'a' : 2.47,
 		'aMin' : -5,
@@ -2748,7 +2745,7 @@ var pi = Math.PI;
 
 	'paraboloid' : {
 		'title' : 'Paraboloid',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite25.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite25.html',
 		'scale' :  25,
 		'curve' : function( u, v ) {
 			u = pi * ( u - 0.5 );
@@ -2765,7 +2762,7 @@ var pi = Math.PI;
 
 	'pillow-shape' : {
 		'title' : 'Pillow Shape',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite46.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite46.html',
 		'scale' :  50,
 		'curve' : function( u, v ) {
 			u = pi * ( u );
@@ -2782,7 +2779,7 @@ var pi = Math.PI;
 
 	'piriform-surface' : {
 		'title' : 'Piriform Surface',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite181.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite181.html',
 		'scale' :  100,
 		'a' : 0.5,
 		'aMin' : -5,
@@ -2815,7 +2812,7 @@ var pi = Math.PI;
 
 	'pisot-triaxial' : {
 		'title' : 'Pisot Triaxial *',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite115.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite115.html',
 		'scale' :  25,
 		'a' : 2,
 		'aMin' : -5,
@@ -2878,7 +2875,7 @@ var pi = Math.PI;
 
 	'plane' : {
 		'title' : 'Plane',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite124.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite124.html',
 		'scale' :  25,
 		'curve' : function( u, v ) {
 			u = 5 * ( u - 0.5 );
@@ -2895,8 +2892,8 @@ var pi = Math.PI;
 
 	'plucker-conoid' : {
 		'title' : 'Plückers Conoid',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite15.html',
-		'link1' : 'http://paulbourke.net/geometry/',
+		'link' : 'http://www.3d-meier.de/tut3/Seite15.html',
+		'link' : 'http://paulbourke.net/geometry/',
 		'scale' :  50,
 		'curve' : function( u, v ) {
 			u = 2 * ( u - 0.5 );
@@ -2913,7 +2910,7 @@ var pi = Math.PI;
 
 	'pseudo-cross-cap' : {
 		'title' : 'Pseudo Cross Cap',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite51.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite51.html',
 		'scale' :  50,
 		'curve' : function( u, v ) {
 			u = 2 * ( u - 0.5);
@@ -2930,7 +2927,7 @@ var pi = Math.PI;
 
 	'pseudosphere' : {
 		'title' : 'Pseudosphere',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite31.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite31.html',
 		'scale' :  50,
 		'curve' : function( u, v ) {
 			u = 2 * pi * ( u - 0.5 );
@@ -2947,7 +2944,7 @@ var pi = Math.PI;
 
 	'richmond-surface' : {
 		'title' : 'Richmond Surface',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite36.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite36.html',
 		'scale' :  25,
 		'u' : 80,
 		'v' : 20,
@@ -2966,11 +2963,11 @@ var pi = Math.PI;
 
 	'roman-surface' : {
 		'title' : 'Steiners Roman Surface *',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite16.html',
-		'link1' : 'http://curvebank.calstatela.edu/romansurfaces/romansurfaces.htm',
-		'link1' : 'http://mathworld.wolfram.com/RomanSurface.html',
-		'link1' : 'http://jalape.no/math/steintxt.htm',
-		'link1' : 'http://paulbourke.net/geometry/steiner/',
+		'link' : 'http://www.3d-meier.de/tut3/Seite16.html',
+		'link' : 'http://curvebank.calstatela.edu/romansurfaces/romansurfaces.htm',
+		'link' : 'http://mathworld.wolfram.com/RomanSurface.html',
+		'link' : 'http://jalape.no/math/steintxt.htm',
+		'link' : 'http://paulbourke.net/geometry/steiner/',
 		'scale' :  100,
 		'a' : 2,
 		'aMin' : -5,
@@ -3031,7 +3028,7 @@ var pi = Math.PI;
 
 	'roundabout' : {
 		'title' : 'Roundabout',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite150.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite150.html',
 		'scale' :  70,
 		'curve' : function( u, v ) {
 			u = 2 * ( u - 0.5 );
@@ -3048,7 +3045,7 @@ var pi = Math.PI;
 
 	'scherk-surface' : {
 		'title' : 'Scherk Surface',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite37.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite37.html',
 		'scale' :  25,
 //		'a' : 2,
 //		'aMin' : -5,
@@ -3081,7 +3078,7 @@ var pi = Math.PI;
 
 	'seashell' : {
 		'title' : 'Seashell',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite18.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite18.html',
 		'scale' :  25,
 		'a' : 0.5,
 		'aMin' : -5,
@@ -3143,7 +3140,7 @@ var pi = Math.PI;
 
 	'shoe-surface' : {
 		'title' : 'Shoe Surface',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite19.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite19.html',
 		'scale' :  50,
 		'curve' : function( u, v ) {
 			u = 2 * ( u - 0.5 );
@@ -3160,7 +3157,7 @@ var pi = Math.PI;
 
 	'sievert-surface' : {
 		'title' : 'Sievert Surface',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite185.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite185.html',
 		'scale' :  75,
 		'a' : 2,
 		'aMin' : -5,
@@ -3193,7 +3190,7 @@ var pi = Math.PI;
 
 	'sine-cone' : {
 		'title' : 'Sine Cone',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite136.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite136.html',
 		'scale' :  25,
 		'a' : 0.5,
 		'aMin' : -5,
@@ -3218,7 +3215,7 @@ var pi = Math.PI;
 
 	'sine-surface' : {
 		'title' : 'Sine Surface',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite20.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite20.html',
 		'scale' :  50,
 		'curve' : function( u, v ) {
 
@@ -3236,7 +3233,7 @@ var pi = Math.PI;
 
 	'sine-wave' : {
 		'title' : 'Sinus Wave',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite127.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite127.html',
 		'scale' :  25,
 		'a' : 0.2,
 		'aMin' : -5,
@@ -3269,7 +3266,7 @@ var pi = Math.PI;
 
 	'snail-surface' : {
 		'title' : 'Snail Surface',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite38.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite38.html',
 		'scale' :  8,
 		'curve' : function( u, v ) {
 			u = 3 * pi * ( u );
@@ -3286,7 +3283,7 @@ var pi = Math.PI;
 
 	'soucoupoid' : {
 		'title' : 'Soucoupoid',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite133.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite133.html',
 		'scale' :  50,
 		'curve' : function( u, v ) {
 			u = 2 * pi * ( u - 0.5 );
@@ -3303,7 +3300,7 @@ var pi = Math.PI;
 
 	'sphere-double' : {
 		'title' : 'Sphere Double',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite192.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite192.html',
 		'scale' :  25,
 		'a' : 25,
 		'aMin' : -5,
@@ -3336,7 +3333,7 @@ var pi = Math.PI;
 
 	'sphere-i' : {
 		'title' : 'Kugel I',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite120.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite120.html',
 		'scale' :  50,
 		'curve' : function( u, v ) {
 			u = 2 * pi * ( u );
@@ -3353,7 +3350,7 @@ var pi = Math.PI;
 
 	'sphere-ii' : {
 		'title' : 'Sphere II',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite121.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite121.html',
 		'scale' :  50,
 		'curve' : function( u, v ) {
 			u = pi * ( u - 0.5 );
@@ -3370,7 +3367,7 @@ var pi = Math.PI;
 
 	'sphere-iii' : {
 		'title' : 'Sphere III',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite122.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite122.html',
 		'scale' :  50,
 		'curve' : function( u, v ) {
 			u = 10 * ( u - 0.5 );
@@ -3387,7 +3384,7 @@ var pi = Math.PI;
 
 	'sphere-iv' : {
 		'title' : 'Sphere IV',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite123.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite123.html',
 		'scale' :  50,
 		'curve' : function( u, v ) {
 			u = 10 * ( u );
@@ -3404,7 +3401,7 @@ var pi = Math.PI;
 
 	'spiral-archimedes' : {
 		'title' : 'Spiral Archimedes',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite187.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite187.html',
 		'scale' :  5,
 		'h' : 3,
 		'hMin' : -5,
@@ -3427,7 +3424,7 @@ var pi = Math.PI;
 
 	'spiral-fermat' : {
 		'title' : 'Spiral Fermat',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite189.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite189.html',
 		'scale' :  25,
 		'h' : 2,
 		'hMin' : -5,
@@ -3450,7 +3447,7 @@ var pi = Math.PI;
 
 	'spiral-hyperbolic' : {
 		'title' : 'Spiral Hyperbolic',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite188.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite188.html',
 		'scale' :  50,
 		'h' : 2,
 		'hMin' : -5,
@@ -3474,7 +3471,7 @@ var pi = Math.PI;
 
 	'spiral-logarithmic' : {
 		'title' : 'Spiral Logarithmic',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite191.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite191.html',
 		'scale' :  25,
 		'a' : 0.1,
 		'aMin' : -5,
@@ -3501,7 +3498,7 @@ var pi = Math.PI;
 
 	'spiral-tanh' : {
 		'title' : 'Spiral Tanh',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite190.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite190.html',
 		'scale' :  35,
 		'a' : 8,
 		'aMin' : -5,
@@ -3528,7 +3525,7 @@ var pi = Math.PI;
 
 	'spiral-wave' : {
 		'title' : 'Spiral Wave',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite129.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite129.html',
 		'scale' :  10,
 		'a' : 1,
 		'aMin' : -5,
@@ -3563,7 +3560,7 @@ var pi = Math.PI;
 
 	'spring-i' : {
 		'title' : 'Feder I',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite82.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite82.html',
 		'scale' :  10,
 		'a' : 2,
 		'aMin' : -5,
@@ -3594,7 +3591,7 @@ var pi = Math.PI;
 
 	'spring-ii' : {
 		'title' : 'Spring II',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite83.html  ~ Feder II',
+		'link' : 'http://www.3d-meier.de/tut3/Seite83.html  ~ Feder II',
 		'scale' :  25,
 		'a' : 0.75,
 		'aMin' : -5,
@@ -3630,7 +3627,7 @@ var pi = Math.PI;
 
 	'steinbach-screw' : {
 		'title' : 'Steinbach Screw *',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite21.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite21.html',
 		'scale' :  25,
 		'a' : 1,
 		'aMin' : -5,
@@ -3693,7 +3690,7 @@ var pi = Math.PI;
 
 	'stiletto-surface' : {
 		'title' : 'Stiletto Surface *',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite53.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite53.html',
 		'scale' :  90,
 		'a' : 2,
 		'aMin' : -5,
@@ -3756,7 +3753,7 @@ var pi = Math.PI;
 
 	'swallow-surface' : {
 		'title' : 'Swallow Surface',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite33.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite33.html',
 		'scale' :  50,
 		'curve' : function( u, v ) {
 			u = 2 * ( u - 0.5 );
@@ -3773,7 +3770,7 @@ var pi = Math.PI;
 
 	'torus' : {
 		'title' : 'Torus',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite58.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite58.html',
 		'scale' :  25,
 		'R1' : 1,
 		'R1Min' : -5,
@@ -3798,7 +3795,7 @@ var pi = Math.PI;
 
 	'torus-8' : {
 		'title' : '8 Torus',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite67.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite67.html',
 		'scale' :  20,
 		'c' : 3,
 		'cMin' : -5,
@@ -3821,7 +3818,7 @@ var pi = Math.PI;
 
 	'torus-astroid' : {
 		'title' : 'Astroid Torus',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite139.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite139.html',
 		'scale' :  20,
 		'a' : 2,
 		'aMin' : -5,
@@ -3850,7 +3847,7 @@ var pi = Math.PI;
 
 	'torus-asymmetric' : {
 		'title' : 'Torus Asymmetric',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite59.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite59.html',
 		'scale' :  15,
 		'a' : 1,
 		'aMin' : -5,
@@ -3879,7 +3876,7 @@ var pi = Math.PI;
 
 	'torus-bicorn-i' : {
 		'title' : 'Bicorn Torus I',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite163.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite163.html',
 		'scale' :  25,
 		'R1' : 1,
 		'R1Min' : -5,
@@ -3904,7 +3901,7 @@ var pi = Math.PI;
 
 	'torus-bicorn-ii' : {
 		'title' : 'Torus Bicorn II',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite164.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite164.html',
 		'scale' :  25,
 		'R1' : 1,
 		'R1Min' : -5,
@@ -3929,7 +3926,7 @@ var pi = Math.PI;
 
 	'torus-braided' : {
 		'title' : 'Torus Braided *',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite110.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite110.html',
 		'scale' :  25,
 		'a' : 0.5,
 		'aMin' : -5,
@@ -3996,7 +3993,7 @@ var pi = Math.PI;
 
 	'torus-cardioid-i' : {
 		'title' : 'Torus Cardioid I',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite165.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite165.html',
 		'scale' :  10,
 		'R1' : 1,
 		'R1Min' : -5,
@@ -4021,7 +4018,7 @@ var pi = Math.PI;
 
 	'torus-cardioid-ii' : {
 		'title' : 'Torus Cardioid II',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite166.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite166.html',
 		'scale' :  10,
 		'R1' : 1,
 		'R1Min' : -5,
@@ -4046,7 +4043,7 @@ var pi = Math.PI;
 
 	'torus-cassinian-oval-i' : {
 		'title' : 'Torus Cassinian Oval I',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite167.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite167.html',
 		'scale' :  10,
 		'a' : 2,
 		'aMin' : -5,
@@ -4083,7 +4080,7 @@ var pi = Math.PI;
 
 	'torus-cassinian-oval-ii' : {
 		'title' : 'Torus Cassinian Oval II *',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite168.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite168.html',
 		'scale' :  10,
 		'a' : 1,
 		'aMin' : -5,
@@ -4122,7 +4119,7 @@ var pi = Math.PI;
 
 	'torus-corrugated-i' : {
 		'title' : 'Torus Corrugated I',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite172.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite172.html',
 		'scale' :  25,
 		'a' : 5,
 		'aMin' : -5,
@@ -4156,7 +4153,7 @@ var pi = Math.PI;
 
 	'torus-corrugated-ii' : {
 		'title' : 'Torus Wavy II',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite173.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite173.html',
 		'scale' :  5,
 		'a' : 8,
 		'aMin' : -5,
@@ -4191,7 +4188,7 @@ var pi = Math.PI;
 
 	'torus-elliptic' : {
 		'title' : 'Torus Elliptic',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite69.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite69.html',
 		'scale' :  25,
 		'c' : 2,
 		'cMin' : -5,
@@ -4212,7 +4209,7 @@ var pi = Math.PI;
 
 	'torus-epicycloid-i' : {
 		'title' : 'Torus Epicycloid I',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite146.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite146.html',
 		'scale' :  2,
 		'h' : 5,
 		'hMin' : -5,
@@ -4241,7 +4238,7 @@ var pi = Math.PI;
 
 	'torus-epicycloid-ii' : {
 		'title' : 'Epicycloid Torus II',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite147.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite147.html',
 		'scale' :  2,
 		'a' : 3,
 		'aMin' : -5,
@@ -4270,7 +4267,7 @@ var pi = Math.PI;
 
 	'torus-gear' : {
 		'title' : 'Torus Gear',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite184.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite184.html',
 		'scale' :  20,
 		'a' : 1,
 		'aMin' : -5,
@@ -4311,7 +4308,7 @@ var pi = Math.PI;
 
 	'torus-hypocycloid-i' : {
 		'title' : 'Hypocycloid Torus I',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite148.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite148.html',
 		'scale' :  5,
 		'h' : 2,
 		'hMin' : -5,
@@ -4340,7 +4337,7 @@ var pi = Math.PI;
 
 	'torus-hypocycloid-ii' : {
 		'title' : 'Hypocycloid Torus II',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite149.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite149.html',
 		'scale' :  3,
 		'h' : 2,
 		'hMin' : -5,
@@ -4369,7 +4366,7 @@ var pi = Math.PI;
 
 	'torus-knot' : {
 		'title' : 'Torus Knot *',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite175.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite175.html',
 		'scale' :  10,
 		'a' : 8,
 		'aMin' : -5,
@@ -4408,7 +4405,7 @@ var pi = Math.PI;
 
 	'torus-lemniscate-gerono-i' : {
 		'title' : 'Torus Lemniscate Gerono I',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite169.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite169.html',
 		'scale' :  10,
 		'R1' : 2,
 		'R1Min' : -5,
@@ -4433,7 +4430,7 @@ var pi = Math.PI;
 
 	'torus-lemniscate-gerono-ii' : {
 		'title' : 'Torus Lemniscate Gerono II',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite170.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite170.html',
 		'scale' :  10,
 		'R1' : 2,
 		'R1Min' : -5,
@@ -4458,7 +4455,7 @@ var pi = Math.PI;
 
 	'torus-lemniscate-i' : {
 		'title' : 'Lemniskate Torus I',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite144.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite144.html',
 		'scale' :  25,
 		'R1' : 1,
 		'R1Min' : -5,
@@ -4483,7 +4480,7 @@ var pi = Math.PI;
 
 	'torus-lemniscate-ii' : {
 		'title' : 'Lemniskate Torus II',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite145.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite145.html',
 		'scale' :  25,
 		'R1' : 1,
 		'R1Min' : -5,
@@ -4508,7 +4505,7 @@ var pi = Math.PI;
 
 	'torus-limpet' : {
 		'title' : 'Limpet Torus',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite112.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite112.html',
 		'scale' :  25,
 		'u' : 30,
 		'v' : 30,
@@ -4527,7 +4524,7 @@ var pi = Math.PI;
 
 	'torus-nephroid-i' : {
 		'title' : 'Nephroid Torus I',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite142.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite142.html',
 		'scale' :  20,
 		'R1' : 0.3,
 		'R1Min' : -5,
@@ -4552,7 +4549,7 @@ var pi = Math.PI;
 
 	'torus-nephroid-ii' : {
 		'title' : 'Nephroid Torus II',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite143.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite143.html',
 		'scale' :  25,
 		'R1' : 0.3,
 		'R1Min' : -5,
@@ -4577,7 +4574,7 @@ var pi = Math.PI;
 
 	'torus-piriform-i' : {
 		'title' : 'Torus Piriform I',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite161.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite161.html',
 		'scale' :  20,
 		'R1' : 1,
 		'R1Min' : -5,
@@ -4602,7 +4599,7 @@ var pi = Math.PI;
 
 	'torus-piriform-ii' : {
 		'title' : 'Torus Piriform II',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite162.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite162.html',
 		'scale' :  20,
 		'R1' : 1,
 		'R1Min' : -5,
@@ -4627,7 +4624,7 @@ var pi = Math.PI;
 
 	'torus-saddle' : {
 		'title' : 'Torus Saddle',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite73.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite73.html',
 		'scale' :  25,
 		'curve' : function( u, v ) {
 			u = 2 * pi * ( u );
@@ -4647,7 +4644,7 @@ var pi = Math.PI;
 
 	'torus-spiral' : {
 		'title' : 'Torus Spiral *',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite174.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite174.html',
 		'scale' :  10,
 		'a' : 8,
 		'aMin' : -5,
@@ -4690,7 +4687,7 @@ var pi = Math.PI;
 
 	'torus-strangled-i' : {
 		'title' : 'Strangled Torus I',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite137.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite137.html',
 		'scale' :  25,
 		'a' : 2,
 		'aMin' : -5,
@@ -4719,7 +4716,7 @@ var pi = Math.PI;
 
 	'torus-strangled-ii' : {
 		'title' : 'Strangled Torus II',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite138.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite138.html',
 		'scale' :  25,
 		'a' : 5,
 		'aMin' : -5,
@@ -4748,7 +4745,7 @@ var pi = Math.PI;
 
 	'torus-tricuspoid-i' : {
 		'title' : 'Tricuspoid Torus I',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite140.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite140.html',
 		'scale' :  25,
 		'R1' : 0.3,
 		'R1Min' : -5,
@@ -4773,7 +4770,7 @@ var pi = Math.PI;
 
 	'torus-tricuspoid-ii' : {
 		'title' : 'Tricuspoid Torus Ii',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite141.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite141.html',
 		'scale' :  25,
 		'R1' : 0.3,
 		'R1Min' : -5,
@@ -4798,7 +4795,7 @@ var pi = Math.PI;
 
 	'torus-twisted-eight' : {
 		'title' : 'Torus Twisted Eight',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite60.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite60.html',
 		'scale' :  15,
 		'scale' :  25,
 		'a' : 1,
@@ -4838,7 +4835,7 @@ var pi = Math.PI;
 
 	'torus-umbilic' : {
 		'title' : 'Torus Umbilical',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite61.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite61.html',
 		'scale' :  8,
 		'curve' : function( u, v ) {
 			u = 2 * pi * ( u - 0.5 );
@@ -4855,7 +4852,7 @@ var pi = Math.PI;
 
 	'torus-wave' : {
 		'title' : 'Torus Wave',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite62.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite62.html',
 		'scale' :  5,
 		'a' : 1,
 		'aMin' : -5,
@@ -4924,7 +4921,7 @@ var pi = Math.PI;
 
 	'tractroid' : {
 		'title' : 'Tractroid',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite28.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite28.html',
 		'scale' :  35,
 		'curve' : function( u, v ) {
 			u = 2 * pi * ( u - 0.5 );
@@ -4941,7 +4938,7 @@ var pi = Math.PI;
 
 	'tranguloid-trefoil' : {
 		'title' : 'Tranguloid Trefoil *',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite57.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite57.html',
 		'scale' :  25,
 		'a' : 2,
 		'aMin' : -5,
@@ -5004,7 +5001,7 @@ var pi = Math.PI;
 
 	'trash-can' : {
 		'title' : 'Trash Can',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite81.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite81.html',
 		'scale' :  25,
 		'a' : 0.5,
 		'aMin' : -5,
@@ -5029,7 +5026,7 @@ var pi = Math.PI;
 
 	'trefoil-knot' : {
 		'title' : 'Trefoil Knot I *',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite56.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite56.html',
 		'scale' :  20,
 		'a' : 1,
 		'aMin' : -5,
@@ -5096,7 +5093,7 @@ var pi = Math.PI;
 
 	'trefoil-knot-ii' : {
 		'title' : 'Trefoil Knot II *',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite159.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite159.html',
 		'scale' :  15,
 		'a' : 0.4,
 		'aMin' : -5,
@@ -5155,9 +5152,9 @@ var pi = Math.PI;
 
 	'triaxial-hexatorus' : {
 		'title' : 'Triaxial Hexatorus *',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite116.html',
-		'link1' : 'http://paulbourke.net/geometry/hexatorus/',
-		'link1' : 'http://nliautaud.fr/wiki/travaux/surfaces_mathematiques',
+		'link' : 'http://www.3d-meier.de/tut3/Seite116.html',
+		'link' : 'http://paulbourke.net/geometry/hexatorus/',
+		'link' : 'http://nliautaud.fr/wiki/travaux/surfaces_mathematiques',
 		'scale' :  25,
 		'a' : 2,
 		'aMin' : -5,
@@ -5216,7 +5213,7 @@ var pi = Math.PI;
 
 	'triaxial-teardrop' : {
 		'title' : 'Triaxial Teardrop',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite45.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite45.html',
 		'scale' :  80,
 		'curve' : function( u, v ) {
 			u = pi * ( u );
@@ -5233,7 +5230,7 @@ var pi = Math.PI;
 
 	'triaxial-tritorus' : {
 		'title' : 'Triaxial Tritorus *',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite74.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite74.html',
 		'scale' :  35,
 		'a' : 1,
 		'aMin' : -5,
@@ -5288,7 +5285,7 @@ var pi = Math.PI;
 
 	'triple-corkscrew-i' : {
 		'title' : 'Triple Corkscrew I',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite177.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite177.html',
 		'scale' :  5,
 		'a' : 20,
 		'aMin' : -5,
@@ -5321,7 +5318,7 @@ var pi = Math.PI;
 
 	'triple-corkscrew-ii' : {
 		'title' : 'Triple Corkscrew II',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite178.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite178.html',
 		'scale' :  5,
 		'a' : 2,
 		'aMin' : -5,
@@ -5364,7 +5361,7 @@ var pi = Math.PI;
 
 	'triple-corkscrew-iii' : {
 		'title' : 'Triple Corkscrew III',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite179.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite179.html',
 		'scale' :  5,
 		'c' : 20,
 		'cMin' : -5,
@@ -5399,7 +5396,7 @@ var pi = Math.PI;
 
 	'triple-point-twist' : {
 		'title' : 'Triple Point Twist',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite79.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite79.html',
 		'scale' :  25,
 		'c' : -1.5,
 		'cMin' : -5,
@@ -5420,7 +5417,7 @@ var pi = Math.PI;
 
 	'twisted-heart' : {
 		'title' : 'Twisted Heart',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite117.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite117.html',
 		'scale' :  25,
 		'curve' : function( u, v ) {
 
@@ -5440,7 +5437,7 @@ var pi = Math.PI;
 
 	'twisted-pipe-surface' : {
 		'title' : 'Twisted Pipe Surface *',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite65.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite65.html',
 		'scale' :  15,
 		'a' : 1,
 		'aMin' : -5,
@@ -5501,7 +5498,7 @@ var pi = Math.PI;
 
 	'twisted-sphere' : {
 		'title' : 'Twisted Sphere',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite118.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite118.html',
 		'scale' :  15,
 		'a' : 2,
 		'aMin' : -5,
@@ -5526,7 +5523,7 @@ var pi = Math.PI;
 
 	'vase-and-spearhead' : {
 		'title' : 'Vase and Speartip',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite107.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite107.html',
 		'scale' :  15,
 		'a' : 1,
 		'aMin' : -5,
@@ -5551,7 +5548,7 @@ var pi = Math.PI;
 
 	'verrill-surface' : {
 		'title' : 'Verrill Surface',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite75.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite75.html',
 		'scale' :  15,
 		'curve' : function( u, v ) {
 			u = 1 * ( u ) + 0.5;
@@ -5568,7 +5565,7 @@ var pi = Math.PI;
 
 	'wallis-conical-edge' : {
 		'title' : 'Wallis Conical Edge',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite34.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite34.html',
 		'scale' :  150,
 		'a' : 3,
 		'aMin' : -5,
@@ -5597,7 +5594,7 @@ var pi = Math.PI;
 
 	'wave' : {
 		'title' : 'Waves',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite126.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite126.html',
 		'scale' :  25,
 		'a' : 1,
 		'aMin' : -5,
@@ -5626,7 +5623,7 @@ var pi = Math.PI;
 
 	'wave-sphere' : {
 		'title' : 'Wave Sphere *',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite63.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite63.html',
 		'scale' :  5,
 		'a' : 1,
 		'aMin' : -5,
@@ -5685,7 +5682,7 @@ var pi = Math.PI;
 
 	'whitney-umbrella' : {
 		'title' : 'Whitney Umbrella *',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite22.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite22.html',
 		'scale' :  25,
 		'a' : 1,
 		'aMin' : -5,
@@ -5720,7 +5717,7 @@ var pi = Math.PI;
 
 	'worm' : {
 		'title' : 'Worm',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite17.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite17.html',
 		'scale' :  3,
 		'a' : 2,
 		'aMin' : -5,
@@ -5747,7 +5744,7 @@ var pi = Math.PI;
 
 	'wreath' : {
 		'title' : 'Wreath *',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite64.html',
+		'link' : 'http://www.3d-meier.de/tut3/Seite64.html',
 		'scale' :  100,
 		'a' : 2,
 		'aMin' : -5,
@@ -5794,8 +5791,8 @@ var pi = Math.PI;
 
 	'zindler-conoid' : {
 		'title' : 'Zindlers Conoid .',
-		'link1' : 'http://www.3d-meier.de/tut3/Seite76.html',
-		'link1' : 'http://www.mathcurve.com/surfaces/zindler/zindler.shtml',
+		'link' : 'http://www.3d-meier.de/tut3/Seite76.html',
+		'link' : 'http://www.mathcurve.com/surfaces/zindler/zindler.shtml',
 		'scale' :  50,
 		'a' : 0.2,
 		'aMin' : -5,
@@ -5843,7 +5840,7 @@ var pi = Math.PI;
 		}
 	},
 
-	};
+
 }
 
 var equationsKeys = Object.keys( equations );

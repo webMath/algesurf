@@ -42,6 +42,8 @@
 
 			'<p><input type=checkbox id=chkGradient onchange=toggleGradient(); /> Background </p>' +
 
+//			'<p id=sliders ></p>' +
+
 		'';
 
 		for ( var i = 0; i < equationsKeys.length ; i++ ) {
@@ -68,6 +70,34 @@
 				selEquation.selectedIndex = frm.index;
 
 				equation = frm.eqns.equations[ frm.equationsKeys[ frm.index ] ];
+
+/*
+console.log( equation );
+
+				txt = '<p><input type=range id=rngscale value=' + equation[ "scale" ] + '  onmousemove=edit(); /> Scale</p>';
+
+				for ( var i = 0; i < vars.length; i++ ) {
+
+					if ( equation[ vars[ i ] ] ) {
+
+						txt += '<p><input type=range ' +  
+							' id=rng' + vars[ i ] +
+							' min=' + ( equation[ vars[ i ] + 'Min' ] ) +
+							' max=' + ( equation[ vars[ i ] + 'Max' ] ) +
+							' step=' + ( equation[ vars[ i ] + 'Step' ] ) +
+							' value=' + equation[ vars[ i ] ] +
+							' onmousemove=edit();' +
+							' title=' + equation[ vars[ i ] ] +
+							' /> ' + 
+							vars[ i ] + '</p>' +
+					'';
+
+					}
+
+				}
+
+				sliders.innerHTML = txt + '<button onclick=ifr.src="algesurf-parametric-equations-api-r5.html#' + selEquation.selectedIndex + '#ccc"; >Reset</button>';
+*/
 
 				for ( var i = 0; i < frm.materialsKeys.length ; i++ ) {
 

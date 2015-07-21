@@ -41,7 +41,7 @@ Visualize math and physics in ways never seen before
 ### Function Graph
 [Function Graph Sandbox - latest]( http://jaanga.github.io/algesurf/function-graph/latest/ )  
 
-[Read Me]( http://jaanga.github.io/algesurf/function-graph/ )
+[Read Me]( http://jaanga.github.io/algesurf/function-graph/ )  
 [Source Code]( https://github.com/jaanga/algesurf/tree/gh-pages/function-graph )
 
 See also related technologies here:
