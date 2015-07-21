@@ -3,8 +3,6 @@
 
 	function getMaterials() {
 
-		THREE.ImageUtils.crossOrigin = 'anonymous';
-
 		materialsLibrary = {
 
 		'#Normal' : 'Normal',
@@ -503,8 +501,8 @@
 		xoff = canvas.width / 3; // offsets to "center"
 		yoff = canvas.height / 3;
 
-// walk left-to-right, top-to-bottom; it's the
-// same as the ordering in the imagedata array:
+		// walk left-to-right, top-to-bottom; it's the
+		// same as the ordering in the imagedata array:
 
 		for (y = 0; y < canvas.height; y++) {
 			for (x = 0; x < canvas.width; x++) {
@@ -608,52 +606,28 @@
 
 	}
 
-	cubes = [ 'Bridge2', 'Escher', 'MilkyWay', 'Park2', 'Park3Med', 'pisa', 'skybox', 'SwedishRoyalCastle' ];
+	function getMaterial() {
 
-// parent.selMaterial.value
-	function getMaterial( node ) {
+		if ( parent.selMaterial.value ) {
 
-			material = materialsLibrary[ node ].material;
+			material = materialsLibrary[ parent.selMaterial.value ].material;
 
-			if ( materialsLibrary[ node ].texture ) {
+			if ( materialsLibrary[ parent.selMaterial.value ].texture ) {
 
-				texture = materialsLibrary[ node ].texture;
+				texture = materialsLibrary[ parent.selMaterial.value ].texture;
 				texture.needsUpdate = true;
 				material.map = texture;
 
 			}
 
-//			var r = 'http://mrdoob.github.io/three.js/examples/textures/cube/skybox/';
-//			urls = [ r + 'px.jpg', r + 'nx.jpg', r + 'py.jpg', r + 'ny.jpg', r + 'pz.jpg', r + 'nz.jpg' ];
+		} else {
 
-				var selected = 3;
+			material = materialsLibrary[ 'red triangles' ].material;
+			texture = materialsLibrary[ 'red triangles' ].texture;
+			texture.needsUpdate = true;
+			material.map = texture;
 
-				var r = 'http://mrdoob.github.io/three.js/examples/textures/cube/' + cubes[ selected ] + '/';
-
-				if ( selected === 0 || selected === 3 ) {
-
-					var urls = [ r + 'posx.jpg', r + 'negx.jpg', r + 'posy.jpg', r + 'negy.jpg', r + 'posz.jpg', r + 'negz.jpg' ];
-
-
-				} else if ( selected === 2 ) {
-
-					var urls = [ r + 'dark-s_px.jpg', r + 'dark-s_nx.jpg', r + 'dark-s_py.jpg', r + 'dark-s_ny.jpg', r + 'dark-s_pz.jpg', r + 'dark-s_nz.jpg' ];
-
-				} else if ( selected === 5 ) {
-
-					var urls = [ r + 'px.png', r + 'nx.png', r + 'py.png', r + 'ny.png', r + 'pz.png', r + 'nz.png' ];
-
-				} else {
-
-					urls = [ r + 'px.jpg', r + 'nx.jpg', r + 'py.jpg', r + 'ny.jpg', r + 'pz.jpg', r + 'nz.jpg' ];
-
-				}
-
-			textureCube = THREE.ImageUtils.loadTextureCube( urls );
-			textureCube.format = THREE.RGBFormat;
-			material.envMap = textureCube;
-//			material.refractionRatio = 0.85;
-			material.reflectivity = 0.85;
+		}
 
 		material.side = 2;
 

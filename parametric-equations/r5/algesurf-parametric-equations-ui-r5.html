@@ -87,10 +87,10 @@
 
 				}
 
-				selMaterial.selectedIndex = ifr.contentWindow.defaultMaterial;
-				selMaterial.onchange = function() { ifr.contentWindow.mesh.material = ifr.contentWindow.getMaterial(); };
+				selMaterial.selectedIndex = frm.defaultMaterial;
+				selMaterial.onchange = function() { frm.mesh.material = frm.getMaterial( selMaterial.value ); };
 
-				chkRotate.checked = ifr.contentWindow.controls.autoRotate = true;
+				chkRotate.checked = frm.controls.autoRotate = true;
 				chkGradient.checked = true;
 				toggleGradient();
 
