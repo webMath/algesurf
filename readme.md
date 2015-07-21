@@ -22,7 +22,9 @@ Visualize math and physics in ways never seen before
 
 ### Parametric Equations
 
-[Parametric Equations Browser]( http://jaanga.github.io/algesurf/parametric-equations/latest/ )  
+[Parametric Equations Browser R5]( http://jaanga.github.io/algesurf/parametric-equations/r5/algesurf-parametric-equations-ui-r5.html )  
+
+[Parametric Equations Browser R4]( http://jaanga.github.io/algesurf/parametric-equations/latest/ )  
 
 [Read Me]( http://jaanga.github.io/algesurf/parametric-equations/ )  
 [Source Code]( https://github.com/jaanga/algesurf/tree/gh-pages/parametric-equations )
