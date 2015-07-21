@@ -13,13 +13,18 @@
 <script src=materials-lights.js ></script>
 <script>
 
-	var defaultMaterial = 36;
+
 
 	var eqns = new equations;
 	var equationsKeys = Object.keys( eqns.equations );
-	var defaultEquation = Math.floor( equationsKeys.length * ran() );
+	var equationDefault = Math.floor( equationsKeys.length * ran() );
 
 	var eqn, scale, a, b, c, d, e, f, g, h, i, j, R1, R1, s, u, v;
+
+	var materialDefault = 36;
+
+	var reflectionCubes = [ 'No relections', 'Bridge2', 'Escher', 'MilkyWay', 'Park2', 'Park3Med', 'pisa', 'skybox', 'SwedishRoyalCastle' ];
+	var reflectionDefault = 7; // skybox
 
 	var startTime = performance.now();
 	var delayTime = 2000;
@@ -55,6 +60,9 @@
 				'<p>Select a material' +
 				'<br><select id=selMaterial ></select></p>' +
 
+				'<p>Select a reflection' +
+				'<br><select id=selReflection ></select></p>' +
+
 				'<input type=checkbox id=chkRotate checked /> Enable auto-rotation' +
 			'';
 
@@ -66,9 +74,19 @@
 
 			}
 
-			selEquation.selectedIndex = defaultEquation;
+			selEquation.selectedIndex = equationDefault;
 			selEquation.onchange = function() { drawEquation( selEquation.selectedIndex ); };
 
+			for ( var i = 0; i < reflectionCubes.length ; i++ ) {
+
+				node = document.createElement( 'option' );
+				selReflection.appendChild( node );
+				node.text = reflectionCubes[ i ];
+
+			}
+
+			selReflection.selectedIndex = reflectionDefault;
+			selReflection.onchange = function() { reflectionDefault = selReflection.selectedIndex; mesh.material = getMaterial( selMaterial.value );};
 
 			for ( var i = 0, node; i < materialsKeys.length ; i++ ) {
 
@@ -88,7 +106,7 @@
 
 			}
 
-			selMaterial.selectedIndex = defaultMaterial;
+			selMaterial.selectedIndex = materialDefault;
 			selMaterial.onchange = function() { mesh.material = getMaterial( selMaterial.value ); };
 
 		}
@@ -114,10 +132,30 @@
 
 	} 
 
-	function onMouseMove() {
+	function hashChange() {
 
-		startTime = parent.chkRotate.checked ? performance.now() : 1000000 ;
-		controls.autoRotate = false;
+		hashes = location.hash.split ( '#' );
+/*
+		if ( hashes.length > 1 ) {
+
+//			if ( window.self === window.top ) {
+
+				parent.selEquation.selectedIndex = hashes[ 1 ];
+
+//			}
+
+			drawEquation( hashes[ 1 ] );
+
+		} else {
+
+			drawEquation( equationDefault );
+
+		}
+*/
+
+		equationDefault = hashes.length > 1 ? hashes[ 1 ] : equationDefault;
+
+		drawEquation( equationDefault );
 
 	}
 
@@ -143,25 +181,10 @@
 
 	}
 
-	function hashChange() {
+	function onMouseMove() {
 
-		hashes = location.hash.split ( '#' );
-
-		if ( hashes.length > 1 ) {
-
-//			if ( window.self === window.top ) {
-
-				parent.selEquation.selectedIndex = index;
-
-//			}
-
-			drawEquation( hashes[ 1 ] );
-
-		} else {
-
-			drawEquation( defaultEquation );
-
-		}
+		startTime = parent.chkRotate.checked ? performance.now() : 1000000 ;
+		controls.autoRotate = false;
 
 	}
 

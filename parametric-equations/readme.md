@@ -21,6 +21,16 @@ Part of the AlgeSurf effort to make the visualization of mathematic equations fa
 <!--  a descriptive picture of a desired future state -->
 To visualize math and physics in entirely new ways
 
+## Apps
+
+[Parametric Equations Browser R5]( http://jaanga.github.io/algesurf/parametric-equations/r5/algesurf-parametric-equations-ui-r5.html )  
+
+[Parametric Equations Browser R5 API ]( http://jaanga.github.io/algesurf/parametric-equations/r5/algesurf-parametric-equations-api-r5.html )  
+
+[Parametric Equations Browser R4]( http://jaanga.github.io/algesurf/parametric-equations/latest/ )  
+
+
+
 ## Features
 <!-- and benefits -->
 Features include the following:

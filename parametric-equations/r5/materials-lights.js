@@ -1,6 +1,10 @@
 
 	var materialsKeys;
 
+	var reflectionCubes = [ 'No relections', 'Bridge2', 'Escher', 'MilkyWay', 'Park2', 'Park3Med', 'pisa', 'skybox', 'SwedishRoyalCastle' ];
+
+	var reflectionDefault = 7; // skybox
+
 	function getMaterials() {
 
 		THREE.ImageUtils.crossOrigin = 'anonymous';
@@ -608,9 +612,9 @@
 
 	}
 
-	cubes = [ 'Bridge2', 'Escher', 'MilkyWay', 'Park2', 'Park3Med', 'pisa', 'skybox', 'SwedishRoyalCastle' ];
 
 // parent.selMaterial.value
+
 	function getMaterial( node ) {
 
 			material = materialsLibrary[ node ].material;
@@ -626,28 +630,28 @@
 //			var r = 'http://mrdoob.github.io/three.js/examples/textures/cube/skybox/';
 //			urls = [ r + 'px.jpg', r + 'nx.jpg', r + 'py.jpg', r + 'ny.jpg', r + 'pz.jpg', r + 'nz.jpg' ];
 
-				var selected = 3;
+			var selected = reflectionDefault;
 
-				var r = 'http://mrdoob.github.io/three.js/examples/textures/cube/' + cubes[ selected ] + '/';
+			var r = 'http://mrdoob.github.io/three.js/examples/textures/cube/' + reflectionCubes[ selected ] + '/';
 
-				if ( selected === 0 || selected === 3 ) {
+			if ( selected === 1 || selected === 4 ) {
 
-					var urls = [ r + 'posx.jpg', r + 'negx.jpg', r + 'posy.jpg', r + 'negy.jpg', r + 'posz.jpg', r + 'negz.jpg' ];
+				var urls = [ r + 'posx.jpg', r + 'negx.jpg', r + 'posy.jpg', r + 'negy.jpg', r + 'posz.jpg', r + 'negz.jpg' ];
 
 
-				} else if ( selected === 2 ) {
+			} else if ( selected === 3 ) {
 
-					var urls = [ r + 'dark-s_px.jpg', r + 'dark-s_nx.jpg', r + 'dark-s_py.jpg', r + 'dark-s_ny.jpg', r + 'dark-s_pz.jpg', r + 'dark-s_nz.jpg' ];
+				var urls = [ r + 'dark-s_px.jpg', r + 'dark-s_nx.jpg', r + 'dark-s_py.jpg', r + 'dark-s_ny.jpg', r + 'dark-s_pz.jpg', r + 'dark-s_nz.jpg' ];
 
-				} else if ( selected === 5 ) {
+			} else if ( selected === 6 ) {
 
-					var urls = [ r + 'px.png', r + 'nx.png', r + 'py.png', r + 'ny.png', r + 'pz.png', r + 'nz.png' ];
+				var urls = [ r + 'px.png', r + 'nx.png', r + 'py.png', r + 'ny.png', r + 'pz.png', r + 'nz.png' ];
 
-				} else {
+			} else {
 
-					urls = [ r + 'px.jpg', r + 'nx.jpg', r + 'py.jpg', r + 'ny.jpg', r + 'pz.jpg', r + 'nz.jpg' ];
+				urls = [ r + 'px.jpg', r + 'nx.jpg', r + 'py.jpg', r + 'ny.jpg', r + 'pz.jpg', r + 'nz.jpg' ];
 
-				}
+			}
 
 			textureCube = THREE.ImageUtils.loadTextureCube( urls );
 			textureCube.format = THREE.RGBFormat;

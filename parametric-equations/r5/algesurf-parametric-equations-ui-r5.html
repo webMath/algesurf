@@ -11,7 +11,12 @@
 
 	var eqns = new equations;
 	var equationsKeys = Object.keys( eqns.equations );
-//	var vars = [ 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'R1', 'R2', 'u', 'v' ];
+	var equationDefault = Math.floor( equationsKeys.length * ran() );
+
+//	var materialDefault = 26;
+	var reflectionDefault = 7;
+
+	cubes = [ 'No Rreflection', 'Bridge2', 'Escher', 'MilkyWay', 'Park2', 'Park3Med', 'pisa', 'skybox', 'SwedishRoyalCastle' ];
 
 	init();
 
@@ -34,13 +39,18 @@
 			'<p>Select a material' +
 			'<br><select id=selMaterial ></select></p>' +
 
+			'<p>Select a reflection' +
+			'<br><select id=selReflection ></select></p>' +
+
 			'<button onclick=ifr.src="algesurf-parametric-equations-gallery-r1.html" >View equations gallery</button>' +
 
-			'<p><a href="algesurf-parametric-equations-api-equation-editor-r5.html" >Equations editor</a></p>' +
+			'<p><a href="algesurf-parametric-equations-api-equation-editor-r5-1.html" >Equations editor</a></p>' +
 
 			'<p><input type=checkbox id=chkRotate checked /> Enable auto-rotation</p>' +
 
 			'<p><input type=checkbox id=chkGradient onchange=toggleGradient(); /> Background </p>' +
+
+			'<p id=curve ></p>' +
 
 		'';
 
@@ -52,7 +62,20 @@
 
 		}
 
-		selEquation.onchange = function() { updateIframe( selEquation.selectedIndex ); };
+		selEquation.selectedIndex = equationDefault;
+//		selEquation.onchange = function() { ifr.src = 'algesurf-parametric-equations-api-r5.html#' + selEquation.selectedIndex; };
+		selEquation.onchange = function() { ifr.contentWindow.drawEquation( selEquation.selectedIndex ); };
+
+		for ( var i = 0; i < cubes.length ; i++ ) {
+
+			node = document.createElement( 'option' );
+			selReflection.appendChild( node );
+			node.text = cubes[ i ];
+
+		}
+
+		selReflection.selectedIndex = reflectionDefault;
+//		selReflection.onchange = function() { frm.reflectionDefault = selReflection.selectedIndex; };
 
 		ifr = document.body.appendChild( document.createElement( 'iframe' ) );
 		ifr.width = window.innerWidth;
@@ -61,13 +84,19 @@
 
 		ifr.onload = function() {
 
+			selEquation.selectedIndex = equationDefault;
+
 			frm = ifr.contentWindow;
 
+
+
+			frm.reflectionDefault = selReflection.selectedIndex;
+
+			selReflection.selectedIndex = reflectionDefault;
+//			selReflection.onchange = function() { frm.reflectionDefault = selReflection.selectedIndex; };
+
+
 			if ( frm.controls ) {
-
-				selEquation.selectedIndex = frm.index;
-
-				equation = frm.eqns.equations[ frm.equationsKeys[ frm.index ] ];
 
 				for ( var i = 0; i < frm.materialsKeys.length ; i++ ) {
 
@@ -87,48 +116,50 @@
 
 				}
 
-				selMaterial.selectedIndex = frm.defaultMaterial;
+				selMaterial.selectedIndex = frm.materialDefault;
 				selMaterial.onchange = function() { frm.mesh.material = frm.getMaterial( selMaterial.value ); };
+
+				selReflection.selectedIndex = frm.reflectionDefault;
+				selReflection.onchange = function() { frm.reflectionDefault = selReflection.selectedIndex; frm.mesh.material = frm.getMaterial( selMaterial.value );};
 
 				chkRotate.checked = frm.controls.autoRotate = true;
 				chkGradient.checked = true;
 				toggleGradient();
 
+				curve.innerText = frm.eqn.curve.toString();
+
 			}
 
 		}
 
-		ifr.src="algesurf-parametric-equations-api-r5.html";
+
+		window.addEventListener( 'hashchange', hashChange, false );
+
+		hashChange();
+
+//		ifr.src = 'algesurf-parametric-equations-api-r5.html#' + equationDefault;
 
 	} 
 
-	function edit() {
+	function hashChange() {
 
-		equation.scale = parseFloat( rngscale.value );
+		hashes = location.hash.split ( '#' );
 
-		for ( var i = 0; i < vars.length; i++ ) {
+		if ( hashes.length > 1 ) {
 
-			if ( equation[ vars[ i ] ] ) {
+//			selEquation.selectedIndex = hashes[ 1 ];
 
-				equation[ vars[ i ] ] = parseFloat( eval( 'rng' + [ vars[ i ] ] ).value );
+			equationDefault = hashes[ 1 ];
 
-			}
+//			ifr.src = 'algesurf-parametric-equations-api-r5.html#' + hashes[ 1 ];
 
-		}
+		} else {
 
-		frm.drawEquation( frm.index );
 
-	}
-
-	function updateIframe( index ) {
-
-		if ( index !== undefined ) {
-
-			selEquation.selectedIndex = index;
 
 		}
 
-		ifr.src = 'algesurf-parametric-equations-api-r5.html#' + selEquation.selectedIndex ;
+		ifr.src = 'algesurf-parametric-equations-api-r5.html#' + equationDefault;
 
 	}
 

@@ -13,22 +13,23 @@
 <script src=materials-lights.js ></script>
 <script>
 
-	var materialDefault = 36;
-	var reflectionDefault = 7; // skybox
-
 	var eqns = new equations;
 	var equationsKeys = Object.keys( eqns.equations );
 	var equationDefault = Math.floor( equationsKeys.length * ran() );
 
-	var idx = equationDefault;
-
 	var eqn, scale, a, b, c, d, e, f, g, h, i, j, R1, R1, s, u, v;
-
 	var vars = [ 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'R1', 'R2', 'u', 'v' ];
 
-	var startTime = 10000000000000000000; // performance.now();
+	var materialDefault = 36;
+
+	var reflectionCubes = [ 'No relections', 'Bridge2', 'Escher', 'MilkyWay', 'Park2', 'Park3Med', 'pisa', 'skybox', 'SwedishRoyalCastle' ];
+	var reflectionDefault = 7; // skybox
+
+	var startTime = performance.now();
 	var delayTime = 2000;
 //	var autoRotateSpeed = 0.2;
+
+	var index;
 
 	var css, menu, renderer, scene, camera, controls;
 	var geometry, material, mesh;
@@ -48,7 +49,7 @@
 			'';
 
 			menu = document.body.appendChild( document.createElement( 'div' ) );
-			menu.style.cssText = ' margin: 0 20px; max-height: ' + ( window.innerHeight - 20 ) + 'px; max-width: 270px; overflow: auto; position: absolute; ';
+			menu.style.cssText = ' margin: 0 20px; max-height: ' + ( window.innerHeight - 50 ) + 'px; max-width: 270px; overflow: auto; position: absolute; ';
 			menu.innerHTML = '<h2 style=margin:0; ><a href="" >' + document.title + '</a> ' +
 				'<a id=i href=http://jaanga.github.io/algesurf/parametric-equations/ >&#x24D8;</a></h2>' +
 
@@ -58,7 +59,10 @@
 				'<p>Select a material' +
 				'<br><select id=selMaterial ></select></p>' +
 
-				'<input type=checkbox id=chkRotate /> Enable auto-rotation' +
+				'<p>Select a reflection' +
+				'<br><select id=selReflection ></select></p>' +
+
+				'<input type=checkbox id=chkRotate checked /> Enable auto-rotation' +
 
 				'<p id=sliders ></p>' +
 
@@ -70,12 +74,23 @@
 
 				node = document.createElement( 'option' );
 				selEquation.appendChild( node );
-				node.text = equationsKeys[ i ];
+				node.text = eqns.equations[ equationsKeys[ i ] ].title;
 
 			}
 
 			selEquation.selectedIndex = equationDefault;
 			selEquation.onchange = getEquation;
+
+			for ( var i = 0; i < reflectionCubes.length ; i++ ) {
+
+				node = document.createElement( 'option' );
+				selReflection.appendChild( node );
+				node.text = reflectionCubes[ i ];
+
+			}
+
+			selReflection.selectedIndex = reflectionDefault;
+			selReflection.onchange = function() { reflectionDefault = selReflection.selectedIndex; mesh.material = getMaterial( selMaterial.value );};
 
 			for ( var i = 0, node; i < materialsKeys.length ; i++ ) {
 
@@ -96,10 +111,9 @@
 			}
 
 			selMaterial.selectedIndex = materialDefault;
-			selMaterial.onchange = function() { mesh.material = getMaterial( ); };
+			selMaterial.onchange = function() { mesh.material = getMaterial( selMaterial.value ); };
 
 		}
-
 
 		renderer = new THREE.WebGLRenderer( { alpha: 1, antialias: true, clearColor: 0xffffff }  );
 		renderer.setSize( window.innerWidth, window.innerHeight );
@@ -121,6 +135,20 @@
 		hashChange();
 
 	} 
+
+	function hashChange() {
+
+		hashes = location.hash.split ( '#' );
+
+		equationDefault = hashes.length > 1 ? hashes[ 1 ] : equationDefault;
+
+getEquation();
+
+//		drawEquation( equationDefault );
+
+
+
+	}
 
 	function getEquation() {
 
@@ -159,28 +187,6 @@
 
 	}
 
-	function drawEquation( id ) {
-
-		idx = id;
-		eqn = eqns.equations[ equationsKeys[ idx ] ];
-		scale = eqn.scale;
-		a = eqn.a; b = eqn.b; c = eqn.c; d = eqn.d;
-		e = eqn.e; f = eqn.f; g = eqn.g; h = eqn.h; i = eqn.i; j = eqn.j;
-		R1 = eqn.R1; R2 = eqn.R2;
-		u = eqn.u || 20; v = eqn.v || 20;
-
-		geometry = new THREE.ParametricGeometry( eqn.curve, u, v );
-		geometry.center();
-
-		material = getMaterial();
-
-		scene.remove( mesh );
-		mesh = new THREE.Mesh( geometry, material );
-		mesh.castShadow = mesh.receiveShadow = true;
-		scene.add( mesh );
-
-	}
-
 	function edit() {
 
 		eqn.scale = parseFloat( rngscale.value );
@@ -199,31 +205,29 @@
 
 		}
 
-		drawEquation( idx );
+		drawEquation( index );
 
 	}
 
-	function hashChange() {
+	function drawEquation( id ) {
 
-		hashes = location.hash.split ( '#' );
+		index = id;
+		eqn = eqns.equations[ equationsKeys[ index ] ];
+		scale = eqn.scale;
+		a = eqn.a; b = eqn.b; c = eqn.c; d = eqn.d;
+		e = eqn.e; f = eqn.f; g = eqn.g; h = eqn.h; i = eqn.i; j = eqn.j;
+		R1 = eqn.R1; R2 = eqn.R2;
+		u = eqn.u || 20; v = eqn.v || 20;
 
-		if ( hashes.length > 1 ) {
+		geometry = new THREE.ParametricGeometry( eqn.curve, u, v );
+		geometry.center();
 
-//			if ( window.self === window.top ) {
+		material = getMaterial('texture1');
 
-				parent.selEquation.selectedIndex = hashes[ 1 ];
-
-//			}
-
-			eqn = equations[ equationsKeys[ hashes[ 1 ] ] ];
-
-			drawEquation( hashes[ 1 ] );
-
-		} else {
-
-			getEquation();
-
-		}
+		scene.remove( mesh );
+		mesh = new THREE.Mesh( geometry, material );
+		mesh.castShadow = mesh.receiveShadow = true;
+		scene.add( mesh );
 
 	}
 
