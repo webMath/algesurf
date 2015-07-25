@@ -1,6 +1,8 @@
-var selectedSurface = 'stemkoski';
+var equationIndex = 0;
 
-var surfaces = {
+//var equations = {
+
+var equations = function() { this.equations = {
 
 'stemkoski' : {
 eqn:'x^2 + y^2 - z^2 - 70',
@@ -920,4 +922,5 @@ ttl:''
 
 };
 
-var surfacesKeys = Object.keys( surfaces );
+}
+

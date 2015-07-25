@@ -19,6 +19,11 @@
 
 	var index, eqn, scale, a, b, c, d, e, f, g, h, i, j, R1, R1, u, v;
 
+	var materialDefault = 36;
+
+	var reflectionCubes = [ 'No relections', 'Bridge2', 'Escher', 'MilkyWay', 'Park2', 'Park3Med', 'pisa', 'skybox', 'SwedishRoyalCastle' ];
+	var reflectionDefault = 7; // skybox
+
 	var css, menu, renderer, scene, camera, controls;
 	var geometry, material, mesh;
 
@@ -26,6 +31,8 @@
 	animate();
 
 	function init() {
+
+		getMaterials();
 
 		if ( window.self === window.top ) {
 
@@ -61,17 +68,43 @@
 			selEquation.selectedIndex = equationDefault;
 			selEquation.onchange = function() { drawEquation( selEquation.selectedIndex ); };
 
+			for ( var i = 0, node; i < materialsKeys.length ; i++ ) {
 
-			addMaterials();
+				if ( materialsKeys[ i ].substr( 0, 1 ) === '#' ) {
 
-			material = addSelMaterialOptions( selMaterial );
+					node = document.createElement( 'optgroup' );
+					selMaterial.appendChild( node );
+					node.label = materialsKeys[ i ].substr( 1 );
 
-			addSelReflectionOption( selReflection );
+				} else {
+
+					node = document.createElement( 'option' );
+					selMaterial.appendChild( node );
+					node.text = materialsKeys[ i ];
+
+				}
+
+			}
+
+			selMaterial.selectedIndex = materialDefault;
+			selMaterial.onchange = function() { mesh.material = getMaterial( selMaterial.value ); };
+
+			material = getMaterial( selMaterial.value );
+
+			for ( var i = 0; i < reflectionCubes.length ; i++ ) {
+
+				node = document.createElement( 'option' );
+				selReflection.appendChild( node );
+				node.text = reflectionCubes[ i ];
+
+			}
+
+			selReflection.selectedIndex = reflectionDefault;
+			selReflection.onchange = function() { reflectionDefault = selReflection.selectedIndex; mesh.material = getMaterial( selMaterial.value );};
 
 		} else {
 
-			addMaterials();
-			material = updateMaterial( 'texture1' );
+			material = getMaterial( 'texture1' );
 
 		}
 
@@ -89,7 +122,6 @@
 		var axisHelper = new THREE.AxisHelper( 100 );
 		scene.add( axisHelper );
 
-// assets
 		addLights();
 
 		window.addEventListener( 'resize', onWindowResize, false );

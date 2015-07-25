@@ -587,14 +587,14 @@
 		}
 
 		obj.selectedIndex = materialDefault;
-		obj.onchange = function() { mesh.material = updateMaterial( obj.value ); };
+		obj.onchange = function() { plane.material = updateMaterial( obj.value ); };
 
 		return updateMaterial( obj.value );
 
 	}
 
 
-	function addSelReflectionOption( obj, matObj ) {
+	function addSelReflectionOption( obj ) {
 
 		for ( var i = 0; i < reflectionCubes.length ; i++ ) {
 
@@ -604,8 +604,8 @@
 
 		}
 
-		obj.selectedIndex = reflectionIndex;
-		obj.onchange = function() { reflectionIndex = obj.selectedIndex; mesh.material = updateMaterial( matObj.value );};
+		obj.selectedIndex = reflectionDefault;
+		obj.onchange = function() { reflectionIndex = obj.selectedIndex; plane.material = updateMaterial( selMaterial.value );};
 
 
 	}

@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang=en >
 <head>
-<title>algeSurf Marching Cubes API R1</title>
+<title>algeSurf Marching Cubes API R1.1</title>
 <meta charset=utf-8 />
 <meta name=viewport content='width=device-width,user-scalable=no,minimum-scale=1.0,maximum-scale=1.0' />
 </head>
@@ -9,24 +9,20 @@
 <script src=http://mrdoob.github.io/three.js/build/three.min.js ></script>
 <script src=http://mrdoob.github.io/three.js/examples/js/controls/OrbitControls.js ></script>
 <script src=http://mrdoob.github.io/three.js/examples/js/libs/stats.min.js ></script>
+<script src=https://cdn.rawgit.com/mrdoob/texgen.js/master/build/texgen.min.js ></script>
 
 <script src=parser.js ></script>
 <script src=marching-cubes-data.js ></script>
 <script src=generate-geometry.js ></script>
-<script src=materials-no-lights.js ></script>
-
+<script src=materials-lights.js ></script>
+<script src=equations-marching-cubes.js ></script>
 <script>
 
-	var equation = 'x^2+y^2-z^2-70';
-	var htm = 'x<sup>2</sup> + y<sup>2</sup> - z<sup>2</sup> - 70'
-	var min = -10;
-	var max =  10;
-	var mat = 'new THREE.MeshNormalMaterial( { opacity: 0.7, side: 2, transparent: true  } )';
-//	var mat = 'new THREE.MeshBasicMaterial( { side: 2 } )';
-	var scl = 1;
-	var tex;
-//	var tex = 'new THREE.Texture( generateTriangles( 1, 0.5, 0 ), THREE.UVMapping )'; //THREE.ImageUtils.loadTexture( "../../textures/im5.jpg" );
-	var ttl = 'Stemkoski (default)';
+	var eqns = new equations;
+
+	var equationsKeys = Object.keys( eqns.equations );
+
+	materiaIndex = 12;
 
 	var css, info, stats, renderer, scene, camera, controls;
 	var geometry, material, mesh;
@@ -47,8 +43,31 @@
 			info.style.cssText = 'margin: 0 20px; position: absolute; ';
 			info.innerHTML = '<h2 style=margin:0; ><a href="" >' + document.title + '</a> ' +
 				'<a id=i href=http://jaanga.github.io/algesurf/marching-cubes/ >&#x24D8;</a></h2>' +
+
+				'<p>Select an equation' +
+				'<br><select id=selEquation ></select></p>' +
+
+				'<p>Select a material' +
+				'<br><select id=selMaterial ></select></p>' +
+
+				'<p>Select a reflection' +
+				'<br><select id=selReflection ></select></p>' +
+
 				'<div id=msg1 ></div>' +
 			'';
+
+			for ( var i = 0;  i < equationsKeys.length; i++ ) {
+
+				selEquation.innerHTML += '<option>' + equationsKeys[ i ] +'</option>';
+
+			}
+
+			selEquation.selectedIndex = equationIndex;
+			selEquation.onchange = function() {
+
+				drawEquation( selEquation.value );
+
+			};
 
 		}
 
@@ -68,86 +87,52 @@
 
 		scene = new THREE.Scene();
 
-		var axisHelper = new THREE.AxisHelper( 5 );
+		var axisHelper = new THREE.AxisHelper( 20 );
 		scene.add( axisHelper );
 
 		window.addEventListener( 'resize', onWindowResize, false );
-		window.addEventListener ( 'hashchange', drawSurface, false );
+		window.addEventListener ( 'hashchange', hashChange, false );
 
-//		script = document.head.appendChild( document.createElement('script') );
-//		script.onload = drawSurface;
-//		script.src = ( window.self === window.top ) ? 'materials-no-lights.js' : parent.materialsLibrarySrc ;
+		addLights();
 
-		drawSurface();
+		addMaterials();
+
+		material = addSelMaterialOptions( selMaterial );
+
+		addSelReflectionOption( selReflection );
+
+		hashChange();
 
 	}
 
-	function drawSurface() {
+	function hashChange() {
 
 		var hashes = location.hash.split ( '#' );
 
-		for ( var i = 0; i < hashes.length; i++) {
+		index = hashes.length > 1 ? hashes[ 1 ] : equationIndex;
 
-			var param = hashes[i].split( '=' );
+		drawEquation( equationsKeys[ index ]  );
 
-			if ( param[ 0 ] === 'eqn' ) {
-				equation = param[ 1 ];
-			} else if ( param[ 0 ] === 'htm' ) {
-				htm = param[ 1 ];
-			} else if ( param[ 0 ] === 'max' ) {
-				max = parseFloat( param[ 1 ] );
-			} else if ( param[ 0 ] === 'min' ) {
-				min = parseFloat( param[ 1 ] );
-			} else if ( param[ 0 ] === 'mat' ) {
-				mat = param[ 1 ];
-			} else if ( param[ 0 ] === 'scl' ) {
-				scl = parseFloat( param[ 1 ] );
-			} else if ( param[ 0 ] === 'tex' ) {
-				tex = param[ 1 ];
-			} else if ( param[ 0 ] === 'ttl' ) {
-				ttl = param[ 1 ];
-			}
+	}
 
-		}
+	function drawEquation( node ) {
 
-		var jsFunction = Parser.parse( equation ).toJSFunction( [ 'x', 'y', 'z' ] );
-		geometry = generateGeometry( jsFunction, min, max );
+		equation = eqns.equations[ node ];
 
-		material = eval( mat );
-
-		if ( tex !== undefined ) {
-
-			texture = eval( tex );
-			texture.needsUpdate = true
-			material.map = texture;
-
-		}
+		var jsFunction = Parser.parse( equation.eqn ).toJSFunction( [ 'x', 'y', 'z' ] );
+		geometry = generateGeometry( jsFunction, equation.min, equation.max );
 
 		scene.remove( mesh );
 		mesh = new THREE.Mesh( geometry, material );
-		mesh.scale.multiplyScalar( scl );
+		mesh.scale.multiplyScalar( equation.scl );
 		scene.add( mesh );
 
 		if ( window.self === window.top ) {
 
-			msg1.innerHTML = 'Title: ' + ttl + '<br>' +
-				'Function: ' + htm + '<br>' +
-				'Material: ' + mat;
+			msg1.innerHTML = 'Title: ' + equation.ttl + '<br>' +
+				'Function: ' + equation.htm + '<br>' +
+	//			'Material: ' + equation.mat;
 			'';
-
-		}
-
-	}
-
-	function updateMaterial( mat, tex ) {
-
-		mesh.material = eval( mat );
-
-		if ( tex !== undefined ) {
-
-			texture = eval( tex );
-			texture.needsUpdate = true;
-			mesh.material.map = texture;
 
 		}
 

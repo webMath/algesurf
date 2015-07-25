@@ -96,10 +96,9 @@
 			}
 
 			selMaterial.selectedIndex = materialDefault;
-			selMaterial.onchange = function() { mesh.material = getMaterial( ); };
+			selMaterial.onchange = function() { mesh.material = getMaterial( selMaterial.value ); };
 
 		}
-
 
 		renderer = new THREE.WebGLRenderer( { alpha: 1, antialias: true, clearColor: 0xffffff }  );
 		renderer.setSize( window.innerWidth, window.innerHeight );
@@ -150,9 +149,6 @@
 
 		sliders.innerHTML = txt + '<button onclick="eqns = new equations; getEquation(); controls.reset();"; >Reset</button>';
 
-
-// eqns = new equations;
-
 		equation.innerText = eqn.curve.toString();
 
 		drawEquation( selEquation.selectedIndex );
@@ -172,7 +168,7 @@
 		geometry = new THREE.ParametricGeometry( eqn.curve, u, v );
 		geometry.center();
 
-		material = getMaterial();
+		material = getMaterial( selMaterial.value );
 
 		scene.remove( mesh );
 		mesh = new THREE.Mesh( geometry, material );
@@ -207,23 +203,9 @@
 
 		hashes = location.hash.split ( '#' );
 
-		if ( hashes.length > 1 ) {
+		equationDefault = hashes.length > 1 ? hashes[ 1 ] : equationDefault;
 
-//			if ( window.self === window.top ) {
-
-				parent.selEquation.selectedIndex = hashes[ 1 ];
-
-//			}
-
-			eqn = equations[ equationsKeys[ hashes[ 1 ] ] ];
-
-			drawEquation( hashes[ 1 ] );
-
-		} else {
-
-			getEquation();
-
-		}
+		getEquation();
 
 	}
 

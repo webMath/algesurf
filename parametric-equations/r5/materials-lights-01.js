@@ -1,13 +1,11 @@
 
-	var materialsLibrary, materialsKeys;
-
-	var materialDefault = 36;
+	var materialsKeys;
 
 	var reflectionCubes = [ 'No relections', 'Bridge2', 'Escher', 'MilkyWay', 'Park2', 'Park3Med', 'pisa', 'skybox', 'SwedishRoyalCastle' ];
 
 	var reflectionIndex = reflectionDefault = 7; // skybox
 
-	function addMaterials() {
+	function getMaterials() {
 
 		THREE.ImageUtils.crossOrigin = 'anonymous';
 
@@ -565,106 +563,6 @@
 	}
 
 
-
-	function addSelMaterialOptions ( obj ) {
-
-		for ( var i = 0, node; i < materialsKeys.length ; i++ ) {
-
-			if ( materialsKeys[ i ].substr( 0, 1 ) === '#' ) {
-
-				node = document.createElement( 'optgroup' );
-				obj.appendChild( node );
-				node.label = materialsKeys[ i ].substr( 1 );
-
-			} else {
-
-				node = document.createElement( 'option' );
-				obj.appendChild( node );
-				node.text = materialsKeys[ i ];
-
-			}
-
-		}
-
-		obj.selectedIndex = materialDefault;
-		obj.onchange = function() { mesh.material = updateMaterial( obj.value ); };
-
-		return updateMaterial( obj.value );
-
-	}
-
-
-	function addSelReflectionOption( obj, matObj ) {
-
-		for ( var i = 0; i < reflectionCubes.length ; i++ ) {
-
-			node = document.createElement( 'option' );
-			obj.appendChild( node );
-			node.text = reflectionCubes[ i ];
-
-		}
-
-		obj.selectedIndex = reflectionIndex;
-		obj.onchange = function() { reflectionIndex = obj.selectedIndex; mesh.material = updateMaterial( matObj.value );};
-
-
-	}
-
-
-	function updateMaterial( node ) {
-
-		material = materialsLibrary[ node ].material;
-
-		if ( materialsLibrary[ node ].texture ) {
-
-			texture = materialsLibrary[ node ].texture;
-			texture.needsUpdate = true;
-			material.map = texture;
-
-		}
-
-		if ( reflectionIndex > 0 ) {
-
-			var r = 'http://mrdoob.github.io/three.js/examples/textures/cube/' + reflectionCubes[ reflectionIndex ] + '/';
-
-			if ( reflectionIndex === 1 || reflectionIndex === 4 ) {
-
-				var urls = [ r + 'posx.jpg', r + 'negx.jpg', r + 'posy.jpg', r + 'negy.jpg', r + 'posz.jpg', r + 'negz.jpg' ];
-
-
-			} else if ( reflectionIndex === 3 ) {
-
-				var urls = [ r + 'dark-s_px.jpg', r + 'dark-s_nx.jpg', r + 'dark-s_py.jpg', r + 'dark-s_ny.jpg', r + 'dark-s_pz.jpg', r + 'dark-s_nz.jpg' ];
-
-			} else if ( reflectionIndex === 6 ) {
-
-				var urls = [ r + 'px.png', r + 'nx.png', r + 'py.png', r + 'ny.png', r + 'pz.png', r + 'nz.png' ];
-
-			} else {
-
-				urls = [ r + 'px.jpg', r + 'nx.jpg', r + 'py.jpg', r + 'ny.jpg', r + 'pz.jpg', r + 'nz.jpg' ];
-
-			}
-
-			textureCube = THREE.ImageUtils.loadTextureCube( urls );
-			textureCube.format = THREE.RGBFormat;
-			material.envMap = textureCube;
-			material.reflectivity = 0.85;
-
-		} else {
-
-			material.envMap = '';
-
-		}
-
-		material.needsUpdate = true;
-		material.side = 2;
-
-		return material;
-
-	}
-
-
 	function addLights() {
 
 		renderer.shadowMapEnabled = true;
@@ -711,5 +609,60 @@
 			}
 
 		} );
+
+	}
+
+
+	function getMaterial( node ) {
+
+		material = materialsLibrary[ node ].material;
+
+		if ( materialsLibrary[ node ].texture ) {
+
+			texture = materialsLibrary[ node ].texture;
+			texture.needsUpdate = true;
+			material.map = texture;
+
+		}
+
+		var r = 'http://mrdoob.github.io/three.js/examples/textures/cube/' + reflectionCubes[ reflectionIndex ] + '/';
+
+
+		if ( reflectionIndex === 1 || reflectionIndex === 4 ) {
+
+			var urls = [ r + 'posx.jpg', r + 'negx.jpg', r + 'posy.jpg', r + 'negy.jpg', r + 'posz.jpg', r + 'negz.jpg' ];
+
+
+		} else if ( reflectionIndex === 3 ) {
+
+			var urls = [ r + 'dark-s_px.jpg', r + 'dark-s_nx.jpg', r + 'dark-s_py.jpg', r + 'dark-s_ny.jpg', r + 'dark-s_pz.jpg', r + 'dark-s_nz.jpg' ];
+
+		} else if ( reflectionIndex === 6 ) {
+
+			var urls = [ r + 'px.png', r + 'nx.png', r + 'py.png', r + 'ny.png', r + 'pz.png', r + 'nz.png' ];
+
+		} else {
+
+			urls = [ r + 'px.jpg', r + 'nx.jpg', r + 'py.jpg', r + 'ny.jpg', r + 'pz.jpg', r + 'nz.jpg' ];
+
+		}
+
+		if ( reflectionIndex > 0 ) {
+
+			textureCube = THREE.ImageUtils.loadTextureCube( urls );
+			textureCube.format = THREE.RGBFormat;
+			material.envMap = textureCube;
+			material.reflectivity = 0.85;
+
+		} else {
+
+			material.envMap = '';
+
+		}
+
+		material.needsUpdate = true;
+		material.side = 2;
+
+		return material;
 
 	}

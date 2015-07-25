@@ -13,6 +13,11 @@
 	var equationsKeys = Object.keys( eqns.equations );
 	var equationDefault = Math.floor( equationsKeys.length * ran() );
 
+//	var materialDefault = 26;
+//	var reflectionDefault = 7;
+
+//	cubes = [ 'No Rreflection', 'Bridge2', 'Escher', 'MilkyWay', 'Park2', 'Park3Med', 'pisa', 'skybox', 'SwedishRoyalCastle' ];
+
 	init();
 
 	function init() {
@@ -57,12 +62,25 @@
 
 		}
 
+
 		selEquation.selectedIndex = equationDefault;
 		selEquation.onchange = function() { ifr.contentWindow.drawEquation( selEquation.selectedIndex ); };
 
+/*
+		for ( var i = 0; i < cubes.length ; i++ ) {
+
+			node = document.createElement( 'option' );
+			selReflection.appendChild( node );
+			node.text = cubes[ i ];
+
+		}
+
+		selReflection.selectedIndex = reflectionDefault;
+*/
+
 		ifr = document.body.appendChild( document.createElement( 'iframe' ) );
-		ifr.width = window.innerWidth - 5;
-		ifr.height = window.innerHeight - 5;
+		ifr.width = window.innerWidth;
+		ifr.height = window.innerHeight;
 		ifr.style.cssText = 'border: 0px solid red; margin: 0; overflow: hidden; ';
 
 		ifr.onload = function() {
@@ -71,11 +89,18 @@
 
 			frm = ifr.contentWindow;
 
+			frm.reflectionDefault = selReflection.selectedIndex;
+
 			if ( frm.controls ) {
+
+//				frm.addLights();
 
 				frm.addSelMaterialOptions( selMaterial );
 
 				frm.addSelReflectionOption( selReflection, selMaterial );
+
+//				selReflection.selectedIndex = frm.reflectionIndex;
+//				selReflection.onchange = function() { frm.reflectionIndex = selReflection.selectedIndex; frm.mesh.material = frm.updateMaterial( selMaterial.value );};
 
 				chkRotate.checked = frm.controls.autoRotate = true;
 				chkGradient.checked = true;

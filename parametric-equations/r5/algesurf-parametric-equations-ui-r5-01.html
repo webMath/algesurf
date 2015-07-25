@@ -13,6 +13,11 @@
 	var equationsKeys = Object.keys( eqns.equations );
 	var equationDefault = Math.floor( equationsKeys.length * ran() );
 
+//	var materialDefault = 26;
+	var reflectionDefault = 7;
+
+	cubes = [ 'No Rreflection', 'Bridge2', 'Escher', 'MilkyWay', 'Park2', 'Park3Med', 'pisa', 'skybox', 'SwedishRoyalCastle' ];
+
 	init();
 
 	function init() {
@@ -57,12 +62,23 @@
 
 		}
 
+
 		selEquation.selectedIndex = equationDefault;
 		selEquation.onchange = function() { ifr.contentWindow.drawEquation( selEquation.selectedIndex ); };
 
+		for ( var i = 0; i < cubes.length ; i++ ) {
+
+			node = document.createElement( 'option' );
+			selReflection.appendChild( node );
+			node.text = cubes[ i ];
+
+		}
+
+		selReflection.selectedIndex = reflectionDefault;
+
 		ifr = document.body.appendChild( document.createElement( 'iframe' ) );
-		ifr.width = window.innerWidth - 5;
-		ifr.height = window.innerHeight - 5;
+		ifr.width = window.innerWidth;
+		ifr.height = window.innerHeight;
 		ifr.style.cssText = 'border: 0px solid red; margin: 0; overflow: hidden; ';
 
 		ifr.onload = function() {
@@ -71,11 +87,33 @@
 
 			frm = ifr.contentWindow;
 
+			frm.reflectionDefault = selReflection.selectedIndex;
+
 			if ( frm.controls ) {
 
-				frm.addSelMaterialOptions( selMaterial );
+				for ( var i = 0; i < frm.materialsKeys.length ; i++ ) {
 
-				frm.addSelReflectionOption( selReflection, selMaterial );
+					if ( frm.materialsKeys[ i ].substr( 0, 1 ) === '#' ) {
+
+						node = document.createElement( 'optgroup' );
+						selMaterial.appendChild( node );
+						node.label = frm.materialsKeys[ i ].substr( 1 );
+
+					} else {
+
+						node = document.createElement( 'option' );
+						selMaterial.appendChild( node );
+						node.text = frm.materialsKeys[ i ];
+
+					}
+
+				}
+
+				selMaterial.selectedIndex = frm.materialDefault;
+				selMaterial.onchange = function() { frm.mesh.material = frm.getMaterial( selMaterial.value ); };
+
+				selReflection.selectedIndex = frm.reflectionDefault;
+				selReflection.onchange = function() { frm.reflectionDefault = selReflection.selectedIndex; frm.mesh.material = frm.getMaterial( selMaterial.value );};
 
 				chkRotate.checked = frm.controls.autoRotate = true;
 				chkGradient.checked = true;
@@ -107,7 +145,9 @@
 
 		gradient = document.getElementById( 'chkGradient' );
 
-		if ( chkGradient.checked ) { 
+		if ( gradient.checked ) { 
+
+//				document.body.style.cssText += ' height: ' + window.innerHeight + 'px; ';
 
 				var col1 = Math.random().toString(16).slice(2, 8);
 				var col2 = Math.random().toString(16).slice(2, 8);

@@ -3,7 +3,7 @@ var pi = Math.PI;
 
 //equations = {
 
-	var equations = function() { this.equations = {
+var equations = function() { this.equations = {
 	'apple-surface-i' : {
 		'title' : 'Apple Surface I',
 		'link1' : 'http://www.3d-meier.de/tut3/Seite54.html',

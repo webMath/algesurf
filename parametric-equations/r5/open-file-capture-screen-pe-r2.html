@@ -8,10 +8,11 @@
 <body>
 <script src=http://mrdoob.github.io/three.js/build/three.min.js ></script>
 <script src=http://mrdoob.github.io/three.js/examples/js/controls/OrbitControls.js ></script>
-<script src=../../r5/equations-library-r1.js ></script>
+<script src=equations-library-r1.js ></script>
 <script>
 
-	var equationsKeys = Object.keys( equations );
+	var eqns = new equations;
+	var equationsKeys = Object.keys( eqns.equations );
 	var defaultEquation = Math.floor( equationsKeys.length * ran() );
 	var eqn, scale, a, b, c, d, e, f, g, h, i, j, R1, R1, s, u, v;
 
@@ -90,7 +91,7 @@
 
 		index = id;
 
-		eqn = equations[ equationsKeys[ index ] ];
+		eqn = eqns.equations[ equationsKeys[ index ] ];
 
 		equationList.children[ previousIndex * 2 ].style.backgroundColor = '';
 		equationList.children[ index * 2 ].style.backgroundColor = '#fcc';

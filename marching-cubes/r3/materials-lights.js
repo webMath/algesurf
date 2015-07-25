@@ -1,7 +1,7 @@
 
 	var materialsLibrary, materialsKeys;
 
-	var materialDefault = 36;
+	var materiaIndex = 36;
 
 	var reflectionCubes = [ 'No relections', 'Bridge2', 'Escher', 'MilkyWay', 'Park2', 'Park3Med', 'pisa', 'skybox', 'SwedishRoyalCastle' ];
 
@@ -586,7 +586,7 @@
 
 		}
 
-		obj.selectedIndex = materialDefault;
+		obj.selectedIndex = materiaIndex;
 		obj.onchange = function() { mesh.material = updateMaterial( obj.value ); };
 
 		return updateMaterial( obj.value );
@@ -594,7 +594,7 @@
 	}
 
 
-	function addSelReflectionOption( obj, matObj ) {
+	function addSelReflectionOption( obj ) {
 
 		for ( var i = 0; i < reflectionCubes.length ; i++ ) {
 
@@ -604,8 +604,8 @@
 
 		}
 
-		obj.selectedIndex = reflectionIndex;
-		obj.onchange = function() { reflectionIndex = obj.selectedIndex; mesh.material = updateMaterial( matObj.value );};
+		obj.selectedIndex = reflectionDefault;
+		obj.onchange = function() { reflectionIndex = obj.selectedIndex; mesh.material = updateMaterial( selMaterial.value );};
 
 
 	}
@@ -620,7 +620,6 @@
 			texture = materialsLibrary[ node ].texture;
 			texture.needsUpdate = true;
 			material.map = texture;
-
 		}
 
 		if ( reflectionIndex > 0 ) {
