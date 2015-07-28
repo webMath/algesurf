@@ -95,3 +95,4 @@ In no event shall the authors or copyright holders be liable for any claim, dama
 <center>
 # &#x2766;
 </center>
+<style>iframe { border-width: 0; }</style>
