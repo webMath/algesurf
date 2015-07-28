@@ -11,7 +11,7 @@
 
 	var eqns = new equations;
 	var equationsKeys = Object.keys( eqns.equations );
-	var equationIndex = Math.floor( equationsKeys.length * ran() );
+	var equationIndex = Math.floor( equationsKeys.length * Math.random() );
 
 	init();
 
@@ -105,8 +105,6 @@
 
 	function toggleGradient () {
 
-		gradient = document.getElementById( 'chkGradient' );
-
 		if ( chkGradient.checked ) { 
 
 				var col1 = Math.random().toString(16).slice(2, 8);
@@ -123,7 +121,7 @@
 
 		}
 
-	};
+	}
 
 </script>
 </body>

@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang=en >
 <head>
-<title>algeSurf Marching Cubes Gallery R1</title>
+<title>algeSurf Marching Cubes Gallery R1.1</title>
 <meta charset=utf-8 />
 <meta name=viewport content='width=device-width,user-scalable=no,minimum-scale=1.0,maximum-scale=1.0' />
 </head>
@@ -42,28 +42,25 @@
 		txt = '';
 
 
-		if ( window.self === window.top ) {
+//		if ( window.self === window.top ) {
 
 
 			for ( var i = 0; i < keysSurfaces.length; i++ ) {
 				s = surfaces[ keysSurfaces[i] ];
 				txt += '<div style="float: left; height: 250px; overflow: auto; padding: 0 5px; width: 250px;" >' +
-//					'<a href="./algesurf-marching-cubes-api-r1.1.html#eqn=' + s.eqn + '#htm=' + s.htm + '#max=' + s.max + '#min=' + s.min + 
-//					' #ttl=' + s.ttl + '" style=text-decoration:none; >' +
-
-					'<a href="./algesurf-marching-cubes-api-r1.1.html#' + i + '" style=text-decoration:none; >' +
+					'<a href="./algesurf-marching-cubes-ui-r1.1.html#' + i + '" style=text-decoration:none;  target="_top">' +
 					'<img src="../images/' +  keysSurfaces[ i ] + '.png" /><br>' + s.ttl + '<br>' + s.htm + '</a>' +
 				'</div>' ; 
 
 			}
-
+/*
 		} else {
 
 			for ( var i = 0; i < keysSurfaces.length; i++ ) {
 				s = surfaces[ keysSurfaces[i] ];
 
 				txt += '<div style="float: left; height: 250px; overflow: auto; padding: 0 5px; width: 250px;" >' +
-					'<a href=JavaScript:parent.ifr.src="algesurf-marching-cubes-api-r1.1.html#' + i + '" style=text-decoration:none; >' +
+					'<a href=JavaScript:parent.ifr.src="algesurf-marching-cubes-ui-r1.1.html#' + i + '" style=text-decoration:none; target="_top">' +
 					'<img src="../images/' +  keysSurfaces[ i ] + '.png" /><br>' + s.ttl + '<br>' + s.htm + '</a>' +
 				'</div>' ; 
 
@@ -71,6 +68,7 @@
 
 
 		}
+*/
 
 		gallery.innerHTML = txt + '' ;
 

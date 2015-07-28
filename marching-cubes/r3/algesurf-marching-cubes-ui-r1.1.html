@@ -11,8 +11,8 @@
 <script>
 
 	var equationIndex = 0;
-	var materialIndex = 2;
 
+	var keysSurfaces = Object.keys( surfaces );
 
 	init();
 
@@ -42,20 +42,19 @@
 			'<p>Select a reflection' +
 			'<br><select id=selReflection ></select></p>' +
 
-			'<div id=equationHTM ></div>' +
-
-//			'<p>Edit the equation:<br><textarea id=txt cols=30 ></textarea></p>' +
-//			'<button onclick=editEquation() >Update the display</button>' +
-
-//			'<p><button onclick=createPermalink(); >Create permalink</button></p>' +
-
 			'<p><input type=checkbox id=chkRotate onchange=ifr.contentWindow.controls.autoRotate=ifr.contentWindow.controls.autoRotate===true?false:true; /> Auto Rotate </p>' +
 
 			'<p><input type=checkbox id=chkGradient onchange=toggleGradient(); /> Background </p>' +
 
-		'';
 
-		keysSurfaces = Object.keys( surfaces );
+			'<div id=equationHTM ></div>' +
+
+			'<p>Edit the equation:<br><textarea id=txt cols=30 ></textarea></p>' +
+			'<button onclick=updateEquation() >Update the display</button>' +
+
+//			'<p><button onclick=createPermalink(); >Create permalink</button></p>' +
+
+		'';
 
 		for ( var i = 0; i < keysSurfaces.length ; i++ ) {
 
@@ -114,126 +113,64 @@
 			}
 		}
 
-		ifr.src="algesurf-marching-cubes-gallery-r1.1.html";
+		window.addEventListener ( 'hashchange', hashChange, false );
+
+		hashChange();
 
 	}
 
+	function hashChange() {
 
-	function editEquation() {
+		var hashes = location.hash.split ( '#' );
 
-		equation = txt.value;
+		index = hashes.length > 1 ? hashes[ 1 ] : equationIndex;
 
-		ifr.src = 'algesurf-marching-cubes-api-r1.html#eqn=' + equation.replace( / /gi, '' );
+		selEquation.selectedIndex = index
 
-	}
-
-
-	function drawEquation( surface ) {
-
-		ifr.src = 'algesurf-marching-cubes-api-r1.1.html#' + index;
-
-/*
-
-		if ( surface.length ) {
-
-			var s = surfaces[ surface ];
-
-			selEquation.selectedIndex = keysSurfaces.indexOf( surface );
-
-		} else  {
-
-			s = surfaces[ keysSurfaces[ selEquation.selectedIndex ] ];
-
-		}
-
-		equation = s.eqn;
-
-		equationHTM.innerHTML = 'Formatted equation:<br>' + s.htm;
-
-		txt.value = equation;
-
-		tex = materialsLibrary[ selMaterial.value ].texture === undefined ? '' : '#tex=' + materialsLibrary[ selMaterial.value ].texture;
-
-		ifr.src = 'algesurf-marching-cubes-api-r1.html#eqn=' + equation.replace( / /gi, '' ) +
-			'#htm=' + s.htm + 
-			'#max=' + s.max +
-			'#min=' + s.min + 
-			'#mat=' + materialsLibrary[ selMaterial.value ].material +
-			'#scl=' + s.scl + 
-			'#ttl=' + s.ttl + 
-			tex +
-		'';
-
-//console.log( selEquation.value, ifr.src );
-
-*/
+		drawEquation();
 
 	}
 
 	function updateEquation( equation ){
 
-		ifr.contentWindow.updateEquation( surfaces[ keysSurfaces[ selEquation.selectedIndex ] ].eqn );
+		ifr.contentWindow.equation.eqn = txt.value;
+
+		ifr.contentWindow.drawEquation( keysSurfaces[ selEquation.selectedIndex ] );
 
 	}
 
-	function updateMaterial() {
 
-		ifr.contentWindow.updateMaterial( materialsLibrary[ selMaterial.value ].material, materialsLibrary[ selMaterial.value ].texture );
+	function drawEquation() {
 
-	}
-
-	function createPermalink() {
+		ifr.src = 'algesurf-marching-cubes-api-r1.1.html#' + selEquation.selectedIndex;
 
 		s = surfaces[ keysSurfaces[ selEquation.selectedIndex ] ];
 
-		tex = materialsLibrary[ selMaterial.value ].texture === undefined ? '' : '#tex=' + materialsLibrary[ selMaterial.value ].texture;
+		equationHTM.innerHTML = 'Formatted equation:<br>' + s.htm;
 
-		window.open( 
-
-			'algesurf-marching-cubes-api-r1.html' +
-
-			'#eqn=' + equation.replace( / /gi, '' ) +
-			'#htm=' + s.htm +
-			'#min=' + s.min +
-			'#max=' + s.max +
-			'#mat=' + materialsLibrary[ selMaterial.value ].material +
-			'#scl=' + s.scl +
-			tex +
-			'#ttl=' + s.ttl +
-			''
-
-		)
+		txt.value = s.eqn;
 
 	}
 
 	function toggleGradient () {
 
-		gradient = document.getElementById( 'chkGradient' );
+		if ( chkGradient.checked ) { 
 
-		if ( gradient.checked ) { 
+				var col1 = Math.random().toString(16).slice(2, 8);
+				var col2 = Math.random().toString(16).slice(2, 8);
+				var col3 = Math.random().toString(16).slice(2, 8);
+				var x = ( Math.random() * window.innerWidth ).toFixed(0);
+				var y = ( Math.random() * window.innerHeight ).toFixed(0);
 
-			cssBackround = ifr.contentWindow.renderer.domElement.appendChild( document.createElement('style') );
-
-			var col1 = "#" + Math.random().toString(16).slice(2, 8);
-			var col2 = "#" + Math.random().toString(16).slice(2, 8);
-			var col3 = "#" + Math.random().toString(16).slice(2, 8);
-			var X = ( Math.random() * window.innerWidth ).toFixed(0);
-			var Y = ( Math.random() * window.innerHeight ).toFixed(0);
-			var center =  20 + ( Math.random() * 60 ).toFixed(0);
-
-			cssBackround.innerText = 'body { ' +
-				'background: -webkit-radial-gradient(' + X + 'px ' + Y + 'px, farthest-corner, ' + col1 + ' 0%, ' + col2 + ' 50%, ' + col3 + ' 100%); ' +
-				'background: -moz-radial-gradient(' + X + 'px ' + Y + 'px, farthest-corner, ' + col1 + ' 0%, ' + col2 + ' 50%, ' + col3 + ' 100%); ' +
-				'background: radial-gradient(' + X + 'px ' + Y + 'px, farthest-corner, ' + col1 + ' 0%, ' + col2 + ' 50%, ' + col3 + ' 100%); }' +
-			'';
+				document.body.style.backgroundImage = 'radial-gradient( circle farthest-corner at ' + x + 'px ' + y + 'px, #' + col1 + ' 0%, #' + col2 + ' 50%, #' + col3 + ' 100%)';
 
 		} else {
 
-			cssBackround.innerText = 'body { background: #fff; }';
+			document.body.style.backgroundImage = '';
 
 		}
 
-	};
+	}
 
 </script>
 </body>

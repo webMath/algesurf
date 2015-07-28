@@ -22,7 +22,8 @@
 
 	var equationsKeys = Object.keys( eqns.equations );
 	var equation;
-	var index;
+
+	materiaIndex = 20; // override default in material-lights.js
 
 	var css, info, stats, renderer, scene, camera, controls;
 	var geometry, material, mesh;
@@ -31,8 +32,6 @@
 	animate();
 
 	function init() {
-
-		materiaIndex = 20; // override default in material-lights.js
 
 		addMaterials();
 
@@ -56,6 +55,10 @@
 
 				'<p>Select a reflection' +
 				'<br><select id=selReflection ></select></p>' +
+
+			'<p><input type=checkbox id=chkRotate onchange=frm.controls.autoRotate=frm.controls.autoRotate===true?false:true; checked /> Enable auto-rotation</p>' +
+
+			'<p><input type=checkbox id=chkGradient onchange=toggleGradient(); /> Background </p>' +
 
 				'<div id=msg1 ></div>' +
 			'';
@@ -83,6 +86,7 @@
 
 		}
 
+/*
 		stats = new Stats();
 		stats.domElement.style.cssText = 'position: absolute; right: 0; top: 0; z-index: 100; ';
 		document.body.appendChild( stats.domElement );
@@ -108,6 +112,7 @@
 		addLights();
 
 		hashChange();
+*/
 
 	}
 
@@ -139,7 +144,25 @@
 				'Function: ' + equation.htm + '<br>' +
 			'';
 
-			selEquation.selectedIndex = index;
+		}
+
+	}
+
+	function toggleGradient () {
+
+		if ( chkGradient.checked ) { 
+
+				var col1 = Math.random().toString(16).slice(2, 8);
+				var col2 = Math.random().toString(16).slice(2, 8);
+				var col3 = Math.random().toString(16).slice(2, 8);
+				var x = ( Math.random() * window.innerWidth ).toFixed(0);
+				var y = ( Math.random() * window.innerHeight ).toFixed(0);
+
+				document.body.style.backgroundImage = 'radial-gradient( circle farthest-corner at ' + x + 'px ' + y + 'px, #' + col1 + ' 0%, #' + col2 + ' 50%, #' + col3 + ' 100%)';
+
+		} else {
+
+			document.body.style.backgroundImage = '';
 
 		}
 
