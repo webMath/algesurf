@@ -5,7 +5,7 @@
 <span style=display:none; >[View as web page]( http://jaanga.github.io/algesurf/ "View file as a web page." ) </span>
 <input type=button value='View file as source code on GitHub' onclick=window.location.href='https://github.com/jaanga/algesurf/'; />
 
-<iframe src="http://jaanga.github.io/algesurf/function-graph/latest/index.html" width=100% height=500px ></iframe>  
+<iframe src="iframe-random-site-show-r1.html" width=100% height=500px ></iframe>  
 _algeSurf Function Graphs - latest revision_ / [Full Screen]( http://jaanga.github.io/algesurf/function-graph/latest/index.html )
 
 ## Concept
