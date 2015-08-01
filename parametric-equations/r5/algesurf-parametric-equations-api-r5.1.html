@@ -27,6 +27,9 @@
 
 	function init() {
 
+
+		addMaterials();
+
 		if ( window.self === window.top ) {
 
 			css = document.head.appendChild( document.createElement('style') );
@@ -61,16 +64,12 @@
 			selEquation.selectedIndex = equationIndex;
 			selEquation.onchange = function() { drawEquation( selEquation.selectedIndex ); };
 
-
-			addMaterials();
-
 			material = addSelMaterialOptions( selMaterial );
 
 			addSelReflectionOption( selReflection, selMaterial );
 
 		} else {
 
-			addMaterials();
 			material = updateMaterial( 'texture1' );
 
 		}

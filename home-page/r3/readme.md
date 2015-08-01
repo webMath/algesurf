@@ -6,13 +6,13 @@
 <input type=button value='View file as source code on GitHub' onclick=window.location.href='https://github.com/jaanga/algesurf/'; />
 
 <iframe src="iframe-random-site-show-r1.html" width=100% height=500px ></iframe>  
-_algeSurf Function Graphs - latest revision_ / [Full Screen]( http://jaanga.github.io/algesurf/function-graphs/latest/index.html )
+_algeSurf Apps - a selection_
 
 ## Concept
 
 ### Mission  
 <!-- a statement of a rationale, applicable now as well as in the future -->
-AlgeSurf is an effort to make the visualization of mathematical things faster, simpler and easier
+AlgeSurf is an effort to make the visualization of things mathematical faster, simpler and easier
 
 ### Vision  
 <!--  a descriptive picture of a desired future state -->
@@ -22,19 +22,31 @@ Visualize math and physics in ways never seen before
 
 ### Parametric Equations
 
-[Equation Browser]( http://jaanga.github.io/algesurf/parametric-equations/latest/ )  
+[Parametric Equations Browser R5]( http://jaanga.github.io/algesurf/parametric-equations/r5/algesurf-parametric-equations-ui-r5.1.html )  
+
+[Parametric Equations Browser R4]( http://jaanga.github.io/algesurf/parametric-equations/r4/algesurf-pe-r4.html )  
+
+[Parametric Equations Browser R3]( http://jaanga.github.io/algesurf/parametric-equations/r3/algesurf-pe-r3.html )  
+
 [Read Me]( http://jaanga.github.io/algesurf/parametric-equations/ )  
 [Source Code]( https://github.com/jaanga/algesurf/tree/gh-pages/parametric-equations )
 
 ### Marching Cubes
 
-[Player]( http://jaanga.github.io/algesurf/marching-cubes/r2/1-Overview/Player.html )  
-[Builder]( http://jaanga.github.io/algesurf/marching-cubes/r2/1-Overview/Builder.html )  
+[Marching Cubes R3 - UI]( http://jaanga.github.io/algesurf/marching-cubes/r3/algesurf-marching-cubes-ui-r1.1.html )  
+[Marching Cubes R3 - API]( http://jaanga.github.io/algesurf/marching-cubes/r3/algesurf-marching-cubes-api-r1.1.html )  
+
+[Marching Cubes R2 - Player]( http://jaanga.github.io/algesurf/marching-cubes/r2/1-Overview/Player.html )  
+[Marching Cubes R2 - Builder]( http://jaanga.github.io/algesurf/marching-cubes/r2/1-Overview/Builder.html )  
+
+[Read Me]( http://jaanga.github.io/algesurf/marching-cubes/ )  
 [Source Code ]( https://github.com/jaanga/algesurf/tree/gh-pages/marching-cubes/ )  
 
 ### Function Graph
 [Function Graph Sandbox - latest]( http://jaanga.github.io/algesurf/function-graph/latest/ )  
-[Read Me]( https://github.com/jaanga/algesurf/tree/gh-pages/function-graph )
+
+[Read Me]( http://jaanga.github.io/algesurf/function-graph/ )  
+[Source Code]( https://github.com/jaanga/algesurf/tree/gh-pages/function-graph )
 
 See also related technologies here:
 

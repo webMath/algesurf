@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang=en >
 <head>
-<title>algeSurf Parametric Equations API Equations Editor R5</title>
+<title>algeSurf Parametric Equations API Equations Editor R5.1</title>
 <meta charset=utf-8 >
 <meta name='viewport content=width=device-width,user-scalable=no,minimum-scale=1.0,maximum-scale=1.0' />
 </head>
@@ -39,7 +39,7 @@
 
 	function init() {
 
-		getMaterials();
+		addMaterials();
 
 		if ( window.self === window.top ) {
 
@@ -90,7 +90,7 @@
 			}
 
 			selReflection.selectedIndex = reflectionDefault;
-			selReflection.onchange = function() { reflectionDefault = selReflection.selectedIndex; mesh.material = getMaterial( selMaterial.value );};
+			selReflection.onchange = function() { reflectionDefault = selReflection.selectedIndex; mesh.material = updateMaterial( selMaterial.value );};
 
 			for ( var i = 0, node; i < materialsKeys.length ; i++ ) {
 
@@ -111,7 +111,7 @@
 			}
 
 			selMaterial.selectedIndex = materialDefault;
-			selMaterial.onchange = function() { mesh.material = getMaterial( selMaterial.value ); };
+			selMaterial.onchange = function() { mesh.material = updateMaterial( selMaterial.value ); };
 
 		}
 
@@ -222,7 +222,7 @@ getEquation();
 		geometry = new THREE.ParametricGeometry( eqn.curve, u, v );
 		geometry.center();
 
-		material = getMaterial('texture1');
+		material = updateMaterial('texture1');
 
 		scene.remove( mesh );
 		mesh = new THREE.Mesh( geometry, material );
