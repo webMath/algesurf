@@ -1,5 +1,4 @@
 [Jaanga]( http://jaanga.github.io/ ) &raquo; [algeSurf Read Me]( http://jaanga.github.io/algesurf/ ) &raquo;
-
 [Function Graph Read Me]( http://jaanga.github.io/algesurf/function-graph )
 ===
 
@@ -12,6 +11,12 @@ _algeSurf Function Graph SandBox - latest_ / [Full Screen]( http://jaanga.github
 
 
 ## Features
+
+* Plots equations in 3D
+* Select material and reflection cube
+* Real-time updates
+* Edit functions online
+* Toggle rotation and background
 
 ## Road Map
 
