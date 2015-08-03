@@ -14,9 +14,18 @@ _algeSurf Apps - a selection_
 <!-- a statement of a rationale, applicable now as well as in the future -->
 AlgeSurf is an effort to make the visualization of things mathematical faster, simpler and easier
 
+* The code should be as simple and as extensible as possible
+	* If you understand if/then, for loops and equal signs in JavaScript you should be good to go
+* The code should have the look and feel of Three.js code. 
+	* If you are familiar with the Three.js examples, you should be able to jump right into algeSurf code 
+
+
 ### Vision  
 <!--  a descriptive picture of a desired future state -->
 Visualize math and physics in ways never seen before
+
+* Enable people who are scientists, engineers and designers and not full-time programmers to craft cool domain-specific apps
+
 
 ## The Apps
 
@@ -70,7 +79,7 @@ jaanga@googlegroups.com
 
 ##Copyright
 
-Copyright &copy 2015 Jaanga authors
+Copyright © 2015 Jaanga authors
 
 
 ## License
