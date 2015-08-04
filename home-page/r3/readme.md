@@ -40,6 +40,7 @@ Visualize math and physics in ways never seen before
 [Read Me]( http://jaanga.github.io/algesurf/parametric-equations/ )  
 [Source Code]( https://github.com/jaanga/algesurf/tree/gh-pages/parametric-equations )
 
+
 ### Marching Cubes
 
 [Marching Cubes R3 - UI]( http://jaanga.github.io/algesurf/marching-cubes/r3/algesurf-marching-cubes-ui-r1.1.html )  
@@ -52,26 +53,43 @@ Visualize math and physics in ways never seen before
 [Source Code ]( https://github.com/jaanga/algesurf/tree/gh-pages/marching-cubes/ )  
 
 ### Function Graph
+
 [Function Graph Sandbox - latest]( http://jaanga.github.io/algesurf/function-graph/latest/ )  
 
 [Read Me]( http://jaanga.github.io/algesurf/function-graph/ )  
 [Source Code]( https://github.com/jaanga/algesurf/tree/gh-pages/function-graph )
 
+## Related Web Sites
 See also related technologies here:
 
 [SoundViz]( http://soundviz.github.io )  
+[Jaanga Terrain R2]( http://jaanga.github.io/terrain-r2/ )
 [Jaanga Terrain Viewer]( http://jaanga.github.io/terrain-viewer/ )
 
 ## Features
 
 ## Road Map
 
-
-* Consider ways of using vector gradients as possible pointers towards singularities
-* Add shaders
+* Consider ways of using vector gradients as possible pointers toward singularities
+* Add shaders, video textures
 * Have ways of animating some parameters while you update a particular parameter
 * Save updated equations and materials back to HTML files
 * Leap-enabled simultaneous multiple parameter updates
+* Add extremely basic, totally simple 'hello world' example for each type of equation display type
+* Always have a basic API file
+	* Along with UI and gallery and other files that use the API file in interesting ways
+	* The API files handles all the Three.js
+	* The UI files may be written using a variety of libraries and tools
+
+## Notes
+
+* Follows Mr.doob coding style
+* Follows Three.js examples coding style
+	* Functios are functions not variables
+	* Uses init() and animate() functions
+	* Loads libraries from GitHub
+	* No external js or css files other then standard Three.js files
+
 
 ## Contacts
 
@@ -99,7 +117,7 @@ In no event shall the authors or copyright holders be liable for any claim, dama
 
 2015-07-07 ~ Theo
 
-* First commit
+* First commit R3 home page
 
 
 
