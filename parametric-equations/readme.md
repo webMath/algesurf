@@ -24,7 +24,7 @@ To visualize math and physics in entirely new ways
 ## Apps
 
 [Parametric Equations Browser R5.1 UI]( http://jaanga.github.io/algesurf/parametric-equations/r5.1/algesurf-parametric-equations-ui-r5.1.html )  
-[Parametric Equations Browser R5.1 API Equations Editor]( http://jaanga.github.io/algesurf/parametric-equations/r5.1/algesurf-parametric-equations-api-equation-editor-r5.1.html ) 
+[Parametric Equations Browser R5.1 API Equations Editor]( http://jaanga.github.io/algesurf/parametric-equations/r5.1/algesurf-parametric-equations-api-equation-editor-r5.1.html )  
 [Parametric Equations Browser R5.1 Gallery]( http://jaanga.github.io/algesurf/parametric-equations/r5.1/algesurf-parametric-equations-gallery-r5.1.html )  
 [Parametric Equations Browser R5.1 API ]( http://jaanga.github.io/algesurf/parametric-equations/r5/algesurf-parametric-equations-api-r5.1.html )  
 

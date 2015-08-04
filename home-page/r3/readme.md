@@ -32,7 +32,7 @@ Visualize math and physics in ways never seen before
 ### Parametric Equations
 
 [Parametric Equations Browser R5.1 UI]( http://jaanga.github.io/algesurf/parametric-equations/r5.1/algesurf-parametric-equations-ui-r5.1.html )  
-[Parametric Equations Browser R5.1 API Equations Editor]( http://jaanga.github.io/algesurf/parametric-equations/r5.1/algesurf-parametric-equations-api-equation-editor-r5.1.html ) 
+[Parametric Equations Browser R5.1 API Equations Editor]( http://jaanga.github.io/algesurf/parametric-equations/r5.1/algesurf-parametric-equations-api-equation-editor-r5.1.html )  
 [Parametric Equations Browser R5.1 Gallery]( http://jaanga.github.io/algesurf/parametric-equations/r5.1/algesurf-parametric-equations-gallery-r5.1.html )  
 [Parametric Equations Browser R5.1 API ]( http://jaanga.github.io/algesurf/parametric-equations/r5/algesurf-parametric-equations-api-r5.1.html )  
 
@@ -67,8 +67,8 @@ Visualize math and physics in ways never seen before
 See also related technologies here:
 
 [SoundViz]( http://soundviz.github.io )  
-[Jaanga Terrain R2]( http://jaanga.github.io/terrain-r2/ )
-[Jaanga Terrain Viewer]( http://jaanga.github.io/terrain-viewer/ )
+[Jaanga Terrain R2]( http://jaanga.github.io/terrain-r2/ )  
+[Jaanga Terrain Viewer]( http://jaanga.github.io/terrain-viewer/ )  
 
 ## Features
 
@@ -94,6 +94,7 @@ See also related technologies here:
 	* Loads libraries from GitHub
 	* No external js or css files other then standard Three.js files
 
+[Credits]( index.html#credits.md )
 
 ## Contacts
 
