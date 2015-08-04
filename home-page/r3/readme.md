@@ -43,8 +43,9 @@ Visualize math and physics in ways never seen before
 
 ### Marching Cubes
 
-[Marching Cubes R3 - UI]( http://jaanga.github.io/algesurf/marching-cubes/r3/algesurf-marching-cubes-ui-r1.1.html )  
-[Marching Cubes R3 - API]( http://jaanga.github.io/algesurf/marching-cubes/r3/algesurf-marching-cubes-api-r1.1.html )  
+[Marching Cubes R3.1 - UI]( http://jaanga.github.io/algesurf/marching-cubes/r3.1/algesurf-marching-cubes-ui-r3.1.html )  
+[Marching Cubes R3.1 - Gallery]( http://jaanga.github.io/algesurf/marching-cubes/r3.1/algesurf-marching-cubes-gallery-r3.1.html )  
+[Marching Cubes R3.1 - API]( http://jaanga.github.io/algesurf/marching-cubes/r3.1/algesurf-marching-cubes-api-r3.1.html )  
 
 [Marching Cubes R2 - Player]( http://jaanga.github.io/algesurf/marching-cubes/r2/1-Overview/Player.html )  
 [Marching Cubes R2 - Builder]( http://jaanga.github.io/algesurf/marching-cubes/r2/1-Overview/Builder.html )  
@@ -85,7 +86,7 @@ See also related technologies here:
 
 * Follows Mr.doob coding style
 * Follows Three.js examples coding style
-	* Functios are functions not variables
+	* Functions are functions not variables
 	* Uses init() and animate() functions
 	* Loads libraries from GitHub
 	* No external js or css files other then standard Three.js files

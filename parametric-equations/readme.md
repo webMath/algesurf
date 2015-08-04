@@ -23,9 +23,10 @@ To visualize math and physics in entirely new ways
 
 ## Apps
 
-[Parametric Equations Browser R5]( http://jaanga.github.io/algesurf/parametric-equations/r5/algesurf-parametric-equations-ui-r5.html )  
-
-[Parametric Equations Browser R5 API ]( http://jaanga.github.io/algesurf/parametric-equations/r5/algesurf-parametric-equations-api-r5.html )  
+[Parametric Equations Browser R5.1 UI]( http://jaanga.github.io/algesurf/parametric-equations/r5.1/algesurf-parametric-equations-ui-r5.1.html ) 
+[Parametric Equations Browser R5.1 API Equations Editor]( http://jaanga.github.io/algesurf/parametric-equations/r5.1/algesurf-parametric-equations-api-equations-editor-r5.1.html ) 
+[Parametric Equations Browser R5.1 Gallery]( http://jaanga.github.io/algesurf/parametric-equations/r5.1/algesurf-parametric-equations-gallery-r5.1.html )  
+[Parametric Equations Browser R5.1 API ]( http://jaanga.github.io/algesurf/parametric-equations/r5/algesurf-parametric-equations-api-r5.1.html )  
 
 [Parametric Equations Browser R4]( http://jaanga.github.io/algesurf/parametric-equations/latest/ )  
 
@@ -119,7 +120,6 @@ This repository contains files that are at an early and volatile stage. Not all 
 * Add the sliders
 * Materials work OK
 * Add the toggles
-
 * Improve handling and cataloguing of materials << road map item completed
 
 2015-02-13 ~ Theo
@@ -136,7 +136,7 @@ This repository contains files that are at an early and volatile stage. Not all 
 
 2014-07-17 ~ Theo
 
-Materials is such a work in progress. I have not yet completed the required 10,000 hours. Not by a long shot/
+* Materials is such a work in progress. I have not yet completed the required 10,000 hours. Not by a long shot.
 
 
 2014 ? ~ Theo
