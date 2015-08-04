@@ -1,4 +1,5 @@
-Credits
+[Jaanga]( http://jaanga.github.io/ ) &raquo;  [algeSurf]( http://jaanga.github.io/algesurf/ ) &raquo;
+[Credits]( index.html#credits.md )
 ===
 
 ## Parametric Equations
