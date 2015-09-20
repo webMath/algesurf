@@ -94,9 +94,11 @@ See also related technologies here:
 	* Loads libraries from GitHub
 	* No external js or css files other then standard Three.js files
 
-[Credits]( index.html#credits.md )
 
-## Contacts
+## Credits and Contacts
+
+This effort stands on the shoulder of giants: [Credits]( index.html#credits.md )  
+
 
 jaanga@googlegroups.com
 

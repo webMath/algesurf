@@ -18,7 +18,7 @@ Paul Bourke's [Polygonise]( http://paulbourke.net/geometry/polygonise/ ).
 The JavaScript mathematical expression evaluator in (parser.js) courtesy of Matthew Crumley via 
 [Silent Matt]( http://silentmatt.com/javascript-expression-evaluator/ ). Source code on GitHub: <https://github.com/silentmatt/js-expression-eval>
 
-The method of turning string into a formula is courtesy of [Nooshu]( http://nooshu.com/antimatter-3d-graph-plotter-and-a-little-animatio ) and AntiMatter15.</p>
+The method of turning strings into JavaScript is courtesy of [Nooshu]( http://nooshu.com/antimatter-3d-graph-plotter-and-a-little-animatio ) and AntiMatter15.</p>
 
 ## Marching Cubes Sample Equations
 The first equations we came across were on [Jalape.no]( jalope.no ) and again [Paul Burke]( http://paulbourke.net/geometry/ ),
@@ -35,7 +35,7 @@ Jaume Sanchez's [Blocky Earth]( http://www.clicktorelease.com/code/blocky_earth/
 ## Generally
 None of this would be possible without [Three.js]( https://github.com/mrdoob/three.js ), [Mr.doob]( mrdoob.com ) and WebGL.
 
-In turn Altered Qualia, zz85, West Langley and other have been able to take stuffy old Math symbols and turn them into living, breathing, useful algorithms.
+In turn Altered Qualia, zz85, West Langley and other have been able to take stuffy old math symbology and turn it into living, breathing, useful algorithms.
 
 Bret Victor's [Kill Math]( http://worrydream.com/#!/KillMath ) and Steven Wittens' [Making Things with Math]( http://acko.net/files/fullfrontal/fullfrontal/wdcode/online.html ) 
 are also very much part of this whole equation.
