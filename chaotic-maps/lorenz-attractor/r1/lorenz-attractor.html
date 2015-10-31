@@ -91,8 +91,8 @@
 		boxes.forEach( function( element ) {
 			element.vertexPrevious = vertex;
 			vertex = addStep( element.position.x, element.position.y, element.position.z  );
-			element.position.set( vertex.x, vertex.y, vertex.z );
-			element.lookAt( element.vertexPrevious );
+//			element.position.set( vertex.x, vertex.y, vertex.z );
+//			element.lookAt( element.vertexPrevious );
 		} );
 
 	}
