@@ -177,7 +177,7 @@ function generateGeometry( func, axisMin, axisMax ) {
 	geometry.mergeVertices();
 	geometry.computeFaceNormals();
 	geometry.computeVertexNormals();
-	geometry.computeTangents();
+//	geometry.computeTangents();
 	geometry.verticesNeedUpdate = true;
 	geometry.normalsNeedUpdate = true;
 
