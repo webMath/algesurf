@@ -17,7 +17,7 @@
 
 		'Normal Side 2': { 'material': new THREE.MeshNormalMaterial( { side: 2  } ) },
 		'Normal Side 2 Opacity 0.7' : { 'material' : new THREE.MeshNormalMaterial( { opacity: 0.7, side: 2, transparent: true   } ), },
-		'Normal Flat': { 'material': new THREE.MeshNormalMaterial( { shading: THREE.FlatShading, side: 2 } )  },
+		'Normal Flat': { 'material': new THREE.MeshNormalMaterial( { side: 2 } )  },
 		'Normal Wireframe': { 'material': new THREE.MeshNormalMaterial( { wireframe: true } ) },
 
 
@@ -52,7 +52,7 @@
 			{ 'material': new THREE.MeshLambertMaterial( { color: 0xff0000 } ) },
 
 		"Lambert Red + specular":
-			{ 'material': new THREE.MeshLambertMaterial( { color: 0xff0000, specular: 0x111111 } ) },
+			{ 'material': new THREE.MeshLambertMaterial( { color: 0xff0000 } ) },
 
 		"Lambert Green":
 			{ 'material': new THREE.MeshLambertMaterial( { color: 0x00ff00 } ) },
@@ -666,7 +666,7 @@
 
 	function addLights() {
 
-		renderer.shadowMapEnabled = true;
+		renderer.shadowMap.enabled = true;
 
 		var lightAmbient, lightDirectional, lightPoint;
 
@@ -692,7 +692,7 @@
 		lightDirectional.shadowMapHeight = 2048;
 
 		lightDirectional.castShadow = true;
-		lightDirectional.shadowCameraVisible = true;
+//		lightDirectional.shadowCameraVisible = true;
 		scene.add( lightDirectional );
 
 		lightPoint = new THREE.PointLight( 0xffffff, 0.5 );
