@@ -18,12 +18,12 @@ _The shortest distance between you and a great rendering is lots of straight lin
 
 ##Overview
 
-### [AlgeSurf Ray Marching - Demo - Full Screen]( http://jaanga.github.io/algesurf/ray-marching/latest/index.html )
+### [AlgeSurf Ray Marching - Demo - Full Screen]( http://jaanga.github.io/algesurf/ray-marching/dev/index.html )
 
 ### Sample Web Page / Source Code
 
-<iframe class=ifr src=http://jaanga.github.io/cookbook-html/templates/code-edit-view/code-edit-view-r2.html#http://jaanga.github.io/cookbook-threejs/templates/template-threejs-draw-things-r1.html width=100% height=600px ></iframe>  
-###### _Template Three.js Draw Things - Dev revision - Code Edit View_ /  [Edit full screen]( http://jaanga.github.io/cookbook-html/templates/code-edit-view/code-edit-view-r2.html#http://jaanga.github.io/cookbook-threejs/templates/template-threejs-draw-things-r1.html )
+<iframe class=ifr src=http://jaanga.github.io/cookbook-html/templates/code-edit-view/code-edit-view-r2.html#http://jaanga.github.io/algesurf/ray-marching/r2/algesurf-ray-marching-r2.html width=100% height=600px ></iframe>  
+###### _AlgeSurf Ray Marching R2 - Dev revision - Code Edit View_ /  [Edit full screen]( http://jaanga.github.io/cookbook-html/templates/code-edit-view/code-edit-view-r2.html#http://jaanga.github.io/algesurf/ray-marching/r2/algesurf-ray-marching-r2.html )
 
 
 ## Concept
@@ -39,9 +39,14 @@ patterns are descriptions of common problems and proposal for the solutions that
 
 -->
 
+* Displaying math equations in 3D is a great way to make math more accessible to more people, but rendeing equations with speed, precision and beauty is difficult.
 
 ### Mission
 <!-- a statement of a rationale, applicable now as well as in the future -->
+
+[Ray Marching]( https://en.wikipedia.org/wiki/Volume_ray_casting ) is fast, easy and cool. As 
+[Íñgo Quílez said]( http://www.iquilezles.org/www/articles/terrainmarching/terrainmarching.htm ): "So I chose to do a "raymarcher" to create some pictures cause it's a really simple technique...
+That's in fact the beauty of the technique - an increibly simple code that produces interesting images. It's perfect for small size demos..."
 
 
 ### Vision
@@ -56,12 +61,27 @@ patterns are descriptions of common problems and proposal for the solutions that
 * Zoom, pan and rotate
 	* 1 finger / left button =  rotate
 	* 2 finger / wheel = zoom in and out
-	* 3 finger / right button = pan
+<!--	* 3 finger / right button = pan -->
 
 ## Issues
 
  
 ## Sources
+
+* Source from // http://glslsandbox.com/e#28980.3. 
+
+### Thank You
+ 
+* Aaron Montag
+	* https://www-m10.ma.tum.de/bin/view/Lehrstuhl/AaronMontag
+	* http://home.in.tum.de/~montaga/fract/inversion2.html
+* Mr.doob
+	* http://threejs.org
+* Íñgo Quílez and many more
+	* http://www.iquilezles.org/
+
+
+
 
 
 <br>

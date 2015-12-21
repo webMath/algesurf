@@ -2,7 +2,7 @@
 <html lang=en >
 <head>
 <meta charset=utf-8 >
-<title>AlgeSurf Ray Marching R2</title>
+<title>AlgeSurf Ray Marching R3</title>
 <meta name=viewport content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,minimal-ui' >
 </head>
 <body>
@@ -16,72 +16,92 @@
 // https://www-m10.ma.tum.de/bin/view/Lehrstuhl/AaronMontag
 // http://home.in.tum.de/~montaga/fract/inversion2.html
 
-var eqn1 =
+	var JAS = {};
+
+	var defaultEquation = JAS.cayley =
 
 `
 // Cayley surface
 	float Equation( vec3 v, float alpha ) {
-	  float x = v.x;
-	  float y = v.y;
-	  float z = v.z;
-	  return x*x + y*y + z*z + alpha * x*y*z - 1.;
+
+		float x = v.x;
+		float y = v.y;
+		float z = v.z;
+
+		return x*x + y*y + z*z + alpha * x*y*z - 1.0;
+
 	}
 
 `;
 
+	JAS.alsoNice =
 
-var eqn2 =
 `
 // also nice
-	float Equation(vec3 v, float alpha)
-	{
-	  float x = v.x;
-	  float y = v.y;
-	  float z = v.z;
-	  float s = x+y+z + 1.;
-//	  alpha = 1.4;
-	  return 4.0 * ( x*x*x * alpha *  alpha + y*y*y + z*z*z + 1.0 ) - alpha * s*s*s;
+	float Equation(vec3 v, float alpha) {
+
+		float x = v.x;
+		float y = v.y;
+		float z = v.z;
+		float s = x + y + z + 1.0;
+
+		return 4.0 * ( x*x*x * alpha *  alpha + y*y*y + z*z*z + 1.0 ) - alpha * s*s*s;
+
 	}
 
 `;
 
-// Columpius
-var eqn3 =
+
+	JAS.columpius =
+
 `
+// Columpius
 	float Equation(vec3 v, float alpha ) {
 
 		float x = v.x;
 		float y = v.y;
 		float z = v.z;
+
 		return x*x*x * y + x * z*z*z + y * z*z*z + z*z*z + 7.0 * z*z + 5.0 * z;
+
 	}
 `;
 
-	// surfer.Zeck
-var eqn4 =
+
+	JAS.zeck =
+
 `
 //surfer.Zeck
 	float Equation(vec3 v, float alpha ) {
+
 		float x2 = v.x * v.x;
 		float y2 = v.y * v.y;
 		float z2 = v.z * v.z;
-		return x2 + y2 - z2 * v.z * ( 1. - v.z ) - 5.0;
+
+		return x2 + y2 - z2 * v.z * ( 1.0 - v.z ) - 5.0;
+
 	}
 `
 
+
+	JAS.surferHelix =
+
+`
 // should look like surfer.Helix
-var eqn5 =
-`
-
 	float Equation(vec3 v, float alpha ) {
-	  float x2 = v.x*v.x;
-	  float y2 = v.y*v.y;
-	  float z2 = v.z*v.z;
-	  return 6.*x2 -2.*x2*x2 -y2*z2;
+
+		float x2 = v.x*v.x;
+		float y2 = v.y*v.y;
+		float z2 = v.z*v.z;
+
+		return 6.*x2 -2.*x2*x2 -y2*z2;
+
 	}
+
 `
 
-var eqn6 =
+	JAS.cube =
+
 `
 // cube
 	float Equation(vec3 v, float alpha ) {
@@ -89,12 +109,13 @@ var eqn6 =
 	  float x = v.x;
 	  float y = v.y;
 	  float z = v.z;
-	  return x * x * x * x * x * x + y * y * y * y * y * y + z * z * z * z * z * z - alpha * 1.0;
+
+	  return x*x*x*x*x*x + y*y*y * y * y * y + z * z * z * z * z * z - alpha * 1.0;
 
 	}
 `;
 
-var eqn7 =
+	JAS.eqn7 =
 `
 // calyx
 //eqn:'x^2 + y^2 * z^3 - z^4',
@@ -110,7 +131,7 @@ var eqn7 =
 `;
 
 
-var eqn8 =
+	JAS.eqn8 =
 // eqn:'x^2*y^2*z^2 + 3*x^2 + 3*y^2 + z^2 - 1',
 
 `
@@ -127,7 +148,8 @@ var eqn8 =
 
 
 
-var eqn9 =
+	JAS.eqn9 =
+
 `
 // Sphere
 	float Equation(vec3 v, float alpha ) {
@@ -140,10 +162,10 @@ var eqn9 =
 	}
 `;
 
-var eqn = eqn1;
 
 
-	var vs =
+	var vertexShader =
+
 `
 
 		varying vec2 vUv;
@@ -159,7 +181,7 @@ var eqn = eqn1;
 `;
 
 
-var fsPrefix =
+var fileShaderPrefix =
 
 `
 	#ifdef GL_ES
@@ -178,17 +200,18 @@ Idea from RealSurf (http://realsurf.informatik.uni-halle.de/)
 	uniform vec2 resolution;
 	uniform float zoom;
 
-	// const float R = 4.0; // container sphere radius
+// const float R = 4.0; // container sphere radius
 	const float oo = 100.; // 100
-	const int IT = 10; // 10 iterations? higher slows things down, lower reduces quality 
+	const int IT = 10; // 10 <IT: iterations?> - higher slows things down, lower reduces quality 
 
 
-	// select current function here:
+// select current function here:
 	#define Equation f3d
 
 `;
 
-	var fsSuffix =
+
+	var fileShaderSuffix =
 
 `
 
@@ -502,7 +525,7 @@ vec3 dF( vec3 v, float alpha) {
 		renderer.domElement.addEventListener( 'MozMousePixelScroll', onMouseWheel, false ); // firefox
 
 
-		updateSurface( eqn ) ;
+		updateSurface( defaultEquation ) ;
 
 	}
 
@@ -525,8 +548,8 @@ vec3 dF( vec3 v, float alpha) {
 		material = new THREE.ShaderMaterial( {
 
 			uniforms: uniforms,
-			vertexShader: vs,
-			fragmentShader: fsPrefix + equation + fsSuffix
+			vertexShader: vertexShader,
+			fragmentShader: fileShaderPrefix + equation + fileShaderSuffix
 
 		} );
 
