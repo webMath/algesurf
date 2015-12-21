@@ -20,6 +20,9 @@ _The shortest distance between you and a great rendering is lots of straight lin
 
 ### [AlgeSurf Ray Marching - Demo - Full Screen]( http://jaanga.github.io/algesurf/ray-marching/dev/index.html )
 
+### [Blog Post: Ray Marching Achieved]( http://jaanga.github.io/request-jaanga-blog-posts.html#2015-12-21_ray-marching-achieved_algesurf.md )
+
+
 ### Sample Web Page / Source Code
 
 <iframe class=ifr src=http://jaanga.github.io/cookbook-html/templates/code-edit-view/code-edit-view-r2.html#http://jaanga.github.io/algesurf/ray-marching/r2/algesurf-ray-marching-r2.html width=100% height=600px ></iframe>  
