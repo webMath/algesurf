@@ -8,8 +8,10 @@
 <body>
 <script>
 
+	var interval = 15000;
 	var sites = [
 
+		['http://jaanga.github.io/algesurf/ray-marching/dev/','ray marching'],
 		['http://jaanga.github.io/algesurf/marching-cubes/latest/','marching cubes'],
 		['http://jaanga.github.io/algesurf/parametric-equations/latest/','parametric equations'],
 		['http://jaanga.github.io/algesurf/function-graph/latest/','function graph'],
@@ -48,7 +50,7 @@
 
 		ifr.src = sites[ index ][ 0 ];
 
-		setInterval( displayNext, 8000 );
+		setInterval( displayNext, interval );
 
 	}
 
