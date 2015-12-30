@@ -25,8 +25,8 @@ _The shortest distance between you and a great rendering is lots of straight lin
 
 ### Sample Web Page / Source Code
 
-<iframe class=ifr src=http://jaanga.github.io/cookbook-html/templates/code-edit-view/code-edit-view-r2.html#http://jaanga.github.io/algesurf/ray-marching/r2/algesurf-ray-marching-r2.html width=100% height=600px ></iframe>  
-###### _AlgeSurf Ray Marching R2 - Dev revision - Code Edit View_ /  [Edit full screen]( http://jaanga.github.io/cookbook-html/templates/code-edit-view/code-edit-view-r2.html#http://jaanga.github.io/algesurf/ray-marching/r2/algesurf-ray-marching-r2.html )
+<iframe class=ifr src=http://jaanga.github.io/cookbook-html/templates/code-edit-view/code-edit-view-r2.html#http://jaanga.github.io/algesurf/ray-marching/r3/algesurf-ray-marching-r3.html width=100% height=600px ></iframe>  
+###### _AlgeSurf Ray Marching R2 - Dev revision - Code Edit View_ /  [Edit full screen]( http://jaanga.github.io/cookbook-html/templates/code-edit-view/code-edit-view-r2.html#http://jaanga.github.io/algesurf/ray-marching/r3/algesurf-ray-marching-r3.html )
 
 
 ## Concept
