@@ -47,17 +47,22 @@ patterns are descriptions of common problems and proposal for the solutions that
 ### Mission
 <!-- a statement of a rationale, applicable now as well as in the future -->
 
-[Ray Marching]( https://en.wikipedia.org/wiki/Volume_ray_casting ) is fast, easy and cool. As 
-[Íñgo Quílez said]( http://www.iquilezles.org/www/articles/terrainmarching/terrainmarching.htm ): "So I chose to do a "raymarcher" to create some pictures cause it's a really simple technique...
-That's in fact the beauty of the technique - an increibly simple code that produces interesting images. It's perfect for small size demos..."
-
+To create a variety of shader templates to help with rendeeing a variety of marhematical equtions
 
 ### Vision
 <!--  a descriptive picture of a desired future state -->
 
+To show math in ways she has never beenn seen before
+
 
 ## Things to Do / Road Map
 
+* Determine best ways of setting boundaries or limits
+	* Add all the equations from the shader Marching Cubes
+* Add the full range of Three.js textures and materials
+* Using [RTT]( http://mrdoob.github.io/three.js/examples/#webgl_rtt ) and Dr Lawlor's techniques, bring GLSL surfaces to non-GLSL Three.js elements
+* Create complex manifold ( Calabi-Yau) shader visualizations
+* Learn how to uild heightmaps using shaders 
 
 ## Features
 
@@ -71,9 +76,38 @@ That's in fact the beauty of the technique - an increibly simple code that produ
  
 ## Sources
 
-* Source from // http://glslsandbox.com/e#28980.3. 
+* Source from http://glslsandbox.com/e#26575.13
+
+### Learning
+
+* http://nehe.gamedev.net/article/glsl_an_introduction/25007/
+* http://www.ianww.com/blog/2012/12/16/an-introduction-to-custom-shaders-with-three-dot-js/
+* http://www.html5rocks.com/en/tutorials/webgl/shaders/
+* https://aerotwist.com/tutorials/an-introduction-to-shaders-part-1/
+* http://benchung.com/basic-glsl-displacement-shader-three-js/
+* http://blog.edankwan.com/post/three-js-advanced-tips-shadow
+* http://blog.2pha.com/experimenting-threejs-shaders-and-shadermaterial
+* https://www.airtightinteractive.com/2013/02/intro-to-pixel-shaders-in-three-js/
+* http://pixelshaders.com/
+* https://notes.underscorediscovery.com/shaders-a-primer/
+
+
+### Online Editors
+
+* http://glslsandbox.com/
+* https://www.shadertoy.com/
+* http://shdr.bkcore.com/
+* https://www.clicktorelease.com/tmp/shader-editor/
+* http://www.kickjs.org/tool/shader_editor/shader_editor.html
+
 
 ### Thank You
+
+
+[Ray Marching]( https://en.wikipedia.org/wiki/Volume_ray_casting ) is fast, easy and cool. As 
+[Íñgo Quílez said]( http://www.iquilezles.org/www/articles/terrainmarching/terrainmarching.htm ): "So I chose to do a "raymarcher" to create some pictures cause it's a really simple technique...
+That's in fact the beauty of the technique - an increibly simple code that produces interesting images. It's perfect for small size demos..."
+
  
 * Aaron Montag
 	* https://www-m10.ma.tum.de/bin/view/Lehrstuhl/AaronMontag
@@ -82,8 +116,6 @@ That's in fact the beauty of the technique - an increibly simple code that produ
 	* http://threejs.org
 * Íñgo Quílez and many more
 	* http://www.iquilezles.org/
-
-
 
 
 
