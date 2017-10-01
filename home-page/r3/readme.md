@@ -1,5 +1,5 @@
 <span style=display:none; >[View as web page]( http://jaanga.github.io/algesurf/ "View file as a web page." ) </span>
-<input type=button value='View file as source code on GitHub' onclick=window.location.href='https://github.com/jaanga/algesurf/'; />
+<input type=button value='View file as source code on GitHub' onclick="window.location.href='https://github.com/jaanga/algesurf/'" />
 
 [Jaanga]( http://jaanga.github.io/ ) &raquo;  
 [algeSurf Read Me]( http://jaanga.github.io/algesurf/ )
@@ -7,7 +7,7 @@
 
 
 <iframe class=ifr src="iframe-random-site-show-r1.html" width=100% height=500px ></iframe>  
-######_algeSurf Apps - a selection_
+<span style="display: none">_algeSurf Apps - a selection_</span>
 
 ## Concept
 
