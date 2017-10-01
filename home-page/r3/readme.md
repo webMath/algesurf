@@ -5,15 +5,9 @@
 [algeSurf Read Me]( http://jaanga.github.io/algesurf/ )
 ===
 
-<div style="display: none">
+<iframe class=ifr src="iframe-random-site-show-r1.html" width=100% height=500px ></iframe>
 
-Nothing displays in the iframe because of cross-origin blocking of images from threejs.org
-in the individual pages. Hiding this broken feature until the issue is addressed.
-
-<iframe class=ifr src="iframe-random-site-show-r1.html" width=100% height=500px ></iframe>  
 <span style="display: none">_algeSurf Apps - a selection_</span>
-
-</div>
 
 ## Concept
 
