@@ -6,7 +6,8 @@
 ===
 
 
-<iframe class=ifr src="iframe-random-site-show-r1.html" width=100% height=500px ></iframe>  
+<iframe class=ifr src="iframe-random-site-show-r1.html" width=100% height=500px
+        srdoc="<p>Nothing appears here because of cross-origin blocking of images from threejs.org</p>"></iframe>  
 <span style="display: none">_algeSurf Apps - a selection_</span>
 
 ## Concept
