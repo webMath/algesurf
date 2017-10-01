@@ -625,7 +625,7 @@
 
 		if ( reflectionIndex > 0 ) {
 
-			var r = 'http://mrdoob.github.io/three.js/examples/textures/cube/' + reflectionCubes[ reflectionIndex ] + '/';
+			var r = '../../../textures/cube/' + reflectionCubes[ reflectionIndex ] + '/';
 
 			if ( reflectionIndex === 1 || reflectionIndex === 4 ) {
 
