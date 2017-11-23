@@ -3,17 +3,17 @@
 <head>
 <meta charset = "utf-8" >
 <meta name = "viewport" content= "width=device-width, initial-scale=1">
-<meta name = "description" content = "List and view all the files in all the folders. File wrangler. Default index.html file. Opens HTML or Markdown files. Passes location.hash." >
+<meta name = "description" content = "AlgeSurf is an effort to make the visualization of things mathematical faster, simpler and easier" >
 <meta name = "keywords" content = "JavaScript,Markdown,GitHub,FOSS,3D,STEM" >
 <meta name = "date" content = "2017-11-16" >
-<title>webMath Table of Contents</title>
+<title>AlgeSurf Table of Contents</title>
 
 <style>
 /* Copyright 2017 Ladybug Tools authors. MIT License */
 
 /* https://www.w3schools.com/colors/colors_names.asp // use colors and borders to help identify the scope of particular elements */
 
-	html { --mnu-color: MediumSlateBlue; --mnu-back-color: ivory; --mnu-width:300px; height: 100%; }
+	html { --mnu-color: deeppink; --mnu-back-color: floralwhite; --mnu-width:300px; height: 100%; }
 
 	body, html { font: 12pt monospace; height: 100%; margin: 0; }
 
@@ -53,8 +53,8 @@
 			<a href="http://webmath.github.io/" target="_top" >webMath</a> &raquo; 
 <!--
 			<a href="http://webmath.github.io/spider/" target="_top" >&#x1f578;</a> &raquo; 
--->
 			<a href="../index.html" target="_"top style=font-size:24px; >&#x2302;</a> &raquo; 
+-->
 		</p>
 
 
@@ -75,11 +75,11 @@
 
 			<hr>
 
-			<div title='many thanks!' ><a href=#../../pages/credits.md >Credits</a></div>
-			<div><a href=#../../pages/code-of-conduct.md >Code of Conduct</a></div>
-			<div><a href=#../../pages/contributing.md >Contributing</a></div>
-			<div><a href=#../../pages/license.md >License</a></div>
-			<div><a href=#../../pages/markdown-help.md >Markdown Help</a></div>
+			<div title='many thanks!' ><a href=#../pages/credits.md >Credits</a></div>
+			<div><a href=#../pages/code-of-conduct.md >Code of Conduct</a></div>
+			<div><a href=#../pages/contributing.md >Contributing</a></div>
+			<div><a href=#../pages/license.md >License</a></div>
+			<div><a href=#../pages/markdown-help.md >Markdown Help</a></div>
 			<div><a href="javascript:(function(){var script=document.createElement('script');script.onload=function(){var stats=new Stats();document.body.appendChild(stats.dom);requestAnimationFrame(function loop(){stats.update();requestAnimationFrame(loop)});};script.src='https://rawgit.com/mrdoob/stats.js/master/build/stats.min.js';document.head.appendChild(script);})()" title="Mr.doob's Stats.js appear in top left corner" >Show frames/second statistics</a></div>
 			<div><a href="https://api.github.com/rate_limit" target="_blank">github rate limits</a></div>
 
@@ -208,7 +208,7 @@
 
 		let txt = '';
 
-		const ignoreFolders = [ 'SVG', 'SVG2', 'SVGs_3DScatterPlot', 'data']; //, 'plugins' 
+		const ignoreFolders = [ 'archive' ]; //, 'plugins' 
 
 		for ( let item of items ) {
 
@@ -228,7 +228,7 @@
 
 		}
 
-		const ignoreFiles = [ 'indexxxx.html' ];
+		const ignoreFiles = [ '.gitignore', '.gitattributes' ];
 
 		for ( let item of items ) {
 
