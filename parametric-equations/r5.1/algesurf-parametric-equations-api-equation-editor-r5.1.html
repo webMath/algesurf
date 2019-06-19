@@ -22,7 +22,7 @@
 
 	var materialDefault = 36;
 
-	var reflectionCubes = [ 'No relections', 'Bridge2', 'Escher', 'MilkyWay', 'Park2', 'Park3Med', 'pisa', 'skybox', 'SwedishRoyalCastle' ];
+	var reflectionCubes = [ 'No reflections', 'Bridge2', 'Escher', 'MilkyWay', 'Park2', 'Park3Med', 'pisa', 'skybox', 'SwedishRoyalCastle' ];
 	var reflectionDefault = 7; // skybox
 
 	var startTime = performance.now();
@@ -134,7 +134,7 @@
 
 		hashChange();
 
-	} 
+	}
 
 	function hashChange() {
 
@@ -160,7 +160,7 @@ getEquation();
 
 			if ( eqn[ vars[ i ] ] ) {
 
-				txt += '<p><input type=range ' +  
+				txt += '<p><input type=range ' +
 					' id=rng' + vars[ i ] +
 					' min=' + ( eqn[ vars[ i ] + 'Min' ] ) +
 					' max=' + ( eqn[ vars[ i ] + 'Max' ] ) +
@@ -168,7 +168,7 @@ getEquation();
 					' value=' + eqn[ vars[ i ] ] +
 					' onmousemove=edit();' +
 					' title=' + eqn[ vars[ i ] ] +
-					' /> ' + 
+					' /> ' +
 					'<span id=spn' + vars[ i ] + ' >' + vars[ i ] + ' ' + eqn[ vars[ i ] ] + '</span></p>' +
 				'';
 

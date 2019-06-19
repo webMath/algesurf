@@ -1,18 +1,18 @@
 ﻿<span style=display:none; >[You are now in a GitHub source code view - click this link to view this read me file as a web page]( http://jaanga.github.io/algesurf/ray-marching/  "View file as a web page." ) </span>
 <input onclick=window.location.href='https://github.com/jaanga/algesurf/tree/gh-pages/ray-marching/'; type=button  value='You are now in a GitHub web page view - Click this button to view this read me file as source code' />
 
-[Jaanga]( http://jaanga.github.io ) » [algeSurf]( http://jaanga.github.io/algesurf/ ) » 
+[webMath]( http://jaanga.github.io ) » [algeSurf]( http://jaanga.github.io/algesurf/ ) »
 
-[Ray Marching Read Me]( index.html )
-===
+# [Ray Marching Read Me]( index.html )
+
 
 _The shortest distance between you and a great rendering is lots of straight lines_
 
 [Blog]( http://jaanga.github.io/request-jaanga-blog-posts.html )
-~ [Documents]( http://jaanga.github.io/documents ) 
+~ [Documents]( http://jaanga.github.io/documents )
 ~ [Read Me]( http://jaanga.github.io/#http://jaanga.github.io/readme.md )
-~ [Copyright and License]( http://jaanga.github.io/#http://jaanga.github.io/jaanga-copyright-and-mit-license.md ) 
-~ [Contacts and Organization]( http://jaanga.github.io/#http://jaanga.github.io/jaanga-contacts-and-organization.md ) 
+~ [Copyright and License]( http://jaanga.github.io/#http://jaanga.github.io/jaanga-copyright-and-mit-license.md )
+~ [Contacts and Organization]( http://jaanga.github.io/#http://jaanga.github.io/jaanga-contacts-and-organization.md )
 
 ***
 
@@ -25,7 +25,7 @@ _The shortest distance between you and a great rendering is lots of straight lin
 
 ### Sample Web Page / Source Code
 
-<iframe class=ifr src=http://jaanga.github.io/cookbook-html/templates/code-edit-view/code-edit-view-r2.html#http://jaanga.github.io/algesurf/ray-marching/r3/algesurf-ray-marching-r3.html width=100% height=600px ></iframe>  
+<iframe class=ifr src=http://jaanga.github.io/cookbook-html/templates/code-edit-view/code-edit-view-r2.html#http://jaanga.github.io/algesurf/ray-marching/r3/algesurf-ray-marching-r3.html width=100% height=600px ></iframe>
 ###### _AlgeSurf Ray Marching R2 - Dev revision - Code Edit View_ /  [Edit full screen]( http://jaanga.github.io/cookbook-html/templates/code-edit-view/code-edit-view-r2.html#http://jaanga.github.io/algesurf/ray-marching/r3/algesurf-ray-marching-r3.html )
 
 
@@ -62,7 +62,7 @@ To show math in ways she has never beenn seen before
 * Add the full range of Three.js textures and materials
 * Using [RTT]( http://mrdoob.github.io/three.js/examples/#webgl_rtt ) and Dr Lawlor's techniques, bring GLSL surfaces to non-GLSL Three.js elements
 * Create complex manifold ( Calabi-Yau) shader visualizations
-* Learn how to uild heightmaps using shaders 
+* Learn how to uild heightmaps using shaders
 
 ## Features
 
@@ -73,7 +73,7 @@ To show math in ways she has never beenn seen before
 
 ## Issues
 
- 
+
 ## Sources
 
 * Source from http://glslsandbox.com/e#26575.13
@@ -104,11 +104,11 @@ To show math in ways she has never beenn seen before
 ### Thank You
 
 
-[Ray Marching]( https://en.wikipedia.org/wiki/Volume_ray_casting ) is fast, easy and cool. As 
+[Ray Marching]( https://en.wikipedia.org/wiki/Volume_ray_casting ) is fast, easy and cool. As
 [Íñgo Quílez said]( http://www.iquilezles.org/www/articles/terrainmarching/terrainmarching.htm ): "So I chose to do a "raymarcher" to create some pictures cause it's a really simple technique...
 That's in fact the beauty of the technique - an increibly simple code that produces interesting images. It's perfect for small size demos..."
 
- 
+
 * Aaron Montag
 	* https://www-m10.ma.tum.de/bin/view/Lehrstuhl/AaronMontag
 	* http://home.in.tum.de/~montaga/fract/inversion2.html
