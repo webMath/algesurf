@@ -36,51 +36,46 @@ Visualize math and physics in ways never seen before
 
 [Blog Post]( http://jaanga.github.io/request-jaanga-blog-posts.html#2015-12-21_ray-marching-achieved_algesurf.md )
 
-[Ray Marching]( http://webmath.github.io/algesurf/ray-marching/dev/ )
-[Read Me]( http://webmath.github.io/algesurf/ray-marching/ )
-[Source Code]( https://github.com/webmath/algesurf/tree/gh-pages/ray-marching )
+* [Ray Marching]( http://webmath.github.io/algesurf/ray-marching/dev/ )
+* [Read Me]( http://webmath.github.io/algesurf/ray-marching/ )
+* [Source Code]( https://github.com/webmath/algesurf/tree/gh-pages/ray-marching )
 
 
 ### Parametric Equations
 
-[Parametric Equations Browser R5.1 UI]( http://webmath.github.io/algesurf/parametric-equations/r5.1/algesurf-parametric-equations-ui-r5.1.html )
-[Parametric Equations Browser R5.1 API Equations Editor]( http://webmath.github.io/algesurf/parametric-equations/r5.1/algesurf-parametric-equations-api-equation-editor-r5.1.html )
-[Parametric Equations Browser R5.1 Gallery]( http://webmath.github.io/algesurf/parametric-equations/r5.1/algesurf-parametric-equations-gallery-r5.1.html )
-[Parametric Equations Browser R5.1 API ]( http://webmath.github.io/algesurf/parametric-equations/r5/algesurf-parametric-equations-api-r5.1.html )
-
-[Parametric Equations Browser R4]( http://webmath.github.io/algesurf/parametric-equations/r4/algesurf-pe-r4.html )
-
-[Parametric Equations Browser R3]( http://webmath.github.io/algesurf/parametric-equations/r3/algesurf-pe-r3.html )
-
-[Read Me]( http://webmath.github.io/algesurf/parametric-equations/ )
-[Source Code]( https://github.com/webmath/algesurf/tree/gh-pages/parametric-equations )
+* [Parametric Equations Browser R5.1 UI]( http://webmath.github.io/algesurf/parametric-equations/r5.1/algesurf-parametric-equations-ui-r5.1.html )
+* [Parametric Equations Browser R5.1 API Equations Editor]( http://webmath.github.io/algesurf/parametric-equations/r5.1/algesurf-parametric-equations-api-equation-editor-r5.1.html )
+* [Parametric Equations Browser R5.1 Gallery]( http://webmath.github.io/algesurf/parametric-equations/r5.1/algesurf-parametric-equations-gallery-r5.1.html )
+* [Parametric Equations Browser R5.1 API ]( http://webmath.github.io/algesurf/parametric-equations/r5/algesurf-parametric-equations-api-r5.1.html )
+* [Parametric Equations Browser R4]( http://webmath.github.io/algesurf/parametric-equations/r4/algesurf-pe-r4.html )
+* [Parametric Equations Browser R3]( http://webmath.github.io/algesurf/parametric-equations/r3/algesurf-pe-r3.html )
+* [Read Me]( http://webmath.github.io/algesurf/parametric-equations/ )
+* [Source Code]( https://github.com/webmath/algesurf/tree/gh-pages/parametric-equations )
 
 
 ### Marching Cubes
 
-[Marching Cubes R3.1 - UI]( http://webmath.github.io/algesurf/marching-cubes/r3.1/algesurf-marching-cubes-ui-r3.1.html )
-[Marching Cubes R3.1 - Gallery]( http://webmath.github.io/algesurf/marching-cubes/r3.1/algesurf-marching-cubes-gallery-r3.1.html )
-[Marching Cubes R3.1 - API]( http://webmath.github.io/algesurf/marching-cubes/r3.1/algesurf-marching-cubes-api-r3.1.html )
-
-[Marching Cubes R2 - Player]( http://webmath.github.io/algesurf/marching-cubes/r2/1-Overview/Player.html )
-[Marching Cubes R2 - Builder]( http://webmath.github.io/algesurf/marching-cubes/r2/1-Overview/Builder.html )
-
-[Read Me]( http://webmath.github.io/algesurf/marching-cubes/ )
-[Source Code ]( https://github.com/webmath/algesurf/tree/gh-pages/marching-cubes/ )
+* [Marching Cubes R3.1 - UI]( http://webmath.github.io/algesurf/marching-cubes/r3.1/* algesurf-marching-cubes-ui-r3.1.html )
+* [Marching Cubes R3.1 - Gallery]( http://webmath.github.io/algesurf/marching-cubes/r3.1/algesurf-marching-cubes-gallery-r3.1.html )
+* [Marching Cubes R3.1 - API]( http://webmath.github.io/algesurf/marching-cubes/r3.1/algesurf-marching-cubes-api-r3.1.html )
+* [Marching Cubes R2 - Player]( http://webmath.github.io/algesurf/marching-cubes/r2/1-Overview/Player.html )
+* [Marching Cubes R2 - Builder]( http://webmath.github.io/algesurf/marching-cubes/r2/1-Overview/Builder.html )
+* [Read Me]( http://webmath.github.io/algesurf/marching-cubes/ )
+* [Source Code ]( https://github.com/webmath/algesurf/tree/gh-pages/marching-cubes/ )
 
 ### Function Graph
 
-[Function Graph Sandbox - latest]( http://webmath.github.io/algesurf/function-graph/latest/ )
-
-[Read Me]( http://webmath.github.io/algesurf/function-graph/ )
-[Source Code]( https://github.com/webmath/algesurf/tree/gh-pages/function-graph )
+* [Function Graph Sandbox - latest]( http://webmath.github.io/algesurf/function-graph/latest/ )
+* [Read Me]( http://webmath.github.io/algesurf/function-graph/ )
+* [Source Code]( https://github.com/webmath/algesurf/tree/gh-pages/function-graph )
 
 ## Related Web Sites
+
 See also related technologies here:
 
-[SoundViz]( http://soundviz.github.io )
-[Jaanga Terrain R2]( http://jaanga.github.io/terrain-r2/ )
-[Jaanga Terrain Viewer]( http://jaanga.github.io/terrain-viewer/ )
+* [SoundViz]( http://soundviz.github.io )
+* [Jaanga Terrain R2]( http://jaanga.github.io/terrain-r2/ )
+* [Jaanga Terrain Viewer]( http://jaanga.github.io/terrain-viewer/ )
 
 ## Features
 
