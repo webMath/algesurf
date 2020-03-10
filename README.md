@@ -1,7 +1,7 @@
 <span style=display:none; >[View as web page]( http://webmath.github.io/algesurf/ "View file as a web page." ) </span>
 <input type=button value='View file as source code on GitHub' onclick="window.location.href='https://github.com/jaanga/algesurf/'" />
 
-[webMath]( http://webmath.github.io/ ) &raquo;  
+[webMath]( http://webmath.github.io/ ) &raquo;
 [algeSurf Read Me]( http://webmath.github.io/algesurf/ )
 ===
 
@@ -11,17 +11,19 @@
 
 ## Concept
 
-### Mission  
+### Mission
+
 <!-- a statement of a rationale, applicable now as well as in the future -->
 AlgeSurf is an effort to make the visualization of things mathematical faster, simpler and easier
 
 * The code should be as simple and as extensible as possible
 	* If you understand if/then, for loops and equal signs in JavaScript you should be good to go
-* The code should have the look and feel of Three.js code. 
-	* If you are familiar with the Three.js examples, you should be able to jump right into algeSurf code 
+* The code should have the look and feel of Three.js code.
+	* If you are familiar with the Three.js examples, you should be able to jump right into algeSurf code
 
 
-### Vision  
+### Vision
+
 <!--  a descriptive picture of a desired future state -->
 Visualize math and physics in ways never seen before
 
@@ -32,53 +34,53 @@ Visualize math and physics in ways never seen before
 
 ### Ray Marching
 
-[Blog Post]( http://jaanga.github.io/request-jaanga-blog-posts.html#2015-12-21_ray-marching-achieved_algesurf.md ) 
+[Blog Post]( http://jaanga.github.io/request-jaanga-blog-posts.html#2015-12-21_ray-marching-achieved_algesurf.md )
 
-[Ray Marching]( http://jaanga.github.io/algesurf/ray-marching/dev/ )  
-[Read Me]( http://jaanga.github.io/algesurf/ray-marching/ )  
-[Source Code]( https://github.com/jaanga/algesurf/tree/gh-pages/ray-marching )
+[Ray Marching]( http://webmath.github.io/algesurf/ray-marching/dev/ )
+[Read Me]( http://webmath.github.io/algesurf/ray-marching/ )
+[Source Code]( https://github.com/webmath/algesurf/tree/gh-pages/ray-marching )
 
 
 ### Parametric Equations
 
-[Parametric Equations Browser R5.1 UI]( http://jaanga.github.io/algesurf/parametric-equations/r5.1/algesurf-parametric-equations-ui-r5.1.html )  
-[Parametric Equations Browser R5.1 API Equations Editor]( http://jaanga.github.io/algesurf/parametric-equations/r5.1/algesurf-parametric-equations-api-equation-editor-r5.1.html )  
-[Parametric Equations Browser R5.1 Gallery]( http://jaanga.github.io/algesurf/parametric-equations/r5.1/algesurf-parametric-equations-gallery-r5.1.html )  
-[Parametric Equations Browser R5.1 API ]( http://jaanga.github.io/algesurf/parametric-equations/r5/algesurf-parametric-equations-api-r5.1.html )  
+[Parametric Equations Browser R5.1 UI]( http://webmath.github.io/algesurf/parametric-equations/r5.1/algesurf-parametric-equations-ui-r5.1.html )
+[Parametric Equations Browser R5.1 API Equations Editor]( http://webmath.github.io/algesurf/parametric-equations/r5.1/algesurf-parametric-equations-api-equation-editor-r5.1.html )
+[Parametric Equations Browser R5.1 Gallery]( http://webmath.github.io/algesurf/parametric-equations/r5.1/algesurf-parametric-equations-gallery-r5.1.html )
+[Parametric Equations Browser R5.1 API ]( http://webmath.github.io/algesurf/parametric-equations/r5/algesurf-parametric-equations-api-r5.1.html )
 
-[Parametric Equations Browser R4]( http://jaanga.github.io/algesurf/parametric-equations/r4/algesurf-pe-r4.html )  
+[Parametric Equations Browser R4]( http://webmath.github.io/algesurf/parametric-equations/r4/algesurf-pe-r4.html )
 
-[Parametric Equations Browser R3]( http://jaanga.github.io/algesurf/parametric-equations/r3/algesurf-pe-r3.html )  
+[Parametric Equations Browser R3]( http://webmath.github.io/algesurf/parametric-equations/r3/algesurf-pe-r3.html )
 
-[Read Me]( http://jaanga.github.io/algesurf/parametric-equations/ )  
-[Source Code]( https://github.com/jaanga/algesurf/tree/gh-pages/parametric-equations )
+[Read Me]( http://webmath.github.io/algesurf/parametric-equations/ )
+[Source Code]( https://github.com/webmath/algesurf/tree/gh-pages/parametric-equations )
 
 
 ### Marching Cubes
 
-[Marching Cubes R3.1 - UI]( http://jaanga.github.io/algesurf/marching-cubes/r3.1/algesurf-marching-cubes-ui-r3.1.html )  
-[Marching Cubes R3.1 - Gallery]( http://jaanga.github.io/algesurf/marching-cubes/r3.1/algesurf-marching-cubes-gallery-r3.1.html )  
-[Marching Cubes R3.1 - API]( http://jaanga.github.io/algesurf/marching-cubes/r3.1/algesurf-marching-cubes-api-r3.1.html )  
+[Marching Cubes R3.1 - UI]( http://webmath.github.io/algesurf/marching-cubes/r3.1/algesurf-marching-cubes-ui-r3.1.html )
+[Marching Cubes R3.1 - Gallery]( http://webmath.github.io/algesurf/marching-cubes/r3.1/algesurf-marching-cubes-gallery-r3.1.html )
+[Marching Cubes R3.1 - API]( http://webmath.github.io/algesurf/marching-cubes/r3.1/algesurf-marching-cubes-api-r3.1.html )
 
-[Marching Cubes R2 - Player]( http://jaanga.github.io/algesurf/marching-cubes/r2/1-Overview/Player.html )  
-[Marching Cubes R2 - Builder]( http://jaanga.github.io/algesurf/marching-cubes/r2/1-Overview/Builder.html )  
+[Marching Cubes R2 - Player]( http://webmath.github.io/algesurf/marching-cubes/r2/1-Overview/Player.html )
+[Marching Cubes R2 - Builder]( http://webmath.github.io/algesurf/marching-cubes/r2/1-Overview/Builder.html )
 
-[Read Me]( http://jaanga.github.io/algesurf/marching-cubes/ )  
-[Source Code ]( https://github.com/jaanga/algesurf/tree/gh-pages/marching-cubes/ )  
+[Read Me]( http://webmath.github.io/algesurf/marching-cubes/ )
+[Source Code ]( https://github.com/webmath/algesurf/tree/gh-pages/marching-cubes/ )
 
 ### Function Graph
 
-[Function Graph Sandbox - latest]( http://jaanga.github.io/algesurf/function-graph/latest/ )  
+[Function Graph Sandbox - latest]( http://webmath.github.io/algesurf/function-graph/latest/ )
 
-[Read Me]( http://jaanga.github.io/algesurf/function-graph/ )  
-[Source Code]( https://github.com/jaanga/algesurf/tree/gh-pages/function-graph )
+[Read Me]( http://webmath.github.io/algesurf/function-graph/ )
+[Source Code]( https://github.com/webmath/algesurf/tree/gh-pages/function-graph )
 
 ## Related Web Sites
 See also related technologies here:
 
-[SoundViz]( http://soundviz.github.io )  
-[Jaanga Terrain R2]( http://jaanga.github.io/terrain-r2/ )  
-[Jaanga Terrain Viewer]( http://jaanga.github.io/terrain-viewer/ )  
+[SoundViz]( http://soundviz.github.io )
+[Jaanga Terrain R2]( http://jaanga.github.io/terrain-r2/ )
+[Jaanga Terrain Viewer]( http://jaanga.github.io/terrain-viewer/ )
 
 ## Features
 
@@ -107,12 +109,12 @@ See also related technologies here:
 
 ## Credits and Contacts
 
-This effort stands on the shoulder of giants: [Credits]( index.html#credits.md )  
+This effort stands on the shoulder of giants: [Credits]( index.html#credits.md )
 
 
 jaanga@googlegroups.com
 
-##Copyright
+## Copyright
 
 Copyright © 2015 Jaanga authors
 
@@ -132,7 +134,11 @@ In no event shall the authors or copyright holders be liable for any claim, dama
 
 ## Change Log
 
-2015-07-07 ~ Theo
+### 2020-03-09 ~ Theo
+
+Fixing links
+
+### 2015-07-07 ~ Theo
 
 * First commit R3 home page
 

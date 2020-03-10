@@ -1,37 +1,41 @@
 ﻿<span style=display:none; >[You are now in a GitHub source code view - click this link to view this read me file as a web page]( http://jaanga.github.io/algesurf/ray-marching/  "View file as a web page." ) </span>
 <input onclick=window.location.href='https://github.com/jaanga/algesurf/tree/gh-pages/ray-marching/'; type=button  value='You are now in a GitHub web page view - Click this button to view this read me file as source code' />
 
-[webMath]( http://jaanga.github.io ) » [algeSurf]( http://jaanga.github.io/algesurf/ ) »
+[webMath]( http://webmath.github.io ) » [algeSurf]( http://webmath.github.io/algesurf/ ) »
 
 # [Ray Marching Read Me]( index.html )
 
 
 _The shortest distance between you and a great rendering is lots of straight lines_
 
+<!--
+
 [Blog]( http://jaanga.github.io/request-jaanga-blog-posts.html )
 ~ [Documents]( http://jaanga.github.io/documents )
 ~ [Read Me]( http://jaanga.github.io/#http://jaanga.github.io/readme.md )
 ~ [Copyright and License]( http://jaanga.github.io/#http://jaanga.github.io/jaanga-copyright-and-mit-license.md )
 ~ [Contacts and Organization]( http://jaanga.github.io/#http://jaanga.github.io/jaanga-contacts-and-organization.md )
+-->
 
 ***
 
-##Overview
+## Overview
 
-### [AlgeSurf Ray Marching - Demo - Full Screen]( http://jaanga.github.io/algesurf/ray-marching/dev/index.html )
+### [AlgeSurf Ray Marching - Demo - Full Screen]( http://webmath.github.io/algesurf/ray-marching/dev/index.html )
 
 ### [Blog Post: Ray Marching Achieved]( http://jaanga.github.io/request-jaanga-blog-posts.html#2015-12-21_ray-marching-achieved_algesurf.md )
 
 
 ### Sample Web Page / Source Code
 
-<iframe class=ifr src=http://jaanga.github.io/cookbook-html/templates/code-edit-view/code-edit-view-r2.html#http://jaanga.github.io/algesurf/ray-marching/r3/algesurf-ray-marching-r3.html width=100% height=600px ></iframe>
-###### _AlgeSurf Ray Marching R2 - Dev revision - Code Edit View_ /  [Edit full screen]( http://jaanga.github.io/cookbook-html/templates/code-edit-view/code-edit-view-r2.html#http://jaanga.github.io/algesurf/ray-marching/r3/algesurf-ray-marching-r3.html )
+<iframe class=ifr src=http://jaanga.github.io/cookbook-html/templates/code-edit-view/code-edit-view-r2.html#http://webmath.github.io/algesurf/ray-marching/r3/algesurf-ray-marching-r3.html width=100% height=600px ></iframe>
+###### _AlgeSurf Ray Marching R2 - Dev revision - Code Edit View_ /  [Edit full screen]( http://jaanga.github.io/cookbook-html/templates/code-edit-view/code-edit-view-r2.html#http://webmath.github.io/algesurf/ray-marching/r3/algesurf-ray-marching-r3.html )
 
 
 ## Concept
 
 ### Issues / Problems
+
 <!--
 
 The general format is an adaptation of the ideas developed in Alexander's _et al_ [A Pattern Language]( https://books.google.com/books?id=hwAHmktpk5IC&pg=PR10#v=onepage&q&f=false ) - as sammarized on page 10.
