@@ -55,7 +55,7 @@ Visualize math and physics in ways never seen before
 
 ### Marching Cubes
 
-* [Marching Cubes R3.1 - UI]( http://webmath.github.io/algesurf/marching-cubes/r3.1/* algesurf-marching-cubes-ui-r3.1.html )
+* [Marching Cubes R3.1 - UI]( http://webmath.github.io/algesurf/marching-cubes/r3.1/algesurf-marching-cubes-ui-r3.1.html )
 * [Marching Cubes R3.1 - Gallery]( http://webmath.github.io/algesurf/marching-cubes/r3.1/algesurf-marching-cubes-gallery-r3.1.html )
 * [Marching Cubes R3.1 - API]( http://webmath.github.io/algesurf/marching-cubes/r3.1/algesurf-marching-cubes-api-r3.1.html )
 * [Marching Cubes R2 - Player]( http://webmath.github.io/algesurf/marching-cubes/r2/1-Overview/Player.html )
