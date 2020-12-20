@@ -5,7 +5,7 @@
 [algeSurf Read Me]( http://webmath.github.io/algesurf/ )
 ===
 
-<iframe class=ifr src="iframe-carousel-r1.html" width=100% height=500px ></iframe>
+<iframe class=ifr src="https://webmath.github.io/algesurf/iframe-carousel-r1.html" width=100% height=500px ></iframe>
 
 <span style="display: none">_algeSurf Apps - a selection_</span>
 
